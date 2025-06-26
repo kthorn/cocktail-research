@@ -105,7 +105,7 @@ def list_recipe_urls(session: PoliteSession):
                 time.sleep(0.5)
 
             except Exception as e:
-                logger.error(f"Error fetching page {page} for spirit {spirit}: {e}")
+                tqdm.write(f"Error fetching page {page} for spirit {spirit}: {e}")
                 time.sleep(2)
                 continue
     return list(all_urls)
@@ -136,7 +136,7 @@ def main():
 
     recipe_urls = list_recipe_urls(session)
 
-    for url in tqdm(recipe_urls, desc="Downloading Recipes"):
+    for url in tqdm(recipe_urls, desc="Downloading Recipes", dynamic_ncols=True):
         filename = url_to_filename(url)
         output_path = OUTPUT_DIR / filename
 

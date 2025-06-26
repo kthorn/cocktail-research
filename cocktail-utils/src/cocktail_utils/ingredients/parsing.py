@@ -1,10 +1,16 @@
-"""Ingredient quantity parsing utilities."""
+"""Ingredient parsing and normalization utilities."""
 
 import re
-from decimal import Decimal, InvalidOperation
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
-from .normalization import normalize_unit
+from cocktail_utils.ingredients.number_utils import (
+    _is_fraction,
+    _is_integer,
+    _is_number,
+    _parse_fraction,
+)
+
+# --- Constants ---
 
 # Unicode fraction mappings
 UNICODE_FRAC = {"¼": ".25", "½": ".5", "¾": ".75", "⅓": ".333", "⅔": ".667"}
@@ -15,7 +21,7 @@ UNIT_MAP = {
     "ounce": ["ounce", "ounces", "oz", "oz."],
     "tablespoon": [
         "tablespoon",
-        "tablespoons", 
+        "tablespoons",
         "tbsp",
         "tbsp.",
         "tablespoonful",
@@ -39,188 +45,190 @@ UNIT_MAP = {
     "slice": ["slice", "slices"],
     "wedge": ["wedge", "wedges"],
     "whole": ["whole"],
+    "cube": ["cube", "cubes"],
 }
 
 # Create reverse mapping for lookup
 UNIT_LOOKUP = {v: k for k, vs in UNIT_MAP.items() for v in vs}
 
 
-def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
-    """Parse ingredient quantities, handling special cases like 'heavy', 'scant', and 'to top'.
-    
+# --- Functions ---
+
+
+def normalize_unit(unit: str) -> str:
+    """Normalize unit names to their standard form.
+
+    Takes a raw unit string and converts it to the standardized unit name
+    used throughout the system. Handles various abbreviations and alternate
+    forms of common measurement units.
+
     Args:
-        text: Raw ingredient text to parse
-        
+        unit: Raw unit string that may contain abbreviations or variations.
+
     Returns:
-        Tuple of (amount, unit, ingredient_name)
-        
+        Normalized unit name in standard form.
+
+    Examples:
+        >>> normalize_unit("oz")
+        'ounce'
+        >>> normalize_unit("tbsp.")
+        'tablespoon'
+        >>> normalize_unit("ML")
+        'ml'
+    """
+    unit = unit.lower().strip(".")
+    return UNIT_LOOKUP.get(unit, unit)
+
+
+def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
+    """Parse ingredient quantities, handling special cases.
+
+    Extracts amount, unit, and ingredient name from ingredient text.
+    Handles special cases like 'heavy', 'scant', 'to top', mixed numbers,
+    fractions, and unicode fraction characters.
+
+    Args:
+        text: Raw ingredient text to parse (e.g., "2 oz gin" or "Ginger beer, to top").
+
+    Returns:
+        A tuple containing:
+            - amount: Numeric quantity as float, or None if no quantity found
+            - unit: Unit of measurement as normalized string, or None if no unit found
+            - ingredient_name: Clean ingredient name with quantity/unit removed
+
     Examples:
         >>> parse_quantity("2 oz gin")
-        (2.0, "ounce", "gin")
+        (2.0, 'ounce', 'gin')
         >>> parse_quantity("1/2 cup fresh lemon juice")
-        (0.5, "cup", "fresh lemon juice")
+        (0.5, 'cup', 'fresh lemon juice')
         >>> parse_quantity("Ginger beer, to top")
-        (0, "to top", "Ginger beer")
+        (None, 'to top', 'Ginger beer')
+        >>> parse_quantity("3 Cherries")
+        (3.0, None, 'Cherries')
+        >>> parse_quantity("1 sugar cube")
+        (1.0, 'cube', 'sugar')
     """
     original_text = text.strip()
     t = original_text.lower()
 
-    # Handle "to top" ingredients (like ginger beer, tonic water, etc)
+    # Handle special cases like "to top" or "as needed"
     if " to top" in t or " as needed" in t:
-        # First extract the ingredient part before ", to top"
-        parts = original_text.split(", to top")
-        if len(parts) == 1:  # Try " to top" without comma
-            parts = original_text.split(" to top")
-        if len(parts) == 1:  # Try "as needed"
-            parts = original_text.split(" as needed")
+        unit = "to top" if " to top" in t else "as needed"
+        # Extract the ingredient name before the special phrase
+        ingredient_part = re.split(f",? {unit}", original_text, flags=re.IGNORECASE)[0]
+        return None, unit, clean_ingredient_name(ingredient_part)
 
-        ingredient_part = parts[0].strip()
-        ingredient_part_lower = ingredient_part.lower()
+    # Pre-process the string
+    t = re.sub(r"^\([^)]*\)\s*", "", t)  # remove parenthetical quantities
+    t = "".join(UNICODE_FRAC.get(c, c) for c in t)  # convert unicode fractions
 
-        # Try to extract quantity information from the ingredient part
-        # Check for ranges like "4 to 6 ounces Dr Pepper"
-        range_match = re.match(
-            r"^(\d+(?:\s+\d+/\d+)?)\s+to\s+(\d+(?:\s+\d+/\d+)?)\s+(\w+)\s+(.+)",
-            ingredient_part_lower,
-        )
-        if range_match:
-            # Extract the ingredient name (group 4)
-            ingredient_name = re.match(
-                r"^(\d+(?:\s+\d+/\d+)?)\s+to\s+(\d+(?:\s+\d+/\d+)?)\s+(\w+)\s+(.+)",
-                ingredient_part,
-                re.IGNORECASE,
-            ).group(4)
-            return 0, "to top", clean_ingredient_name(ingredient_name)
+    # Remove special quantity words like "heavy" or "scant"
+    t = re.sub(r"^(heavy|scant|about)\s+", "", t, flags=re.IGNORECASE)
 
-        # Check for simple quantities like "2 ounces Dr Pepper"
-        simple_qty_match = re.match(
-            r"^(\d+(?:\.\d+)?(?:\s+\d+/\d+)?)\s+(\w+)\s+(.+)", ingredient_part_lower
-        )
-        if simple_qty_match:
-            # Extract the ingredient name (group 3)
-            ingredient_name = re.match(
-                r"^(\d+(?:\.\d+)?(?:\s+\d+/\d+)?)\s+(\w+)\s+(.+)",
-                ingredient_part,
-                re.IGNORECASE,
-            ).group(3)
-            return 0, "to top", clean_ingredient_name(ingredient_name)
+    # Attempt to parse amount and unit from the start of the string
+    amount, rest = _parse_amount(t)
+    unit, rest = _parse_unit(rest)
+    ingredient_name = clean_ingredient_name(rest)
 
-        # Fallback to original behavior - clean the whole ingredient part
-        return 0, "to top", clean_ingredient_name(ingredient_part)
+    # If cleaning results in an empty string, fall back to the original text
+    if not ingredient_name:
+        ingredient_name = original_text
 
-    # Remove parenthetical quantities at the start
-    t = re.sub(r"^\([^)]*\)\s*", "", t)
-    original_text = re.sub(r"^\([^)]*\)\s*", "", original_text)
+    return amount, unit, ingredient_name
 
-    # Remove special quantity words
-    for word in ["heavy", "scant", "about"]:
-        if t.startswith(word + " "):
-            t = t[len(word) :].strip()
-            # Also remove from original text, preserving case
-            word_pattern = re.compile(r"^" + re.escape(word) + r"\s+", re.IGNORECASE)
-            original_text = word_pattern.sub("", original_text).strip()
 
-    # Handle ranges (e.g. "1 to 2 ounces")
-    range_match = re.match(r"^(\d+(?:\s+\d+/\d+)?)\s+to\s+(\d+(?:\s+\d+/\d+)?)\s+", t)
-    if range_match:
-        # Convert both numbers to decimals and take average
-        start = Decimal(str(eval(range_match.group(1))))
-        end = Decimal(str(eval(range_match.group(2))))
-        amt = float((start + end) / 2)
-        # Remove the range part from both versions
-        t = t[range_match.end() :]
-        # Find the same pattern in original text
-        original_range_match = re.match(
-            r"^(\d+(?:\s+\d+/\d+)?)\s+to\s+(\d+(?:\s+\d+/\d+)?)\s+",
-            original_text,
-            re.IGNORECASE,
-        )
-        if original_range_match:
-            original_text = original_text[original_range_match.end() :]
-        parts = t.split()
-        original_parts = original_text.split()
-        unit = normalize_unit(parts[0])
-        rest = " ".join(original_parts[1:]) if len(original_parts) > 1 else ""
-        return amt, unit, clean_ingredient_name(rest)
+def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
+    """Parse amount from the start of an ingredient string.
 
-    # Convert unicode fractions
-    for k, v in UNICODE_FRAC.items():
-        t = t.replace(k, v)
+    Helper function that extracts numeric quantities
+    from the beginning of ingredient text. Handles mixed numbers, fractions,
+    and decimal values.
 
-    parts = t.split()
-    original_parts = original_text.split()
+    Args:
+        text: Ingredient text with potential quantity and unit at the start.
+
+    Returns:
+        A tuple containing:
+            - amount: Parsed numeric value as float, or None if no valid number found
+            - rest: Remaining text after removing amount and unit
+
+    """
+    words = text.split()
+    if not words:
+        return None, ""
+    amount = None
+    name_start_index = 0
+
     try:
-        # Check if first part is a unit (like "ounces vodka")
-        if parts[0] in UNIT_LOOKUP:
-            amt = Decimal(1)
-            unit = normalize_unit(parts[0])
-            rest = " ".join(original_parts[1:])
-        else:
-            # Try to parse as a mixed number (e.g., "2 3/4" or just "2" or "3/4")
-            amt = None
-            unit_idx = 1  # Default assumption: first part is number, second is unit
+        # Case 1: Mixed number (e.g., "1 1/2")
+        if len(words) >= 2 and _is_integer(words[0]) and _is_fraction(words[1]):
+            whole_part = int(words[0])
+            fraction_part = _parse_fraction(words[1])
+            amount = float(whole_part + fraction_part)
+            name_start_index = 2
 
-            # Check for mixed numbers like "2 3/4"
-            if (
-                len(parts) >= 2
-                and re.match(r"^\d+$", parts[0])
-                and re.match(r"^\d+/\d+$", parts[1])
-            ):
-                # Mixed number: "2 3/4"
-                whole = int(parts[0])
-                frac_parts = parts[1].split("/")
-                fraction = Decimal(frac_parts[0]) / Decimal(frac_parts[1])
-                amt = Decimal(whole) + fraction
-                unit_idx = 2
-            else:
-                # Try to parse the first part as a number (could be "2", "3/4", "2.5", etc.)
-                try:
-                    amt = Decimal(str(eval(parts[0])))  # "3/4" → 0.75, "2" → 2
-                except (ValueError, ZeroDivisionError, SyntaxError):
-                    # If that fails, maybe it's a decimal
-                    amt = Decimal(parts[0])
+        # Case 2: Simple fraction (e.g., "1/2")
+        elif len(words) >= 1 and _is_fraction(words[0]):
+            amount = float(_parse_fraction(words[0]))
+            name_start_index = 1
 
-            if unit_idx < len(parts):
-                unit = normalize_unit(parts[unit_idx])
-                rest = (
-                    " ".join(original_parts[unit_idx + 1 :])
-                    if unit_idx + 1 < len(original_parts)
-                    else ""
-                )
-            else:
-                # No unit found
-                unit = None
-                rest = " ".join(original_parts[1:]) if len(original_parts) > 1 else ""
-    except (InvalidOperation, IndexError, SyntaxError, NameError):
-        # If we can't parse a quantity, treat the whole line as ingredient name
-        amt = None
-        unit = None
-        rest = " ".join(original_parts)
+        # Case 3: Decimal or integer (e.g., "2.5" or "3")
+        elif len(words) >= 1 and _is_number(words[0]):
+            amount = float(words[0])
+            name_start_index = 1
 
-    # Clean the ingredient name
-    rest = clean_ingredient_name(rest)
+    except (ValueError, ZeroDivisionError):
+        # If parsing fails, no amount can be parsed
+        amount = None
+        name_start_index = 0
 
-    # If we ended up with an empty ingredient name, use the original text
-    if not rest:
-        rest = original_text
+    # The rest of the string is the ingredient name
+    rest = " ".join(words[name_start_index:])
+    return amount, rest
 
-    return float(amt) if amt is not None else None, unit, rest
+
+def _parse_unit(text: str) -> tuple[Optional[str], str]:
+    """Parse unit from the start of an ingredient string.
+
+    Helper function that extracts the unit from the start of an ingredient string.
+    """
+    words = text.split()
+    if not words:
+        return None, text
+
+    name_start_index = 0
+    if name_start_index < len(words):
+        potential_unit = words[name_start_index].lower().strip(".")
+        if potential_unit in UNIT_LOOKUP:
+            unit = normalize_unit(potential_unit)
+            name_start_index += 1
+            return unit, " ".join(words[name_start_index:])
+
+    # No unit found - return None for unit and the original text
+    return None, text
 
 
 def clean_ingredient_name(name: str) -> str:
-    """Clean up ingredient names by removing parenthetical notes and other formatting.
-    
+    """Clean up ingredient names by removing formatting and notes.
+
+    Removes parenthetical notes, extra whitespace, and other formatting
+    artifacts to produce clean ingredient names suitable for matching
+    and categorization.
+
     Args:
-        name: Raw ingredient name
-        
+        name: Raw ingredient name that may contain parenthetical notes
+              and extra formatting.
+
     Returns:
-        Cleaned ingredient name
-        
+        Cleaned ingredient name with formatting removed.
+
     Examples:
         >>> clean_ingredient_name("fresh lemon juice (about 1 lemon)")
-        "fresh lemon juice"
+        'fresh lemon juice'
         >>> clean_ingredient_name("vodka  , premium")
-        "vodka, premium"
+        'vodka, premium'
+        >>> clean_ingredient_name("(optional) fresh mint")
+        'fresh mint'
     """
     # Remove parenthetical quantities at the start (including "about", "heavy", etc)
     name = re.sub(r"^\([^)]*\)\s*", "", name)
@@ -233,3 +241,127 @@ def clean_ingredient_name(name: str) -> str:
     name = name.strip().strip(",")
 
     return name
+
+
+def normalize_ingredient_text(ingredient_text: str) -> str:
+    """Normalize ingredient text for consistent matching.
+
+    Removes quantities, measurements, and common prefixes that don't
+    affect ingredient categorization. Converts to lowercase and
+    normalizes whitespace for consistent taxonomy matching.
+
+    Args:
+        ingredient_text: The raw ingredient description text that may
+                        contain quantities, measurements, and qualifiers.
+
+    Returns:
+        Normalized ingredient text suitable for taxonomy matching,
+        with quantities and non-essential qualifiers removed.
+
+    Examples:
+        >>> normalize_ingredient_text("2 oz fresh lemon juice")
+        'lemon juice'
+        >>> normalize_ingredient_text("1 tsp premium vanilla extract")
+        'vanilla extract'
+        >>> normalize_ingredient_text("3 dashes good quality bitters")
+        'bitters'
+    """
+    # Remove quantities and measurements
+    text = re.sub(
+        r"^\d+[\s\d/]*\s*(ounces?|oz|cups?|tsp|tbsp|ml|cl|dashes?|drops?)\s+",
+        "",
+        ingredient_text,
+        flags=re.IGNORECASE,
+    )
+
+    # Remove common prefixes that don't affect categorization
+    text = re.sub(
+        r"^(fresh|freshly|good|quality|premium|good\s+quality)\s+",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    # Normalize whitespace and convert to lowercase
+    text = " ".join(text.lower().split())
+
+    return text
+
+
+def extract_brand(
+    ingredient_text: str, brand_patterns: Optional[List[re.Pattern]] = None
+) -> Tuple[Optional[str], str]:
+    """Extract brand name and return cleaned ingredient text.
+
+    Searches for brand references in ingredient text using compiled patterns
+    and removes them to get the clean ingredient name. Handles common
+    brand reference patterns like "preferably X", "such as X", etc.
+
+    Args:
+        ingredient_text: The raw ingredient description text that may
+                        contain brand references.
+        brand_patterns: Optional list of compiled regex patterns for brand
+                       extraction. If None, uses default patterns that handle
+                       common brand reference formats.
+
+    Returns:
+        A tuple containing:
+            - brand: Brand name if found, None otherwise
+            - cleaned_text: Ingredient text with brand reference removed
+
+    Examples:
+        >>> extract_brand("gin, preferably Hendrick's")
+        ("Hendrick's", 'gin')
+        >>> extract_brand("dry vermouth such as Dolin")
+        ('Dolin', 'dry vermouth')
+        >>> extract_brand("bourbon like Maker's Mark")
+        ("Maker's Mark", 'bourbon')
+        >>> extract_brand("simple vodka")
+        (None, 'simple vodka')
+    """
+    if brand_patterns is None:
+        brand_patterns = _get_default_brand_patterns()
+
+    for pattern in brand_patterns:
+        match = pattern.search(ingredient_text)
+        if match:
+            brand = match.group(1).strip()
+            # Remove the brand reference from the text
+            cleaned_text = pattern.sub("", ingredient_text).strip().rstrip(",")
+            # Clean up any empty parentheses left behind
+            cleaned_text = re.sub(r"\s*\(\s*\)", "", cleaned_text).strip()
+            return brand, cleaned_text
+    return None, ingredient_text
+
+
+def _get_default_brand_patterns() -> List[re.Pattern]:
+    """Get default regex patterns for brand extraction from ingredient text.
+
+    Creates regex patterns to identify and extract brand names from
+    ingredient descriptions. Looks for common brand reference patterns
+    like "preferably X", "such as X", "like X", and brands mentioned
+    at the end of ingredient descriptions.
+
+    Returns:
+        A list of compiled regex patterns for brand extraction, ordered
+        by specificity with more specific patterns first.
+
+    Examples:
+        The patterns will match:
+        - "gin, preferably Hendrick's" -> captures "Hendrick's"
+        - "vermouth such as Dolin" -> captures "Dolin"
+        - "whiskey like Jameson" -> captures "Jameson"
+        - "rum, Bacardi" -> captures "Bacardi"
+    """
+    return [
+        # Patterns for parenthetical brand references
+        re.compile(r"\s*\(preferably\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
+        re.compile(r"\s*\(such as\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
+        re.compile(r"\s*\(like\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
+        # Patterns for non-parenthetical brand references
+        re.compile(r",?\s*preferably\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
+        re.compile(r",?\s*such as\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
+        re.compile(r",?\s*like\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
+        # Pattern for brands at the end without "preferably"
+        re.compile(r",\s+([A-Z][a-zA-Z\s&'\-\d]+)$", re.IGNORECASE),
+    ]

@@ -9,10 +9,14 @@ CREATE TABLE IF NOT EXISTS ingredient(
 );
 
 CREATE TABLE IF NOT EXISTS recipe(
-    id          INTEGER PRIMARY KEY,
-    name        TEXT NOT NULL,
-    method      TEXT,
-    source_url  TEXT UNIQUE
+    id           INTEGER PRIMARY KEY,
+    name         TEXT NOT NULL,
+    source_url   TEXT UNIQUE,
+    source_file  TEXT,
+    description  TEXT,
+    garnish      TEXT,
+    directions   TEXT,
+    editors_note TEXT
 );
 
 CREATE TABLE IF NOT EXISTS recipe_ingredient(
