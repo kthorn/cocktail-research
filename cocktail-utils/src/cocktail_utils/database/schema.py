@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS recipe(
     id           INTEGER PRIMARY KEY,
     name         TEXT NOT NULL,
     source_url   TEXT UNIQUE,
-    source_file  TEXT,
+    source_file  TEXT UNIQUE,
     description  TEXT,
     garnish      TEXT,
     directions   TEXT,

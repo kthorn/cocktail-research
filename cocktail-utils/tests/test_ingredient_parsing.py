@@ -4,7 +4,6 @@ from cocktail_utils.ingredients.parsing import (
     _parse_unit,
     normalize_ingredient_text,
     normalize_unit,
-    parse_quantity,
     clean_ingredient_name,
     extract_brand,
 )
@@ -81,6 +80,13 @@ def test_normalize_unit(input_unit, expected_unit):
         ("salt", None, "salt"),
         ("2.5 ml water", 2.5, "ml water"),
         ("", None, ""),
+        ("2 to 3 dashes Herbstura", 2.5, "dashes Herbstura"),
+        ("2-3 dashes Herbstura", 2.5, "dashes Herbstura"),
+        (
+            "4 lemons, peeled and peels reserved",
+            4.0,
+            "lemons, peeled and peels reserved",
+        ),
     ],
 )
 def test_parse_amount(input_text, expected_amt, expected_rest):

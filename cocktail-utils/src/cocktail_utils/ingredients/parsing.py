@@ -160,19 +160,35 @@ def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
     name_start_index = 0
 
     try:
-        # Case 1: Mixed number (e.g., "1 1/2")
-        if len(words) >= 2 and _is_integer(words[0]) and _is_fraction(words[1]):
+        # Case 1: Number range (e.g., "2 to 3" or "2-3")
+        if (
+            len(words) >= 3
+            and _is_number(words[0])
+            and words[1].lower() == "to"
+            and _is_number(words[2])
+        ):
+            amount = (float(words[0]) + float(words[2])) / 2
+            name_start_index = 3
+        elif (
+            len(words) >= 1 and "-" in words[0] and len(words[0].split("-")) == 2
+        ):  # e.g. 2-3
+            parts = words[0].split("-")
+            if _is_number(parts[0]) and _is_number(parts[1]):
+                amount = (float(parts[0]) + float(parts[1])) / 2
+                name_start_index = 1
+        # Case 2: Mixed number (e.g., "1 1/2")
+        elif len(words) >= 2 and _is_integer(words[0]) and _is_fraction(words[1]):
             whole_part = int(words[0])
             fraction_part = _parse_fraction(words[1])
             amount = float(whole_part + fraction_part)
             name_start_index = 2
 
-        # Case 2: Simple fraction (e.g., "1/2")
+        # Case 3: Simple fraction (e.g., "1/2")
         elif len(words) >= 1 and _is_fraction(words[0]):
             amount = float(_parse_fraction(words[0]))
             name_start_index = 1
 
-        # Case 3: Decimal or integer (e.g., "2.5" or "3")
+        # Case 4: Decimal or integer (e.g., "2.5" or "3")
         elif len(words) >= 1 and _is_number(words[0]):
             amount = float(words[0])
             name_start_index = 1

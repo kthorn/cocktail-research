@@ -6,6 +6,7 @@ import sqlite3
 from tqdm import tqdm
 
 from cocktail_utils.database import get_connection, transaction, upsert_ingredient
+from cocktail_utils.database.schema import create_schema
 from cocktail_utils.recipes import parse_recipe_html
 from cocktail_utils.ingredients import parse_quantity
 
@@ -14,6 +15,7 @@ def main():
     """Main function to parse recipes and load them into the database."""
     db_path = "recipes.db"
     conn = get_connection(db_path)
+    create_schema(conn)
 
     # Find all HTML files in the raw_recipes directory
     recipe_files = list(pathlib.Path("raw_recipes").rglob("*.html"))
