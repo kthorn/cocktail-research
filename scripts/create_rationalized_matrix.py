@@ -22,7 +22,7 @@ def llm_rationalize(
     parser: IngredientParser,
     unmatched_ingredients: List[str],
     model_id: str = "anthropic.claude-3-5-haiku-20241022-v1:0",
-    max_workers: int = 1,  # Reduced to help with rate limiting
+    max_concurrent: int = 10,  # Renamed from max_workers
 ) -> Dict[str, Optional[dict]]:
     """
     Batch process unmatched ingredients using LLM with parallel processing.
@@ -31,7 +31,7 @@ def llm_rationalize(
         parser: IngredientParser instance
         unmatched_ingredients: List of ingredient names to rationalize
         model_id: Bedrock model ID to use
-        max_workers: Maximum number of parallel workers
+        max_concurrent: Maximum number of parallel workers
 
     Returns:
         Dictionary mapping ingredient names to rationalization results
@@ -42,25 +42,30 @@ def llm_rationalize(
 
     results = {}
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        # Submit all futures and collect them properly
-        future_to_ingredient = {}
-        for ingredient in unmatched_ingredients:
-            # Wait to not hit rate limit
-            time.sleep(2)
-            future = executor.submit(parser.llm_lookup, ingredient, model_id)
-            future_to_ingredient[future] = ingredient
+    with ThreadPoolExecutor(max_workers=max_concurrent) as executor:
+        # Iterator for remaining ingredients
+        ingredient_iter = iter(unmatched_ingredients)
 
-        # Collect results as they complete
-        for future in tqdm(
-            as_completed(future_to_ingredient),
-            total=len(unmatched_ingredients),
-            desc="LLM rationalization progress",
-        ):
-            ingredient = future_to_ingredient[future]
+        # Submit initial batch
+        active_futures = {}
+        for _ in range(min(max_concurrent, len(unmatched_ingredients))):
             try:
-                match = future.result()
-                if match:
+                ingredient = next(ingredient_iter)
+                future = executor.submit(parser.llm_lookup, ingredient, model_id)
+                active_futures[future] = ingredient
+            except StopIteration:
+                break
+
+        # Process completions and submit new requests
+        with tqdm(total=len(unmatched_ingredients), desc="LLM rationalization") as pbar:
+            while active_futures:
+                # Wait for at least one to complete
+                completed_future = next(as_completed(active_futures))
+
+                # Process the completed future
+                ingredient = active_futures.pop(completed_future)
+                try:
+                    match = completed_future.result()
                     results[ingredient] = {
                         "brand": match.brand,
                         "specific_type": match.specific_type,
@@ -68,11 +73,23 @@ def llm_rationalize(
                         "confidence": match.confidence,
                         "source": match.source,
                     }
-                else:
+                except Exception as e:
+                    print(f"Error processing {ingredient}: {e}")
                     results[ingredient] = None
-            except Exception as e:
-                print(f"Error processing {ingredient}: {e}")
-                results[ingredient] = None
+
+                pbar.update(1)
+
+                # Submit next ingredient if available
+                try:
+                    next_ingredient = next(ingredient_iter)
+                    time.sleep(0.1)  # Small delay between submissions
+                    future = executor.submit(
+                        parser.llm_lookup, next_ingredient, model_id
+                    )
+                    active_futures[future] = next_ingredient
+                except StopIteration:
+                    # No more ingredients to process
+                    pass
 
     successful_matches = sum(1 for v in results.values() if v is not None)
     print(
@@ -332,7 +349,7 @@ def main():
             ingredient_parser,
             unmatched_ingredients,
             model_id=args.model_id,
-            max_workers=args.max_workers,
+            max_concurrent=args.max_workers,
         )
 
         # Write LLM results to CSV
