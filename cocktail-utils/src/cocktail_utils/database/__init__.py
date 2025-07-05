@@ -7,6 +7,11 @@ from .utils import (
     upsert_ingredient,
     get_recipe_ingredient_data,
 )
+from .units import (
+    convert_to_ml,
+    validate_unit_coverage,
+    get_all_units_from_db,
+)
 
 __all__ = [
     "DDL",
@@ -15,4 +20,7 @@ __all__ = [
     "transaction",
     "upsert_ingredient",
     "get_recipe_ingredient_data",
+    "convert_to_ml",
+    "validate_unit_coverage",
+    "get_all_units_from_db",
 ]

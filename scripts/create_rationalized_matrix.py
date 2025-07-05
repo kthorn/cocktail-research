@@ -8,7 +8,6 @@ import argparse
 import csv
 import datetime
 import os
-import random
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Optional, Tuple
@@ -47,8 +46,8 @@ def llm_rationalize(
         # Submit all futures and collect them properly
         future_to_ingredient = {}
         for ingredient in unmatched_ingredients:
-            # Add small random delay to stagger requests
-            time.sleep(random.uniform(0.1, 0.5))
+            # Wait to not hit rate limit
+            time.sleep(2)
             future = executor.submit(parser.llm_lookup, ingredient, model_id)
             future_to_ingredient[future] = ingredient
 
@@ -163,6 +162,7 @@ def create_rationalized_matrix(
         DataFrame with recipes as rows and rationalized ingredients as multi-indexed columns
     """
     print("Creating rationalized recipe-ingredient matrix...")
+    start_time = time.time()
 
     # Filter ingredients by minimum recipe count
     ingredient_counts = recipe_ingredient_df["ingredient_name"].value_counts()
@@ -172,82 +172,73 @@ def create_rationalized_matrix(
 
     filtered_df = recipe_ingredient_df[
         recipe_ingredient_df["ingredient_name"].isin(valid_ingredients)
-    ]
+    ].copy()
     print(
         f"Using {len(valid_ingredients)} ingredients that appear in at least {min_recipe_count} recipes"
     )
 
-    # Create mapping from original ingredient names to rationalized column names
-    ingredient_to_column = {}
-    column_tuples = []
+    # Add rationalized column information to the dataframe
+    print("Adding rationalized column information...")
+    rationalization_start = time.time()
+
+    # Create mapping dictionaries for vectorized operations
+    category_map = {}
+    specific_type_map = {}
+    brand_map = {}
 
     for ingredient in valid_ingredients:
         if ingredient in ingredient_rationalizations:
             rationalization = ingredient_rationalizations[ingredient]
-            column_tuple = create_multi_index_column(
-                rationalization["category"],
-                rationalization["specific_type"],
-                rationalization["brand"],
+            category_map[ingredient] = rationalization["category"] or "unknown"
+            specific_type_map[ingredient] = (
+                rationalization["specific_type"] or "generic"
             )
-            ingredient_to_column[ingredient] = column_tuple
-            column_tuples.append(column_tuple)
+            brand_map[ingredient] = rationalization["brand"] or "generic"
         else:
             # Unmatched ingredient - use generic categorization
-            column_tuple = create_multi_index_column("unknown", "unknown", ingredient)
-            ingredient_to_column[ingredient] = column_tuple
-            column_tuples.append(column_tuple)
+            category_map[ingredient] = "unknown"
+            specific_type_map[ingredient] = "unknown"
+            brand_map[ingredient] = ingredient  # Use original ingredient name as brand
 
-    # Remove duplicates while preserving order
-    unique_columns = []
-    seen = set()
-    for col in column_tuples:
-        if col not in seen:
-            unique_columns.append(col)
-            seen.add(col)
+    # Vectorized mapping - much faster than apply
+    filtered_df["category"] = filtered_df["ingredient_name"].map(category_map)
+    filtered_df["specific_type"] = filtered_df["ingredient_name"].map(specific_type_map)
+    filtered_df["brand"] = filtered_df["ingredient_name"].map(brand_map)
 
-    print(f"Created {len(unique_columns)} unique rationalized ingredient columns")
+    # Handle None amounts by treating them as 0
+    filtered_df["amount_ml"] = filtered_df["amount_ml"].fillna(0)
 
-    # Create the matrix
-    recipes = sorted(filtered_df["recipe_name"].unique())
-    matrix_data = []
-
-    for recipe in tqdm(recipes, desc="Building matrix"):
-        recipe_data = filtered_df[filtered_df["recipe_name"] == recipe]
-        row = {}
-
-        for column_tuple in unique_columns:
-            # Find all ingredients that map to this column
-            matching_ingredients = [
-                ing for ing, col in ingredient_to_column.items() if col == column_tuple
-            ]
-
-            # Sum amounts for all matching ingredients in this recipe
-            total_amount = 0.0
-            for ingredient in matching_ingredients:
-                ingredient_rows = recipe_data[
-                    recipe_data["ingredient_name"] == ingredient
-                ]
-                if not ingredient_rows.empty:
-                    # Handle None amounts by treating them as 0
-                    amounts = ingredient_rows["amount"].fillna(0)
-                    total_amount += amounts.sum()
-
-            row[column_tuple] = total_amount
-
-        matrix_data.append(row)
-
-    # Create DataFrame with multi-index columns
-    matrix_df = pd.DataFrame(matrix_data, index=recipes)
-
-    # Create MultiIndex for columns
-    multi_index = pd.MultiIndex.from_tuples(
-        unique_columns, names=["category", "specific_type", "brand"]
+    print(
+        f"Rationalization mapping completed in {time.time() - rationalization_start:.2f} seconds"
     )
-    matrix_df.columns = multi_index
+    print("Creating matrix using vectorized operations...")
+
+    matrix_start = time.time()
+
+    # Group by recipe and rationalized columns, sum amounts
+    # This handles multiple ingredients mapping to the same rationalized column
+    grouped_df = (
+        filtered_df.groupby(["recipe_name", "category", "specific_type", "brand"])[
+            "amount_ml"
+        ]
+        .sum()
+        .reset_index()
+    )
+
+    # Create pivot table with multi-index columns
+    matrix_df = grouped_df.pivot_table(
+        index="recipe_name",
+        columns=["category", "specific_type", "brand"],
+        values="amount_ml",
+        fill_value=0.0,
+        aggfunc="sum",  # In case there are still duplicates
+    )
 
     # Sort columns for better organization
     matrix_df = matrix_df.sort_index(axis=1)
 
+    print(f"Matrix creation completed in {time.time() - matrix_start:.2f} seconds")
+    print(f"Total matrix creation time: {time.time() - start_time:.2f} seconds")
     print(
         f"Created matrix with {len(matrix_df)} recipes and {len(matrix_df.columns)} ingredient columns"
     )

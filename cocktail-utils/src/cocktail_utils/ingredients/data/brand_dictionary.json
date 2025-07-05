@@ -7,7 +7,9 @@
   "san pellegrino": "soda water",
   "carpano antica": "sweet vermouth",
   "cocchi vermouth di torino": "sweet vermouth",
+  "carpano antica formula vermouth": "sweet vermouth",
   "punt e mes": "sweet vermouth",
+  "dolin blanc": "dry vermouth",
   "luxardo": "maraschino liqueur",
   "disaronno": "amaretto",
   "cointreau": "orange liqueur",
@@ -38,6 +40,7 @@
   "belvedere": "vodka",
   "stolichnaya": "vodka",
   "titos": "vodka",
+  "rémy martin 1738 accord royal": "brandy",
   "giffard banane du brésil": "banana liqueur",
   "st. elizabeth allspice dram": "allspice dram",
   "plantation pineapple rum": "pineapple rum",
@@ -49,5 +52,12 @@
   "byrrh": "aromatized wine",
   "dubonnet rouge": "aromatized wine",
   "frangelico": "hazelnut liqueur",
-  "elijah craig small batch": "bourbon"
+  "elijah craig small batch": "bourbon",
+  "topo chico": "soda water",
+  "ancho reyes": "chile liqueur",
+  "ancho reyes chile liqueur": "chile liqueur",
+  "ancho reyes verde": "chile liqueur",
+  "bitter truth aromatic bitters": "aromatic bitters",
+  "angostura bitters": "aromatic bitters",
+  "fee brothers black walnut bitters": "walnut bitters"
 }

@@ -46,7 +46,8 @@
       "silver rum"
     ],
     "dark rum": [
-      "black rum"
+      "black rum",
+      "blackstrap rum"
     ],
     "aged rum": [],
     "rhum agricole": [],
@@ -106,8 +107,14 @@
     "creme de cacao": [
       "crème de cacao"
     ],
-    "creme de menthe": [],
-    "creme de cassis": [],
+    "creme de menthe": [
+      "crème de menthe",
+      "white crème de menthe"
+    ],
+    "creme de cassis": [
+      "crème de cassis",
+      "cassis"
+    ],
     "velvet falernum": [
       "falernum"
     ],
@@ -126,7 +133,12 @@
     "licor 43": [],
     "strega": [],
     "hazelnut liqueur": [],
-    "sloe gin": []
+    "chile liqueur": [],
+    "sloe gin": [],
+    "pimms": [
+      "pimm's no. 1",
+      "pimm’s no. 1"
+    ]
   },
   "absinthe": {
     "absinthe": []
@@ -139,6 +151,9 @@
       "amaro nonino",
       "amaro nonino quintessentia"
     ],
+    "amaro lucano": [],
+    "amaro melletti": [],
+    "amaro ramazzotti": [],
     "luxardo bitter bianco": [],
     "braulio": [],
     "campari": [],
@@ -163,19 +178,25 @@
     "jägermeister": []
   },
   "bitters": {
-    "angostura bitters": [],
+    "aromatic bitters": [
+      "aromatic bitters"
+    ],
     "peychauds bitters": [
       "peychaud's bitters",
       "peychaud bitters"
     ],
     "orange bitters": [],
+    "lemon bitters": [],
     "mole bitters": [],
     "celery bitters": [],
     "cardamom bitters": [],
     "lavender bitters": [],
     "grapefruit bitters": [],
     "chocolate bitters": [],
-    "tiki bitters": []
+    "rhubarb bitters": [],
+    "tiki bitters": [],
+    "cranberry bitters": [],
+    "walnut bitters": []
   },
   "juice": {
     "lemon juice": [],
@@ -189,7 +210,10 @@
     "yuzu juice": [],
     "sweetened ginger juice": [],
     "carrot juice": [],
-    "tomato juice": []
+    "tomato juice": [],
+    "verjus": [
+      "verjus blanc"
+    ]
   },
   "coffee": {
     "espresso": [],
@@ -200,7 +224,8 @@
   "syrup": {
     "simple syrup": [
       "cane syrup",
-      "agave syrup"
+      "agave syrup",
+      "gum syrup"
     ],
     "rich simple syrup": [],
     "demerara syrup": [],
@@ -213,14 +238,23 @@
     ],
     "agave nectar": [],
     "maple syrup": [],
+    "rhubarb syrup": [],
     "passion fruit syrup": [],
     "raspberry syrup": [],
     "ginger syrup": [],
     "cinnamon syrup": [
       "cinnamon bark syrup"
     ],
+    "grapefruit syrup": [],
+    "pomegranate syrup": [],
     "lemon syrup": [],
-    "vanilla syrup": []
+    "vanilla syrup": [],
+    "pineapple gum syrup": [
+      "pineapple syrup"
+    ],
+    "chamomile syrup": [],
+    "hibiscus syrup": [],
+    "coconut syrup": []
   },
   "wine": {
     "sparkling wine": [
@@ -265,9 +299,12 @@
       "seltzer",
       "sparkling water",
       "carbonated water",
-      "soda"
+      "soda",
+      "mineral water"
     ],
-    "tonic water": [],
+    "tonic water": [
+      "tonic"
+    ],
     "ginger beer": [],
     "cola": [
       "coca-cola"

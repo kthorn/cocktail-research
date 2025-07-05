@@ -63,13 +63,13 @@ def upsert_ingredient(cur: sqlite3.Cursor, name: str) -> int:
 
 
 def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
-    """Get all recipe-ingredient relationships from the database.
+    """Get all recipe-ingredient relationships from the database with standardized units.
 
     Args:
         db_path: Path to the SQLite database
 
     Returns:
-        DataFrame with columns: recipe_name, ingredient_name, amount
+        DataFrame with columns: recipe_name, ingredient_name, amount_ml, original_amount, original_unit
 
     Raises:
         ImportError: If pandas is not installed
@@ -86,7 +86,8 @@ def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
     SELECT 
         r.name as recipe_name,
         i.name as ingredient_name,
-        ri.amount
+        ri.amount,
+        ri.unit
     FROM recipe r
     JOIN recipe_ingredient ri ON r.id = ri.recipe_id
     JOIN ingredient i ON ri.ingredient_id = i.id
@@ -99,6 +100,31 @@ def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
         print(
             f"Recipes: {df['recipe_name'].nunique()}, Ingredients: {df['ingredient_name'].nunique()}"
         )
+
+        # Convert units to ml
+        from .units import convert_to_ml
+
+        df["amount_ml"] = df.apply(
+            lambda row: convert_to_ml(row["amount"], row["unit"]), axis=1
+        )
+
+        # Keep original values for reference
+        df["original_amount"] = df["amount"]
+        df["original_unit"] = df["unit"]
+
+        # Reorder columns
+        df = df[
+            [
+                "recipe_name",
+                "ingredient_name",
+                "amount_ml",
+                "original_amount",
+                "original_unit",
+            ]
+        ]
+
+        print(f"Converted units to ml for analysis")
+
         return df
     except Exception as e:
         print(f"Error querying database: {e}")

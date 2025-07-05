@@ -51,6 +51,28 @@ def _get_default_brand_patterns() -> List[re.Pattern]:
     ]
 
 
+# Common usage instructions that should not be treated as brands
+USAGE_INSTRUCTIONS = {
+    "to rinse",
+    "to rinse the glass",
+    "to float",
+    "to top",
+    "for spritzing",
+    "in atomizer",
+    "for rinse",
+    "as needed",
+    "rinse",
+    "for garnish",
+    "to taste",
+    "to coat",
+    "to mist",
+    "to spray",
+    "for washing",
+    "to rim",
+    "to rim the glass",
+}
+
+
 class IngredientParser:
     """A parser for analyzing and categorizing cocktail ingredients.
 
@@ -158,6 +180,11 @@ class IngredientParser:
             match = pattern.search(ingredient_text)
             if match:
                 brand = match.group(1).strip().lower()
+
+                # Filter out common usage instructions that aren't brands
+                if brand in USAGE_INSTRUCTIONS:
+                    continue
+
                 # Remove the brand reference from the text
                 cleaned_text = pattern.sub("", ingredient_text).strip().rstrip(",")
                 # Clean up any empty parentheses left behind
@@ -206,11 +233,9 @@ class IngredientParser:
         normalized = normalize_ingredient_text(ingredient_text)
         brand, cleaned_text = self.extract_brand(normalized)
 
-        # Try exact matches first
+        # Try exact matches first - prioritize specific_type matches over category matches
+        # to handle cases where the same term appears as both (e.g., "absinthe")
         for category, types in self.taxonomy.items():
-            # if we have an exact match to the category, we won't get a more specific match
-            if cleaned_text == category:
-                return IngredientMatch(brand, None, category, 1.0, "dictionary")
             for specific_type, variations in types.items():
                 all_variations = [specific_type] + variations
                 if cleaned_text in all_variations:
@@ -221,6 +246,12 @@ class IngredientParser:
                     return IngredientMatch(
                         brand, specific_type, category, 0.9, "dictionary"
                     )
+
+        # Only check category matches if no specific_type match was found
+        for category, types in self.taxonomy.items():
+            if cleaned_text == category:
+                return IngredientMatch(brand, None, category, 1.0, "dictionary")
+
         return None
 
     def get_ingredients_from_db(
