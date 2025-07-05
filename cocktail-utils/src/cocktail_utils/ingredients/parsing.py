@@ -1,7 +1,7 @@
 """Ingredient parsing and normalization utilities."""
 
 import re
-from typing import List, Optional, Tuple
+from typing import Optional, Tuple
 
 from cocktail_utils.ingredients.number_utils import (
     _is_fraction,
@@ -282,11 +282,19 @@ def normalize_ingredient_text(ingredient_text: str) -> str:
         >>> normalize_ingredient_text("3 dashes good quality bitters")
         'bitters'
     """
+    # Normalize Unicode apostrophes and quotes to ASCII
+    text = (
+        ingredient_text.replace("’", "'")
+        .replace("‘", "'")
+        .replace("“", '"')
+        .replace("”", '"')
+    )
+
     # Remove quantities and measurements
     text = re.sub(
         r"^\d+[\s\d/]*\s*(ounces?|oz|cups?|tsp|tbsp|ml|cl|dashes?|drops?)\s+",
         "",
-        ingredient_text,
+        text,
         flags=re.IGNORECASE,
     )
 
@@ -302,82 +310,3 @@ def normalize_ingredient_text(ingredient_text: str) -> str:
     text = " ".join(text.lower().split())
 
     return text
-
-
-def extract_brand(
-    ingredient_text: str, brand_patterns: Optional[List[re.Pattern]] = None
-) -> Tuple[Optional[str], str]:
-    """Extract brand name and return cleaned ingredient text.
-
-    Searches for brand references in ingredient text using compiled patterns
-    and removes them to get the clean ingredient name. Handles common
-    brand reference patterns like "preferably X", "such as X", etc.
-
-    Args:
-        ingredient_text: The raw ingredient description text that may
-                        contain brand references.
-        brand_patterns: Optional list of compiled regex patterns for brand
-                       extraction. If None, uses default patterns that handle
-                       common brand reference formats.
-
-    Returns:
-        A tuple containing:
-            - brand: Brand name if found, None otherwise
-            - cleaned_text: Ingredient text with brand reference removed
-
-    Examples:
-        >>> extract_brand("gin, preferably Hendrick's")
-        ("Hendrick's", 'gin')
-        >>> extract_brand("dry vermouth such as Dolin")
-        ('Dolin', 'dry vermouth')
-        >>> extract_brand("bourbon like Maker's Mark")
-        ("Maker's Mark", 'bourbon')
-        >>> extract_brand("simple vodka")
-        (None, 'simple vodka')
-    """
-    if brand_patterns is None:
-        brand_patterns = _get_default_brand_patterns()
-
-    for pattern in brand_patterns:
-        match = pattern.search(ingredient_text)
-        if match:
-            brand = match.group(1).strip()
-            # Remove the brand reference from the text
-            cleaned_text = pattern.sub("", ingredient_text).strip().rstrip(",")
-            # Clean up any empty parentheses left behind
-            cleaned_text = re.sub(r"\s*\(\s*\)", "", cleaned_text).strip()
-            return brand, cleaned_text
-    return None, ingredient_text
-
-
-def _get_default_brand_patterns() -> List[re.Pattern]:
-    """Get default regex patterns for brand extraction from ingredient text.
-
-    Creates regex patterns to identify and extract brand names from
-    ingredient descriptions. Looks for common brand reference patterns
-    like "preferably X", "such as X", "like X", and brands mentioned
-    at the end of ingredient descriptions.
-
-    Returns:
-        A list of compiled regex patterns for brand extraction, ordered
-        by specificity with more specific patterns first.
-
-    Examples:
-        The patterns will match:
-        - "gin, preferably Hendrick's" -> captures "Hendrick's"
-        - "vermouth such as Dolin" -> captures "Dolin"
-        - "whiskey like Jameson" -> captures "Jameson"
-        - "rum, Bacardi" -> captures "Bacardi"
-    """
-    return [
-        # Patterns for parenthetical brand references
-        re.compile(r"\s*\(preferably\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
-        re.compile(r"\s*\(such as\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
-        re.compile(r"\s*\(like\s+([A-Z][a-zA-Z\s&'\-\d]+)\)", re.IGNORECASE),
-        # Patterns for non-parenthetical brand references
-        re.compile(r",?\s*preferably\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
-        re.compile(r",?\s*such as\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
-        re.compile(r",?\s*like\s+([A-Z][a-zA-Z\s&'\-\d]+)", re.IGNORECASE),
-        # Pattern for brands at the end without "preferably"
-        re.compile(r",\s+([A-Z][a-zA-Z\s&'\-\d]+)$", re.IGNORECASE),
-    ]

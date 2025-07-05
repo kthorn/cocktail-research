@@ -5,13 +5,15 @@ import pathlib
 import sqlite3
 from typing import Generator, Union
 
+import pandas as pd
+
 
 def get_connection(db_path: Union[str, pathlib.Path]) -> sqlite3.Connection:
     """Get a SQLite database connection with foreign keys enabled.
-    
+
     Args:
         db_path: Path to the SQLite database file
-        
+
     Returns:
         SQLite connection with foreign keys enabled
     """
@@ -23,13 +25,13 @@ def get_connection(db_path: Union[str, pathlib.Path]) -> sqlite3.Connection:
 @contextlib.contextmanager
 def transaction(conn: sqlite3.Connection) -> Generator[sqlite3.Cursor, None, None]:
     """Context manager for database transactions.
-    
+
     Args:
         conn: SQLite database connection
-        
+
     Yields:
         Database cursor for executing queries
-        
+
     Example:
         with transaction(conn) as cur:
             cur.execute("INSERT INTO ingredient(name) VALUES (?)", ("gin",))
@@ -45,11 +47,11 @@ def transaction(conn: sqlite3.Connection) -> Generator[sqlite3.Cursor, None, Non
 
 def upsert_ingredient(cur: sqlite3.Cursor, name: str) -> int:
     """Insert ingredient if it doesn't exist, return its ID.
-    
+
     Args:
         cur: Database cursor
         name: Ingredient name
-        
+
     Returns:
         Integer ID of the ingredient
     """
@@ -58,3 +60,48 @@ def upsert_ingredient(cur: sqlite3.Cursor, name: str) -> int:
     )
     cur.execute("SELECT id FROM ingredient WHERE name = ?", (name,))
     return cur.fetchone()[0]
+
+
+def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
+    """Get all recipe-ingredient relationships from the database.
+
+    Args:
+        db_path: Path to the SQLite database
+
+    Returns:
+        DataFrame with columns: recipe_name, ingredient_name, amount
+
+    Raises:
+        ImportError: If pandas is not installed
+        Exception: If database query fails
+    """
+    if pd is None:
+        raise ImportError("pandas is required for get_recipe_ingredient_data")
+
+    print("Fetching recipe-ingredient relationships from database...")
+
+    conn = get_connection(db_path)
+
+    query = """
+    SELECT 
+        r.name as recipe_name,
+        i.name as ingredient_name,
+        ri.amount
+    FROM recipe r
+    JOIN recipe_ingredient ri ON r.id = ri.recipe_id
+    JOIN ingredient i ON ri.ingredient_id = i.id
+    ORDER BY r.name, i.name
+    """
+
+    try:
+        df = pd.read_sql_query(query, conn)
+        print(f"Found {len(df)} recipe-ingredient relationships")
+        print(
+            f"Recipes: {df['recipe_name'].nunique()}, Ingredients: {df['ingredient_name'].nunique()}"
+        )
+        return df
+    except Exception as e:
+        print(f"Error querying database: {e}")
+        return pd.DataFrame()
+    finally:
+        conn.close()

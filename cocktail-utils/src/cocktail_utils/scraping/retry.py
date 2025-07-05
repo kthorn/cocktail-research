@@ -1,30 +1,33 @@
 """Retry decorators for handling connection errors."""
 
-import time
 import logging
+import time
 from functools import wraps
-from typing import Callable, Any
+from typing import Any, Callable
 
 import requests
 
 logger = logging.getLogger(__name__)
 
 
-def retry_on_connection_error(max_retries: int = 3, initial_delay: float = 1.0) -> Callable:
+def retry_on_connection_error(
+    max_retries: int = 3, initial_delay: float = 1.0
+) -> Callable:
     """Decorator that retries a function on connection errors with exponential backoff.
-    
+
     Args:
         max_retries: Maximum number of retry attempts
         initial_delay: Initial delay between retries in seconds
-        
+
     Returns:
         Decorated function that retries on connection errors
-        
+
     Example:
         @retry_on_connection_error(max_retries=3, initial_delay=1.0)
         def fetch_data(url):
             return requests.get(url)
     """
+
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:

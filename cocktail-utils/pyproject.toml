@@ -33,6 +33,10 @@ dependencies = [
 dev = [
     "pytest>=6.0",
     "ruff>=0.5.5",
+    "pytest-mock>=3.0.0",
+]
+llm = [
+    "boto3>=1.28.0",
 ]
 
 [project.urls]

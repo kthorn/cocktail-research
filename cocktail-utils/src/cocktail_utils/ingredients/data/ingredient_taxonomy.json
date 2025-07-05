@@ -1,0 +1,311 @@
+{
+  "vermouth": {
+    "dry vermouth": [
+      "french vermouth",
+      "white vermouth"
+    ],
+    "sweet vermouth": [
+      "red vermouth",
+      "italian vermouth"
+    ],
+    "blanc vermouth": [
+      "bianco vermouth"
+    ]
+  },
+  "gin": {
+    "london dry gin": [
+      "london dry",
+      "english gin",
+      "dry gin"
+    ],
+    "genever": [],
+    "old tom gin": []
+  },
+  "vodka": {
+    "vodka": []
+  },
+  "whiskey": {
+    "rye whiskey": [
+      "rye"
+    ],
+    "bourbon": [],
+    "scotch whisky": [
+      "scotch",
+      "scotch whiskey"
+    ],
+    "irish whiskey": [
+      "irish whisky"
+    ],
+    "japanese whisky": [
+      "japanese whiskey"
+    ]
+  },
+  "rum": {
+    "light rum": [
+      "white rum",
+      "silver rum"
+    ],
+    "dark rum": [
+      "black rum"
+    ],
+    "aged rum": [],
+    "rhum agricole": [],
+    "overproof rum": [],
+    "demerara rum": [],
+    "jamaican rum": [],
+    "pineapple rum": []
+  },
+  "brandy": {
+    "cognac": [],
+    "armagnac": [],
+    "pisco": [],
+    "calvados": [],
+    "apple brandy": [],
+    "cachaça": []
+  },
+  "tequila": {
+    "blanco tequila": [
+      "silver tequila"
+    ],
+    "reposado tequila": [],
+    "anejo tequila": []
+  },
+  "mezcal": {
+    "mezcal": []
+  },
+  "aquavit": {
+    "aquavit": [
+      "aqvavit"
+    ]
+  },
+  "liqueur": {
+    "orange liqueur": [
+      "triple sec",
+      "curacao",
+      "cointreau",
+      "grand marnier",
+      "dry curaçao",
+      "curaçao"
+    ],
+    "maraschino liqueur": [
+      "maraschino"
+    ],
+    "chartreuse": [
+      "green chartreuse",
+      "yellow chartreuse"
+    ],
+    "elderflower liqueur": [
+      "st. germain",
+      "st-germain"
+    ],
+    "amaretto": [],
+    "coffee liqueur": [
+      "kahlua"
+    ],
+    "creme de violette": [],
+    "creme de cacao": [
+      "crème de cacao"
+    ],
+    "creme de menthe": [],
+    "creme de cassis": [],
+    "velvet falernum": [
+      "falernum"
+    ],
+    "cherry liqueur": [
+      "cherry heering"
+    ],
+    "melon liqueur": [],
+    "banana liqueur": [],
+    "allspice dram": [
+      "pimento dram"
+    ],
+    "bénédictine": [
+      "benedictine"
+    ],
+    "drambuie": [],
+    "licor 43": [],
+    "strega": [],
+    "hazelnut liqueur": [],
+    "sloe gin": []
+  },
+  "absinthe": {
+    "absinthe": []
+  },
+  "amaro": {
+    "fernet-branca": [
+      "fernet branca"
+    ],
+    "nonino": [
+      "amaro nonino",
+      "amaro nonino quintessentia"
+    ],
+    "luxardo bitter bianco": [],
+    "braulio": [],
+    "campari": [],
+    "aperol": [],
+    "cynar": [],
+    "suze": [],
+    "averna": [
+      "amaro averna"
+    ],
+    "ciociaro": [
+      "amaro ciociaro"
+    ],
+    "montenegro": [
+      "amaro montenegro"
+    ],
+    "branca menta": [
+      "brancamenta"
+    ],
+    "cardamaro": [],
+    "gran classico": [],
+    "becherovka": [],
+    "jägermeister": []
+  },
+  "bitters": {
+    "angostura bitters": [],
+    "peychauds bitters": [
+      "peychaud's bitters",
+      "peychaud bitters"
+    ],
+    "orange bitters": [],
+    "mole bitters": [],
+    "celery bitters": [],
+    "cardamom bitters": [],
+    "lavender bitters": [],
+    "grapefruit bitters": [],
+    "chocolate bitters": [],
+    "tiki bitters": []
+  },
+  "juice": {
+    "lemon juice": [],
+    "lime juice": [],
+    "orange juice": [],
+    "grapefruit juice": [],
+    "pineapple juice": [],
+    "cranberry juice": [],
+    "pomegranate juice": [],
+    "watermelon juice": [],
+    "yuzu juice": [],
+    "sweetened ginger juice": [],
+    "carrot juice": [],
+    "tomato juice": []
+  },
+  "coffee": {
+    "espresso": [],
+    "cold brew coffee": [
+      "cold-brew coffee"
+    ]
+  },
+  "syrup": {
+    "simple syrup": [
+      "cane syrup",
+      "agave syrup"
+    ],
+    "rich simple syrup": [],
+    "demerara syrup": [],
+    "grenadine": [],
+    "orgeat": [
+      "orgeat syrup"
+    ],
+    "honey syrup": [
+      "honey"
+    ],
+    "agave nectar": [],
+    "maple syrup": [],
+    "passion fruit syrup": [],
+    "raspberry syrup": [],
+    "ginger syrup": [],
+    "cinnamon syrup": [
+      "cinnamon bark syrup"
+    ],
+    "lemon syrup": [],
+    "vanilla syrup": []
+  },
+  "wine": {
+    "sparkling wine": [
+      "champagne",
+      "prosecco",
+      "cava"
+    ],
+    "red wine": [],
+    "white wine": [],
+    "rose wine": [],
+    "port": [],
+    "sherry": [
+      "fino sherry",
+      "amontillado sherry",
+      "oloroso sherry",
+      "px sherry"
+    ],
+    "aromatized wine": []
+  },
+  "eggs": {
+    "egg": [
+      "whole egg"
+    ],
+    "egg white": []
+  },
+  "dairy": {
+    "cream": [
+      "heavy cream",
+      "whipping cream"
+    ],
+    "milk": [
+      "whole milk",
+      "2% milk",
+      "1% milk",
+      "skim milk"
+    ],
+    "half and half": []
+  },
+  "mixer": {
+    "soda water": [
+      "club soda",
+      "seltzer",
+      "sparkling water",
+      "carbonated water",
+      "soda"
+    ],
+    "tonic water": [],
+    "ginger beer": [],
+    "cola": [
+      "coca-cola"
+    ],
+    "ginger ale": []
+  },
+  "other": {
+    "salt": [],
+    "sugar": [],
+    "water": [],
+    "saline": [
+      "saline solution",
+      "20% saline solution"
+    ],
+    "olive brine++": [],
+    "ice": [
+      "crushed ice"
+    ]
+  },
+  "fruit": {
+    "mint": [
+      "mint leaves"
+    ],
+    "raspberry": [
+      "raspberries"
+    ],
+    "strawberry": [
+      "strawberries"
+    ],
+    "blueberry": [
+      "blueberries"
+    ],
+    "blackberry": [
+      "blackberries"
+    ],
+    "cherry": [
+      "cherries"
+    ],
+    "cucumber": []
+  }
+}

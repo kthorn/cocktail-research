@@ -1,11 +1,11 @@
 import pytest
+
 from cocktail_utils.ingredients.parsing import (
     _parse_amount,
     _parse_unit,
+    clean_ingredient_name,
     normalize_ingredient_text,
     normalize_unit,
-    clean_ingredient_name,
-    extract_brand,
 )
 
 
@@ -36,26 +36,6 @@ def test_normalize_ingredient_text(input_text, expected_text):
 def test_clean_ingredient_name(input_text, expected_text):
     """Test ingredient name cleaning."""
     assert clean_ingredient_name(input_text) == expected_text
-
-
-@pytest.mark.parametrize(
-    "input_text, expected_brand, expected_name",
-    [
-        ("gin, preferably Hendrick's", "Hendrick's", "gin"),
-        ("dry vermouth such as Dolin", "Dolin", "dry vermouth"),
-        ("whiskey", None, "whiskey"),
-        (
-            "Japanese whisky (preferably Suntory Toki)",
-            "Suntory Toki",
-            "Japanese whisky",
-        ),
-    ],
-)
-def test_extract_brand(input_text, expected_brand, expected_name):
-    """Test brand extraction from ingredient text."""
-    brand, name = extract_brand(input_text)
-    assert brand == expected_brand
-    assert name == expected_name
 
 
 @pytest.mark.parametrize(

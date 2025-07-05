@@ -13,7 +13,7 @@ from cocktail_utils.ingredients import parse_quantity
 
 def main():
     """Main function to parse recipes and load them into the database."""
-    db_path = "recipes.db"
+    db_path = "data/recipes.db"
     conn = get_connection(db_path)
     create_schema(conn)
 
