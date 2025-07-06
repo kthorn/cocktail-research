@@ -19,7 +19,8 @@
       "dry gin"
     ],
     "genever": [],
-    "old tom gin": []
+    "old tom gin": [],
+    "navy strength gin": []
   },
   "vodka": {
     "vodka": []
@@ -130,6 +131,7 @@
     ],
     "melon liqueur": [],
     "banana liqueur": [],
+    "coconut liqueur": [],
     "passion fruit liqueur": [],
     "blackberry liqueur": [
       "crème de mûre"
@@ -163,7 +165,9 @@
       "amaro nonino quintessentia"
     ],
     "amaro lucano": [],
-    "amaro melletti": [],
+    "amaro meletti": [
+      "amaro melletti"
+    ],
     "amaro ramazzotti": [],
     "luxardo bitter bianco": [],
     "braulio": [],
@@ -207,7 +211,8 @@
     "rhubarb bitters": [],
     "tiki bitters": [],
     "cranberry bitters": [],
-    "walnut bitters": []
+    "walnut bitters": [],
+    "peach bitters": []
   },
   "juice": {
     "lemon juice": [],
@@ -225,11 +230,24 @@
     "tomato juice": [],
     "verjus": [
       "verjus blanc"
+    ],
+    "passionfruit juice": [
+      "passion fruit purée",
+      "passion fruit puree",
+      "passionfruit purée",
+      "passionfruit puree",
+      "passion fruit juice"
+    ],
+    "guava juice": [
+      "guava puree"
+    ],
+    "apple juice": [
+      "apple cider"
     ]
   },
   "coffee-tea": {
     "espresso": [],
-    "cold brew coffee": [
+    "coffee": [
       "cold-brew coffee"
     ],
     "tea": [
@@ -240,7 +258,8 @@
     "simple syrup": [
       "cane syrup",
       "agave syrup",
-      "gum syrup"
+      "gum syrup",
+      "gomme syrup"
     ],
     "rich simple syrup": [],
     "demerara syrup": [],
@@ -254,7 +273,12 @@
     "agave nectar": [],
     "maple syrup": [],
     "rhubarb syrup": [],
-    "passion fruit syrup": [],
+    "mango syrup": [],
+    "lychee syrup": [],
+    "lemongrass syrup": [],
+    "passion fruit syrup": [
+      "passionfruit syrup"
+    ],
     "raspberry syrup": [],
     "ginger syrup": [],
     "cinnamon syrup": [
@@ -265,7 +289,8 @@
     "lemon syrup": [],
     "vanilla syrup": [],
     "pineapple gum syrup": [
-      "pineapple syrup"
+      "pineapple syrup",
+      "pineapple gomme syrup"
     ],
     "chamomile syrup": [],
     "hibiscus syrup": [],
@@ -327,7 +352,10 @@
     "ginger ale": []
   },
   "beer": {
-    "beer": []
+    "beer": [],
+    "ipa": [
+      "IPA"
+    ]
   },
   "other": {
     "salt": [],

@@ -47,6 +47,11 @@ def parse_recipe_html(html: str) -> Optional[Recipe]:
         for li in ingredients_list.find_all("li", style=lambda x: x != "display:none"):
             ingredient_text = li.get_text(separator=" ", strip=True)
             if ingredient_text:  # Only add non-empty ingredients
+                # some ingredients have "ounce" duplicated, remove the extra
+                ingredient_text = ingredient_text.replace("ounces ", "")
+                ingredient_text = ingredient_text.replace("ounce ", "")
+                # remove 'of ' if it appears (e.g. "1/2 ounce of grapefruit syrup")
+                ingredient_text = ingredient_text.replace("of ", "")
                 ingredients.append(ingredient_text)
 
     directions_list = recipe_box.find("ol", itemprop="recipeInstructions")
