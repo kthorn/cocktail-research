@@ -2,7 +2,8 @@
   "vermouth": {
     "dry vermouth": [
       "french vermouth",
-      "white vermouth"
+      "white vermouth",
+      "ambrato vermouth"
     ],
     "sweet vermouth": [
       "red vermouth",
@@ -67,7 +68,12 @@
       "calvados",
       "applejack, bonded"
     ],
-    "cachaça": []
+    "pear brandy": [
+      "pear eau de vie"
+    ],
+    "cachaça": [],
+    "carrot eau de vie": [],
+    "fir eau de vie": []
   },
   "tequila": {
     "blanco tequila": [
@@ -93,7 +99,8 @@
       "cointreau",
       "grand marnier",
       "dry curaçao",
-      "curaçao"
+      "curaçao",
+      "orange curaçao"
     ],
     "apricot liqueur": [],
     "maraschino liqueur": [
@@ -103,6 +110,9 @@
       "green chartreuse",
       "yellow chartreuse"
     ],
+    "génépy": [
+      "genepy"
+    ],
     "elderflower liqueur": [
       "st. germain",
       "st-germain"
@@ -111,7 +121,9 @@
     "coffee liqueur": [
       "kahlua"
     ],
-    "creme de violette": [],
+    "creme de violette": [
+      "crème de violette"
+    ],
     "creme de cacao": [
       "crème de cacao"
     ],
@@ -129,9 +141,14 @@
     "cherry liqueur": [
       "cherry heering"
     ],
+    "grapefruit liqueur": [],
     "melon liqueur": [],
     "banana liqueur": [],
+    "raspberry liqueur": [],
+    "cranberry liqueur": [],
     "coconut liqueur": [],
+    "vanilla liqueur": [],
+    "ginger liqueur": [],
     "passion fruit liqueur": [],
     "blackberry liqueur": [
       "crème de mûre"
@@ -156,25 +173,38 @@
   "absinthe": {
     "absinthe": []
   },
+  "bitter liqueur": {
+    "avèze": [],
+    "contratto bitter": [],
+    "campari": [],
+    "aperol": [],
+    "suze": [],
+    "luxardo bitter": [],
+    "luxardo bitter bianco": [],
+    "salers gentiane liqueur": [
+      "salers"
+    ]
+  },
   "amaro": {
     "fernet-branca": [
       "fernet branca"
     ],
-    "nonino": [
-      "amaro nonino",
+    "amaro nardini": [],
+    "amaro sibilla": [],
+    "amaro sfumato rabarbaro": [],
+    "amaro nonino": [
+      "nonino",
       "amaro nonino quintessentia"
+    ],
+    "amaro ramazzotti": [
+      "ramazzotti"
     ],
     "amaro lucano": [],
     "amaro meletti": [
       "amaro melletti"
     ],
-    "amaro ramazzotti": [],
-    "luxardo bitter bianco": [],
     "braulio": [],
-    "campari": [],
-    "aperol": [],
     "cynar": [],
-    "suze": [],
     "averna": [
       "amaro averna"
     ],
@@ -212,7 +242,10 @@
     "tiki bitters": [],
     "cranberry bitters": [],
     "walnut bitters": [],
-    "peach bitters": []
+    "peach bitters": [],
+    "apple bitters": [],
+    "olive bitters": [],
+    "ginger bitters": []
   },
   "juice": {
     "lemon juice": [],
@@ -239,7 +272,8 @@
       "passion fruit juice"
     ],
     "guava juice": [
-      "guava puree"
+      "guava puree",
+      "guava purée"
     ],
     "apple juice": [
       "apple cider"
@@ -276,6 +310,9 @@
     "mango syrup": [],
     "lychee syrup": [],
     "lemongrass syrup": [],
+    "kiwi syrup": [],
+    "pandan syrup": [],
+    "sorghum syrup": [],
     "passion fruit syrup": [
       "passionfruit syrup"
     ],
@@ -284,6 +321,7 @@
     "cinnamon syrup": [
       "cinnamon bark syrup"
     ],
+    "nutmeg syrup": [],
     "grapefruit syrup": [],
     "pomegranate syrup": [],
     "lemon syrup": [],
@@ -304,21 +342,42 @@
     ],
     "red wine": [],
     "white wine": [],
-    "rose wine": [],
+    "rose wine": [
+      "dry rosé wine",
+      "rosé wine",
+      "rosé"
+    ],
     "port": [],
     "sherry": [
       "fino sherry",
       "amontillado sherry",
       "oloroso sherry",
       "px sherry"
+    ]
+  },
+  "aromatized wine": {
+    "cocchi americano": [],
+    "cocchi rosa": [
+      "cocchi rosa americano"
     ],
-    "aromatized wine": []
+    "lillet blanc": [],
+    "lillet rouge": [],
+    "lillet rosé": [],
+    "bonal gentiane-quina": [
+      "bonal"
+    ],
+    "cocchi barolo chinato": [
+      "barolo chinato"
+    ]
   },
   "eggs": {
     "egg": [
       "whole egg"
-    ],
-    "egg white": []
+    ]
+  },
+  "foamers": {
+    "egg white": [],
+    "aquafaba": []
   },
   "dairy": {
     "cream": [
@@ -365,7 +424,10 @@
       "saline solution",
       "20% saline solution"
     ],
-    "olive brine++": [],
+    "citric acid": [
+      "citric acid solution"
+    ],
+    "olive brine": [],
     "ice": [
       "crushed ice"
     ]
@@ -389,6 +451,65 @@
     "cherry": [
       "cherries"
     ],
-    "cucumber": []
+    "cucumber": [],
+    "orange": [
+      "orange slices",
+      "orange slice",
+      "orange wheel"
+    ],
+    "orange peel": [
+      "orange twist"
+    ],
+    "lemon": [
+      "lemons",
+      "lemon slices",
+      "lemon slice",
+      "lemon wheel",
+      "lemon wedge",
+      "lemon wedges"
+    ],
+    "lemon peel": [
+      "lemon twist"
+    ],
+    "lime": [
+      "limes",
+      "lime coin",
+      "lime slices",
+      "lime slice",
+      "lime wheel",
+      "lime wedge",
+      "lime wedges"
+    ],
+    "pineapple": [
+      "pineapple slices"
+    ]
+  },
+  "spices": {
+    "cinnamon": [
+      "cinnamon stick",
+      "cinnamon bark"
+    ],
+    "cloves": [
+      "cloves, whole",
+      "whole cloves",
+      "clove"
+    ],
+    "fennel seeds": [
+      "fennel seed"
+    ],
+    "cardamom": [
+      "cardamom pods"
+    ],
+    "allspice": [
+      "allspice berries"
+    ],
+    "nutmeg": [
+      "nutmeg, ground"
+    ],
+    "pepper": [
+      "black pepper",
+      "white pepper"
+    ],
+    "sage leaves": []
   }
 }
