@@ -46,6 +46,9 @@
   "plantation pineapple rum": "pineapple rum",
   "midori": "melon liqueur",
   "cocchi americano": "aromatized wine",
+  "cocchi rosa": "aromatized wine",
+  "cocchi rosa americano": "aromatized wine",
+  "cocchi barolo chinato": "aromatized wine",
   "lillet blanc": "aromatized wine",
   "lillet rouge": "aromatized wine",
   "lillet rosé": "aromatized wine",
@@ -59,5 +62,9 @@
   "ancho reyes verde": "chile liqueur",
   "bitter truth aromatic bitters": "aromatic bitters",
   "angostura bitters": "aromatic bitters",
-  "fee brothers black walnut bitters": "walnut bitters"
+  "fee brothers black walnut bitters": "walnut bitters",
+  "chinola passion fruit liqueur": "passion fruit liqueur",
+  "guiness": "beer",
+  "kahlúa": "coffee liqueur",
+  "lustau vermut blanco": "dry vermouth"
 }

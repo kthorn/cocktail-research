@@ -54,6 +54,16 @@ def test_extract_brand(
             },
         ),
         (
+            "gin, preferably st. george terroir",
+            {
+                "brand": "st. george terroir",
+                "specific_type": None,
+                "category": "gin",
+                "confidence": 1.0,
+                "source": "dictionary",
+            },
+        ),
+        (
             "rum",
             {
                 "specific_type": None,
@@ -76,7 +86,7 @@ def test_extract_brand(
         ("unknown ingredient", None),
     ],
 )
-def test_dictionary_lookup(ingredient_parser, ingredient_text, expected_match):
+def test_rationalize(ingredient_parser, ingredient_text, expected_match):
     """Test dictionary lookup with various ingredient texts."""
     match = ingredient_parser.rationalize_ingredient(ingredient_text)
 
@@ -84,10 +94,12 @@ def test_dictionary_lookup(ingredient_parser, ingredient_text, expected_match):
         assert match is None
     else:
         assert match is not None
-        assert match.specific_type == expected_match["specific_type"]
+        assert match.specific_type == expected_match.get("specific_type")
         assert match.category == expected_match["category"]
         assert match.confidence == expected_match["confidence"]
         assert match.source == expected_match["source"]
+        if "brand" in expected_match:
+            assert match.brand == expected_match["brand"]
 
 
 def test_get_ingredients_from_db(temp_db, ingredient_parser):

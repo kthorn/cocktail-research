@@ -34,20 +34,26 @@ def _get_default_brand_patterns() -> List[re.Pattern]:
     return [
         # Patterns for parenthetical brand references
         re.compile(
-            r"\s*\(preferably\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)\)", re.IGNORECASE
+            r"\s*\(preferably\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)\)", re.IGNORECASE
         ),
         re.compile(
-            r"\s*\(such as\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)\)", re.IGNORECASE
+            r"\s*\(such as\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)\)", re.IGNORECASE
         ),
-        re.compile(r"\s*\(like\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)\)", re.IGNORECASE),
+        re.compile(
+            r"\s*\(like\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)\)", re.IGNORECASE
+        ),
         # Patterns for non-parenthetical brand references
         re.compile(
-            r",?\s*preferably\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)", re.IGNORECASE
+            r",?\s*preferably\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)", re.IGNORECASE
         ),
-        re.compile(r",?\s*such as\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)", re.IGNORECASE),
-        re.compile(r",?\s*like\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)", re.IGNORECASE),
+        re.compile(
+            r",?\s*such as\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)", re.IGNORECASE
+        ),
+        re.compile(
+            r",?\s*like\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)", re.IGNORECASE
+        ),
         # Pattern for brands at the end without "preferably"
-        re.compile(r",\s+([A-Z\u00C0-\u024F][\w\s&'\-\d]+)$", re.IGNORECASE),
+        re.compile(r",\s+([A-Za-z\u00C0-\u024F][\w\s&'\-\d\.]+)$", re.IGNORECASE),
     ]
 
 
@@ -442,10 +448,22 @@ Based on this, provide the following information in JSON format:
 
             parsed = json.loads(completion.strip())
 
+            # Ensure all fields are strings, not lists
+            def safe_string_extract(value):
+                if value is None:
+                    return None
+                elif isinstance(value, list):
+                    # If it's a list, take the first non-empty item
+                    return next(
+                        (item for item in value if item and str(item).strip()), None
+                    )
+                else:
+                    return str(value).strip() if str(value).strip() else None
+
             match = IngredientMatch(
-                brand=parsed.get("brand"),
-                specific_type=parsed.get("specific_type"),
-                category=parsed.get("category"),
+                brand=safe_string_extract(parsed.get("brand")),
+                specific_type=safe_string_extract(parsed.get("specific_type")),
+                category=safe_string_extract(parsed.get("category")),
                 confidence=0.8,
                 source=f"llm:{model_id}",
             )

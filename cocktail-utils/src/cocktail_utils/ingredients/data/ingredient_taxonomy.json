@@ -61,7 +61,11 @@
     "armagnac": [],
     "pisco": [],
     "calvados": [],
-    "apple brandy": [],
+    "apple brandy": [
+      "applejack",
+      "calvados",
+      "applejack, bonded"
+    ],
     "cachaça": []
   },
   "tequila": {
@@ -69,7 +73,9 @@
       "silver tequila"
     ],
     "reposado tequila": [],
-    "anejo tequila": []
+    "anejo tequila": [
+      "añejo tequila"
+    ]
   },
   "mezcal": {
     "mezcal": []
@@ -88,6 +94,7 @@
       "dry curaçao",
       "curaçao"
     ],
+    "apricot liqueur": [],
     "maraschino liqueur": [
       "maraschino"
     ],
@@ -123,6 +130,10 @@
     ],
     "melon liqueur": [],
     "banana liqueur": [],
+    "passion fruit liqueur": [],
+    "blackberry liqueur": [
+      "crème de mûre"
+    ],
     "allspice dram": [
       "pimento dram"
     ],
@@ -210,15 +221,19 @@
     "yuzu juice": [],
     "sweetened ginger juice": [],
     "carrot juice": [],
+    "celery juice": [],
     "tomato juice": [],
     "verjus": [
       "verjus blanc"
     ]
   },
-  "coffee": {
+  "coffee-tea": {
     "espresso": [],
     "cold brew coffee": [
       "cold-brew coffee"
+    ],
+    "tea": [
+      "black tea"
     ]
   },
   "syrup": {
@@ -310,6 +325,9 @@
       "coca-cola"
     ],
     "ginger ale": []
+  },
+  "beer": {
+    "beer": []
   },
   "other": {
     "salt": [],

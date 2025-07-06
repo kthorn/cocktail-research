@@ -45,7 +45,7 @@ def parse_recipe_html(html: str) -> Optional[Recipe]:
     if ingredients_list:
         # Ignore hidden list items
         for li in ingredients_list.find_all("li", style=lambda x: x != "display:none"):
-            ingredient_text = li.get_text(strip=True)
+            ingredient_text = li.get_text(separator=" ", strip=True)
             if ingredient_text:  # Only add non-empty ingredients
                 ingredients.append(ingredient_text)
 
