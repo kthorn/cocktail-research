@@ -56,7 +56,8 @@
     "overproof rum": [],
     "demerara rum": [],
     "jamaican rum": [],
-    "pineapple rum": []
+    "pineapple rum": [],
+    "spiced rum": []
   },
   "brandy": {
     "cognac": [],
@@ -66,7 +67,8 @@
     "apple brandy": [
       "applejack",
       "calvados",
-      "applejack, bonded"
+      "applejack, bonded",
+      "apple eau de vie"
     ],
     "pear brandy": [
       "pear eau de vie"
@@ -102,6 +104,7 @@
       "curaçao",
       "orange curaçao"
     ],
+    "pear liqueur": [],
     "apricot liqueur": [],
     "maraschino liqueur": [
       "maraschino"
@@ -149,6 +152,9 @@
     "coconut liqueur": [],
     "vanilla liqueur": [],
     "ginger liqueur": [],
+    "peach liqueur": [
+      "crème de peche"
+    ],
     "passion fruit liqueur": [],
     "blackberry liqueur": [
       "crème de mûre"
@@ -217,6 +223,7 @@
     "branca menta": [
       "brancamenta"
     ],
+    "gentian amaro": [],
     "cardamaro": [],
     "gran classico": [],
     "becherovka": [],
@@ -277,7 +284,8 @@
     ],
     "apple juice": [
       "apple cider"
-    ]
+    ],
+    "tangerine juice": []
   },
   "coffee-tea": {
     "espresso": [],
@@ -318,6 +326,7 @@
     ],
     "raspberry syrup": [],
     "ginger syrup": [],
+    "celery syrup": [],
     "cinnamon syrup": [
       "cinnamon bark syrup"
     ],
@@ -338,10 +347,13 @@
     "sparkling wine": [
       "champagne",
       "prosecco",
-      "cava"
+      "cava",
+      "crémant de Loire"
     ],
     "red wine": [],
-    "white wine": [],
+    "white wine": [
+      "sancerre"
+    ],
     "rose wine": [
       "dry rosé wine",
       "rosé wine",
@@ -412,6 +424,7 @@
   },
   "beer": {
     "beer": [],
+    "stout": [],
     "ipa": [
       "IPA"
     ]
@@ -422,11 +435,16 @@
     "water": [],
     "saline": [
       "saline solution",
-      "20% saline solution"
+      "20% saline solution",
+      "house brine"
     ],
     "citric acid": [
       "citric acid solution"
     ],
+    "malic acid": [
+      "malic acid solution"
+    ],
+    "hot sauce": [],
     "olive brine": [],
     "ice": [
       "crushed ice"
@@ -485,6 +503,15 @@
     ]
   },
   "spices": {
+    "anise": [
+      "anise seeds"
+    ],
+    "basil": [
+      "basil leaves",
+      "fresh basil leaves",
+      "leaves basil",
+      "thai basil leaves"
+    ],
     "cinnamon": [
       "cinnamon stick",
       "cinnamon bark"
@@ -493,6 +520,9 @@
       "cloves, whole",
       "whole cloves",
       "clove"
+    ],
+    "cilantro": [
+      "sprig cilantro"
     ],
     "fennel seeds": [
       "fennel seed"
@@ -510,6 +540,12 @@
       "black pepper",
       "white pepper"
     ],
-    "sage leaves": []
+    "sage leaves": [],
+    "star anise": [
+      "star anise pods"
+    ],
+    "shiso": [
+      "shiso leaves"
+    ]
   }
 }

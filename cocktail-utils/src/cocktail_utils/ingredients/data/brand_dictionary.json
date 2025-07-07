@@ -6,6 +6,7 @@
   "perrier": "soda water",
   "san pellegrino": "soda water",
   "carpano antica": "sweet vermouth",
+  "carpano antica vermouth": "sweet vermouth",
   "cocchi vermouth di torino": "sweet vermouth",
   "carpano antica formula vermouth": "sweet vermouth",
   "punt e mes": "sweet vermouth",
@@ -29,6 +30,7 @@
   "wray & nephew": "rum",
   "paranubes oaxacan rum": "rum",
   "oaxacan rum, preferably paranubes": "rum",
+  "cruzan black strap rum": "black rum",
   "tanqueray": "london dry gin",
   "tanqueray gin": "london dry gin",
   "tanqueray no. ten gin": "london dry gin",
@@ -65,7 +67,7 @@
   "angostura": "aromatic bitters",
   "fee brothers black walnut bitters": "walnut bitters",
   "chinola passion fruit liqueur": "passion fruit liqueur",
-  "guinness": "beer",
+  "guinness": "stout",
   "kahlúa": "coffee liqueur",
   "lustau vermut blanco": "dry vermouth",
   "martini & rossi riserva speciale ambrato vermouth": "dry vermouth",
@@ -75,5 +77,11 @@
   "crémant de Loire": "sparkling wine",
   "pamplemousse, preferably giffard": "grapefruit liqueur",
   "chambord": "raspberry liqueur",
-  "clear creek douglas fir eau de vie": "fir eau de vie"
+  "clear creek douglas fir eau de vie": "fir eau de vie",
+  "cholula hot sauce": "hot sauce",
+  "tabasco": "hot sauce",
+  "tabasco green jalapeño sauce": "hot sauce",
+  "lo-fi gentian amaro": "gentian amaro",
+  "royal combier": "orange liqueur",
+  "mathilde poire liqueur": "pear liqueur"
 }

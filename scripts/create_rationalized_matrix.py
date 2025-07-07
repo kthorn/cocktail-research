@@ -5,11 +5,9 @@ then Claude Haiku for unmatched ingredients. Outputs to parquet with multi-index
 """
 
 import argparse
-import csv
 import datetime
 import glob
 import os
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Optional, Tuple
 
@@ -29,18 +27,8 @@ def normalize_string(value, default: str = "unknown") -> str:
         return str(value).strip() if str(value).strip() else default
 
 
-def find_most_recent_rationalized_csv(output_dir: str) -> Optional[str]:
-    """
-    Find the most recent rationalized CSV file in the output directory.
-
-    Args:
-        output_dir: Directory to search for CSV files
-
-    Returns:
-        Path to the most recent CSV file, or None if no files found
-    """
-    pattern = os.path.join(output_dir, "llm_rationalized_ingredients_*.csv")
-    csv_files = glob.glob(pattern)
+def find_most_recent_rationalized_csv() -> Optional[str]:
+    csv_files = glob.glob("llm_rationalized_ingredients_*.csv")
 
     if not csv_files:
         return None
@@ -195,8 +183,6 @@ def prepare_rationalized_dataframe(
 
     # Filter to only include recipes where ALL ingredients are rationalized
     valid_ingredients = set(ingredient_rationalizations.keys())
-
-    # Use pandas operations for efficiency
     recipe_ingredient_counts = recipe_ingredient_df.groupby("recipe_name")[
         "ingredient_name"
     ].apply(set)
@@ -238,12 +224,21 @@ def prepare_rationalized_dataframe(
 def create_rationalized_matrix(
     recipe_ingredient_df: pd.DataFrame,
     ingredient_rationalizations: Dict[str, dict],
+    matrix_type: str = "amount",
 ) -> pd.DataFrame:
-    """Create a recipe-ingredient matrix with rationalized multi-indexed columns."""
-    print("Creating rationalized recipe-ingredient matrix...")
-    start_time = time.time()
+    """Create a recipe-ingredient matrix with rationalized multi-indexed columns.
 
-    # Prepare the dataframe
+    Args:
+        recipe_ingredient_df: DataFrame with recipe-ingredient relationships
+        ingredient_rationalizations: Dictionary mapping ingredient names to rationalization results
+        matrix_type: Type of matrix to create - "amount" for ingredient amounts, "boolean" for presence
+
+    Returns:
+        DataFrame with recipes as rows and ingredients as multi-indexed columns.
+        For "amount": values are ingredient amounts in ml
+        For "boolean": values are True/False indicating ingredient presence
+    """
+    print(f"Creating {matrix_type} recipe-ingredient matrix...")
     filtered_df = prepare_rationalized_dataframe(
         recipe_ingredient_df, ingredient_rationalizations
     )
@@ -252,14 +247,21 @@ def create_rationalized_matrix(
         print("No valid recipes found after filtering.")
         return pd.DataFrame()
 
-    print("Creating matrix using vectorized operations...")
+    if matrix_type == "boolean":
+        # Create a presence indicator (1 for any amount > 0, 0 otherwise)
+        filtered_df["value"] = (filtered_df["amount_ml"] > 0).astype(int)
+        aggfunc = "max"  # Use max to handle duplicates (if present multiple times, still present)
+    else:  # amount
+        # Use amounts directly
+        filtered_df["value"] = filtered_df["amount_ml"]
+        aggfunc = "sum"  # Sum amounts for duplicates
 
-    # Group by recipe and rationalized columns, sum amounts
+    # Group by recipe and rationalized columns
     grouped_df = (
         filtered_df.groupby(["recipe_name", "category", "specific_type", "brand"])[
-            "amount_ml"
+            "value"
         ]
-        .sum()
+        .agg(aggfunc)
         .reset_index()
     )
 
@@ -267,17 +269,19 @@ def create_rationalized_matrix(
     matrix_df = grouped_df.pivot_table(
         index="recipe_name",
         columns=["category", "specific_type", "brand"],
-        values="amount_ml",
-        fill_value=0.0,
-        aggfunc="sum",
+        values="value",
+        fill_value=0,
+        aggfunc=aggfunc,
     )
+
+    # Convert to boolean if requested
+    if matrix_type == "boolean":
+        matrix_df = matrix_df.astype(bool)
 
     # Sort columns for better organization
     matrix_df = matrix_df.sort_index(axis=1)
-
-    print(f"Matrix creation completed in {time.time() - start_time:.2f} seconds")
     print(
-        f"Created matrix with {len(matrix_df)} recipes and {len(matrix_df.columns)} ingredient columns"
+        f"Created {matrix_type} matrix with {len(matrix_df)} recipes and {len(matrix_df.columns)} ingredient columns"
     )
 
     return matrix_df
@@ -286,10 +290,10 @@ def create_rationalized_matrix(
 def collect_all_rationalizations(
     parser: IngredientParser,
     all_ingredients: List,
-    output_dir: str,
     model_id: str,
     max_workers: int,
-) -> Tuple[Dict[str, dict], Optional[str]]:
+    use_llm: bool = True,
+) -> Dict[str, dict]:
     """Collect all ingredient rationalizations from dictionary, previous CSV, and LLM."""
     print("Collecting ingredient rationalizations...")
 
@@ -318,27 +322,24 @@ def collect_all_rationalizations(
 
     # Step 2: Load previous rationalizations
     print("Step 2: Loading previous rationalizations...")
-    previous_csv = find_most_recent_rationalized_csv(output_dir)
+    previous_csv = find_most_recent_rationalized_csv()
     previous_rationalizations = (
         load_previous_rationalizations(previous_csv) if previous_csv else {}
     )
-
-    # Use previous rationalizations for unmatched ingredients
     still_unmatched = []
     for ingredient in unmatched_ingredients:
         if ingredient in previous_rationalizations:
             matched_ingredients[ingredient] = previous_rationalizations[ingredient]
         else:
             still_unmatched.append(ingredient)
-
     print(
         f"Previously rationalized: {len(unmatched_ingredients) - len(still_unmatched)}"
     )
     print(f"Still unmatched: {len(still_unmatched)}")
 
-    # Step 3: LLM rationalization
-    llm_results = {}
-    if still_unmatched:
+    if use_llm and still_unmatched:
+        # Step 3: LLM rationalization
+        llm_results = {}
         print("Step 3: LLM-based rationalization for unmatched ingredients...")
         llm_results = llm_rationalize(parser, still_unmatched, model_id, max_workers)
 
@@ -347,23 +348,22 @@ def collect_all_rationalizations(
             if result:
                 matched_ingredients[ingredient] = result
 
-    # Write combined results to CSV
-    csv_file = None
-    rationalized_to_write = {**previous_rationalizations}
-    rationalized_to_write.update({k: v for k, v in llm_results.items() if v})
+        # Write combined results to CSV
+        csv_file = None
+        rationalized_to_write = {**previous_rationalizations}
+        rationalized_to_write.update({k: v for k, v in llm_results.items() if v})
 
-    if rationalized_to_write:
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_file = f"{output_dir}/llm_rationalized_ingredients_{timestamp}.csv"
-        write_rationalized_csv(rationalized_to_write, csv_file)
+        if rationalized_to_write:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            csv_file = f"llm_rationalized_ingredients_{timestamp}.csv"
+            write_rationalized_csv(rationalized_to_write, csv_file)
 
     total_rationalized = len(matched_ingredients)
     total_ingredients = len(all_ingredients)
     print(
         f"Total rationalized: {total_rationalized}/{total_ingredients} ({total_rationalized / total_ingredients * 100:.1f}%)"
     )
-
-    return matched_ingredients, csv_file
+    return matched_ingredients
 
 
 def main():
@@ -384,18 +384,6 @@ def main():
         help="Minimum number of recipes an ingredient must appear in",
     )
     parser.add_argument(
-        "--output-file",
-        type=str,
-        default=None,
-        help="Output parquet file path (default: rationalized_matrix_TIMESTAMP.parquet)",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=str,
-        default=".",
-        help="Output directory for generated files (default: current directory)",
-    )
-    parser.add_argument(
         "--model-id",
         type=str,
         default="anthropic.claude-3-5-haiku-20241022-v1:0",
@@ -407,30 +395,24 @@ def main():
         default=2,
         help="Maximum number of parallel workers for LLM processing",
     )
-
+    parser.add_argument(
+        "--use-llm",
+        action="store_true",
+        help="Enable LLM rationalization for unmatched ingredients",
+    )
     args = parser.parse_args()
 
-    # Create output directory if it doesn't exist
-    os.makedirs(args.output_dir, exist_ok=True)
-
-    # Initialize ingredient parser
     ingredient_parser = IngredientParser(db_path=args.db_path)
-
-    # Get all ingredients
     all_ingredients = ingredient_parser.get_ingredients_from_db(
         min_recipe_count=args.min_recipes
     )
-
-    # Collect all rationalizations
-    matched_ingredients, csv_file = collect_all_rationalizations(
+    matched_ingredients = collect_all_rationalizations(
         ingredient_parser,
         all_ingredients,
-        args.output_dir,
         args.model_id,
         args.max_workers,
+        use_llm=args.use_llm,
     )
-
-    # Get recipe-ingredient relationships
     print("Fetching recipe-ingredient relationships...")
     recipe_ingredient_df = get_recipe_ingredient_data(args.db_path)
 
@@ -439,30 +421,20 @@ def main():
         return
 
     # Create the rationalized matrix
-    print("Creating rationalized matrix...")
-    matrix_df = create_rationalized_matrix(recipe_ingredient_df, matched_ingredients)
-
-    if matrix_df.empty:
-        print("No valid matrix created. Exiting.")
-        return
-
-    # Save to parquet
-    if args.output_file:
-        output_file = args.output_file
-    else:
+    for matrix_type in ["amount", "boolean"]:
+        matrix_df = create_rationalized_matrix(
+            recipe_ingredient_df, matched_ingredients, matrix_type=matrix_type
+        )
+        if matrix_df.empty:
+            print(f"No valid {matrix_type} matrix created. Exiting.")
+            return
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = f"{args.output_dir}/rationalized_matrix_{timestamp}.parquet"
+        output_file = f"data/rationalized_matrix_{matrix_type}_{timestamp}.parquet"
+        matrix_df.to_parquet(output_file, index=True)
 
-    print(f"Saving matrix to {output_file}...")
-    matrix_df.to_parquet(output_file, index=True)
-
-    print("Successfully created rationalized matrix:")
+    print("Successfully created rationalized matrices:")
     print(f"  - {len(matrix_df)} recipes")
     print(f"  - {len(matrix_df.columns)} ingredient columns")
-    print(f"  - Multi-index levels: {matrix_df.columns.names}")
-    print(f"  - Matrix file: {output_file}")
-    if csv_file:
-        print(f"  - CSV file: {csv_file}")
 
 
 if __name__ == "__main__":
