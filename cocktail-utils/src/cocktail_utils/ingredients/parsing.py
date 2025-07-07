@@ -153,6 +153,9 @@ def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
             - rest: Remaining text after removing amount and unit
 
     """
+    # Convert unicode fractions to decimal equivalents
+    text = "".join(UNICODE_FRAC.get(c, c) for c in text)
+
     words = text.split()
     if not words:
         return None, ""
@@ -182,6 +185,19 @@ def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
             fraction_part = _parse_fraction(words[1])
             amount = float(whole_part + fraction_part)
             name_start_index = 2
+
+        # Case 2b: Mixed number with decimal (e.g., "1 .5" after unicode conversion)
+        elif len(words) >= 2 and _is_integer(words[0]) and _is_number(words[1]):
+            # Only treat as mixed number if the second part is less than 1
+            decimal_part = float(words[1])
+            if 0 < decimal_part < 1:
+                whole_part = int(words[0])
+                amount = float(whole_part + decimal_part)
+                name_start_index = 2
+            else:
+                # Treat as separate numbers if decimal_part >= 1
+                amount = float(words[0])
+                name_start_index = 1
 
         # Case 3: Simple fraction (e.g., "1/2")
         elif len(words) >= 1 and _is_fraction(words[0]):

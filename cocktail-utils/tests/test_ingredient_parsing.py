@@ -67,6 +67,8 @@ def test_normalize_unit(input_unit, expected_unit):
             4.0,
             "lemons, peeled and peels reserved",
         ),
+        ("1 ½ ounces  Jamaican rum", 1.5, "ounces Jamaican rum"),
+        ("½ ounce  Jamaican rum", 0.5, "ounce Jamaican rum"),
     ],
 )
 def test_parse_amount(input_text, expected_amt, expected_rest):
