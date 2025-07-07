@@ -5,39 +5,67 @@ import pathlib
 from typing import Optional, Union
 import numpy as np
 
+# Unit normalization mapping - maps normalized names to their various forms
+UNIT_MAP = {
+    # Volume
+    "ounce": ["ounce", "ounces", "oz", "oz."],
+    "tablespoon": [
+        "tablespoon",
+        "tablespoons",
+        "tbsp",
+        "tbsp.",
+        "tablespoonful",
+        "tablespoonfuls",
+    ],
+    "barspoon": ["barspoon", "barspoons"],
+    "teaspoon": ["teaspoon", "teaspoons", "tsp", "tsp.", "teaspoonful", "teaspoonfuls"],
+    "cup": ["cup", "cups"],
+    "pint": ["pint", "pints", "pt", "pt."],
+    "quart": ["quart", "quarts", "qt", "qt."],
+    "gallon": ["gallon", "gallons", "gal", "gal."],
+    "ml": ["milliliter", "milliliters", "ml", "ml."],
+    "cl": ["centiliter", "centiliters", "cl", "cl."],
+    "l": ["liter", "liters", "l", "l."],
+    # Count/measure
+    "dash": ["dash", "dashes"],
+    "drop": ["drop", "drops"],
+    "part": ["part", "parts"],
+    "splash": ["splash", "splashes"],
+    "pinch": ["pinch", "pinches"],
+    "piece": ["piece", "pieces", "shoulder"],
+    "slice": ["slice", "slices"],
+    "wedge": ["wedge", "wedges"],
+    "whole": ["whole"],
+    "cube": ["cube", "cubes"],
+}
 
-# Standard volumetric conversions to ml
+# Create reverse mapping for lookup
+UNIT_LOOKUP = {v: k for k, vs in UNIT_MAP.items() for v in vs}
+
+# Standard volumetric conversions to ml - only for normalized unit names
 UNIT_CONVERSIONS = {
     # Already in ml
     "ml": 1.0,
-    "milliliter": 1.0,
-    "millilitre": 1.0,
+    # Centiliters
+    "cl": 10.0,
     # Liters
     "l": 1000.0,
-    "liter": 1000.0,
-    "litre": 1000.0,
     # US fluid ounces
     "ounce": 29.5735,
-    "oz": 29.5735,
-    "fl oz": 29.5735,
-    "fluid ounce": 29.5735,
     # US cups
     "cup": 236.588,
-    "cups": 236.588,
+    # US pints
+    "pint": 473.176,
     # US tablespoons
     "tablespoon": 14.7868,
-    "tbsp": 14.7868,
-    "T": 14.7868,
+    # Bar spoons (approximately 1/2 tablespoon)
+    "barspoon": 7.39,
     # US teaspoons
     "teaspoon": 4.92892,
-    "tsp": 4.92892,
-    "t": 4.92892,
     # US quarts
     "quart": 946.353,
-    "qt": 946.353,
     # US gallons
     "gallon": 3785.41,
-    "gal": 3785.41,
     # Bar measurements (approximate)
     "dash": 0.616,  # ~1/8 teaspoon
     "splash": 5.0,  # ~1 teaspoon
@@ -73,6 +101,23 @@ SPECIAL_UNITS = {
 }
 
 
+def normalize_unit(unit: str) -> str:
+    """Normalize unit names to their standard form.
+
+    Takes a raw unit string and converts it to the standardized unit name
+    used throughout the system. Handles various abbreviations and alternate
+    forms of common measurement units.
+
+    Args:
+        unit: Raw unit string that may contain abbreviations or variations.
+
+    Returns:
+        Normalized unit name in standard form.
+    """
+    unit = unit.lower().strip(".")
+    return UNIT_LOOKUP.get(unit, unit)
+
+
 def convert_to_ml(amount: Optional[Union[float, int]], unit: Optional[str]) -> float:
     """Convert a given amount and unit to milliliters.
 
@@ -85,6 +130,8 @@ def convert_to_ml(amount: Optional[Union[float, int]], unit: Optional[str]) -> f
 
     Examples:
         >>> convert_to_ml(1, "ounce")
+        29.5735
+        >>> convert_to_ml(1, "oz")
         29.5735
         >>> convert_to_ml(1, "slice")
         0.0
@@ -105,8 +152,8 @@ def convert_to_ml(amount: Optional[Union[float, int]], unit: Optional[str]) -> f
     if amount_float == 0:
         return 0.0
 
-    # Normalize unit string
-    unit_normalized = unit.lower().strip()
+    # Normalize unit string first
+    unit_normalized = normalize_unit(unit)
 
     # Check for special units first
     if unit_normalized in SPECIAL_UNITS:

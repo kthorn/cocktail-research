@@ -3,6 +3,7 @@
 import re
 from typing import Optional, Tuple
 
+from cocktail_utils.database.units import UNIT_LOOKUP, normalize_unit
 from cocktail_utils.ingredients.number_utils import (
     _is_fraction,
     _is_integer,
@@ -15,69 +16,7 @@ from cocktail_utils.ingredients.number_utils import (
 # Unicode fraction mappings
 UNICODE_FRAC = {"¼": ".25", "½": ".5", "¾": ".75", "⅓": ".333", "⅔": ".667"}
 
-# Unit normalization mapping
-UNIT_MAP = {
-    # Volume
-    "ounce": ["ounce", "ounces", "oz", "oz."],
-    "tablespoon": [
-        "tablespoon",
-        "tablespoons",
-        "tbsp",
-        "tbsp.",
-        "tablespoonful",
-        "tablespoonfuls",
-    ],
-    "teaspoon": ["teaspoon", "teaspoons", "tsp", "tsp.", "teaspoonful", "teaspoonfuls"],
-    "cup": ["cup", "cups"],
-    "pint": ["pint", "pints", "pt", "pt."],
-    "quart": ["quart", "quarts", "qt", "qt."],
-    "gallon": ["gallon", "gallons", "gal", "gal."],
-    "ml": ["milliliter", "milliliters", "ml", "ml."],
-    "cl": ["centiliter", "centiliters", "cl", "cl."],
-    "l": ["liter", "liters", "l", "l."],
-    # Count/measure
-    "dash": ["dash", "dashes"],
-    "drop": ["drop", "drops"],
-    "part": ["part", "parts"],
-    "splash": ["splash", "splashes"],
-    "pinch": ["pinch", "pinches"],
-    "piece": ["piece", "pieces", "shoulder"],
-    "slice": ["slice", "slices"],
-    "wedge": ["wedge", "wedges"],
-    "whole": ["whole"],
-    "cube": ["cube", "cubes"],
-}
-
-# Create reverse mapping for lookup
-UNIT_LOOKUP = {v: k for k, vs in UNIT_MAP.items() for v in vs}
-
-
 # --- Functions ---
-
-
-def normalize_unit(unit: str) -> str:
-    """Normalize unit names to their standard form.
-
-    Takes a raw unit string and converts it to the standardized unit name
-    used throughout the system. Handles various abbreviations and alternate
-    forms of common measurement units.
-
-    Args:
-        unit: Raw unit string that may contain abbreviations or variations.
-
-    Returns:
-        Normalized unit name in standard form.
-
-    Examples:
-        >>> normalize_unit("oz")
-        'ounce'
-        >>> normalize_unit("tbsp.")
-        'tablespoon'
-        >>> normalize_unit("ML")
-        'ml'
-    """
-    unit = unit.lower().strip(".")
-    return UNIT_LOOKUP.get(unit, unit)
 
 
 def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
@@ -95,18 +34,6 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
             - amount: Numeric quantity as float, or None if no quantity found
             - unit: Unit of measurement as normalized string, or None if no unit found
             - ingredient_name: Clean ingredient name with quantity/unit removed
-
-    Examples:
-        >>> parse_quantity("2 oz gin")
-        (2.0, 'ounce', 'gin')
-        >>> parse_quantity("1/2 cup fresh lemon juice")
-        (0.5, 'cup', 'fresh lemon juice')
-        >>> parse_quantity("Ginger beer, to top")
-        (None, 'to top', 'Ginger beer')
-        >>> parse_quantity("3 Cherries")
-        (3.0, None, 'Cherries')
-        >>> parse_quantity("1 sugar cube")
-        (1.0, 'cube', 'sugar')
     """
     original_text = text.strip()
     t = original_text.lower()

@@ -89,6 +89,7 @@ def test_parse_amount(input_text, expected_amt, expected_rest):
         ("cup sugar", "cup", "sugar"),
         ("cubes of ice", "cube", "of ice"),
         ("salt", None, "salt"),
+        ("barspoon simple syrup", "barspoon", "simple syrup"),
         ("", None, ""),
     ],
 )
