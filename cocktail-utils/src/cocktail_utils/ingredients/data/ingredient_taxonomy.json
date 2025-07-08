@@ -183,6 +183,7 @@
     "avèze": [],
     "contratto bitter": [],
     "campari": [],
+    "carpano botanic bitter": [],
     "aperol": [],
     "suze": [],
     "luxardo bitter": [],
@@ -285,7 +286,8 @@
     "apple juice": [
       "apple cider"
     ],
-    "tangerine juice": []
+    "tangerine juice": [],
+    "clamato juice": []
   },
   "coffee-tea": {
     "espresso": [],
@@ -341,7 +343,11 @@
     ],
     "chamomile syrup": [],
     "hibiscus syrup": [],
-    "coconut syrup": []
+    "coconut syrup": [],
+    "pomegranate molasses": [],
+    "citrus syrup": [],
+    "chai syrup": [],
+    "calamansi syrup": []
   },
   "wine": {
     "sparkling wine": [
@@ -372,6 +378,7 @@
     "cocchi rosa": [
       "cocchi rosa americano"
     ],
+    "dubonnet": [],
     "lillet blanc": [],
     "lillet rouge": [],
     "lillet rosé": [],
@@ -380,7 +387,8 @@
     ],
     "cocchi barolo chinato": [
       "barolo chinato"
-    ]
+    ],
+    "pineau des charentes": []
   },
   "eggs": {
     "egg": [

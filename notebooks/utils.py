@@ -1,11 +1,23 @@
 import pandas as pd
+import glob
+import os
 
 
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
-    df = pd.read_parquet("../data/rationalized_matrix_amount_20250706_124957.parquet")
-    df_bool = pd.read_parquet(
-        "../data/rationalized_matrix_boolean_20250706_124957.parquet"
-    )
+    # Find the most recent amount matrix file
+    amount_files = glob.glob("../data/rationalized_matrix_amount_*.parquet")
+    if not amount_files:
+        raise FileNotFoundError("No amount matrix files found in ../data/")
+    latest_amount_file = max(amount_files, key=os.path.getctime)
+
+    # Find the most recent boolean matrix file
+    boolean_files = glob.glob("../data/rationalized_matrix_boolean_*.parquet")
+    if not boolean_files:
+        raise FileNotFoundError("No boolean matrix files found in ../data/")
+    latest_boolean_file = max(boolean_files, key=os.path.getctime)
+
+    df = pd.read_parquet(latest_amount_file)
+    df_bool = pd.read_parquet(latest_boolean_file)
 
     grouped_cols = df.groupby(level=[0, 1], axis=1)
     df_collapsed = grouped_cols.sum()
