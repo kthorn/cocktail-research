@@ -45,14 +45,10 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
         ingredient_part = re.split(f",? {unit}", original_text, flags=re.IGNORECASE)[0]
         return None, unit, clean_ingredient_name(ingredient_part)
 
-    # Pre-process the string
     t = re.sub(r"^\([^)]*\)\s*", "", t)  # remove parenthetical quantities
-    t = "".join(UNICODE_FRAC.get(c, c) for c in t)  # convert unicode fractions
-
     # Remove special quantity words like "heavy" or "scant"
     t = re.sub(r"^(heavy|scant|about)\s+", "", t, flags=re.IGNORECASE)
 
-    # Attempt to parse amount and unit from the start of the string
     amount, rest = _parse_amount(t)
     unit, rest = _parse_unit(rest)
     ingredient_name = clean_ingredient_name(rest)
@@ -60,7 +56,6 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
     # If cleaning results in an empty string, fall back to the original text
     if not ingredient_name:
         ingredient_name = original_text
-
     return amount, unit, ingredient_name
 
 
@@ -78,7 +73,6 @@ def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
         A tuple containing:
             - amount: Parsed numeric value as float, or None if no valid number found
             - rest: Remaining text after removing amount and unit
-
     """
     # Convert unicode fractions to decimal equivalents
     text = "".join(UNICODE_FRAC.get(c, c) for c in text)
@@ -86,64 +80,84 @@ def _parse_amount(text: str) -> Tuple[Optional[float], Optional[str]]:
     words = text.split()
     if not words:
         return None, ""
-    amount = None
-    name_start_index = 0
 
     try:
-        # Case 1: Number range (e.g., "2 to 3" or "2-3")
-        if (
-            len(words) >= 3
-            and _is_number(words[0])
-            and words[1].lower() == "to"
-            and _is_number(words[2])
-        ):
-            amount = (float(words[0]) + float(words[2])) / 2
-            name_start_index = 3
-        elif (
-            len(words) >= 1 and "-" in words[0] and len(words[0].split("-")) == 2
-        ):  # e.g. 2-3
-            parts = words[0].split("-")
-            if _is_number(parts[0]) and _is_number(parts[1]):
-                amount = (float(parts[0]) + float(parts[1])) / 2
-                name_start_index = 1
-        # Case 2: Mixed number (e.g., "1 1/2")
-        elif len(words) >= 2 and _is_integer(words[0]) and _is_fraction(words[1]):
-            whole_part = int(words[0])
-            fraction_part = _parse_fraction(words[1])
-            amount = float(whole_part + fraction_part)
-            name_start_index = 2
-
-        # Case 2b: Mixed number with decimal (e.g., "1 .5" after unicode conversion)
-        elif len(words) >= 2 and _is_integer(words[0]) and _is_number(words[1]):
-            # Only treat as mixed number if the second part is less than 1
-            decimal_part = float(words[1])
-            if 0 < decimal_part < 1:
-                whole_part = int(words[0])
-                amount = float(whole_part + decimal_part)
-                name_start_index = 2
-            else:
-                # Treat as separate numbers if decimal_part >= 1
-                amount = float(words[0])
-                name_start_index = 1
-
-        # Case 3: Simple fraction (e.g., "1/2")
-        elif len(words) >= 1 and _is_fraction(words[0]):
-            amount = float(_parse_fraction(words[0]))
-            name_start_index = 1
-
-        # Case 4: Decimal or integer (e.g., "2.5" or "3")
-        elif len(words) >= 1 and _is_number(words[0]):
-            amount = float(words[0])
-            name_start_index = 1
-
+        # Try different parsing patterns in order of complexity
+        for parser in [_parse_number_range, _parse_mixed_number, _parse_simple_number]:
+            amount, consumed_words = parser(words)
+            if amount is not None:
+                rest = " ".join(words[consumed_words:])
+                return amount, rest
     except (ValueError, ZeroDivisionError):
-        # If parsing fails, no amount can be parsed
-        amount = None
-        name_start_index = 0
+        # If any parsing fails, no amount can be parsed
+        pass
 
-    # The rest of the string is the ingredient name
-    rest = " ".join(words[name_start_index:])
-    return amount, rest
+    # No valid amount found
+    return None, " ".join(words)
+
+
+def _parse_number_range(words: list[str]) -> Tuple[Optional[float], int]:
+    """Parse number ranges like '2 to 3' or '2-3'."""
+    # Pattern: "2 to 3"
+    if (
+        len(words) >= 3
+        and _is_number(words[0])
+        and words[1].lower() == "to"
+        and _is_number(words[2])
+    ):
+        amount = (float(words[0]) + float(words[2])) / 2
+        return amount, 3
+
+    # Pattern: "2-3"
+    if len(words) >= 1 and "-" in words[0] and len(words[0].split("-")) == 2:
+        parts = words[0].split("-")
+        if _is_number(parts[0]) and _is_number(parts[1]):
+            amount = (float(parts[0]) + float(parts[1])) / 2
+            return amount, 1
+
+    return None, 0
+
+
+def _parse_mixed_number(words: list[str]) -> Tuple[Optional[float], int]:
+    """Parse mixed numbers like '1 1/2' or '1 .5'."""
+    if len(words) < 2 or not _is_integer(words[0]):
+        return None, 0
+
+    whole_part = int(words[0])
+
+    # Pattern: "1 1/2" (whole number + fraction)
+    if _is_fraction(words[1]):
+        fraction_part = _parse_fraction(words[1])
+        amount = float(whole_part + fraction_part)
+        return amount, 2
+
+    # Pattern: "1 .5" (whole number + decimal, after unicode conversion)
+    if _is_number(words[1]):
+        decimal_part = float(words[1])
+        # Only treat as mixed number if the decimal part is less than 1
+        if 0 < decimal_part < 1:
+            amount = float(whole_part + decimal_part)
+            return amount, 2
+
+    return None, 0
+
+
+def _parse_simple_number(words: list[str]) -> Tuple[Optional[float], int]:
+    """Parse simple numbers like '1/2', '2.5', or '3'."""
+    if len(words) < 1:
+        return None, 0
+
+    # Pattern: "1/2" (simple fraction)
+    if _is_fraction(words[0]):
+        amount = float(_parse_fraction(words[0]))
+        return amount, 1
+
+    # Pattern: "2.5" or "3" (decimal or integer)
+    if _is_number(words[0]):
+        amount = float(words[0])
+        return amount, 1
+
+    return None, 0
 
 
 def _parse_unit(text: str) -> tuple[Optional[str], str]:
