@@ -85,6 +85,7 @@ def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
     query = """
     SELECT 
         r.name as recipe_name,
+        r.id as recipe_id,
         i.name as ingredient_name,
         ri.amount,
         ri.unit
@@ -116,6 +117,7 @@ def get_recipe_ingredient_data(db_path: Union[str, pathlib.Path]):
         df = df[
             [
                 "recipe_name",
+                "recipe_id",
                 "ingredient_name",
                 "amount_ml",
                 "original_amount",

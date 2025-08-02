@@ -221,6 +221,86 @@ def prepare_rationalized_dataframe(
     return filtered_df
 
 
+def create_original_data_export(
+    recipe_ingredient_df: pd.DataFrame,
+    ingredient_rationalizations: Dict[str, dict],
+) -> pd.DataFrame:
+    """Create export of original ingredient data with rationalization mappings.
+    
+    Args:
+        recipe_ingredient_df: DataFrame with recipe-ingredient relationships
+        ingredient_rationalizations: Dictionary mapping ingredient names to rationalization results
+        
+    Returns:
+        DataFrame with original ingredient data plus rationalization columns
+    """
+    print("Creating original ingredient data export...")
+    
+    # Filter to only include ingredients that have been rationalized
+    valid_ingredients = set(ingredient_rationalizations.keys())
+    filtered_df = recipe_ingredient_df[
+        recipe_ingredient_df["ingredient_name"].isin(valid_ingredients)
+    ].copy()
+    
+    if filtered_df.empty:
+        print("No valid ingredients found after filtering.")
+        return pd.DataFrame()
+    
+    # Add rationalization columns and create rationalized ingredient names
+    for ingredient, rationalization in ingredient_rationalizations.items():
+        mask = filtered_df["ingredient_name"] == ingredient
+        
+        # Set rationalization metadata
+        filtered_df.loc[mask, "rationalized_category"] = rationalization["category"]
+        filtered_df.loc[mask, "rationalized_specific_type"] = rationalization["specific_type"] or ""
+        filtered_df.loc[mask, "rationalized_brand"] = rationalization["brand"] or ""
+        filtered_df.loc[mask, "rationalization_confidence"] = rationalization["confidence"]
+        filtered_df.loc[mask, "rationalization_source"] = rationalization["source"]
+        
+        # Create rationalized ingredient name
+        category = normalize_string(rationalization["category"])
+        specific_type = rationalization["specific_type"]
+        brand = rationalization["brand"]
+        
+        # Build rationalized name: prefer specific_type and brand, only use category if nothing else available
+        name_parts = []
+        has_specific_type = specific_type and str(specific_type).strip()
+        has_brand = brand and str(brand).strip()
+        
+        if has_specific_type:
+            name_parts.append(normalize_string(specific_type))
+        if has_brand:
+            name_parts.append(normalize_string(brand))
+        
+        # Only use category if we have no specific_type or brand
+        if not name_parts:
+            name_parts.append(category)
+        
+        rationalized_name = " ".join(name_parts)
+        filtered_df.loc[mask, "rationalized_ingredient_name"] = rationalized_name
+    
+    # Use original amount and unit (not converted to ml)
+    # Keep original amount and unit columns as they are
+    
+    # Reorder columns for better readability
+    column_order = [
+        "recipe_name", "ingredient_name", "rationalized_ingredient_name", 
+        "amount", "unit", "unit_type",
+        "rationalized_category", "rationalized_specific_type", "rationalized_brand",
+        "rationalization_confidence", "rationalization_source"
+    ]
+    
+    # Only include columns that exist in the DataFrame
+    available_columns = [col for col in column_order if col in filtered_df.columns]
+    remaining_columns = [col for col in filtered_df.columns if col not in available_columns]
+    final_columns = available_columns + remaining_columns
+    
+    filtered_df = filtered_df[final_columns]
+    
+    print(f"Created original data export with {len(filtered_df)} ingredient entries")
+    return filtered_df
+
+
 def create_rationalized_matrix(
     recipe_ingredient_df: pd.DataFrame,
     ingredient_rationalizations: Dict[str, dict],
@@ -420,6 +500,16 @@ def main():
         print("No recipe-ingredient data found. Exiting.")
         return
 
+    # Create the original data export
+    original_data_df = create_original_data_export(
+        recipe_ingredient_df, matched_ingredients
+    )
+    if not original_data_df.empty:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        original_data_file = f"data/original_ingredients_with_rationalization_{timestamp}.parquet"
+        original_data_df.to_parquet(original_data_file, index=False)
+        print(f"Created original ingredient data export: {original_data_file}")
+
     # Create the rationalized matrix
     for matrix_type in ["amount", "boolean"]:
         matrix_df = create_rationalized_matrix(
@@ -432,9 +522,9 @@ def main():
         output_file = f"data/rationalized_matrix_{matrix_type}_{timestamp}.parquet"
         matrix_df.to_parquet(output_file, index=True)
 
-    print("Successfully created rationalized matrices:")
-    print(f"  - {len(matrix_df)} recipes")
-    print(f"  - {len(matrix_df.columns)} ingredient columns")
+    print("Successfully created rationalized outputs:")
+    print(f"  - Original ingredient data: {len(original_data_df)} ingredient entries")
+    print(f"  - Rationalized matrices: {len(matrix_df)} recipes with {len(matrix_df.columns)} ingredient columns")
 
 
 if __name__ == "__main__":

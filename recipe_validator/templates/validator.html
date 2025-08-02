@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Validator - {{ recipe.recipe_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background-color: #4CAF50;
+            height: 100%;
+            transition: width 0.3s ease;
+            width: {{ (recipe.index / recipe.total * 100) | round(1) }}%;
+        }
+        .recipe-panels {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .rationalized-recipe {
+            font-size: 14px;
+            line-height: 1.3;
+        }
+        .rationalized-recipe h3 {
+            font-size: 18px;
+            margin: 0 0 8px 0;
+        }
+        .rationalized-recipe h4 {
+            font-size: 15px;
+            margin: 12px 0 6px 0;
+        }
+        .rationalized-recipe p {
+            margin: 4px 0;
+            font-size: 13px;
+        }
+        .panel h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .original-recipe {
+            border-left: 4px solid #2196F3;
+        }
+        .rationalized-recipe {
+            border-left: 4px solid #FF9800;
+        }
+        .ingredient {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin: 4px 0;
+            border-left: 3px solid #4CAF50;
+        }
+        .ingredient-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .ingredient-amount {
+            color: #666;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+        .controls {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-accept {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-accept:hover {
+            background-color: #45a049;
+        }
+        .btn-reject {
+            background-color: #f44336;
+            color: white;
+        }
+        .btn-reject:hover {
+            background-color: #da190b;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+        }
+        .no-rationalized {
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            padding: 40px;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .json-editor {
+            margin-top: 15px;
+        }
+        .json-editor h4 {
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+        }
+        .json-textarea {
+            width: 100%;
+            height: 500px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            background-color: #f8f8f8;
+            resize: vertical;
+            line-height: 1.3;
+        }
+        .json-error {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Recipe Validator</h1>
+            <h2>{{ recipe.recipe_name }}</h2>
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+            <p>Recipe {{ recipe.index + 1 }} of {{ recipe.total }}</p>
+        </div>
+
+        <div class="recipe-panels">
+            <div class="panel original-recipe">
+                <h2>Original Recipe (HTML)</h2>
+                <iframe srcdoc="{{ recipe.html_content | replace('"', '&quot;') }}"></iframe>
+            </div>
+
+            <div class="panel rationalized-recipe">
+                <h2>Rationalized Recipe</h2>
+                {% if recipe.rationalized_data %}
+                    <h3>{{ recipe.rationalized_data.name }}</h3>
+                    <p><strong>Description:</strong> {{ recipe.rationalized_data.description }}</p>
+                    <p><strong>Instructions:</strong> {{ recipe.rationalized_data.instructions }}</p>
+                    
+                    <div class="json-editor">
+                        <h4>JSON Data to be Saved:</h4>
+                        <textarea id="json-data" class="json-textarea" placeholder="JSON will be populated here..."></textarea>
+                        <div id="json-error" class="json-error">Invalid JSON format. Please check your syntax.</div>
+                    </div>
+                {% else %}
+                    <div class="no-rationalized">
+                        <p>No rationalized data found for this recipe.</p>
+                        <p>This recipe may not be in the rationalized matrix or may have a different name format.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-accept" onclick="acceptRecipe()" 
+                    {% if not recipe.rationalized_data %}disabled{% endif %}>
+                ✓ Accept Recipe
+            </button>
+            <button class="btn btn-reject" onclick="rejectRecipe()">
+                ✗ Reject Recipe
+            </button>
+            <div class="status" id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize JSON data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if recipe.rationalized_data %}
+            const jsonData = {{ recipe.rationalized_data | tojson }};
+            document.getElementById('json-data').value = JSON.stringify(jsonData, null, 2);
+            
+            // Add real-time JSON validation
+            document.getElementById('json-data').addEventListener('input', function() {
+                validateJson();
+            });
+            {% endif %}
+        });
+
+        function validateJson() {
+            const textarea = document.getElementById('json-data');
+            const errorDiv = document.getElementById('json-error');
+            
+            try {
+                JSON.parse(textarea.value);
+                errorDiv.style.display = 'none';
+                textarea.style.borderColor = '#ddd';
+                return true;
+            } catch (e) {
+                errorDiv.style.display = 'block';
+                textarea.style.borderColor = '#f44336';
+                return false;
+            }
+        }
+
+        function acceptRecipe() {
+            const textarea = document.getElementById('json-data');
+            let recipeData;
+            
+            // Validate JSON if textarea exists
+            if (textarea && textarea.value) {
+                if (!validateJson()) {
+                    document.getElementById('status').textContent = 'Please fix JSON syntax errors before accepting.';
+                    return;
+                }
+                
+                try {
+                    recipeData = JSON.parse(textarea.value);
+                } catch (e) {
+                    document.getElementById('status').textContent = 'Invalid JSON format. Please check your syntax.';
+                    return;
+                }
+            }
+            
+            document.getElementById('status').textContent = 'Accepting recipe...';
+            fetch('/accept', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ recipe_data: recipeData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    document.getElementById('status').textContent = 'Error accepting recipe: ' + (data.error || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                document.getElementById('status').textContent = 'Error: ' + error;
+            });
+        }
+
+        function rejectRecipe() {
+            document.getElementById('status').textContent = 'Rejecting recipe...';
+            fetch('/reject', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    document.getElementById('status').textContent = 'Error rejecting recipe';
+                }
+            })
+            .catch(error => {
+                document.getElementById('status').textContent = 'Error: ' + error;
+            });
+        }
+
+    </script>
+</body>
+</html>

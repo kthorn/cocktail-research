@@ -1,0 +1,44 @@
+# Cocktails to skip from Punch
+# Underspecified or weird
+raw_recipes/punch_html/irish-cunt.html
+raw_recipes/punch_html/n-a-spaghett.html
+# Syrups and other Ingredients
+raw_recipes/punch_html/cinnamon-syrup.html
+raw_recipes/punch_html/rhubarb-simple-syrup.html
+raw_recipes/punch_html/jeff-beachbum-berrys-passion-fruit-syrup.html
+raw_recipes/punch_html/blackberry-lime-syrup.html
+raw_recipes/punch_html/orlando-franklin-mccrays-ginger-syrup.html
+raw_recipes/punch_html/rye-whiskey-syrup.html
+raw_recipes/punch_html/aaron-polskys-coconut-cream.html
+raw_recipes/punch_html/bentons-bacon-infused-bourbon.html
+raw_recipes/punch_html/blood-orange-reduction.html
+raw_recipes/punch_html/butter-infused-rum.html
+raw_recipes/punch_html/grenadine.html
+# Most ingredients in Note
+raw_recipes/punch_html/the-dead-rabbits-bishop.html
+raw_recipes/punch_html/lawn-sleeves.html
+raw_recipes/punch_html/excellent-negus.html
+raw_recipes/punch_html/adam-bernbachs-pina-colada.html
+raw_recipes/punch_html/andrew-corderos-miami-vice.html
+raw_recipes/punch_html/autumn-cobbler.html
+raw_recipes/punch_html/bare-minimum.html
+raw_recipes/punch_html/chupetini.html
+raw_recipes/punch_html/discolos-pornstar-martini.html
+raw_recipes/punch_html/invisible-goat.html
+raw_recipes/punch_html/rob-jones-hot-buttered-rum.html
+raw_recipes/punch_html/chris-hannahs-hot-buttered-rum.html
+raw_recipes/punch_html/mai-tai-soda.html
+raw_recipes/punch_html/madhatter.html
+raw_recipes/punch_html/fermented-citrus-garibaldi.html
+raw_recipes/punch_html/meghan-royale.html
+raw_recipes/punch_html/pina-de-mi-corazon.html
+raw_recipes/punch_html/rum-coopers-old-fashioned.html
+# Basically single ingredients
+raw_recipes/punch_html/amaro-caldo.html
+raw_recipes/punch_html/amaro-shakerato.html
+raw_recipes/punch_html/averna-ritual.html
+raw_recipes/punch_html/beertini.html
+raw_recipes/punch_html/campari-martini.html
+# Shots
+raw_recipes/punch_html/baby-guinness.html
+raw_recipes/punch_html/crossfit-breakfast.html

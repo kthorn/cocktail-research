@@ -8,6 +8,15 @@ from .parsing import (
     parse_quantity,
 )
 from .rationalization import IngredientParser
+from .rationalization_utils import (
+    collect_all_rationalizations,
+    find_most_recent_rationalized_csv,
+    llm_rationalize,
+    load_previous_rationalizations,
+    normalize_string,
+    prepare_rationalized_dataframe,
+    write_rationalized_csv,
+)
 
 __all__ = [
     "parse_quantity",
@@ -17,4 +26,11 @@ __all__ = [
     "IngredientMatch",
     "IngredientUsage",
     "IngredientParser",
+    "collect_all_rationalizations",
+    "find_most_recent_rationalized_csv",
+    "llm_rationalize",
+    "load_previous_rationalizations",
+    "normalize_string",
+    "prepare_rationalized_dataframe",
+    "write_rationalized_csv",
 ]

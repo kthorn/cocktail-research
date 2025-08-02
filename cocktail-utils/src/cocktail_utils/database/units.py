@@ -17,7 +17,7 @@ UNIT_MAP = {
         "tablespoonful",
         "tablespoonfuls",
     ],
-    "barspoon": ["barspoon", "barspoons"],
+    "barspoon": ["barspoon", "barspoons", "bar spoon", "bar spoons"],
     "teaspoon": ["teaspoon", "teaspoons", "tsp", "tsp.", "teaspoonful", "teaspoonfuls"],
     "cup": ["cup", "cups"],
     "pint": ["pint", "pints", "pt", "pt."],

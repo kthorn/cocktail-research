@@ -35,19 +35,24 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
             - unit: Unit of measurement as normalized string, or None if no unit found
             - ingredient_name: Clean ingredient name with quantity/unit removed
     """
+
     original_text = text.strip()
     t = original_text.lower()
+    t = re.sub(r"^\([^)]*\)\s*", "", t)  # remove parenthetical quantities
+    # Remove special quantity words like scant at the beginning of the string
+    t = re.sub(
+        r"^(generous|small|heaping|short|shy|heavy|scant|about)\b\s+",
+        "",
+        t,
+        flags=re.IGNORECASE,
+    )
 
     # Handle special cases like "to top" or "as needed"
-    if " to top" in t or " as needed" in t:
-        unit = "to top" if " to top" in t else "as needed"
+    if "to top" in t or "as needed" in t:
+        unit = "to top" if "to top" in t else "as needed"
         # Extract the ingredient name before the special phrase
         ingredient_part = re.split(f",? {unit}", original_text, flags=re.IGNORECASE)[0]
         return None, unit, clean_ingredient_name(ingredient_part)
-
-    t = re.sub(r"^\([^)]*\)\s*", "", t)  # remove parenthetical quantities
-    # Remove special quantity words like "heavy" or "scant"
-    t = re.sub(r"^(heavy|scant|about)\s+", "", t, flags=re.IGNORECASE)
 
     amount, rest = _parse_amount(t)
     unit, rest = _parse_unit(rest)

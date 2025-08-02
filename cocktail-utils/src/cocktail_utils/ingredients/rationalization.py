@@ -225,7 +225,8 @@ class IngredientParser:
 
         This method performs dictionary-based ingredient matching by normalizing
         the input text and searching for exact matches or partial matches within
-        the ingredient taxonomy.
+        the ingredient taxonomy. More specific matches are prioritized over less
+        specific ones.
 
         Args:
             ingredient_text (str): The ingredient text to match against the taxonomy.
@@ -239,24 +240,50 @@ class IngredientParser:
         normalized = normalize_ingredient_text(ingredient_text)
         brand, cleaned_text = self.extract_brand(normalized)
 
-        # Try exact matches first - prioritize specific_type matches over category matches
-        # to handle cases where the same term appears as both (e.g., "absinthe")
+        # Collect all possible matches with their specificity
+        matches = []
+
+        # Try exact matches first - prioritize specific_type matches over
+        # category matches to handle cases where the same term appears as both
         for category, types in self.taxonomy.items():
             for specific_type, variations in types.items():
                 all_variations = [specific_type] + variations
-                if cleaned_text in all_variations:
-                    return IngredientMatch(
-                        brand, specific_type, category, 1.0, "dictionary"
-                    )
-                elif self._contains_as_words(cleaned_text, all_variations):
-                    return IngredientMatch(
-                        brand, specific_type, category, 0.9, "dictionary"
-                    )
+                for variation in all_variations:
+                    if cleaned_text == variation:
+                        matches.append(
+                            (
+                                IngredientMatch(
+                                    brand, specific_type, category, 1.0, "dictionary"
+                                ),
+                                len(variation),  # specificity score
+                            )
+                        )
+                    elif self._contains_as_words(cleaned_text, [variation]):
+                        matches.append(
+                            (
+                                IngredientMatch(
+                                    brand, specific_type, category, 0.9, "dictionary"
+                                ),
+                                len(variation),  # specificity score
+                            )
+                        )
 
         # Only check category matches if no specific_type match was found
-        for category, types in self.taxonomy.items():
-            if cleaned_text == category:
-                return IngredientMatch(brand, None, category, 1.0, "dictionary")
+        if not matches:
+            for category, types in self.taxonomy.items():
+                if cleaned_text == category:
+                    matches.append(
+                        (
+                            IngredientMatch(brand, None, category, 1.0, "dictionary"),
+                            len(category),  # specificity score
+                        )
+                    )
+
+        # Return the most specific match (longest matched term)
+        if matches:
+            # Sort by confidence first (1.0 before 0.9), then by specificity
+            matches.sort(key=lambda x: (x[0].confidence, x[1]), reverse=True)
+            return matches[0][0]
 
         return None
 
