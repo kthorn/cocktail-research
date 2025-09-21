@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredient Rationalizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .ingredient-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .ingredient-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .recipes-using {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .recipes-list {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        
+        .suggestions {
+            margin: 20px 0;
+        }
+        
+        .suggestion-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .suggestion-item:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .suggestion-item.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .suggestion-name {
+            font-weight: 500;
+        }
+        
+        .suggestion-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .similarity-badge {
+            background: #28a745;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .exact-match {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+        
+        .custom-ingredient {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .search-result-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .search-result-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .path-info {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍸 Ingredient Rationalizer</h1>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value">{{ stats.total_recipes }}</div>
+                    <div class="stat-label">Total Recipes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ stats.total_unique_ingredients }}</div>
+                    <div class="stat-label">Unique Ingredients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ stats.mapped_ingredients }}</div>
+                    <div class="stat-label">Mapped</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ stats.unmapped_ingredients }}</div>
+                    <div class="stat-label">Remaining</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ stats.api_ingredients_available }}</div>
+                    <div class="stat-label">API Ingredients</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-card">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ (current.index / current.total * 100) if current.total > 0 else 0 }}%">
+                    {{ current.index }} / {{ current.total }}
+                </div>
+            </div>
+            
+            <div class="ingredient-info">
+                <div class="ingredient-name">{{ current.ingredient_name }}</div>
+                {% if current.recipes_using %}
+                <div class="recipes-using">
+                    Used in recipes:
+                    <ul class="recipes-list">
+                        {% for recipe in current.recipes_using %}
+                        <li>{{ recipe }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if current.suggestions %}
+            <div class="suggestions">
+                <h3>Suggested Matches:</h3>
+                <div style="margin-top: 15px;">
+                    {% for suggestion in current.suggestions %}
+                    <div class="suggestion-item" data-id="{{ suggestion.id }}" data-name="{{ suggestion.name|e }}" onclick="selectSuggestion(this)">
+                        <div>
+                            <div class="suggestion-name">{{ suggestion.name }}</div>
+                            {% if suggestion.path %}
+                            <div class="path-info">{{ suggestion.path }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="suggestion-meta">
+                            {% if suggestion.exact_match %}
+                            <span class="similarity-badge exact-match">Exact Match</span>
+                            {% else %}
+                            <span class="similarity-badge">{{ (suggestion.similarity * 100) | round }}%</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="custom-ingredient">
+                <h3>Or search for an ingredient:</h3>
+                <input type="text" class="search-box" id="ingredientSearch" placeholder="Type to search API ingredients...">
+                <div id="searchResults" class="search-results hidden"></div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" onclick="mapToSelected()">Map to Selected</button>
+                <button class="btn btn-success" onclick="addAsNew()">Add as New Ingredient</button>
+                <button class="btn btn-secondary" onclick="skip()">Skip for Now</button>
+                <button class="btn btn-warning" onclick="exportRecipes()">Export Results</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedIngredientId = null;
+        let selectedIngredientName = null;
+        
+        function selectSuggestion(element) {
+            // Remove previous selection
+            document.querySelectorAll('.suggestion-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Add selection to clicked item
+            element.classList.add('selected');
+            selectedIngredientId = element.dataset.id;
+            selectedIngredientName = element.dataset.name;
+        }
+        
+        function mapToSelected() {
+            if (!selectedIngredientId) {
+                alert('Please select an ingredient to map to');
+                return;
+            }
+            
+            fetch('/map', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: 'existing',
+                    ingredient_id: selectedIngredientId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            });
+        }
+        
+        function addAsNew() {
+            if (confirm('Add "{{ current.ingredient_name }}" as a new ingredient to be added to the database?')) {
+                fetch('/map', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'new'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+        
+        function skip() {
+            fetch('/map', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: 'skip'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            });
+        }
+        
+        function exportRecipes() {
+            if (confirm('Export rationalized recipes to file?')) {
+                fetch('/export', {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Exported to ${data.file}\n\nRecipes: ${data.metadata.total_recipes}\nMapped ingredients: ${data.metadata.mapped_ingredients}\nNew ingredients: ${data.metadata.new_ingredients}`);
+                    } else {
+                        alert('Export failed: ' + data.error);
+                    }
+                });
+            }
+        }
+        
+        // Search functionality
+        let searchTimeout;
+        document.getElementById('ingredientSearch').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const query = e.target.value;
+            
+            if (query.length < 2) {
+                document.getElementById('searchResults').classList.add('hidden');
+                return;
+            }
+            
+            searchTimeout = setTimeout(() => {
+                fetch(`/search_ingredients?q=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(results => {
+                        const resultsDiv = document.getElementById('searchResults');
+                        if (results.length === 0) {
+                            resultsDiv.innerHTML = '<div class="search-result-item">No results found</div>';
+                        } else {
+                            resultsDiv.innerHTML = results.map(ing => `
+                                <div class="search-result-item" data-id="${ing.id}" data-name="${ing.name}" onclick="selectFromSearch(this)">
+                                    <div class="suggestion-name">${ing.name}</div>
+                                    ${ing.path ? `<div class="path-info">${ing.path}</div>` : ''}
+                                </div>
+                            `).join('');
+                        }
+                        resultsDiv.classList.remove('hidden');
+                    });
+            }, 300);
+        });
+        
+        function selectFromSearch(element) {
+            selectedIngredientId = element.dataset.id;
+            selectedIngredientName = element.dataset.name;
+            document.getElementById('ingredientSearch').value = selectedIngredientName;
+            document.getElementById('searchResults').classList.add('hidden');
+
+            // Clear suggestion selections
+            document.querySelectorAll('.suggestion-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html>

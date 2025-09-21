@@ -19,11 +19,9 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 
-def find_most_recent_original_ingredients_file(data_dir="data"):
-    """Find the most recent original ingredients parquet file based on timestamp."""
-    pattern = os.path.join(
-        data_dir, "original_ingredients_with_rationalization_*.parquet"
-    )
+def find_most_recent_raw_ingredients_file(data_dir="data"):
+    """Find the most recent raw ingredients parquet file based on timestamp."""
+    pattern = os.path.join(data_dir, "raw_recipe_ingredients_*.parquet")
     files = glob.glob(pattern)
 
     if not files:
@@ -37,7 +35,7 @@ def find_most_recent_original_ingredients_file(data_dir="data"):
         filename = os.path.basename(file_path)
         # Extract timestamp from filename using regex
         match = re.search(
-            r"original_ingredients_with_rationalization_(\d{8}_\d{6})\.parquet",
+            r"raw_recipe_ingredients_(\d{8}_\d{6})\.parquet",
             filename,
         )
         if match:
@@ -57,21 +55,21 @@ def find_most_recent_original_ingredients_file(data_dir="data"):
     file_timestamps.sort(key=lambda x: x[0], reverse=True)
     most_recent_file = file_timestamps[0][1]
 
-    print(f"Using most recent original ingredients file: {most_recent_file}")
+    print(f"Using most recent raw ingredients file: {most_recent_file}")
     return most_recent_file
 
 
 VALIDATION_LOG_FILE = "validation_log.json"
 VALIDATED_RECIPES_FILE = "input_data/validated-recipes.json"
 RAW_RECIPES_DIR = "raw_recipes/punch_html"
-ORIGINAL_INGREDIENTS_FILE = find_most_recent_original_ingredients_file()
+RAW_INGREDIENTS_FILE = find_most_recent_raw_ingredients_file()
 DATABASE_FILE = "data/recipes.db"
 
 
 class RecipeValidator:
     def __init__(self):
         self.load_progress()
-        self.load_original_ingredients_data()
+        self.load_raw_ingredients_data()
         self.load_database_mapping()
         self.load_html_files()
 
@@ -98,9 +96,9 @@ class RecipeValidator:
         all_html_files = sorted(glob.glob(f"{RAW_RECIPES_DIR}/*.html"))
         print(f"Found {len(all_html_files)} total HTML files")
 
-        # Filter to only include files that have original ingredients data
+        # Filter to only include files that have raw ingredients data
         self.html_files = []
-        if self.original_ingredients_df is not None and self.db_mapping:
+        if self.raw_ingredients_df is not None and self.db_mapping:
             for html_file in all_html_files:
                 # Convert to the same format as database (raw_recipes/punch_html/filename.html)
                 path_parts = html_file.split(os.sep)
@@ -113,32 +111,27 @@ class RecipeValidator:
                     # Check if this file is in our database mapping
                     if db_path in self.db_mapping:
                         recipe_id = self.db_mapping[db_path]
-                        # Check if this recipe has original ingredients data
-                        if (
-                            recipe_id
-                            in self.original_ingredients_df["recipe_id"].values
-                        ):
+                        # Check if this recipe has raw ingredients data
+                        if recipe_id in self.raw_ingredients_df["recipe_id"].values:
                             self.html_files.append(html_file)
 
             print(
-                f"Filtered to {len(self.html_files)} HTML files with rationalized data"
+                f"Filtered to {len(self.html_files)} HTML files with raw ingredients data"
             )
         else:
             self.html_files = all_html_files
             print(
-                "No original ingredients data or database mapping available, showing all files"
+                "No raw ingredients data or database mapping available, showing all files"
             )
 
-    def load_original_ingredients_data(self):
-        """Load original ingredients data with rationalization mappings from parquet file."""
+    def load_raw_ingredients_data(self):
+        """Load raw ingredients data from parquet file."""
         try:
-            self.original_ingredients_df = pd.read_parquet(ORIGINAL_INGREDIENTS_FILE)
-            print(
-                f"Loaded original ingredients data: {self.original_ingredients_df.shape}"
-            )
+            self.raw_ingredients_df = pd.read_parquet(RAW_INGREDIENTS_FILE)
+            print(f"Loaded raw ingredients data: {self.raw_ingredients_df.shape}")
         except Exception as e:
-            print(f"Error loading original ingredients data: {e}")
-            self.original_ingredients_df = None
+            print(f"Error loading raw ingredients data: {e}")
+            self.raw_ingredients_df = None
 
     def load_database_mapping(self):
         """Load recipe source file to recipe_id mapping from database."""
@@ -177,7 +170,9 @@ class RecipeValidator:
             db_path = html_file
 
         recipe_id = self.db_mapping.get(db_path)
-        recipe_name = self.recipe_names.get(recipe_id, Path(html_file).stem.replace("-", " ").title())
+        recipe_name = self.recipe_names.get(
+            recipe_id, Path(html_file).stem.replace("-", " ").title()
+        )
 
         # Load HTML content and clean it
         with open(html_file, "r", encoding="utf-8") as f:
@@ -185,14 +180,14 @@ class RecipeValidator:
 
         html_content = self._clean_html_content(raw_html)
 
-        # Get original ingredients data with rationalization mappings
-        rationalized_data = None
-        if self.original_ingredients_df is not None and recipe_id is not None:
-            recipe_ingredients = self.original_ingredients_df[
-                self.original_ingredients_df["recipe_id"] == recipe_id
+        # Get raw ingredients data
+        raw_recipe_data = None
+        if self.raw_ingredients_df is not None and recipe_id is not None:
+            recipe_ingredients = self.raw_ingredients_df[
+                self.raw_ingredients_df["recipe_id"] == recipe_id
             ]
             if not recipe_ingredients.empty:
-                rationalized_data = self._format_original_ingredients_recipe(
+                raw_recipe_data = self._format_raw_ingredients_recipe(
                     recipe_id, recipe_name, recipe_ingredients
                 )
 
@@ -202,7 +197,7 @@ class RecipeValidator:
             "recipe_name": recipe_name,
             "html_file": html_file,
             "html_content": html_content,
-            "rationalized_data": rationalized_data,
+            "rationalized_data": raw_recipe_data,
         }
 
     def _clean_html_content(self, html_content):
@@ -332,26 +327,19 @@ class RecipeValidator:
             print(f"Error cleaning HTML: {e}")
             return html_content  # Return original if parsing fails
 
-    def _format_original_ingredients_recipe(self, recipe_id, recipe_name, recipe_ingredients_df):
-        """Format original ingredients data with rationalization mappings for display."""
+    def _format_raw_ingredients_recipe(
+        self, recipe_id, recipe_name, recipe_ingredients_df
+    ):
+        """Format raw ingredients data for display."""
         ingredients = []
 
         for _, row in recipe_ingredients_df.iterrows():
-            # Use rationalized name as ingredient_name
-            if row["rationalized_specific_type"].strip() != "":
-                rationalized_name = row["rationalized_specific_type"]
-            else:
-                rationalized_name = row["rationalized_category"]
-
-            if (
-                pd.notna(row["rationalized_brand"])
-                and row["rationalized_brand"].strip()
-            ):
-                rationalized_name += f" ({row['rationalized_brand']})"
+            # Use the raw ingredient name directly
+            ingredient_name = row["ingredient_name"]
 
             ingredients.append(
                 {
-                    "ingredient_name": rationalized_name,
+                    "ingredient_name": ingredient_name,
                     "amount": row.get("original_amount", 0),
                     "unit_name": row.get("original_unit", ""),
                 }
@@ -360,16 +348,24 @@ class RecipeValidator:
         # Derive source URL from recipe name - convert to punch URL format
         # Clean special characters for URL
         clean_name = recipe_name.lower()
-        # Remove unicode characters like smart quotes, non-breaking spaces
-        clean_name = clean_name.replace('\u2019', '').replace('\u00a0', ' ')
-        # Remove apostrophes and other special characters
-        clean_name = ''.join(c for c in clean_name if c.isalnum() or c in ' -&')
+        # Replace unicode characters with normal equivalents
+        unicode_replacements = {
+            "\u2019": "'",  # right single quotation mark
+            "\u2018": "'",  # left single quotation mark
+            "\u201c": '"',  # left double quotation mark
+            "\u201d": '"',  # right double quotation mark
+            "\u00a0": " ",  # non-breaking space
+        }
+        for unicode_char, replacement in unicode_replacements.items():
+            clean_name = clean_name.replace(unicode_char, replacement)
+        # Remove apostrophes and other special characters for URL formatting
+        clean_name = "".join(c for c in clean_name if c.isalnum() or c in " -&")
         # Replace spaces and ampersands
-        clean_name = clean_name.replace(' ', '-').replace('&', 'and')
+        clean_name = clean_name.replace(" ", "-").replace("&", "and")
         # Remove multiple consecutive dashes
-        clean_name = '-'.join(filter(None, clean_name.split('-')))
+        clean_name = "-".join(filter(None, clean_name.split("-")))
         source_url = f"https://punchdrink.com/recipes/{clean_name}/"
-        
+
         # Validate URL and report if invalid
         self._validate_url(source_url, recipe_name)
 
@@ -386,9 +382,13 @@ class RecipeValidator:
         try:
             response = requests.head(url, timeout=10, allow_redirects=True)
             if response.status_code >= 400:
-                print(f"⚠️  INVALID URL for recipe '{recipe_name}': {url} (Status: {response.status_code})")
+                print(
+                    f"⚠️  INVALID URL for recipe '{recipe_name}': {url} (Status: {response.status_code})"
+                )
         except requests.exceptions.RequestException as e:
-            print(f"⚠️  URL VALIDATION ERROR for recipe '{recipe_name}': {url} (Error: {str(e)})")
+            print(
+                f"⚠️  URL VALIDATION ERROR for recipe '{recipe_name}': {url} (Error: {str(e)})"
+            )
 
     def accept_recipe(self, recipe_data):
         """Accept a recipe and save to validated recipes file."""
@@ -532,9 +532,7 @@ def reset():
 if __name__ == "__main__":
     print("Recipe Validator starting...")
     print(f"HTML files found: {len(validator.html_files)}")
-    print(
-        f"Original ingredients data loaded: {validator.original_ingredients_df is not None}"
-    )
+    print(f"Raw ingredients data loaded: {validator.raw_ingredients_df is not None}")
     print(
         f"Database mappings loaded: {len(validator.db_mapping) if validator.db_mapping else 0}"
     )
@@ -547,6 +545,6 @@ if __name__ == "__main__":
     if len(validator.html_files) == 0:
         print("No HTML files available for validation!")
         print(f"Looking in directory: {RAW_RECIPES_DIR}")
-        print(f"Original ingredients file: {ORIGINAL_INGREDIENTS_FILE}")
+        print(f"Raw ingredients file: {RAW_INGREDIENTS_FILE}")
         print(f"Database file: {DATABASE_FILE}")
     app.run(debug=True, port=5000)
