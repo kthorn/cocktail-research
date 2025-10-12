@@ -16,14 +16,14 @@ from typing import Dict, List
 app = Flask(__name__)
 
 # Configuration
-VALIDATED_RECIPES_FILE = "../input_data/validated-recipes.json"
+VALIDATED_RECIPES_FILE = "../../input_data/validated-recipes.json"
 INGREDIENT_MAPPINGS_FILE = "ingredient_mappings.json"
 PROGRESS_FILE = "rationalization_progress.json"
 INGREDIENTS_API_URL = (
     "https://a5crx5o72d.execute-api.us-east-1.amazonaws.com/api/ingredients"
 )
-OUTPUT_FILE = "../input_data/rationalized-recipes.json"
-NEW_INGREDIENTS_FILE = "../input_data/new-ingredients-for-upload.json"
+OUTPUT_FILE = "../../input_data/rationalized-recipes.json"
+NEW_INGREDIENTS_FILE = "../../input_data/new-ingredients-for-upload.json"
 
 
 class IngredientRationalizer:

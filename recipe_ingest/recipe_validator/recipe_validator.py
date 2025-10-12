@@ -19,7 +19,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 
-def find_most_recent_raw_ingredients_file(data_dir="data"):
+def find_most_recent_raw_ingredients_file(data_dir="../../data"):
     """Find the most recent raw ingredients parquet file based on timestamp."""
     pattern = os.path.join(data_dir, "raw_recipe_ingredients_*.parquet")
     files = glob.glob(pattern)
@@ -59,11 +59,11 @@ def find_most_recent_raw_ingredients_file(data_dir="data"):
     return most_recent_file
 
 
-VALIDATION_LOG_FILE = "validation_log.json"
-VALIDATED_RECIPES_FILE = "input_data/validated-recipes.json"
-RAW_RECIPES_DIR = "raw_recipes/punch_html"
+VALIDATION_LOG_FILE = "../../data/validation_log.json"
+VALIDATED_RECIPES_FILE = "../../input_data/validated-recipes.json"
+RAW_RECIPES_DIR = "../../raw_recipes/punch_html"
 RAW_INGREDIENTS_FILE = find_most_recent_raw_ingredients_file()
-DATABASE_FILE = "data/recipes.db"
+DATABASE_FILE = "../../data/recipes.db"
 
 
 class RecipeValidator:
@@ -85,6 +85,14 @@ class RecipeValidator:
                 "accepted": [],
                 "rejected": [],
             }
+
+        # Ensure auto_ingested field exists (for compatibility with batch script)
+        if "auto_ingested" not in self.progress:
+            self.progress["auto_ingested"] = []
+
+        # Ensure needs_review field exists
+        if "needs_review" not in self.progress:
+            self.progress["needs_review"] = []
 
     def save_progress(self):
         """Save validation progress to log file."""
@@ -156,12 +164,39 @@ class RecipeValidator:
 
     def get_current_recipe(self):
         """Get the current recipe to validate."""
+        # Skip recipes that have already been processed
+        while self.progress["current_index"] < len(self.html_files):
+            html_file = self.html_files[self.progress["current_index"]]
+
+            # Get recipe name from database mapping using same path format as in load_html_files
+            path_parts = html_file.split(os.sep)
+            if len(path_parts) >= 2:
+                db_path = "/".join(path_parts[-2:])  # Take last 2 parts
+                db_path = f"raw_recipes/{db_path}"  # Add raw_recipes/ prefix
+            else:
+                db_path = html_file
+
+            recipe_id = self.db_mapping.get(db_path)
+            recipe_name = self.recipe_names.get(
+                recipe_id, Path(html_file).stem.replace("-", " ").title()
+            )
+
+            # Check if this recipe has already been processed
+            if self._is_recipe_processed(recipe_name):
+                # Skip this recipe and move to the next one
+                self.progress["current_index"] += 1
+                continue
+
+            # Found an unprocessed recipe, break out of loop
+            break
+
+        # Check if we've reached the end
         if self.progress["current_index"] >= len(self.html_files):
             return None
 
         html_file = self.html_files[self.progress["current_index"]]
 
-        # Get recipe name from database mapping using same path format as in load_html_files
+        # Get recipe name again (we already have it from the loop above, but keeping this for clarity)
         path_parts = html_file.split(os.sep)
         if len(path_parts) >= 2:
             db_path = "/".join(path_parts[-2:])  # Take last 2 parts
@@ -427,6 +462,14 @@ class RecipeValidator:
         )
         self.save_progress()
 
+    def _is_recipe_processed(self, recipe_name: str) -> bool:
+        """Check if a recipe has already been processed."""
+        return (
+            recipe_name in self.progress.get("accepted", [])
+            or recipe_name in self.progress.get("rejected", [])
+            or recipe_name in self.progress.get("auto_ingested", [])
+        )
+
     def reset_progress(self):
         """Reset validation progress to start over."""
         self.progress = {
@@ -434,6 +477,8 @@ class RecipeValidator:
             "reviewed": [],
             "accepted": [],
             "rejected": [],
+            "auto_ingested": [],
+            "needs_review": [],
         }
         self.save_progress()
 
