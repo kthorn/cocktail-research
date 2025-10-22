@@ -1,6 +1,8 @@
 import math
-from typing import Dict, Tuple, Any, Optional
+from typing import Any, Dict, Optional, Tuple
+
 import numpy as np
+import pandas as pd
 
 
 def build_ingredient_tree(
@@ -233,3 +235,79 @@ def build_ingredient_distance_matrix(
             )
             distance_matrix[j, i] = distance_matrix[i, j]
     return distance_matrix, id_to_index
+
+
+def build_recipe_volume_matrix(
+    recipes_df: pd.DataFrame,
+    ingredient_id_to_index: dict[str, int],
+    recipe_id_col: str = "recipe_id",
+    ingredient_id_col: str = "ingredient_id",
+    volume_col: str = "volume_fraction",
+    volume_error_tolerance: float = 1e-6,
+) -> tuple[np.ndarray, dict[str, int]]:
+    """
+    Construct a matrix of recipe ingredient volume fractions.
+
+    Builds a matrix of shape (n_recipes, m_ingredients) where each entry [i, j] is
+    the volume fraction of ingredient j in recipe i from the supplied DataFrame.
+
+    Parameters
+    ----------
+    recipes_df : pd.DataFrame
+        DataFrame containing at least recipe IDs, ingredient IDs, and volume fractions.
+    ingredient_id_to_index : dict[str, int]
+        Mapping from ingredient IDs to matrix columns.
+    recipe_id_col : str, optional
+        Column name for recipe IDs. Default is "recipe_id".
+    ingredient_id_col : str, optional
+        Column name for ingredient IDs. Default is "ingredient_id".
+    volume_col : str, optional
+        Column name for the ingredient volume fraction in the recipe. Default is "volume_fraction".
+    volume_error_tolerance : float, optional
+        Tolerance for checking that all rows of volume_matrix sum to 1. Default is 1e-6.
+
+    Returns
+    -------
+    volume_matrix : np.ndarray
+        Array of shape (n_recipes, m_ingredients); entry [i, j] is the volume fraction of ingredient j in recipe i.
+        Rows correspond to recipes as dictated by recipe_id_to_index;
+        columns to ingredients as dictated by ingredient_id_to_index.
+    recipe_id_to_index : dict[str, int]
+        Mapping from recipe IDs to matrix rows.
+
+    Raises
+    ------
+    ValueError
+        If the volume fraction column is missing or contains NaNs.
+
+    Notes
+    -----
+    If a recipe does not include an ingredient, the corresponding matrix entry will be zero.
+    Each row sums to at most 1, depending on whether all ingredient fractions for a recipe are included.
+    """
+    # Validate presence of volume_fraction and ensure no NaNs
+    if volume_col not in recipes_df.columns:
+        raise ValueError("recipes_df must contain a 'volume_fraction' column")
+    if recipes_df[volume_col].isna().any():
+        raise ValueError(
+            f"recipes_df['{volume_col}'] contains NaNs; please clean first"
+        )
+
+    recipe_ids = list(recipes_df[recipe_id_col].unique())
+    recipe_id_to_index = {str(id): i for i, id in enumerate(recipe_ids)}
+    volume_matrix = np.zeros((len(recipe_ids), len(ingredient_id_to_index)))
+    for _, row in recipes_df.iterrows():
+        recipe_index = recipe_id_to_index[str(row[recipe_id_col])]
+        ingredient_index = ingredient_id_to_index[str(row[ingredient_id_col])]
+        volume_matrix[recipe_index, ingredient_index] = float(row[volume_col])
+    # Check that all rows of volume_matrix sum to 1 within numerical error
+    row_sums = volume_matrix.sum(axis=1)
+    if not np.allclose(row_sums, 1.0, atol=volume_error_tolerance):
+        bad_rows = np.where(~np.isclose(row_sums, 1.0, atol=volume_error_tolerance))[0]
+        bad_recipe_ids = [str(recipe_ids[i]) for i in bad_rows]
+        raise ValueError(
+            f"Not all rows of volume_matrix sum to 1. "
+            f"Offending rows: {bad_rows}. \n"
+            f"Row sums: {row_sums[bad_rows]}; recipe ids: {bad_recipe_ids}"
+        )
+    return volume_matrix, recipe_id_to_index
