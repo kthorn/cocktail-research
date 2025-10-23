@@ -1,8 +1,11 @@
 import math
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
+import ot
 import pandas as pd
+from tqdm.auto import tqdm
+import numpy as np
 
 
 def build_ingredient_tree(
@@ -311,3 +314,189 @@ def build_recipe_volume_matrix(
             f"Row sums: {row_sums[bad_rows]}; recipe ids: {bad_recipe_ids}"
         )
     return volume_matrix, recipe_id_to_index
+
+
+def compute_emd(
+    a: np.ndarray,
+    b: np.ndarray,
+    cost_matrix: np.ndarray,
+    return_plan: bool = False,
+    support_idx: Optional[np.ndarray] = None,
+) -> Union[float, Tuple[float, List[Tuple[int, int, float, float]]]]:
+    """
+    Compute the Earth Mover's Distance (EMD) between two distributions a and b.
+
+    Parameters
+    ----------
+    a : np.ndarray
+        Source distribution, shape (n,)
+    b : np.ndarray
+        Target distribution, shape (n,)
+    cost_matrix : np.ndarray
+        Cost matrix, shape (n, n)
+    return_plan : bool, optional
+        If True, also return the transport plan as a list of flows, by default False.
+
+    Returns
+    -------
+    distance : float
+        The Earth Mover's Distance (total minimum cost) between the two distributions.
+    transport_plan : list[tuple[int, int, float, float]]
+        Only returned if return_plan is True.
+        Each tuple is (from_idx, to_idx, amount, cost):
+            - from_idx: Index in source a
+            - to_idx: Index in target b
+            - amount: mass transported (typically between 0 and 1)
+            - cost: amount * per-unit cost for this flow
+    """
+    n_ingredients = a.shape[0]
+    if len(b) != n_ingredients:
+        raise ValueError(f"b must have {n_ingredients} ingredients")
+    if cost_matrix.shape[0] != n_ingredients or cost_matrix.shape[1] != n_ingredients:
+        raise ValueError(
+            f"cost_matrix must be of shape ({n_ingredients}, {n_ingredients})"
+        )
+
+    # Reduce to the union of supports to dramatically shrink problem size
+    if support_idx is None:
+        support_idx = np.nonzero((a > 0) | (b > 0))[0]
+
+    if support_idx.size == 0:
+        return 0.0 if not return_plan else (0.0, [])
+
+    a_sub = a[support_idx]
+    b_sub = b[support_idx]
+    cost_sub = cost_matrix[np.ix_(support_idx, support_idx)]
+
+    if not return_plan:
+        # Use ot.emd2 when only the objective value is needed (faster than full plan)
+        distance = float(ot.emd2(a_sub, b_sub, cost_sub))
+        return distance
+    else:
+        transport_matrix = ot.emd(a_sub, b_sub, cost_sub)
+        distance = float(np.sum(transport_matrix * cost_sub))
+        transport_plan: List[Tuple[int, int, float, float]] = []
+        rows, cols = np.nonzero(transport_matrix > 1e-10)
+        for ii, jj in zip(rows, cols):
+            flow = float(transport_matrix[ii, jj])
+            flow_cost = float(flow * cost_sub[ii, jj])
+            # Map back to original indices via support_idx
+            transport_plan.append(
+                (int(support_idx[ii]), int(support_idx[jj]), flow, flow_cost)
+            )
+        return distance, transport_plan
+
+
+def emd_matrix(
+    volume_matrix: np.ndarray,
+    cost_matrix: np.ndarray,
+    n_jobs: int = 1,
+) -> np.ndarray:
+    """
+    Compute the Earth Mover's Distance matrix between all recipes in the volume matrix.
+    """
+    n_recipes = volume_matrix.shape[0]
+    emd_matrix = np.zeros((n_recipes, n_recipes))
+
+    # Precompute supports for each recipe to avoid repeated nonzero scans
+    supports: List[np.ndarray] = [
+        np.nonzero(volume_matrix[i] > 0)[0] for i in range(n_recipes)
+    ]
+
+    if n_jobs == 1:
+        for i in tqdm(range(n_recipes), desc="Computing EMD matrix"):
+            for j in range(i + 1, n_recipes):
+                union_idx = np.union1d(supports[i], supports[j])
+                distance = compute_emd(
+                    volume_matrix[i],
+                    volume_matrix[j],
+                    cost_matrix,
+                    return_plan=False,
+                    support_idx=union_idx,
+                )
+                emd_matrix[i, j] = distance
+                emd_matrix[j, i] = distance
+        return emd_matrix
+
+    # Parallel path (shared memory threads to avoid copying large matrices)
+    try:
+        from joblib import Parallel, delayed
+    except ImportError:
+        # Fallback to sequential if joblib is not available
+        for i in tqdm(range(n_recipes), desc="Computing EMD matrix"):
+            for j in range(i + 1, n_recipes):
+                union_idx = np.union1d(supports[i], supports[j])
+                distance = compute_emd(
+                    volume_matrix[i],
+                    volume_matrix[j],
+                    cost_matrix,
+                    return_plan=False,
+                    support_idx=union_idx,
+                )
+                emd_matrix[i, j] = distance
+                emd_matrix[j, i] = distance
+        return emd_matrix
+
+    pairs: List[Tuple[int, int]] = [
+        (i, j) for i in range(n_recipes) for j in range(i + 1, n_recipes)
+    ]
+
+    def _pair_distance(i: int, j: int) -> Tuple[int, int, float]:
+        union_idx = np.union1d(supports[i], supports[j])
+        d = compute_emd(
+            volume_matrix[i],
+            volume_matrix[j],
+            cost_matrix,
+            return_plan=False,
+            support_idx=union_idx,
+        )
+        return i, j, float(d)
+
+    results = Parallel(n_jobs=n_jobs, prefer="threads", require="sharedmem")(
+        delayed(_pair_distance)(i, j) for (i, j) in pairs
+    )
+    for i, j, d in results:
+        emd_matrix[i, j] = d
+        emd_matrix[j, i] = d
+    return emd_matrix
+
+
+def knn_matrix(
+    distance_matrix: np.ndarray,
+    k: int,
+) -> np.ndarray:
+    """
+    Compute the k-nearest neighbors (kNN) indices and distances from a distance matrix.
+
+    Given a symmetric pairwise distance matrix, this function finds the indices and
+    corresponding distances of the k nearest neighbors (excluding self) for each row.
+
+    Parameters
+    ----------
+    distance_matrix : np.ndarray
+        A 2D array of shape (n, n) representing pairwise distances, where n is the number of samples.
+    k : int
+        The number of nearest neighbors to select for each item.
+
+    Returns
+    -------
+    nn_idx : np.ndarray
+        Array of shape (n, k) with indices of the k nearest neighbors for each item.
+    nn_dist : np.ndarray
+        Array of shape (n, k) with the distances to the k nearest neighbors for each item.
+
+    Notes
+    -----
+    The diagonal (self-distances) and any non-finite values (NaN/-Inf) are replaced with +Inf
+    so they are not selected as neighbors. The neighbor selection uses `np.argsort`;
+    in the case of ties, the order is determined by the index order.
+    """
+    dmat = distance_matrix.copy()
+    # Replace diagonal, NaN/-Inf with +Inf so they sort to the end
+    np.fill_diagonal(dmat, np.inf)
+    non_finite_mask = ~np.isfinite(dmat)
+    if non_finite_mask.any():
+        dmat[non_finite_mask] = np.inf
+    nn_idx = np.argsort(dmat, axis=1)[:, :k]
+    nn_dist = np.take_along_axis(dmat, nn_idx, axis=1)
+    return nn_idx, nn_dist
