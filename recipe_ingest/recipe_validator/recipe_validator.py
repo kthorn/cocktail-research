@@ -19,7 +19,9 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 
-def find_most_recent_raw_ingredients_file(data_dir="../../data"):
+def find_most_recent_raw_ingredients_file(
+    data_dir="/home/kurtt/cocktail-research/data",
+):
     """Find the most recent raw ingredients parquet file based on timestamp."""
     pattern = os.path.join(data_dir, "raw_recipe_ingredients_*.parquet")
     files = glob.glob(pattern)
@@ -59,11 +61,13 @@ def find_most_recent_raw_ingredients_file(data_dir="../../data"):
     return most_recent_file
 
 
-VALIDATION_LOG_FILE = "../../data/validation_log.json"
-VALIDATED_RECIPES_FILE = "../../input_data/validated-recipes.json"
-RAW_RECIPES_DIR = "../../raw_recipes/punch_html"
+VALIDATION_LOG_FILE = "/home/kurtt/cocktail-research/data/validation_log.json"
+VALIDATED_RECIPES_FILE = (
+    "/home/kurtt/cocktail-research/input_data/validated-recipes.json"
+)
+RAW_RECIPES_DIR = "/home/kurtt/cocktail-research/raw_recipes/punch_html"
 RAW_INGREDIENTS_FILE = find_most_recent_raw_ingredients_file()
-DATABASE_FILE = "../../data/recipes.db"
+DATABASE_FILE = "/home/kurtt/cocktail-research/data/recipes.db"
 
 
 class RecipeValidator:

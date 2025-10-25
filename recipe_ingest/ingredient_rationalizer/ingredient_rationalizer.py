@@ -16,14 +16,18 @@ from typing import Dict, List
 app = Flask(__name__)
 
 # Configuration
-VALIDATED_RECIPES_FILE = "../../input_data/validated-recipes.json"
+VALIDATED_RECIPES_FILE = (
+    "/home/kurtt/cocktail-research/input_data/validated-recipes.json"
+)
 INGREDIENT_MAPPINGS_FILE = "ingredient_mappings.json"
 PROGRESS_FILE = "rationalization_progress.json"
 INGREDIENTS_API_URL = (
     "https://a5crx5o72d.execute-api.us-east-1.amazonaws.com/api/ingredients"
 )
-OUTPUT_FILE = "../../input_data/rationalized-recipes.json"
-NEW_INGREDIENTS_FILE = "../../input_data/new-ingredients-for-upload.json"
+OUTPUT_FILE = "/home/kurtt/cocktail-research/input_data/rationalized-recipes.json"
+NEW_INGREDIENTS_FILE = (
+    "/home/kurtt/cocktail-research/input_data/new-ingredients-for-upload.json"
+)
 
 
 class IngredientRationalizer:
@@ -151,7 +155,8 @@ class IngredientRationalizer:
         self.unmapped_ingredients = [
             ing
             for ing in self.unique_ingredients
-            if ing not in self.mappings and ing not in getattr(self, 'new_ingredients', [])
+            if ing not in self.mappings
+            and ing not in getattr(self, "new_ingredients", [])
         ]
 
         print(f"Found {len(self.unique_ingredients)} unique ingredients")
@@ -160,7 +165,11 @@ class IngredientRationalizer:
     def auto_match_exact_ingredients(self):
         """Automatically map ingredients that have exact matches in the API"""
         auto_matched = []
-        debug_ingredients = ['ricard pastis', 'creole shrubb, such as hamilton petite shrubb', 'luxardo bitter']
+        debug_ingredients = [
+            "ricard pastis",
+            "creole shrubb, such as hamilton petite shrubb",
+            "luxardo bitter",
+        ]
 
         # Check all unique ingredients that don't have mappings yet
         # This includes both unmapped and previously processed but unmapped ingredients
@@ -177,7 +186,8 @@ class IngredientRationalizer:
                 print(f"\nDEBUG: Checking '{ingredient_name}'")
                 # Check if any API ingredient contains this string
                 partial_matches = [
-                    api_name for api_name in self.api_ingredients_by_name.keys()
+                    api_name
+                    for api_name in self.api_ingredients_by_name.keys()
                     if ingredient_lower in api_name or api_name in ingredient_lower
                 ]
                 if partial_matches:
@@ -239,7 +249,9 @@ class IngredientRationalizer:
         # If we have a current ingredient from progress, try to find it
         if self.progress.get("current_ingredient"):
             try:
-                current_index = self.unmapped_ingredients.index(self.progress["current_ingredient"])
+                current_index = self.unmapped_ingredients.index(
+                    self.progress["current_ingredient"]
+                )
                 current_ingredient = self.progress["current_ingredient"]
             except ValueError:
                 # Current ingredient no longer in unmapped list, start with first
