@@ -1,0 +1,42 @@
+{
+    "recipes": [
+        {
+            "description": "",
+            "ingredients": [
+                {
+                    "amount": 4.5,
+                    "ingredient_name": "Angostura Bitters",
+                    "unit_name": "dash"
+                },
+                {
+                    "amount": 2,
+                    "ingredient_name": "Bourbon",
+                    "unit_name": "ounce"
+                },
+                {
+                    "amount": 1,
+                    "ingredient_name": "sweetened ginger juice",
+                    "unit_name": "ounce"
+                },
+                {
+                    "amount": 2,
+                    "ingredient_name": "Lemon Wedges",
+                    "unit_name": null
+                },
+                {
+                    "amount": 5,
+                    "ingredient_name": "Mint Leaves",
+                    "unit_name": null
+                },
+                {
+                    "amount": 2,
+                    "ingredient_name": "Soda Water",
+                    "unit_name": "ounce"
+                }
+            ],
+            "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
+            "name": "Poppa's Pride",
+            "source_url": "https://punchdrink.com/recipes/poppas-pride/"
+        }
+    ]
+}

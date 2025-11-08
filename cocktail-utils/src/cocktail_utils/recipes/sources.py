@@ -340,50 +340,47 @@ class DiffordsRecipeSource(RecipeSource):
             soup = BeautifulSoup(html_content, "html.parser")
 
             # Find recipe name
-            name_tag = soup.find("h1") or soup.find("title")
+            name_tag = soup.find("h1")
             if not name_tag:
                 return None
 
             name = name_tag.get_text(strip=True)
-            # Clean up title (remove " Cocktail Recipe" suffix if present)
-            name = re.sub(r"\s+Cocktail Recipe$", "", name)
 
-            # Find ingredients
+            # Find ingredients in the legacy-ingredients-table
             ingredients = []
-            # Try multiple selectors for Difford's format
-            ingredient_lists = soup.find_all(["ul", "ol"], class_=re.compile(r"ingredient", re.I))
-            if not ingredient_lists:
-                # Try finding by itemprop
-                ingredient_elements = soup.find_all(attrs={"itemprop": "recipeIngredient"})
-                for elem in ingredient_elements:
-                    ing_text = elem.get_text(strip=True)
-                    if ing_text:
-                        ingredients.append({
-                            "ingredient_name": ing_text,
-                            "amount": "",
-                            "unit_name": ""
-                        })
-            else:
-                for ing_list in ingredient_lists:
-                    for li in ing_list.find_all("li"):
-                        ing_text = li.get_text(strip=True)
-                        if ing_text:
+            ingredient_table = soup.find("table", class_="legacy-ingredients-table")
+            if ingredient_table:
+                rows = ingredient_table.find_all("tr")
+                for row in rows:
+                    cells = row.find_all(["td", "th"])
+                    if len(cells) >= 2:
+                        # First cell: amount + unit
+                        amount_unit = cells[0].get_text(strip=True)
+                        # Second cell: ingredient name
+                        ingredient_name = cells[1].get_text(strip=True)
+
+                        if ingredient_name:
+                            # For now, keep amount+unit together as a string
+                            # The rationalization step will handle parsing
                             ingredients.append({
-                                "ingredient_name": ing_text,
+                                "ingredient_name": f"{amount_unit} {ingredient_name}",
                                 "amount": "",
                                 "unit_name": ""
                             })
 
             # Find instructions/method
             instructions = ""
-            method_section = soup.find(["div", "section"], class_=re.compile(r"method|instruction", re.I))
-            if method_section:
-                instructions = method_section.get_text(strip=True)
-            else:
-                # Try itemprop
-                instruction_elem = soup.find(attrs={"itemprop": "recipeInstructions"})
-                if instruction_elem:
-                    instructions = instruction_elem.get_text(strip=True)
+            # Look for h2 with "How to make"
+            h2_method = soup.find("h2", string=lambda x: x and "how to make" in x.lower())
+            if h2_method:
+                # Get all paragraph text after the h2 until next h2
+                instruction_parts = []
+                for sibling in h2_method.find_next_siblings():
+                    if sibling.name == "h2":
+                        break
+                    if sibling.name == "p":
+                        instruction_parts.append(sibling.get_text(strip=True))
+                instructions = " ".join(instruction_parts)
 
             # Find description
             description = ""
