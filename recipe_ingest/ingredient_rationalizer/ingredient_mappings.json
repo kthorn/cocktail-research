@@ -1,0 +1,5029 @@
+{
+  "- 3/4 ounce lime juice": {
+    "id": 15,
+    "mapped_at": "2025-09-06T14:09:23.579402",
+    "name": "Lime Juice"
+  },
+  "- 5 leaves fresh mint": {
+    "id": 21,
+    "mapped_at": "2025-10-04T14:10:15.841067",
+    "name": "Mint Leaves"
+  },
+  "1-inch cube fresh pineapple": {
+    "id": 372,
+    "mapped_at": "2025-10-04T16:37:06.133230",
+    "name": "Pineapple Cube"
+  },
+  "10% saline solution": {
+    "id": 158,
+    "mapped_at": "2025-10-06T20:49:52.122777",
+    "name": "Saline Solution"
+  },
+  "100-proof apple brandy, preferably laird's": {
+    "id": 400,
+    "mapped_at": "2025-10-26T16:10:23.225341",
+    "name": "Laird's Bottled in Bond Apple Brandy"
+  },
+  "100-proof bourbon": {
+    "id": 10,
+    "mapped_at": "2025-10-06T20:50:03.324379",
+    "name": "Bourbon"
+  },
+  "100-proof rye, preferably rittenhouse": {
+    "id": 389,
+    "mapped_at": "2025-10-24T20:20:16.724922",
+    "name": "Rittenhouse Rye"
+  },
+  "151-proof aged rum": {
+    "id": 378,
+    "mapped_at": "2025-10-26T16:10:32.016412",
+    "name": "Overproof Rum"
+  },
+  "1x1 inch cube peeled ginger root": {
+    "id": 315,
+    "mapped_at": "2025-09-21T12:42:19.355718",
+    "name": "Ginger Root"
+  },
+  "2:1 honey syrup": {
+    "id": 93,
+    "mapped_at": "2025-10-04T14:10:33.255512",
+    "name": "Honey Syrup"
+  },
+  "4 ounces soda water, plus more": {
+    "id": 62,
+    "mapped_at": "2025-10-06T20:50:06.919328",
+    "name": "Soda Water"
+  },
+  "6.8-ounce bottle fever-tree refreshingly light cucumber tonic water": {
+    "id": 163,
+    "mapped_at": "2025-09-14T16:45:57.168287",
+    "name": "Tonic Water"
+  },
+  "90-proof bourbon": {
+    "id": 10,
+    "mapped_at": "2025-09-21T12:14:55.149508",
+    "name": "Bourbon"
+  },
+  "Absinthe": {
+    "auto_matched": true,
+    "id": 37,
+    "mapped_at": "2025-10-04T16:24:18.397930",
+    "name": "Absinthe"
+  },
+  "Agave Nectar": {
+    "auto_matched": true,
+    "id": 270,
+    "mapped_at": "2025-10-04T16:45:58.502960",
+    "name": "Agave Nectar"
+  },
+  "Aged Apple Brandy": {
+    "auto_matched": true,
+    "id": 85,
+    "mapped_at": "2025-10-04T16:45:58.503021",
+    "name": "Aged Apple Brandy"
+  },
+  "Amaretto": {
+    "auto_matched": true,
+    "id": 204,
+    "mapped_at": "2025-10-04T16:36:51.820614",
+    "name": "Amaretto"
+  },
+  "Amaro Ciociaro": {
+    "auto_matched": true,
+    "id": 180,
+    "mapped_at": "2025-09-01T21:30:58.054859",
+    "name": "Amaro Ciociaro"
+  },
+  "Amaro Montenegro": {
+    "auto_matched": true,
+    "id": 90,
+    "mapped_at": "2025-10-04T16:45:58.503036",
+    "name": "Amaro Montenegro"
+  },
+  "Amaro Nonino Quintessentia": {
+    "auto_matched": true,
+    "id": 34,
+    "mapped_at": "2025-10-04T16:36:51.820648",
+    "name": "Amaro Nonino Quintessentia"
+  },
+  "Amaro Sfumato Rabarbaro": {
+    "auto_matched": true,
+    "id": 196,
+    "mapped_at": "2025-10-04T16:24:18.397973",
+    "name": "Amaro Sfumato Rabarbaro"
+  },
+  "Amaro Sibona": {
+    "auto_matched": true,
+    "id": 202,
+    "mapped_at": "2025-10-04T16:45:58.503046",
+    "name": "Amaro Sibona"
+  },
+  "Amontillado Sherry": {
+    "auto_matched": true,
+    "id": 149,
+    "mapped_at": "2025-10-04T16:45:58.503056",
+    "name": "Amontillado Sherry"
+  },
+  "Angostura Bitters": {
+    "auto_matched": true,
+    "id": 12,
+    "mapped_at": "2025-10-04T16:24:18.397984",
+    "name": "Angostura Bitters"
+  },
+  "Aperol": {
+    "auto_matched": true,
+    "id": 42,
+    "mapped_at": "2025-10-04T16:45:58.503065",
+    "name": "Aperol"
+  },
+  "Applejack": {
+    "auto_matched": true,
+    "id": 333,
+    "mapped_at": "2025-10-04T16:45:58.503137",
+    "name": "Applejack"
+  },
+  "Appleton Estate 12 Year Old": {
+    "auto_matched": true,
+    "id": 26,
+    "mapped_at": "2025-10-04T16:45:58.503159",
+    "name": "Appleton Estate 12 Year Old"
+  },
+  "Armagnac": {
+    "auto_matched": true,
+    "id": 280,
+    "mapped_at": "2025-10-04T16:36:51.820661",
+    "name": "Armagnac"
+  },
+  "Batavia Arrack": {
+    "auto_matched": true,
+    "id": 74,
+    "mapped_at": "2025-10-04T16:24:18.397991",
+    "name": "Batavia Arrack"
+  },
+  "Benedictine": {
+    "auto_matched": true,
+    "id": 41,
+    "mapped_at": "2025-10-04T16:36:51.820670",
+    "name": "Benedictine"
+  },
+  "Bitters": {
+    "auto_matched": true,
+    "id": 11,
+    "mapped_at": "2025-10-04T16:36:51.820679",
+    "name": "Bitters"
+  },
+  "Black Rum": {
+    "auto_matched": true,
+    "id": 46,
+    "mapped_at": "2025-10-04T16:24:18.397999",
+    "name": "Black Rum"
+  },
+  "Blanc Vermouth": {
+    "auto_matched": true,
+    "id": 171,
+    "mapped_at": "2025-10-04T16:24:18.398006",
+    "name": "Blanc Vermouth"
+  },
+  "Blanco Tequila": {
+    "auto_matched": true,
+    "id": 71,
+    "mapped_at": "2025-10-04T16:24:18.398015",
+    "name": "Blanco Tequila"
+  },
+  "Bourbon": {
+    "auto_matched": true,
+    "id": 10,
+    "mapped_at": "2025-10-04T16:24:18.398022",
+    "name": "Bourbon"
+  },
+  "Byrrh": {
+    "auto_matched": true,
+    "id": 192,
+    "mapped_at": "2025-10-04T16:24:18.398028",
+    "name": "Byrrh"
+  },
+  "Cacha\u00e7a": {
+    "auto_matched": true,
+    "id": 176,
+    "mapped_at": "2025-10-04T16:45:58.503174",
+    "name": "Cacha\u00e7a"
+  },
+  "Calvados": {
+    "auto_matched": true,
+    "id": 216,
+    "mapped_at": "2025-10-04T16:24:18.398037",
+    "name": "Calvados"
+  },
+  "Campari": {
+    "auto_matched": true,
+    "id": 53,
+    "mapped_at": "2025-10-04T16:36:51.820688",
+    "name": "Campari"
+  },
+  "Cappelletti Aperitivo": {
+    "auto_matched": true,
+    "id": 143,
+    "mapped_at": "2025-10-04T16:45:58.503184",
+    "name": "Cappelletti Aperitivo"
+  },
+  "Carpano Antica": {
+    "auto_matched": true,
+    "id": 167,
+    "mapped_at": "2025-10-04T16:45:58.503453",
+    "name": "Carpano Antica"
+  },
+  "Celery Bitters": {
+    "auto_matched": true,
+    "id": 209,
+    "mapped_at": "2025-10-04T16:24:18.398044",
+    "name": "Celery Bitters"
+  },
+  "Champagne": {
+    "id": 127,
+    "mapped_at": "2025-10-06T20:50:13.569920",
+    "name": "Sparkling Wine"
+  },
+  "Cherry Heering": {
+    "auto_matched": true,
+    "id": 36,
+    "mapped_at": "2025-10-04T16:36:51.820697",
+    "name": "Cherry Heering"
+  },
+  "Cinnamon Syrup": {
+    "auto_matched": true,
+    "id": 160,
+    "mapped_at": "2025-10-04T16:24:18.398050",
+    "name": "Cinnamon Syrup"
+  },
+  "Cl\u00e9ment Cr\u00e9ole Shrubb": {
+    "auto_matched": true,
+    "id": 306,
+    "mapped_at": "2025-10-04T16:45:58.503504",
+    "name": "Cl\u00e9ment Cr\u00e9ole Shrubb"
+  },
+  "Cocchi Americano": {
+    "auto_matched": true,
+    "id": 70,
+    "mapped_at": "2025-10-04T16:36:51.820705",
+    "name": "Cocchi Americano"
+  },
+  "Cocchi Vermouth di Torino": {
+    "auto_matched": true,
+    "id": 277,
+    "mapped_at": "2025-10-04T16:45:58.503516",
+    "name": "Cocchi Vermouth di Torino"
+  },
+  "Coconut Cream": {
+    "auto_matched": true,
+    "id": 228,
+    "mapped_at": "2025-10-04T16:36:51.820713",
+    "name": "Coconut Cream"
+  },
+  "Coconut Liqueur": {
+    "auto_matched": true,
+    "id": 224,
+    "mapped_at": "2025-10-04T16:36:51.820720",
+    "name": "Coconut Liqueur"
+  },
+  "Cognac": {
+    "auto_matched": true,
+    "id": 68,
+    "mapped_at": "2025-10-04T16:24:18.398057",
+    "name": "Cognac"
+  },
+  "Cointreau": {
+    "auto_matched": true,
+    "id": 95,
+    "mapped_at": "2025-10-04T16:24:18.398063",
+    "name": "Cointreau"
+  },
+  "Column Still Lightly Aged Rum": {
+    "auto_matched": true,
+    "id": 130,
+    "mapped_at": "2025-10-04T16:24:18.398070",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "Coruba 7 years old": {
+    "auto_matched": true,
+    "id": 346,
+    "mapped_at": "2025-10-04T16:45:58.503528",
+    "name": "Coruba 7 years old"
+  },
+  "Creme de Menthe": {
+    "auto_matched": true,
+    "id": 184,
+    "mapped_at": "2025-10-04T16:24:18.398076",
+    "name": "Creme de Menthe"
+  },
+  "Cucumber Slices": {
+    "auto_matched": true,
+    "id": 205,
+    "mapped_at": "2025-10-04T16:36:51.820729",
+    "name": "Cucumber Slices"
+  },
+  "Cynar": {
+    "auto_matched": true,
+    "id": 73,
+    "mapped_at": "2025-10-04T16:45:58.503538",
+    "name": "Cynar"
+  },
+  "Demerara Syrup": {
+    "auto_matched": true,
+    "id": 138,
+    "mapped_at": "2025-10-04T16:24:18.398082",
+    "name": "Demerara Syrup"
+  },
+  "Dimmi": {
+    "auto_matched": true,
+    "id": 238,
+    "mapped_at": "2025-10-04T16:45:58.503547",
+    "name": "Dimmi"
+  },
+  "Dolin G\u00e9n\u00e9py": {
+    "auto_matched": true,
+    "id": 81,
+    "mapped_at": "2025-10-04T16:24:18.398093",
+    "name": "Dolin G\u00e9n\u00e9py"
+  },
+  "Dry Cura\u00e7ao": {
+    "auto_matched": true,
+    "id": 39,
+    "mapped_at": "2025-10-04T16:24:18.398100",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "Dry Vermouth": {
+    "auto_matched": true,
+    "id": 61,
+    "mapped_at": "2025-10-04T16:24:18.398144",
+    "name": "Dry Vermouth"
+  },
+  "Egg White": {
+    "auto_matched": true,
+    "id": 157,
+    "mapped_at": "2025-10-04T16:24:18.398160",
+    "name": "Egg White"
+  },
+  "Fernet-Branca": {
+    "auto_matched": true,
+    "id": 64,
+    "mapped_at": "2025-10-04T16:24:18.398169",
+    "name": "Fernet-Branca"
+  },
+  "Fever-Tree Mediterranean Tonic Water": {
+    "id": 163,
+    "mapped_at": "2025-10-12T11:58:00.229934",
+    "name": "Tonic Water"
+  },
+  "Genever": {
+    "auto_matched": true,
+    "id": 80,
+    "mapped_at": "2025-10-04T16:24:18.398178",
+    "name": "Genever"
+  },
+  "Giffard Banane Du Bresil": {
+    "auto_matched": true,
+    "id": 145,
+    "mapped_at": "2025-10-04T16:45:58.503558",
+    "name": "Giffard Banane Du Bresil"
+  },
+  "Giffard Caribbean Pineapple": {
+    "auto_matched": true,
+    "id": 327,
+    "mapped_at": "2025-10-04T16:36:51.820738",
+    "name": "Giffard Caribbean Pineapple"
+  },
+  "Gin": {
+    "auto_matched": true,
+    "id": 4,
+    "mapped_at": "2025-10-04T16:24:18.398186",
+    "name": "Gin"
+  },
+  "Ginger Beer": {
+    "auto_matched": true,
+    "id": 51,
+    "mapped_at": "2025-10-04T16:24:18.398195",
+    "name": "Ginger Beer"
+  },
+  "Ginger Liqueur": {
+    "auto_matched": true,
+    "id": 50,
+    "mapped_at": "2025-10-04T16:45:58.503567",
+    "name": "Ginger Liqueur"
+  },
+  "Ginger Soda": {
+    "auto_matched": true,
+    "id": 295,
+    "mapped_at": "2025-10-04T16:24:18.398203",
+    "name": "Ginger Soda"
+  },
+  "Ginger Syrup": {
+    "auto_matched": true,
+    "id": 136,
+    "mapped_at": "2025-10-04T16:45:58.503577",
+    "name": "Ginger Syrup"
+  },
+  "Ginger beer": {
+    "auto_matched": true,
+    "id": 51,
+    "mapped_at": "2025-09-21T12:13:46.868957",
+    "name": "Ginger Beer"
+  },
+  "Grand Marnier": {
+    "auto_matched": true,
+    "id": 266,
+    "mapped_at": "2025-10-04T16:24:18.398211",
+    "name": "Grand Marnier"
+  },
+  "Grapefruit Juice": {
+    "auto_matched": true,
+    "id": 45,
+    "mapped_at": "2025-10-04T16:24:18.398219",
+    "name": "Grapefruit Juice"
+  },
+  "Green Chartreuse": {
+    "auto_matched": true,
+    "id": 65,
+    "mapped_at": "2025-10-04T16:24:18.398245",
+    "name": "Green Chartreuse"
+  },
+  "Grenadine": {
+    "auto_matched": true,
+    "id": 110,
+    "mapped_at": "2025-10-04T16:24:18.398256",
+    "name": "Grenadine"
+  },
+  "Gum Syrup": {
+    "auto_matched": true,
+    "id": 144,
+    "mapped_at": "2025-10-04T16:24:18.398275",
+    "name": "Gum Syrup"
+  },
+  "Honey Syrup": {
+    "auto_matched": true,
+    "id": 93,
+    "mapped_at": "2025-10-04T16:24:18.398288",
+    "name": "Honey Syrup"
+  },
+  "Jaegermeister": {
+    "auto_matched": true,
+    "id": 82,
+    "mapped_at": "2025-10-04T16:45:58.503586",
+    "name": "Jaegermeister"
+  },
+  "Japanese Whisky": {
+    "auto_matched": true,
+    "id": 161,
+    "mapped_at": "2025-10-04T16:24:18.398296",
+    "name": "Japanese Whisky"
+  },
+  "Kummel": {
+    "auto_matched": true,
+    "id": 337,
+    "mapped_at": "2025-10-04T16:45:58.503595",
+    "name": "Kummel"
+  },
+  "Lemon Juice": {
+    "auto_matched": true,
+    "id": 32,
+    "mapped_at": "2025-10-04T16:24:18.398304",
+    "name": "Lemon Juice"
+  },
+  "Lemon Peel": {
+    "auto_matched": true,
+    "id": 293,
+    "mapped_at": "2025-10-04T16:24:18.398311",
+    "name": "Lemon Peel"
+  },
+  "Lemon Syrup": {
+    "auto_matched": true,
+    "id": 309,
+    "mapped_at": "2025-10-04T16:24:18.398361",
+    "name": "Lemon Syrup"
+  },
+  "Lemon Wedges": {
+    "auto_matched": true,
+    "id": 159,
+    "mapped_at": "2025-10-04T16:36:51.820746",
+    "name": "Lemon Wedges"
+  },
+  "Lillet Blanc": {
+    "auto_matched": true,
+    "id": 84,
+    "mapped_at": "2025-10-04T16:45:58.503604",
+    "name": "Lillet Blanc"
+  },
+  "Lillet Rose": {
+    "auto_matched": true,
+    "id": 139,
+    "mapped_at": "2025-10-04T16:45:58.503612",
+    "name": "Lillet Rose"
+  },
+  "Lime": {
+    "auto_matched": true,
+    "id": 183,
+    "mapped_at": "2025-10-04T16:24:18.398378",
+    "name": "Lime"
+  },
+  "Lime Juice": {
+    "auto_matched": true,
+    "id": 15,
+    "mapped_at": "2025-10-04T16:24:18.398390",
+    "name": "Lime Juice"
+  },
+  "London Dry Gin": {
+    "auto_matched": true,
+    "id": 52,
+    "mapped_at": "2025-10-04T16:24:18.398399",
+    "name": "London Dry Gin"
+  },
+  "Manzanilla Sherry": {
+    "auto_matched": true,
+    "id": 206,
+    "mapped_at": "2025-10-04T16:45:58.503621",
+    "name": "Manzanilla Sherry"
+  },
+  "Maraschino Liqueur": {
+    "auto_matched": true,
+    "id": 16,
+    "mapped_at": "2025-10-04T16:24:18.398408",
+    "name": "Maraschino Liqueur"
+  },
+  "Mezcal": {
+    "auto_matched": true,
+    "id": 78,
+    "mapped_at": "2025-10-04T16:24:18.398417",
+    "name": "Mezcal"
+  },
+  "Midori": {
+    "auto_matched": true,
+    "id": 211,
+    "mapped_at": "2025-10-04T16:45:58.503630",
+    "name": "Midori"
+  },
+  "Mint Leaves": {
+    "auto_matched": true,
+    "id": 21,
+    "mapped_at": "2025-10-04T16:24:18.398425",
+    "name": "Mint Leaves"
+  },
+  "Mint Sprigs": {
+    "auto_matched": true,
+    "id": 282,
+    "mapped_at": "2025-10-04T16:36:51.820753",
+    "name": "Mint Sprigs"
+  },
+  "Mole Bitters": {
+    "auto_matched": true,
+    "id": 190,
+    "mapped_at": "2025-10-04T16:24:18.398433",
+    "name": "Mole Bitters"
+  },
+  "Navy Strength Gin": {
+    "auto_matched": true,
+    "id": 281,
+    "mapped_at": "2025-10-04T16:36:51.820762",
+    "name": "Navy Strength Gin"
+  },
+  "Old Tom Gin": {
+    "auto_matched": true,
+    "id": 125,
+    "mapped_at": "2025-10-04T16:24:18.398441",
+    "name": "Old Tom Gin"
+  },
+  "Oloroso Sherry": {
+    "auto_matched": true,
+    "id": 150,
+    "mapped_at": "2025-10-04T16:45:58.503649",
+    "name": "Oloroso Sherry"
+  },
+  "Orange Bitters": {
+    "auto_matched": true,
+    "id": 17,
+    "mapped_at": "2025-10-04T16:24:18.398449",
+    "name": "Orange Bitters"
+  },
+  "Orange Juice": {
+    "auto_matched": true,
+    "id": 96,
+    "mapped_at": "2025-10-04T16:36:51.820770",
+    "name": "Orange Juice"
+  },
+  "Orgeat": {
+    "auto_matched": true,
+    "id": 140,
+    "mapped_at": "2025-10-04T16:24:18.398457",
+    "name": "Orgeat"
+  },
+  "Peated Scotch": {
+    "auto_matched": true,
+    "id": 29,
+    "mapped_at": "2025-10-04T16:24:18.398464",
+    "name": "Peated Scotch"
+  },
+  "Peychaud's Bitters": {
+    "auto_matched": true,
+    "id": 129,
+    "mapped_at": "2025-10-04T16:24:18.398472",
+    "name": "Peychaud's Bitters"
+  },
+  "Pineapple Juice": {
+    "auto_matched": true,
+    "id": 48,
+    "mapped_at": "2025-10-04T16:36:51.820778",
+    "name": "Pineapple Juice"
+  },
+  "Prosecco": {
+    "id": 127,
+    "mapped_at": "2025-10-04T14:12:19.699710",
+    "name": "Sparkling Wine"
+  },
+  "Raspberry Syrup": {
+    "auto_matched": true,
+    "id": 247,
+    "mapped_at": "2025-10-04T16:24:18.398480",
+    "name": "Raspberry Syrup"
+  },
+  "Rhubarb Bitters": {
+    "auto_matched": true,
+    "id": 219,
+    "mapped_at": "2025-10-04T16:45:58.503668",
+    "name": "Rhubarb Bitters"
+  },
+  "Rhubarb Syrup": {
+    "auto_matched": true,
+    "id": 103,
+    "mapped_at": "2025-10-04T16:24:18.398487",
+    "name": "Rhubarb Syrup"
+  },
+  "Rich Demerara Syrup": {
+    "auto_matched": true,
+    "id": 20,
+    "mapped_at": "2025-10-04T16:45:58.503677",
+    "name": "Rich Demerara Syrup"
+  },
+  "Rich Simple Syrup": {
+    "auto_matched": true,
+    "id": 217,
+    "mapped_at": "2025-10-04T16:45:58.503685",
+    "name": "Rich Simple Syrup"
+  },
+  "Rye": {
+    "auto_matched": true,
+    "id": 22,
+    "mapped_at": "2025-10-04T16:36:51.820787",
+    "name": "Rye"
+  },
+  "Saline Solution": {
+    "auto_matched": true,
+    "id": 158,
+    "mapped_at": "2025-10-04T16:36:51.820794",
+    "name": "Saline Solution"
+  },
+  "Simple Syrup": {
+    "auto_matched": true,
+    "id": 14,
+    "mapped_at": "2025-10-04T16:24:18.398495",
+    "name": "Simple Syrup"
+  },
+  "Smith and Cross": {
+    "auto_matched": true,
+    "id": 19,
+    "mapped_at": "2025-10-04T16:45:58.503695",
+    "name": "Smith and Cross"
+  },
+  "Soda Water": {
+    "auto_matched": true,
+    "id": 62,
+    "mapped_at": "2025-10-04T16:24:18.398502",
+    "name": "Soda Water"
+  },
+  "Soda water": {
+    "auto_matched": true,
+    "id": 62,
+    "mapped_at": "2025-09-06T14:09:07.599313",
+    "name": "Soda Water"
+  },
+  "Sparkling Wine": {
+    "auto_matched": true,
+    "id": 127,
+    "mapped_at": "2025-10-04T16:24:18.398521",
+    "name": "Sparkling Wine"
+  },
+  "Strega": {
+    "auto_matched": true,
+    "id": 101,
+    "mapped_at": "2025-10-04T16:24:18.398533",
+    "name": "Strega"
+  },
+  "Suze": {
+    "auto_matched": true,
+    "id": 195,
+    "mapped_at": "2025-10-04T16:45:58.503704",
+    "name": "Suze"
+  },
+  "Swedish Punsch": {
+    "auto_matched": true,
+    "id": 328,
+    "mapped_at": "2025-10-04T16:24:18.398541",
+    "name": "Swedish Punsch"
+  },
+  "Sweet Vermouth": {
+    "auto_matched": true,
+    "id": 55,
+    "mapped_at": "2025-10-04T16:24:18.398549",
+    "name": "Sweet Vermouth"
+  },
+  "Tiki Bitters": {
+    "auto_matched": true,
+    "id": 284,
+    "mapped_at": "2025-10-04T16:45:58.503712",
+    "name": "Tiki Bitters"
+  },
+  "Velvet Falernum": {
+    "auto_matched": true,
+    "id": 33,
+    "mapped_at": "2025-10-04T16:45:58.503721",
+    "name": "Velvet Falernum"
+  },
+  "Water": {
+    "auto_matched": true,
+    "id": 124,
+    "mapped_at": "2025-10-04T16:24:18.398557",
+    "name": "Water"
+  },
+  "Yellow Chartreuse": {
+    "auto_matched": true,
+    "id": 40,
+    "mapped_at": "2025-10-04T16:24:18.398565",
+    "name": "Yellow Chartreuse"
+  },
+  "a few drops angostura bitters": {
+    "id": 12,
+    "mapped_at": "2025-09-21T12:14:59.570596",
+    "name": "Angostura Bitters"
+  },
+  "absinthe": {
+    "auto_matched": true,
+    "id": 37,
+    "mapped_at": "2025-10-24T16:37:41.194900",
+    "name": "Absinthe"
+  },
+  "absinthe, for spritzing": {
+    "id": 37,
+    "mapped_at": "2025-10-06T20:50:16.580188",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably k\u00fcbler original": {
+    "id": 37,
+    "mapped_at": "2025-09-06T14:09:26.438821",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably la clandestine": {
+    "id": 37,
+    "mapped_at": "2025-10-04T14:12:24.410205",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably leopold bros. absinthe verte": {
+    "id": 37,
+    "mapped_at": "2025-10-04T14:12:27.569109",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably letherbee": {
+    "id": 37,
+    "mapped_at": "2025-10-24T20:20:20.144952",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably st. george": {
+    "id": 37,
+    "mapped_at": "2025-10-04T14:12:30.498788",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably tenneyson": {
+    "id": 37,
+    "mapped_at": "2025-10-04T14:12:32.465135",
+    "name": "Absinthe"
+  },
+  "absinthe, preferably vieux pontarlier": {
+    "id": 37,
+    "mapped_at": "2025-10-24T20:20:22.693910",
+    "name": "Absinthe"
+  },
+  "absinthe, such as la muse verte": {
+    "id": 37,
+    "mapped_at": "2025-10-26T16:10:43.934436",
+    "name": "Absinthe"
+  },
+  "absinthe, such as pernod absinthe sup\u00e9rieure": {
+    "id": 37,
+    "mapped_at": "2025-10-12T11:58:07.007956",
+    "name": "Absinthe"
+  },
+  "agave nectar": {
+    "auto_matched": true,
+    "id": 270,
+    "mapped_at": "2025-10-26T16:10:06.356698",
+    "name": "Agave Nectar"
+  },
+  "agave nectar, preferably madhava organic amber agave": {
+    "id": 270,
+    "mapped_at": "2025-09-29T19:12:50.827707",
+    "name": "Agave Nectar"
+  },
+  "agave syrup": {
+    "id": 270,
+    "mapped_at": "2025-10-24T16:38:07.181442",
+    "name": "Agave Nectar"
+  },
+  "aged apple brandy": {
+    "auto_matched": true,
+    "id": 85,
+    "mapped_at": "2025-09-01T21:30:58.054870",
+    "name": "Aged Apple Brandy"
+  },
+  "aged jamaican rum": {
+    "id": 106,
+    "mapped_at": "2025-10-12T11:58:43.094318",
+    "name": "Blended Aged Rum"
+  },
+  "aged jamaican rum or other full-bodied, \u201cunapologetic\u201d rum, preferably appleton estate rare blend, coruba or denizen merchant\u2019s reserve": {
+    "id": 26,
+    "mapped_at": "2025-10-12T11:58:54.918459",
+    "name": "Appleton Estate 12 Year Old"
+  },
+  "aged jamaican rum, preferably appleton estate v/x": {
+    "id": 26,
+    "mapped_at": "2025-10-04T14:12:54.071921",
+    "name": "Appleton Estate 12 Year Old"
+  },
+  "aged martinique rum, preferably neisson \u00e9lev\u00e9 sous bois": {
+    "id": 298,
+    "mapped_at": "2025-09-01T21:31:06.440195",
+    "name": "neisson \u00e9lev\u00e9 sous bois"
+  },
+  "aged overproof jamaican rum": {
+    "id": 378,
+    "mapped_at": "2025-10-12T11:59:03.229331",
+    "name": "Overproof Rum"
+  },
+  "aged pot still jamaican rum": {
+    "id": 394,
+    "mapped_at": "2025-10-06T20:50:21.518984",
+    "name": "Pot Still Aged Rum"
+  },
+  "aged rum": {
+    "id": 106,
+    "mapped_at": "2025-10-12T11:59:08.595531",
+    "name": "Blended Aged Rum"
+  },
+  "aged rum, or an equal-parts blend demerara rum, jamaican rum and cacha\u00e7a": {
+    "id": 106,
+    "mapped_at": "2025-10-26T16:11:00.899523",
+    "name": "Blended Aged Rum"
+  },
+  "aged rum, preferably el dorado 15 year": {
+    "id": 442,
+    "mapped_at": "2025-10-24T16:38:16.152608",
+    "name": "El Dorado 15-year old"
+  },
+  "agnostura bitters": {
+    "id": 12,
+    "mapped_at": "2025-10-06T20:50:26.196479",
+    "name": "Angostura Bitters"
+  },
+  "allen's coffee flavored brandy": {
+    "auto_matched": true,
+    "id": 411,
+    "mapped_at": "2025-10-12T11:55:22.509707",
+    "name": "Allen's Coffee Flavored Brandy"
+  },
+  "allspice dram": {
+    "auto_matched": true,
+    "id": 8,
+    "mapped_at": "2025-09-01T21:30:58.054874",
+    "name": "Allspice Dram"
+  },
+  "allspice dram, preferably st. elizabeth": {
+    "id": 9,
+    "mapped_at": "2025-10-26T16:11:10.359562",
+    "name": "St. Elizabeth Allspice Dram"
+  },
+  "amaretto, preferably disaronno": {
+    "id": 204,
+    "mapped_at": "2025-10-12T11:59:29.111091",
+    "name": "Amaretto"
+  },
+  "amaretto, preferably lazzaroni": {
+    "id": 204,
+    "mapped_at": "2025-09-21T12:15:03.986433",
+    "name": "Amaretto"
+  },
+  "amaretto, preferably luxardo": {
+    "id": 204,
+    "mapped_at": "2025-10-04T14:13:02.698243",
+    "name": "Amaretto"
+  },
+  "amaretto, preferably vecchio": {
+    "id": 204,
+    "mapped_at": "2025-09-21T12:15:07.474227",
+    "name": "Amaretto"
+  },
+  "amaro averna": {
+    "id": 108,
+    "mapped_at": "2025-10-06T20:50:38.837184",
+    "name": "Averna"
+  },
+  "amaro braulio": {
+    "auto_matched": true,
+    "id": 269,
+    "mapped_at": "2025-10-26T16:10:06.356738",
+    "name": "Amaro Braulio"
+  },
+  "amaro lucano": {
+    "auto_matched": true,
+    "id": 399,
+    "mapped_at": "2025-10-12T11:55:22.509750",
+    "name": "Amaro Lucano"
+  },
+  "amaro montenegro": {
+    "auto_matched": true,
+    "id": 90,
+    "mapped_at": "2025-10-26T16:10:06.356744",
+    "name": "Amaro Montenegro"
+  },
+  "amaro nonino": {
+    "id": 34,
+    "mapped_at": "2025-10-24T20:21:03.073543",
+    "name": "Amaro Nonino Quintessentia"
+  },
+  "amaro sfumato": {
+    "id": 196,
+    "mapped_at": "2025-10-04T14:13:13.094628",
+    "name": "Amaro Sfumato Rabarbaro"
+  },
+  "amaro sibona": {
+    "auto_matched": true,
+    "id": 202,
+    "mapped_at": "2025-10-04T14:09:46.504917",
+    "name": "Amaro Sibona"
+  },
+  "amber blue agave nectar": {
+    "id": 270,
+    "mapped_at": "2025-10-06T20:51:02.898641",
+    "name": "Agave Nectar"
+  },
+  "amontillado sherry": {
+    "auto_matched": true,
+    "id": 149,
+    "mapped_at": "2025-10-26T16:10:06.356748",
+    "name": "Amontillado Sherry"
+  },
+  "amontillado sherry, preferably hidalgo napoleon": {
+    "id": 149,
+    "mapped_at": "2025-10-24T20:21:37.838294",
+    "name": "Amontillado Sherry"
+  },
+  "amontillado sherry, preferably lustau": {
+    "id": 149,
+    "mapped_at": "2025-10-04T14:13:17.151005",
+    "name": "Amontillado Sherry"
+  },
+  "amontillado sherry, preferably lustau amontillado los arcos": {
+    "id": 149,
+    "mapped_at": "2025-10-26T16:11:14.189258",
+    "name": "Amontillado Sherry"
+  },
+  "amontillado sherry, preferably lustau los arcos": {
+    "id": 149,
+    "mapped_at": "2025-10-06T20:51:06.436532",
+    "name": "Amontillado Sherry"
+  },
+  "amontillado sherry, preferably valdespino tio diego": {
+    "id": 149,
+    "mapped_at": "2025-10-06T20:52:00.374312",
+    "name": "Amontillado Sherry"
+  },
+  "ancho reyes": {
+    "id": 76,
+    "mapped_at": "2025-09-15T20:27:02.759277",
+    "name": "Ancho Reyes Chile Liqueur"
+  },
+  "ancho reyes verde": {
+    "id": 255,
+    "mapped_at": "2025-09-21T12:15:11.475275",
+    "name": "Ancho Reyes Verde Chile Liqueur"
+  },
+  "angostura bitters": {
+    "auto_matched": true,
+    "id": 12,
+    "mapped_at": "2025-10-24T16:37:41.195041",
+    "name": "Angostura Bitters"
+  },
+  "angostura orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-26T16:11:18.402874",
+    "name": "Orange Bitters"
+  },
+  "aperitivo cappelletti": {
+    "id": 143,
+    "mapped_at": "2025-10-24T20:21:48.603989",
+    "name": "Cappelletti Aperitivo"
+  },
+  "aperol": {
+    "auto_matched": true,
+    "id": 42,
+    "mapped_at": "2025-10-26T16:10:06.356753",
+    "name": "Aperol"
+  },
+  "apple brandy": {
+    "id": 85,
+    "mapped_at": "2025-10-24T16:38:23.440824",
+    "name": "Aged Apple Brandy"
+  },
+  "apple cider": {
+    "auto_matched": true,
+    "id": 291,
+    "mapped_at": "2025-10-24T16:37:41.195058",
+    "name": "Apple Cider"
+  },
+  "apple cider or tart apple juice": {
+    "id": 291,
+    "mapped_at": "2025-10-24T20:21:52.575523",
+    "name": "Apple Cider"
+  },
+  "applejack": {
+    "auto_matched": true,
+    "id": 333,
+    "mapped_at": "2025-09-29T19:30:25.069644",
+    "name": "Applejack"
+  },
+  "applejack, bonded": {
+    "id": 85,
+    "mapped_at": "2025-09-06T14:09:44.225965",
+    "name": "Aged Apple Brandy"
+  },
+  "applejack, preferably laird's bonded applejack": {
+    "id": 333,
+    "mapped_at": "2025-09-29T19:30:38.267012",
+    "name": "Applejack"
+  },
+  "appleton estate 12-year rum": {
+    "id": 26,
+    "mapped_at": "2025-10-04T14:13:35.111999",
+    "name": "Appleton Estate 12 Year Old"
+  },
+  "appleton signature rum": {
+    "id": 49,
+    "mapped_at": "2025-10-06T20:52:20.268140",
+    "name": "Appleton Estate Signature"
+  },
+  "apricot eau de vie": {
+    "auto_matched": true,
+    "id": 305,
+    "mapped_at": "2025-09-15T20:27:24.736155",
+    "name": "Apricot Eau de Vie"
+  },
+  "apricot liqueur, such as giffard": {
+    "id": 69,
+    "mapped_at": "2025-10-06T20:52:25.223589",
+    "name": "Apricot Liqueur"
+  },
+  "averna": {
+    "auto_matched": true,
+    "id": 108,
+    "mapped_at": "2025-10-26T16:10:06.356757",
+    "name": "Averna"
+  },
+  "averna amaro": {
+    "id": 108,
+    "mapped_at": "2025-10-12T12:00:17.222527",
+    "name": "Averna"
+  },
+  "aveze": {
+    "auto_matched": true,
+    "id": 289,
+    "mapped_at": "2025-09-01T21:30:58.054884",
+    "name": "Aveze"
+  },
+  "av\u00e8ze": {
+    "id": 289,
+    "mapped_at": "2025-09-29T19:13:37.404555",
+    "name": "Aveze"
+  },
+  "a\u00f1ejo tequila": {
+    "auto_matched": true,
+    "id": 72,
+    "mapped_at": "2025-10-24T16:37:41.195069",
+    "name": "A\u00f1ejo Tequila"
+  },
+  "bacardi 8": {
+    "id": 260,
+    "mapped_at": "2025-09-06T14:09:47.992359",
+    "name": "Bacardi Ocho Rum"
+  },
+  "bacardi 8 rum": {
+    "id": 260,
+    "mapped_at": "2025-10-26T16:11:21.708527",
+    "name": "Bacardi Ocho Rum"
+  },
+  "baladin cedrata soda or sparkling lemonade": {
+    "id": 316,
+    "mapped_at": "2025-09-21T12:42:22.112673",
+    "name": "Sparkling Lemonade"
+  },
+  "balm-aged cacha\u00e7a": {
+    "id": 176,
+    "mapped_at": "2025-10-12T12:00:22.175175",
+    "name": "Cacha\u00e7a"
+  },
+  "banana liqueur, preferably giffard": {
+    "id": 145,
+    "mapped_at": "2025-10-26T16:11:28.589740",
+    "name": "Giffard Banane Du Bresil"
+  },
+  "banana liqueur, preferably giffard banane du br\u00e9sil or tempus fugit cr\u00e8me de banane": {
+    "id": 145,
+    "mapped_at": "2025-10-12T12:00:32.058406",
+    "name": "Giffard Banane Du Bresil"
+  },
+  "barbados rum, preferably mount gay xo": {
+    "id": 347,
+    "mapped_at": "2025-10-04T16:46:06.828107",
+    "name": "Mount Gay XO"
+  },
+  "barolo chinato": {
+    "id": 181,
+    "mapped_at": "2025-10-26T16:11:59.250579",
+    "name": "Cocchi Barolo Chinato"
+  },
+  "bas-armagnac": {
+    "id": 280,
+    "mapped_at": "2025-10-04T14:13:49.425728",
+    "name": "Armagnac"
+  },
+  "basil leaves": {
+    "auto_matched": true,
+    "id": 164,
+    "mapped_at": "2025-09-21T12:13:46.869007",
+    "name": "Basil Leaves"
+  },
+  "basil leaves, julienned": {
+    "id": 164,
+    "mapped_at": "2025-09-21T12:15:20.614440",
+    "name": "Basil Leaves"
+  },
+  "batavia arrack": {
+    "auto_matched": true,
+    "id": 74,
+    "mapped_at": "2025-10-04T14:09:46.504930",
+    "name": "Batavia Arrack"
+  },
+  "beefeater gin": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:13:57.083274",
+    "name": "London Dry Gin"
+  },
+  "belvedere smog\u00f3ry forest or lake bart\u0119\u017cek vodka": {
+    "id": 3,
+    "mapped_at": "2025-10-26T16:12:36.427140",
+    "name": "Vodka"
+  },
+  "benedictine": {
+    "auto_matched": true,
+    "id": 41,
+    "mapped_at": "2025-09-01T21:30:58.054886",
+    "name": "Benedictine"
+  },
+  "bianco vermouth": {
+    "id": 171,
+    "mapped_at": "2025-10-04T14:14:33.006811",
+    "name": "Blanc Vermouth"
+  },
+  "bianco vermouth, preferably alessio": {
+    "id": 171,
+    "mapped_at": "2025-10-24T20:22:09.904500",
+    "name": "Blanc Vermouth"
+  },
+  "bianco vermouth, preferably martini & rossi": {
+    "id": 171,
+    "mapped_at": "2025-09-14T16:46:14.609221",
+    "name": "Blanc Vermouth"
+  },
+  "bianco vermouth, preferably preferably mancino": {
+    "id": 171,
+    "mapped_at": "2025-10-04T14:14:40.188280",
+    "name": "Blanc Vermouth"
+  },
+  "bianco vermouth, such as mauro vergano bvb": {
+    "id": 171,
+    "mapped_at": "2025-10-06T20:52:32.370031",
+    "name": "Blanc Vermouth"
+  },
+  "big pinch mint": {
+    "id": 282,
+    "mapped_at": "2025-10-04T14:14:47.879940",
+    "name": "Mint Sprigs"
+  },
+  "bigallet china-china amer bitter liqueur": {
+    "id": 97,
+    "mapped_at": "2025-10-26T16:12:39.575203",
+    "name": "Bigallet China China"
+  },
+  "bitter lemon soda": {
+    "auto_matched": true,
+    "id": 334,
+    "mapped_at": "2025-09-29T19:30:25.069672",
+    "name": "Bitter Lemon Soda"
+  },
+  "bitter truth golden falernum": {
+    "auto_matched": true,
+    "id": 318,
+    "mapped_at": "2025-09-21T12:38:48.553428",
+    "name": "Bitter Truth Golden Falernum"
+  },
+  "bitter truth grapefruit bitters": {
+    "id": 239,
+    "mapped_at": "2025-10-12T12:00:46.789190",
+    "name": "Grapefruit Bitters"
+  },
+  "bitter truth violet liqueur": {
+    "auto_matched": true,
+    "id": 335,
+    "mapped_at": "2025-09-29T19:30:25.069680",
+    "name": "Bitter Truth Violet Liqueur"
+  },
+  "bittercube orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-06T20:52:37.112182",
+    "name": "Orange Bitters"
+  },
+  "bittermen's mole bitters": {
+    "id": 190,
+    "mapped_at": "2025-10-12T12:00:52.632086",
+    "name": "Mole Bitters"
+  },
+  "bittermens burlesque bitters": {
+    "id": 371,
+    "mapped_at": "2025-10-26T16:12:42.836854",
+    "name": "Bittermens' Burlesque Bitters"
+  },
+  "bittermens mole bitters": {
+    "id": 190,
+    "mapped_at": "2025-10-26T16:12:54.028622",
+    "name": "Mole Bitters"
+  },
+  "bittermens \u2018elemakule tiki bitters": {
+    "id": 284,
+    "mapped_at": "2025-10-04T14:15:03.559301",
+    "name": "Tiki Bitters"
+  },
+  "bitters": {
+    "auto_matched": true,
+    "id": 11,
+    "mapped_at": "2025-10-04T14:09:46.505655",
+    "name": "Bitters"
+  },
+  "black pepper, fresh-cracked": {
+    "id": 368,
+    "mapped_at": "2025-10-04T16:46:15.152729",
+    "name": "Cracked Black Pepper"
+  },
+  "blackstrap rum, preferably cruzan": {
+    "id": 46,
+    "mapped_at": "2025-09-21T12:16:44.242339",
+    "name": "Black Rum"
+  },
+  "blanc vermouth": {
+    "auto_matched": true,
+    "id": 171,
+    "mapped_at": "2025-09-01T21:30:58.054888",
+    "name": "Blanc Vermouth"
+  },
+  "blanc vermouth, preferably bordiga": {
+    "id": 171,
+    "mapped_at": "2025-10-06T20:52:40.308997",
+    "name": "Blanc Vermouth"
+  },
+  "blanc vermouth, preferably dolin": {
+    "id": 493,
+    "mapped_at": "2025-10-26T16:13:01.665304",
+    "name": "Dolin Blanc Vermouth"
+  },
+  "blanc vermouth, preferably la quintinye blanc royal": {
+    "id": 171,
+    "mapped_at": "2025-10-24T20:22:14.159547",
+    "name": "Blanc Vermouth"
+  },
+  "blanc vermouth, such as dolin": {
+    "id": 171,
+    "mapped_at": "2025-09-29T19:14:27.246859",
+    "name": "Blanc Vermouth"
+  },
+  "blanco tequila": {
+    "auto_matched": true,
+    "id": 71,
+    "mapped_at": "2025-10-24T16:37:41.195080",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequila, preferably cascahu\u00edn tahona": {
+    "id": 71,
+    "mapped_at": "2025-10-06T20:52:43.984763",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequila, preferably el tesoro": {
+    "id": 71,
+    "mapped_at": "2025-09-21T12:16:50.005402",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequila, preferably fortaleza": {
+    "id": 71,
+    "mapped_at": "2025-10-12T12:00:57.079551",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequila, preferably milagro silver": {
+    "id": 71,
+    "mapped_at": "2025-09-29T19:14:29.812048",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequila, preferably ocho plata": {
+    "id": 71,
+    "mapped_at": "2025-10-06T20:52:47.132529",
+    "name": "Blanco Tequila"
+  },
+  "blanco tequlia": {
+    "id": 71,
+    "mapped_at": "2025-10-12T12:01:02.677862",
+    "name": "Blanco Tequila"
+  },
+  "blended aged rum, preferably banks 7": {
+    "id": 348,
+    "mapped_at": "2025-10-04T16:37:15.582469",
+    "name": "Banks 7 Island"
+  },
+  "blended aged rum, preferably denizen merchant's reserve 8-year rum": {
+    "id": 314,
+    "mapped_at": "2025-10-12T12:01:07.769581",
+    "name": "Denizen Merchants Reserve 8-Year"
+  },
+  "blended scotch": {
+    "auto_matched": true,
+    "id": 28,
+    "mapped_at": "2025-09-01T21:30:58.054891",
+    "name": "Blended Scotch"
+  },
+  "blended scotch, preferably bank note": {
+    "id": 28,
+    "mapped_at": "2025-10-26T16:13:04.856741",
+    "name": "Blended Scotch"
+  },
+  "blended scotch, preferably black bottle": {
+    "id": 28,
+    "mapped_at": "2025-10-24T16:40:58.221104",
+    "name": "Blended Scotch"
+  },
+  "blended scotch, preferably cutty sark prohibition blended scotch": {
+    "id": 28,
+    "mapped_at": "2025-09-21T12:16:53.541967",
+    "name": "Blended Scotch"
+  },
+  "blended scotch, preferably monkey shoulder": {
+    "id": 28,
+    "mapped_at": "2025-09-21T12:16:55.901551",
+    "name": "Blended Scotch"
+  },
+  "blueberries": {
+    "auto_matched": true,
+    "id": 336,
+    "mapped_at": "2025-09-29T19:30:25.069687",
+    "name": "Blueberries"
+  },
+  "bonal": {
+    "auto_matched": true,
+    "id": 313,
+    "mapped_at": "2025-10-12T11:55:22.509807",
+    "name": "Bonal"
+  },
+  "bonded apple brandy": {
+    "id": 400,
+    "mapped_at": "2025-10-26T16:13:10.481737",
+    "name": "Laird's Bottled in Bond Apple Brandy"
+  },
+  "bonded brandy": {
+    "id": 5,
+    "mapped_at": "2025-10-26T16:13:40.895271",
+    "name": "Brandy"
+  },
+  "bonded rye whiskey, preferably rittenhouse": {
+    "id": 389,
+    "mapped_at": "2025-10-12T12:01:32.500949",
+    "name": "Rittenhouse Rye"
+  },
+  "bordiga centum herbis": {
+    "auto_matched": true,
+    "id": 401,
+    "mapped_at": "2025-10-12T11:55:22.509822",
+    "name": "Bordiga Centum Herbis"
+  },
+  "bottled-in-bond rye": {
+    "id": 389,
+    "mapped_at": "2025-10-26T16:13:46.818065",
+    "name": "Rittenhouse Rye"
+  },
+  "bourbon": {
+    "auto_matched": true,
+    "id": 10,
+    "mapped_at": "2025-10-24T16:37:41.195089",
+    "name": "Bourbon"
+  },
+  "bourbon or rye": {
+    "id": 10,
+    "mapped_at": "2025-10-26T16:13:51.191929",
+    "name": "Bourbon"
+  },
+  "bourbon, preferably elijah craig kentucky straight bourbon": {
+    "id": 10,
+    "mapped_at": "2025-09-21T12:16:58.646301",
+    "name": "Bourbon"
+  },
+  "bourbon, preferably old medley 12 year": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:15:31.009963",
+    "name": "Bourbon"
+  },
+  "bourbon, preferably wild turkey 101": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:15:34.631352",
+    "name": "Bourbon"
+  },
+  "bourbon, preferably woodford reserve": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:15:37.293014",
+    "name": "Bourbon"
+  },
+  "branca menta": {
+    "auto_matched": true,
+    "id": 265,
+    "mapped_at": "2025-09-01T21:30:58.054894",
+    "name": "Branca Menta"
+  },
+  "brandy": {
+    "auto_matched": true,
+    "id": 5,
+    "mapped_at": "2025-10-12T11:55:22.509836",
+    "name": "Brandy"
+  },
+  "brandy, preferably bertoux": {
+    "id": 5,
+    "mapped_at": "2025-09-29T19:15:25.074728",
+    "name": "Brandy"
+  },
+  "brandy, preferably copper and kings apple brandy": {
+    "id": 85,
+    "mapped_at": "2025-10-04T14:15:51.272232",
+    "name": "Aged Apple Brandy"
+  },
+  "braulio": {
+    "id": 269,
+    "mapped_at": "2025-10-26T16:13:59.822167",
+    "name": "Amaro Braulio"
+  },
+  "brown sugar cube": {
+    "auto_matched": true,
+    "id": 373,
+    "mapped_at": "2025-10-04T16:36:51.820804",
+    "name": "Brown Sugar Cube"
+  },
+  "brut champagne": {
+    "id": 127,
+    "mapped_at": "2025-10-12T12:01:43.200196",
+    "name": "Sparkling Wine"
+  },
+  "byrrh": {
+    "auto_matched": true,
+    "id": 192,
+    "mapped_at": "2025-10-04T14:09:46.505694",
+    "name": "Byrrh"
+  },
+  "b\u00e9n\u00e9dictine": {
+    "id": 41,
+    "mapped_at": "2025-10-26T16:14:01.979562",
+    "name": "Benedictine"
+  },
+  "cacha\u00e7a": {
+    "auto_matched": true,
+    "id": 176,
+    "mapped_at": "2025-10-26T16:10:06.356773",
+    "name": "Cacha\u00e7a"
+  },
+  "calvados": {
+    "auto_matched": true,
+    "id": 216,
+    "mapped_at": "2025-09-01T21:30:58.054896",
+    "name": "Calvados"
+  },
+  "calvados, preferably boulard": {
+    "id": 216,
+    "mapped_at": "2025-09-21T12:17:01.560198",
+    "name": "Calvados"
+  },
+  "calvados, preferably lemorton reserve": {
+    "id": 216,
+    "mapped_at": "2025-09-29T19:15:27.796711",
+    "name": "Calvados"
+  },
+  "campari": {
+    "auto_matched": true,
+    "id": 53,
+    "mapped_at": "2025-10-24T16:37:41.195097",
+    "name": "Campari"
+  },
+  "campari bitter": {
+    "id": 53,
+    "mapped_at": "2025-10-24T20:22:20.192855",
+    "name": "Campari"
+  },
+  "cane sugar simple syrup": {
+    "id": 14,
+    "mapped_at": "2025-10-06T20:53:03.787295",
+    "name": "Simple Syrup"
+  },
+  "cane syrup": {
+    "id": 14,
+    "mapped_at": "2025-10-24T20:22:29.187768",
+    "name": "Simple Syrup"
+  },
+  "cane syrup, martinique": {
+    "id": 14,
+    "mapped_at": "2025-10-04T14:16:10.954785",
+    "name": "Simple Syrup"
+  },
+  "cane syrup, preferably rhum j.m sirop or petite canne": {
+    "id": 14,
+    "mapped_at": "2025-10-04T14:16:16.147684",
+    "name": "Simple Syrup"
+  },
+  "cappelletti amaro sfumato": {
+    "id": 196,
+    "mapped_at": "2025-10-04T14:16:49.410762",
+    "name": "Amaro Sfumato Rabarbaro"
+  },
+  "cappelletti vino aperitivo": {
+    "id": 143,
+    "mapped_at": "2025-10-24T20:22:59.046568",
+    "name": "Cappelletti Aperitivo"
+  },
+  "carbonated mineral water, such as topo chico": {
+    "id": 62,
+    "mapped_at": "2025-10-12T12:02:10.013583",
+    "name": "Soda Water"
+  },
+  "cardamaro": {
+    "auto_matched": true,
+    "id": 178,
+    "mapped_at": "2025-10-12T11:55:22.509853",
+    "name": "Cardamaro"
+  },
+  "carpano antica": {
+    "auto_matched": true,
+    "id": 167,
+    "mapped_at": "2025-10-26T16:10:06.356778",
+    "name": "Carpano Antica"
+  },
+  "carpano antica sweet vermouth": {
+    "id": 167,
+    "mapped_at": "2025-10-12T12:02:14.227560",
+    "name": "Carpano Antica"
+  },
+  "cask proof bourbon, preferably booker's": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:16:55.334086",
+    "name": "Bourbon"
+  },
+  "cassis": {
+    "id": 30,
+    "mapped_at": "2025-10-06T20:53:07.042338",
+    "name": "Cr\u00e8me De Cassis"
+  },
+  "celery bitters": {
+    "auto_matched": true,
+    "id": 209,
+    "mapped_at": "2025-10-26T16:10:06.356781",
+    "name": "Celery Bitters"
+  },
+  "champagne": {
+    "id": 127,
+    "mapped_at": "2025-10-24T16:41:04.966347",
+    "name": "Sparkling Wine"
+  },
+  "champagne or sparkling wine, chilled": {
+    "id": 127,
+    "mapped_at": "2025-09-06T14:10:18.650761",
+    "name": "Sparkling Wine"
+  },
+  "cherry heering": {
+    "auto_matched": true,
+    "id": 36,
+    "mapped_at": "2025-10-04T14:09:46.505716",
+    "name": "Cherry Heering"
+  },
+  "cherry heering liqueur": {
+    "id": 36,
+    "mapped_at": "2025-10-26T16:14:11.497059",
+    "name": "Cherry Heering"
+  },
+  "cinnamon bark syrup": {
+    "id": 160,
+    "mapped_at": "2025-10-24T20:23:08.248548",
+    "name": "Cinnamon Syrup"
+  },
+  "cinnamon syrup": {
+    "auto_matched": true,
+    "id": 160,
+    "mapped_at": "2025-10-26T16:10:06.356785",
+    "name": "Cinnamon Syrup"
+  },
+  "cinnamon syrup, preferably bg reynolds": {
+    "id": 160,
+    "mapped_at": "2025-10-26T16:14:15.113535",
+    "name": "Cinnamon Syrup"
+  },
+  "cinzano bianco": {
+    "id": 61,
+    "mapped_at": "2025-10-06T20:53:41.509758",
+    "name": "Dry Vermouth"
+  },
+  "cinzano rosso vermouth": {
+    "id": 55,
+    "mapped_at": "2025-10-04T14:17:59.189802",
+    "name": "Sweet Vermouth"
+  },
+  "clear creek douglas fir brandy": {
+    "id": 104,
+    "mapped_at": "2025-10-26T16:15:23.211675",
+    "name": "Douglas Fir Eau De Vie"
+  },
+  "clement creole shrubb": {
+    "id": 306,
+    "mapped_at": "2025-10-12T12:02:24.670729",
+    "name": "Cl\u00e9ment Cr\u00e9ole Shrubb"
+  },
+  "club soda": {
+    "id": 62,
+    "mapped_at": "2025-10-24T16:41:10.909664",
+    "name": "Soda Water"
+  },
+  "cl\u00e9ment coconut liqueur": {
+    "id": 224,
+    "mapped_at": "2025-10-04T14:18:03.975501",
+    "name": "Coconut Liqueur"
+  },
+  "cl\u00e9ment cr\u00e9ole shrubb": {
+    "auto_matched": true,
+    "id": 306,
+    "mapped_at": "2025-09-15T20:27:24.736170",
+    "name": "Cl\u00e9ment Cr\u00e9ole Shrubb"
+  },
+  "cocchi americano": {
+    "auto_matched": true,
+    "id": 70,
+    "mapped_at": "2025-10-24T20:19:35.443587",
+    "name": "Cocchi Americano"
+  },
+  "cocchi vermouth di torino": {
+    "auto_matched": true,
+    "id": 277,
+    "mapped_at": "2025-09-01T21:30:58.054917",
+    "name": "Cocchi Vermouth di Torino"
+  },
+  "coconut cream": {
+    "id": 467,
+    "mapped_at": "2025-10-26T16:15:54.762883",
+    "name": "Unsweetened Coconut Cream"
+  },
+  "coconut cream, unsweetened": {
+    "id": 228,
+    "mapped_at": "2025-10-12T12:02:49.864822",
+    "name": "Coconut Cream"
+  },
+  "coconut milk": {
+    "auto_matched": true,
+    "id": 193,
+    "mapped_at": "2025-09-01T21:30:58.054922",
+    "name": "Coconut MIlk"
+  },
+  "coffee cordial": {
+    "id": 307,
+    "mapped_at": "2025-09-15T20:30:31.621197",
+    "name": "Coffee Liqueur"
+  },
+  "coffee liqueur, preferably coffee heering": {
+    "id": 307,
+    "mapped_at": "2025-10-24T20:23:52.952113",
+    "name": "Coffee Liqueur"
+  },
+  "cognac": {
+    "auto_matched": true,
+    "id": 68,
+    "mapped_at": "2025-10-24T16:37:41.195108",
+    "name": "Cognac"
+  },
+  "cognac, preferably dudognon reserve": {
+    "id": 68,
+    "mapped_at": "2025-10-04T14:18:48.273277",
+    "name": "Cognac"
+  },
+  "cognac, preferably pierre ferrand 1840": {
+    "id": 488,
+    "mapped_at": "2025-10-26T16:16:22.399772",
+    "name": "Pierre Ferrand 1840"
+  },
+  "cognac, preferably pierre ferrand cognac": {
+    "id": 68,
+    "mapped_at": "2025-10-04T14:18:53.520966",
+    "name": "Cognac"
+  },
+  "cognac, preferably vs or vsop": {
+    "id": 68,
+    "mapped_at": "2025-10-04T14:18:55.596819",
+    "name": "Cognac"
+  },
+  "cointreau": {
+    "auto_matched": true,
+    "id": 95,
+    "mapped_at": "2025-10-26T16:10:06.356792",
+    "name": "Cointreau"
+  },
+  "cointreau noir": {
+    "auto_matched": true,
+    "id": 349,
+    "mapped_at": "2025-10-04T16:45:58.503734",
+    "name": "Cointreau Noir"
+  },
+  "cointreau or marie brizard triple sec": {
+    "id": 95,
+    "mapped_at": "2025-10-06T20:53:55.554157",
+    "name": "Cointreau"
+  },
+  "coruba dark rum": {
+    "id": 46,
+    "mapped_at": "2025-09-14T16:48:02.450706",
+    "name": "Black Rum"
+  },
+  "creme de cacao": {
+    "auto_matched": true,
+    "id": 240,
+    "mapped_at": "2025-09-01T21:30:58.054929",
+    "name": "Creme de Cacao"
+  },
+  "creme de violette": {
+    "auto_matched": true,
+    "id": 135,
+    "mapped_at": "2025-09-01T21:30:58.054931",
+    "name": "Creme De Violette"
+  },
+  "creole shrub, preferably rhum cl\u00e9ment": {
+    "id": 306,
+    "mapped_at": "2025-09-21T12:17:11.745741",
+    "name": "Cl\u00e9ment Cr\u00e9ole Shrubb"
+  },
+  "creole shrubb, such as hamilton petite shrubb": {
+    "id": 297,
+    "mapped_at": "2025-09-01T21:33:27.012416",
+    "name": " Hamilton Petite Shrubb"
+  },
+  "cruzan black strap rum": {
+    "id": 174,
+    "mapped_at": "2025-10-06T20:54:44.419800",
+    "name": "Cruzan Blackstrap Rum"
+  },
+  "cr\u00e8me de cacao": {
+    "id": 240,
+    "mapped_at": "2025-09-06T14:15:35.579681",
+    "name": "Creme de Cacao"
+  },
+  "cr\u00e8me de cassis": {
+    "auto_matched": true,
+    "id": 30,
+    "mapped_at": "2025-10-06T20:49:34.464264",
+    "name": "Cr\u00e8me De Cassis"
+  },
+  "cr\u00e8me de menthe": {
+    "id": 184,
+    "mapped_at": "2025-10-12T12:03:41.995126",
+    "name": "Creme de Menthe"
+  },
+  "cr\u00e8me de menthe, preferably tempus fugit": {
+    "id": 184,
+    "mapped_at": "2025-10-04T14:22:02.554780",
+    "name": "Creme de Menthe"
+  },
+  "cr\u00e9mant de Loire": {
+    "id": 127,
+    "mapped_at": "2025-10-04T14:22:22.305058",
+    "name": "Sparkling Wine"
+  },
+  "cr\u00e9me de menthe , preferably giffard": {
+    "id": 184,
+    "mapped_at": "2025-10-04T14:22:28.404529",
+    "name": "Creme de Menthe"
+  },
+  "cucumber": {
+    "id": 205,
+    "mapped_at": "2025-10-04T14:22:47.372531",
+    "name": "Cucumber Slices"
+  },
+  "cucumber slices": {
+    "auto_matched": true,
+    "id": 205,
+    "mapped_at": "2025-09-21T12:13:46.869041",
+    "name": "Cucumber Slices"
+  },
+  "cura\u00e7ao": {
+    "id": 39,
+    "mapped_at": "2025-10-26T16:16:31.996884",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "cura\u00e7ao, preferably grand marnier": {
+    "id": 266,
+    "mapped_at": "2025-10-04T14:22:51.260370",
+    "name": "Grand Marnier"
+  },
+  "cura\u00e7ao, preferably pierre ferrand": {
+    "id": 39,
+    "mapped_at": "2025-10-06T20:54:54.954461",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "cura\u00e7ao, preferably pierre ferrand dry cura\u00e7ao": {
+    "id": 39,
+    "mapped_at": "2025-10-04T14:22:59.489574",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "cynar": {
+    "auto_matched": true,
+    "id": 73,
+    "mapped_at": "2025-10-26T16:10:06.356857",
+    "name": "Cynar"
+  },
+  "cynar 70": {
+    "auto_matched": true,
+    "id": 403,
+    "mapped_at": "2025-10-26T16:10:06.356865",
+    "name": "Cynar 70"
+  },
+  "dark creme de cacao": {
+    "auto_matched": true,
+    "id": 207,
+    "mapped_at": "2025-09-01T21:30:58.054935",
+    "name": "Dark Creme de Cacao"
+  },
+  "dark jamaican rum": {
+    "id": 46,
+    "mapped_at": "2025-10-04T14:23:10.246077",
+    "name": "Black Rum"
+  },
+  "dark rum": {
+    "id": 46,
+    "mapped_at": "2025-10-24T16:41:15.805476",
+    "name": "Black Rum"
+  },
+  "dark rum, preferably appleton estate 12": {
+    "id": 26,
+    "mapped_at": "2025-10-04T14:23:34.924536",
+    "name": "Appleton Estate 12 Year Old"
+  },
+  "del maguey san luis del rio mezcal": {
+    "id": 78,
+    "mapped_at": "2025-10-26T16:16:40.871535",
+    "name": "Mezcal"
+  },
+  "demerara rum": {
+    "auto_matched": true,
+    "id": 47,
+    "mapped_at": "2025-10-06T20:49:34.464269",
+    "name": "Demerara Rum"
+  },
+  "demerara syrup": {
+    "auto_matched": true,
+    "id": 138,
+    "mapped_at": "2025-10-24T20:19:35.443630",
+    "name": "Demerara Syrup"
+  },
+  "denizen merchant's reserve rum": {
+    "id": 314,
+    "mapped_at": "2025-10-12T12:04:02.844809",
+    "name": "Denizen Merchants Reserve 8-Year"
+  },
+  "dimmi": {
+    "auto_matched": true,
+    "id": 238,
+    "mapped_at": "2025-10-04T14:09:46.505754",
+    "name": "Dimmi"
+  },
+  "dolin blanc": {
+    "id": 171,
+    "mapped_at": "2025-09-29T19:15:41.135411",
+    "name": "Blanc Vermouth"
+  },
+  "domaine de canton": {
+    "auto_matched": true,
+    "id": 468,
+    "mapped_at": "2025-10-24T16:37:41.195119",
+    "name": "Domaine de Canton"
+  },
+  "don q pi\u00f1a rum": {
+    "id": 350,
+    "mapped_at": "2025-10-04T16:37:18.779567",
+    "name": "Don Q Pina Rum"
+  },
+  "dry cura\u00e7ao": {
+    "auto_matched": true,
+    "id": 39,
+    "mapped_at": "2025-09-29T19:12:34.104375",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "dry cura\u00e7ao, preferably pierre ferrand": {
+    "id": 39,
+    "mapped_at": "2025-10-04T14:24:35.259320",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "dry red wine": {
+    "id": 31,
+    "mapped_at": "2025-10-24T20:24:41.021491",
+    "name": "Red Wine"
+  },
+  "dry red wine, preferably preferably pedro gonzalez mittelbrunn castilla y le\u00f3n": {
+    "id": 31,
+    "mapped_at": "2025-10-24T20:24:44.752272",
+    "name": "Red Wine"
+  },
+  "dry ros\u00e9 wine": {
+    "auto_matched": true,
+    "id": 308,
+    "mapped_at": "2025-09-15T20:27:24.736174",
+    "name": "Dry Ros\u00e9 Wine"
+  },
+  "dry sack oloroso sherry": {
+    "id": 150,
+    "mapped_at": "2025-10-06T20:55:13.306017",
+    "name": "Oloroso Sherry"
+  },
+  "dry sherry": {
+    "auto_matched": true,
+    "id": 111,
+    "mapped_at": "2025-10-06T20:49:34.464273",
+    "name": "Dry Sherry"
+  },
+  "dry sparkling wine": {
+    "id": 127,
+    "mapped_at": "2025-10-06T20:55:17.303760",
+    "name": "Sparkling Wine"
+  },
+  "dry sparkling wine, preferably illinois brut sparkling wine": {
+    "id": 127,
+    "mapped_at": "2025-10-06T20:55:20.274878",
+    "name": "Sparkling Wine"
+  },
+  "dry vermouth": {
+    "auto_matched": true,
+    "id": 61,
+    "mapped_at": "2025-10-24T16:37:41.195130",
+    "name": "Dry Vermouth"
+  },
+  "dry vermouth, preferably carpano dry": {
+    "id": 61,
+    "mapped_at": "2025-10-04T14:24:48.610787",
+    "name": "Dry Vermouth"
+  },
+  "dry vermouth, preferably dolin": {
+    "id": 490,
+    "mapped_at": "2025-10-26T16:16:51.690408",
+    "name": "Dolin Dry Vermouth"
+  },
+  "dry vermouth, preferably lofi": {
+    "id": 61,
+    "mapped_at": "2025-10-12T12:04:07.615096",
+    "name": "Dry Vermouth"
+  },
+  "dry vermouth, preferably noilly prat": {
+    "id": 61,
+    "mapped_at": "2025-10-06T20:55:23.137782",
+    "name": "Dry Vermouth"
+  },
+  "dry vermouth, preferably yzaguirre dry riserva": {
+    "id": 61,
+    "mapped_at": "2025-10-12T12:04:10.821289",
+    "name": "Dry Vermouth"
+  },
+  "dry vermouth, such as dolin": {
+    "id": 61,
+    "mapped_at": "2025-09-06T14:15:51.525422",
+    "name": "Dry Vermouth"
+  },
+  "dubonnet": {
+    "id": 231,
+    "mapped_at": "2025-10-26T16:17:28.116940",
+    "name": "Dubonnet Rouge"
+  },
+  "dubonnet rouge": {
+    "auto_matched": true,
+    "id": 231,
+    "mapped_at": "2025-09-01T21:30:58.054941",
+    "name": "Dubonnet Rouge"
+  },
+  "egg white": {
+    "auto_matched": true,
+    "id": 157,
+    "mapped_at": "2025-10-24T16:37:41.195135",
+    "name": "Egg White"
+  },
+  "egg white, whisked": {
+    "id": 157,
+    "mapped_at": "2025-10-04T14:24:53.438189",
+    "name": "Egg White"
+  },
+  "el dorado 12-year old": {
+    "auto_matched": true,
+    "id": 345,
+    "mapped_at": "2025-10-04T16:45:58.503740",
+    "name": "El Dorado 12-year old"
+  },
+  "espad\u00edn mezcal, preferably amar\u00e1s verde": {
+    "id": 78,
+    "mapped_at": "2025-10-26T16:18:48.100432",
+    "name": "Mezcal"
+  },
+  "falernum": {
+    "auto_matched": true,
+    "id": 317,
+    "mapped_at": "2025-10-26T16:10:06.356879",
+    "name": "Falernum"
+  },
+  "falernum, preferably john d. taylor's velvet falernum": {
+    "id": 33,
+    "mapped_at": "2025-10-24T20:25:14.606320",
+    "name": "Velvet Falernum"
+  },
+  "fee brothers whiskey barrel\u2013aged bitters or fee brothers old fashion aromatic bitters": {
+    "id": 364,
+    "mapped_at": "2025-10-06T20:55:28.151957",
+    "name": "Aromatic Bitters"
+  },
+  "fernet branca": {
+    "id": 64,
+    "mapped_at": "2025-10-24T16:41:45.601089",
+    "name": "Fernet-Branca"
+  },
+  "fernet-branca": {
+    "auto_matched": true,
+    "id": 64,
+    "mapped_at": "2025-10-26T16:10:06.356884",
+    "name": "Fernet-Branca"
+  },
+  "fever-tree cucumber tonic": {
+    "id": 163,
+    "mapped_at": "2025-09-29T19:16:32.991310",
+    "name": "Tonic Water"
+  },
+  "fino sherry": {
+    "auto_matched": true,
+    "id": 148,
+    "mapped_at": "2025-09-21T12:13:46.869049",
+    "name": "Fino Sherry"
+  },
+  "fino sherry, preferably maestro sierra": {
+    "id": 148,
+    "mapped_at": "2025-10-06T20:55:31.332653",
+    "name": "Fino Sherry"
+  },
+  "fino sherry, preferably una palma": {
+    "id": 148,
+    "mapped_at": "2025-10-26T16:18:55.604753",
+    "name": "Fino Sherry"
+  },
+  "fords gin": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:25:01.044136",
+    "name": "London Dry Gin"
+  },
+  "forthave spirits red aperitivo": {
+    "auto_matched": true,
+    "id": 351,
+    "mapped_at": "2025-10-04T16:45:58.503749",
+    "name": "Forthave Spirits Red Aperitivo"
+  },
+  "frangelico": {
+    "auto_matched": true,
+    "id": 296,
+    "mapped_at": "2025-09-01T21:30:58.054944",
+    "name": "Frangelico"
+  },
+  "fresh grapefruit juice": {
+    "id": 45,
+    "mapped_at": "2025-10-24T16:41:50.275121",
+    "name": "Grapefruit Juice"
+  },
+  "fresh lemon juice": {
+    "id": 32,
+    "mapped_at": "2025-10-24T16:41:54.384430",
+    "name": "Lemon Juice"
+  },
+  "fresh lime juice": {
+    "id": 15,
+    "mapped_at": "2025-10-24T16:41:56.299005",
+    "name": "Lime Juice"
+  },
+  "fresh mint": {
+    "id": 320,
+    "mapped_at": "2025-10-06T20:55:36.893845",
+    "name": "Mint"
+  },
+  "fresh mint leaves": {
+    "id": 21,
+    "mapped_at": "2025-10-04T14:25:34.991083",
+    "name": "Mint Leaves"
+  },
+  "fresh orange juice": {
+    "id": 96,
+    "mapped_at": "2025-10-26T16:18:58.282120",
+    "name": "Orange Juice"
+  },
+  "fresh pineapple juice": {
+    "id": 48,
+    "mapped_at": "2025-10-26T16:19:02.678932",
+    "name": "Pineapple Juice"
+  },
+  "fresh squeezed lemon juice": {
+    "id": 32,
+    "mapped_at": "2025-10-04T14:25:42.245476",
+    "name": "Lemon Juice"
+  },
+  "freshly squeezed orange juice": {
+    "id": 96,
+    "mapped_at": "2025-10-26T16:19:05.900923",
+    "name": "Orange Juice"
+  },
+  "galliano": {
+    "auto_matched": true,
+    "id": 241,
+    "mapped_at": "2025-09-21T12:13:46.869056",
+    "name": "Galliano"
+  },
+  "galliano liqueur": {
+    "id": 241,
+    "mapped_at": "2025-09-01T21:31:13.169849",
+    "name": "Galliano"
+  },
+  "genever, preferably bols": {
+    "id": 80,
+    "mapped_at": "2025-10-04T14:25:49.879268",
+    "name": "Genever"
+  },
+  "genever, preferably genvieve": {
+    "id": 80,
+    "mapped_at": "2025-10-04T14:25:51.907318",
+    "name": "Genever"
+  },
+  "gentian liqueur, preferably antica torino liquore di genziana": {
+    "id": 245,
+    "mapped_at": "2025-09-15T20:30:40.583469",
+    "name": "Gentian Liqueur"
+  },
+  "giffard banane du bresil": {
+    "auto_matched": true,
+    "id": 145,
+    "mapped_at": "2025-10-24T16:37:41.195150",
+    "name": "Giffard Banane Du Bresil"
+  },
+  "giffard banane du br\u00e9sil": {
+    "id": 145,
+    "mapped_at": "2025-10-24T16:41:58.850650",
+    "name": "Giffard Banane Du Bresil"
+  },
+  "giffard caribbean pineapple liqueur": {
+    "id": 327,
+    "mapped_at": "2025-10-04T14:25:59.201429",
+    "name": "Giffard Caribbean Pineapple"
+  },
+  "giffard cr\u00e8me de peche de vigne": {
+    "id": 497,
+    "mapped_at": "2025-10-26T16:19:17.998023",
+    "name": "Giffard Peche de Vigne"
+  },
+  "gin": {
+    "auto_matched": true,
+    "id": 4,
+    "mapped_at": "2025-10-24T20:19:35.443651",
+    "name": "Gin"
+  },
+  "gin, 100 proof": {
+    "id": 4,
+    "mapped_at": "2025-10-12T12:04:35.045311",
+    "name": "Gin"
+  },
+  "gin, preferably beefeater": {
+    "id": 52,
+    "mapped_at": "2025-09-21T12:17:47.667112",
+    "name": "London Dry Gin"
+  },
+  "gin, preferably big gin": {
+    "id": 352,
+    "mapped_at": "2025-10-04T16:46:18.918528",
+    "name": "Big Gin"
+  },
+  "gin, preferably bombay dry gin": {
+    "id": 52,
+    "mapped_at": "2025-10-26T16:19:30.608984",
+    "name": "London Dry Gin"
+  },
+  "gin, preferably brooklyn gin": {
+    "id": 4,
+    "mapped_at": "2025-10-24T20:25:23.781562",
+    "name": "Gin"
+  },
+  "gin, preferably citadelle": {
+    "id": 4,
+    "mapped_at": "2025-09-29T19:17:13.176943",
+    "name": "Gin"
+  },
+  "gin, preferably fords": {
+    "id": 52,
+    "mapped_at": "2025-10-26T16:19:50.011967",
+    "name": "London Dry Gin"
+  },
+  "gin, preferably ford\u2019s": {
+    "id": 4,
+    "mapped_at": "2025-09-21T12:17:53.667989",
+    "name": "Gin"
+  },
+  "gin, preferably green hat": {
+    "id": 4,
+    "mapped_at": "2025-10-04T14:28:02.325050",
+    "name": "Gin"
+  },
+  "gin, preferably hendrick's": {
+    "id": 4,
+    "mapped_at": "2025-09-21T12:18:00.565543",
+    "name": "Gin"
+  },
+  "gin, preferably neversink": {
+    "id": 4,
+    "mapped_at": "2025-09-29T19:18:00.353053",
+    "name": "Gin"
+  },
+  "gin, preferably old raj 110-proof gin": {
+    "id": 397,
+    "mapped_at": "2025-10-26T16:19:53.577026",
+    "name": "Old Raj 110-proof gin"
+  },
+  "gin, preferably plymouth": {
+    "id": 249,
+    "mapped_at": "2025-10-24T20:25:30.459271",
+    "name": "Plymouth Gin"
+  },
+  "gin, preferably st. george terroir": {
+    "id": 353,
+    "mapped_at": "2025-10-04T16:46:21.905386",
+    "name": "St. George Terroir"
+  },
+  "gin, preferably tanqueray": {
+    "id": 52,
+    "mapped_at": "2025-09-14T16:48:32.729863",
+    "name": "London Dry Gin"
+  },
+  "gin, preferably tanqueray 10": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:28:14.477721",
+    "name": "London Dry Gin"
+  },
+  "gin, such as beefeater": {
+    "id": 52,
+    "mapped_at": "2025-10-24T20:25:37.136372",
+    "name": "London Dry Gin"
+  },
+  "gin, such as brooklyn": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:28:49.005077",
+    "name": "London Dry Gin"
+  },
+  "gin, such as hayman\u2019s london dry or thomas dakin red cole": {
+    "id": 52,
+    "mapped_at": "2025-10-26T16:20:00.163994",
+    "name": "London Dry Gin"
+  },
+  "gin, such as st. george spirits terroir gin": {
+    "id": 4,
+    "mapped_at": "2025-09-29T19:18:04.739259",
+    "name": "Gin"
+  },
+  "gin, such as tanglin orchid": {
+    "id": 4,
+    "mapped_at": "2025-09-06T14:16:00.150314",
+    "name": "Gin"
+  },
+  "ginger ale": {
+    "id": 295,
+    "mapped_at": "2025-09-15T20:30:45.806683",
+    "name": "Ginger Soda"
+  },
+  "ginger ale or soda": {
+    "id": 295,
+    "mapped_at": "2025-10-04T14:28:54.070147",
+    "name": "Ginger Soda"
+  },
+  "ginger beer": {
+    "auto_matched": true,
+    "id": 51,
+    "mapped_at": "2025-10-24T16:37:41.195157",
+    "name": "Ginger Beer"
+  },
+  "ginger beer, fever tree": {
+    "id": 51,
+    "mapped_at": "2025-09-21T12:18:03.787535",
+    "name": "Ginger Beer"
+  },
+  "ginger beer, pdt's house recipe": {
+    "id": 51,
+    "mapped_at": "2025-10-12T12:04:39.169625",
+    "name": "Ginger Beer"
+  },
+  "ginger soda": {
+    "auto_matched": true,
+    "id": 295,
+    "mapped_at": "2025-09-01T21:30:58.054950",
+    "name": "Ginger Soda"
+  },
+  "ginger syrup": {
+    "auto_matched": true,
+    "id": 136,
+    "mapped_at": "2025-10-24T20:19:35.443661",
+    "name": "Ginger Syrup"
+  },
+  "glen moray speyside 12-year-old single malt scotch whisky": {
+    "id": 273,
+    "mapped_at": "2025-09-21T12:47:03.549033",
+    "name": "Glen Moray 12 Year Old"
+  },
+  "gold rum": {
+    "id": 106,
+    "mapped_at": "2025-10-12T12:04:49.565994",
+    "name": "Blended Aged Rum"
+  },
+  "gonz\u00e1lez byass la copa extra seco fino sherry vermouth": {
+    "id": 148,
+    "mapped_at": "2025-10-06T20:55:41.031910",
+    "name": "Fino Sherry"
+  },
+  "gran classico": {
+    "auto_matched": true,
+    "id": 91,
+    "mapped_at": "2025-10-24T20:19:35.443666",
+    "name": "Gran Classico"
+  },
+  "grand marnier": {
+    "auto_matched": true,
+    "id": 266,
+    "mapped_at": "2025-09-01T21:30:58.054953",
+    "name": "Grand Marnier"
+  },
+  "grapefruit bitters": {
+    "auto_matched": true,
+    "id": 239,
+    "mapped_at": "2025-09-01T21:30:58.054955",
+    "name": "Grapefruit Bitters"
+  },
+  "grapefruit juice": {
+    "auto_matched": true,
+    "id": 45,
+    "mapped_at": "2025-10-24T16:37:41.195162",
+    "name": "Grapefruit Juice"
+  },
+  "grapefruit juice, ruby red": {
+    "id": 45,
+    "mapped_at": "2025-10-04T14:28:58.816526",
+    "name": "Grapefruit Juice"
+  },
+  "grapefruit liqueur": {
+    "auto_matched": true,
+    "id": 100,
+    "mapped_at": "2025-10-24T16:37:41.195167",
+    "name": "Grapefruit Liqueur"
+  },
+  "grapefruit liqueur, preferably giffard cr\u00e8me de pamplemousse rose": {
+    "id": 355,
+    "mapped_at": "2025-10-04T16:24:35.878232",
+    "name": "Giffard Cr\u00e8me de Pamplemousse Rose"
+  },
+  "grapefruit peel": {
+    "auto_matched": true,
+    "id": 321,
+    "mapped_at": "2025-09-29T19:30:25.069694",
+    "name": "Grapefruit Peel"
+  },
+  "grapefruit peel, for stirring": {
+    "id": 321,
+    "mapped_at": "2025-10-12T12:04:54.267692",
+    "name": "Grapefruit Peel"
+  },
+  "grapefruit simple syrup": {
+    "id": 354,
+    "mapped_at": "2025-10-04T16:46:25.043605",
+    "name": "Grapefruit Syrup"
+  },
+  "grapefruit syrup": {
+    "auto_matched": true,
+    "id": 354,
+    "mapped_at": "2025-10-04T16:24:18.398578",
+    "name": "Grapefruit Syrup"
+  },
+  "grapefruit twist": {
+    "auto_matched": true,
+    "id": 321,
+    "mapped_at": "2025-09-21T12:38:48.553473",
+    "name": "Grapefruit Twist"
+  },
+  "grapes": {
+    "auto_matched": true,
+    "id": 279,
+    "mapped_at": "2025-09-01T21:30:58.054958",
+    "name": "Grapes"
+  },
+  "green chartreuse": {
+    "auto_matched": true,
+    "id": 65,
+    "mapped_at": "2025-10-26T16:10:06.356896",
+    "name": "Green Chartreuse"
+  },
+  "green chartreuse or boomsma claerkampster cloosterbitter": {
+    "id": 65,
+    "mapped_at": "2025-10-04T14:29:33.702117",
+    "name": "Green Chartreuse"
+  },
+  "grenadine": {
+    "auto_matched": true,
+    "id": 110,
+    "mapped_at": "2025-09-01T21:30:58.054960",
+    "name": "Grenadine"
+  },
+  "grenadine, employees only's recipe": {
+    "id": 110,
+    "mapped_at": "2025-10-12T12:04:57.887945",
+    "name": "Grenadine"
+  },
+  "grey goose vodka": {
+    "id": 3,
+    "mapped_at": "2025-09-21T12:18:21.904463",
+    "name": "Vodka"
+  },
+  "gum syrup, preferably small hands food": {
+    "id": 144,
+    "mapped_at": "2025-10-04T14:29:37.344348",
+    "name": "Gum Syrup"
+  },
+  "g\u00e9n\u00e9py, preferably dolin g\u00e9n\u00e9py des alpes": {
+    "id": 81,
+    "mapped_at": "2025-09-06T14:16:05.246159",
+    "name": "Dolin G\u00e9n\u00e9py"
+  },
+  "g\u00e9n\u00e9py, preferably heirloom": {
+    "id": 123,
+    "mapped_at": "2025-10-06T20:55:48.272168",
+    "name": "G\u00e9n\u00e9py"
+  },
+  "handful mint": {
+    "id": 320,
+    "mapped_at": "2025-09-29T19:18:16.822136",
+    "name": "Mint"
+  },
+  "handful raspberries": {
+    "id": 187,
+    "mapped_at": "2025-09-29T19:18:18.802933",
+    "name": "Raspberries"
+  },
+  "heavy barspoon falernum": {
+    "id": 317,
+    "mapped_at": "2025-10-06T20:55:52.914375",
+    "name": "Falernum"
+  },
+  "heavy cream": {
+    "id": 172,
+    "mapped_at": "2025-10-24T20:25:41.008285",
+    "name": "Cream"
+  },
+  "heavy cream, preferably ronnybrook farm": {
+    "id": 172,
+    "mapped_at": "2025-10-12T12:05:09.111165",
+    "name": "Cream"
+  },
+  "hella aromatic bitters": {
+    "auto_matched": true,
+    "id": 365,
+    "mapped_at": "2025-10-04T16:45:58.503758",
+    "name": "Hella Aromatic Bitters"
+  },
+  "herbsaint": {
+    "auto_matched": true,
+    "id": 258,
+    "mapped_at": "2025-10-04T16:45:58.503764",
+    "name": "Herbsaint"
+  },
+  "hibiscus syrup": {
+    "auto_matched": true,
+    "id": 356,
+    "mapped_at": "2025-10-04T16:24:18.398584",
+    "name": "Hibiscus Syrup"
+  },
+  "high-proof, big-bodied bourbon": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:30:28.773642",
+    "name": "Bourbon"
+  },
+  "higher-proof london dry gin, preferably tanqueray": {
+    "id": 52,
+    "mapped_at": "2025-10-06T20:55:57.181617",
+    "name": "London Dry Gin"
+  },
+  "highland park 12 year old": {
+    "auto_matched": true,
+    "id": 363,
+    "mapped_at": "2025-10-04T16:45:58.503773",
+    "name": "Highland Park 12 year old"
+  },
+  "homemade grenadine": {
+    "id": 110,
+    "mapped_at": "2025-10-04T14:30:36.648613",
+    "name": "Grenadine"
+  },
+  "honey": {
+    "auto_matched": true,
+    "id": 182,
+    "mapped_at": "2025-10-24T16:37:41.195173",
+    "name": "Honey"
+  },
+  "honey syrup": {
+    "auto_matched": true,
+    "id": 93,
+    "mapped_at": "2025-10-26T16:10:06.356899",
+    "name": "Honey Syrup"
+  },
+  "house orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-12T12:05:14.735216",
+    "name": "Orange Bitters"
+  },
+  "islay scotch": {
+    "id": 29,
+    "mapped_at": "2025-10-04T14:30:40.447749",
+    "name": "Peated Scotch"
+  },
+  "jamaica rum, preferably appleton signature": {
+    "id": 49,
+    "mapped_at": "2025-10-24T20:25:52.690553",
+    "name": "Appleton Estate Signature"
+  },
+  "jamaican pot still rum, such as doctor bird jamaican rum": {
+    "id": 285,
+    "mapped_at": "2025-10-06T20:56:03.976141",
+    "name": "Doctor Bird Rum"
+  },
+  "jamaican rum": {
+    "auto_matched": true,
+    "id": 54,
+    "mapped_at": "2025-10-26T16:10:06.356903",
+    "name": "Jamaican Rum"
+  },
+  "jamaican rum, preferably appleton signature blend": {
+    "id": 49,
+    "mapped_at": "2025-10-06T20:56:12.630503",
+    "name": "Appleton Estate Signature"
+  },
+  "jamaican rum, preferably hamilton jamaican pot still gold rum": {
+    "id": 357,
+    "mapped_at": "2025-10-04T16:24:42.474092",
+    "name": "Hamilton Jamaica Gold"
+  },
+  "jamaican rum, preferably plantation xamayca": {
+    "id": 358,
+    "mapped_at": "2025-10-06T20:56:20.665529",
+    "name": "Plantation Xaymaca"
+  },
+  "jamaican rum, preferably plantation xaymaca": {
+    "id": 358,
+    "mapped_at": "2025-10-04T16:46:27.736689",
+    "name": "Plantation Xaymaca"
+  },
+  "jamaican rum, preferably smith & cross": {
+    "id": 19,
+    "mapped_at": "2025-10-04T14:31:31.304310",
+    "name": "Smith and Cross"
+  },
+  "jamaican rum, such as hamilton jamaican pot still gold": {
+    "id": 357,
+    "mapped_at": "2025-10-06T20:56:27.043177",
+    "name": "Hamilton Jamaica Gold"
+  },
+  "japanese whisky": {
+    "auto_matched": true,
+    "id": 161,
+    "mapped_at": "2025-10-04T14:09:46.505813",
+    "name": "Japanese Whisky"
+  },
+  "japanese whisky, preferably hakushu": {
+    "id": 161,
+    "mapped_at": "2025-10-04T14:31:35.147225",
+    "name": "Japanese Whisky"
+  },
+  "john d. taylor\u2019s velvet falernum": {
+    "id": 33,
+    "mapped_at": "2025-10-04T14:31:41.581393",
+    "name": "Velvet Falernum"
+  },
+  "juniper berries": {
+    "auto_matched": true,
+    "id": 319,
+    "mapped_at": "2025-09-21T12:38:48.553482",
+    "name": "Juniper Berries"
+  },
+  "junipero, or other gin": {
+    "id": 4,
+    "mapped_at": "2025-10-04T14:34:43.492444",
+    "name": "Gin"
+  },
+  "j\u00e4germeister": {
+    "id": 82,
+    "mapped_at": "2025-09-06T14:16:07.729039",
+    "name": "Jaegermeister"
+  },
+  "key lime juice": {
+    "auto_matched": true,
+    "id": 404,
+    "mapped_at": "2025-10-12T11:55:22.509965",
+    "name": "Key Lime Juice"
+  },
+  "king's ginger liqueur": {
+    "id": 50,
+    "mapped_at": "2025-10-04T14:34:48.128055",
+    "name": "Ginger Liqueur"
+  },
+  "kummel": {
+    "auto_matched": true,
+    "id": 337,
+    "mapped_at": "2025-09-29T19:30:25.069700",
+    "name": "Kummel"
+  },
+  "kumquats": {
+    "auto_matched": true,
+    "id": 322,
+    "mapped_at": "2025-09-21T12:38:48.553487",
+    "name": "Kumquats"
+  },
+  "k\u00fcmmel": {
+    "id": 337,
+    "mapped_at": "2025-10-04T14:34:52.683297",
+    "name": "Kummel"
+  },
+  "laird's apple brandy, preferably 100 proof": {
+    "id": 400,
+    "mapped_at": "2025-10-26T16:20:41.570890",
+    "name": "Laird's Bottled in Bond Apple Brandy"
+  },
+  "large lemon wedge": {
+    "id": 159,
+    "mapped_at": "2025-09-29T19:18:33.482444",
+    "name": "Lemon Wedges"
+  },
+  "large mint leaves": {
+    "id": 21,
+    "mapped_at": "2025-10-04T14:34:55.870683",
+    "name": "Mint Leaves"
+  },
+  "large mintsprig": {
+    "id": 282,
+    "mapped_at": "2025-10-12T12:06:29.663738",
+    "name": "Mint Sprigs"
+  },
+  "large swath lemon peel": {
+    "id": 293,
+    "mapped_at": "2025-10-04T14:34:59.088684",
+    "name": "Lemon Peel"
+  },
+  "latitude 29 orgeat": {
+    "id": 140,
+    "mapped_at": "2025-09-15T20:30:49.412334",
+    "name": "Orgeat"
+  },
+  "leaves fresh mint": {
+    "id": 21,
+    "mapped_at": "2025-10-12T12:06:38.395990",
+    "name": "Mint Leaves"
+  },
+  "legendre ojen": {
+    "auto_matched": true,
+    "id": 370,
+    "mapped_at": "2025-10-26T16:10:06.356907",
+    "name": "Legendre Ojen"
+  },
+  "lemon": {
+    "auto_matched": true,
+    "id": 292,
+    "mapped_at": "2025-10-24T20:19:35.443677",
+    "name": "Lemon"
+  },
+  "lemon bitters": {
+    "auto_matched": true,
+    "id": 218,
+    "mapped_at": "2025-10-06T20:49:34.464286",
+    "name": "Lemon Bitters"
+  },
+  "lemon bitters, preferably bitter truth": {
+    "id": 218,
+    "mapped_at": "2025-10-24T20:25:56.607202",
+    "name": "Lemon Bitters"
+  },
+  "lemon juice": {
+    "auto_matched": true,
+    "id": 32,
+    "mapped_at": "2025-10-24T16:37:41.195177",
+    "name": "Lemon Juice"
+  },
+  "lemon peel": {
+    "auto_matched": true,
+    "id": 293,
+    "mapped_at": "2025-09-01T21:30:58.054968",
+    "name": "Lemon Peel"
+  },
+  "lemon quarters": {
+    "id": 159,
+    "mapped_at": "2025-09-29T19:18:37.030186",
+    "name": "Lemon Wedges"
+  },
+  "lemon syrup": {
+    "auto_matched": true,
+    "id": 309,
+    "mapped_at": "2025-09-15T20:27:24.736178",
+    "name": "Lemon Syrup"
+  },
+  "lemon wedge": {
+    "id": 159,
+    "mapped_at": "2025-10-04T14:35:20.834855",
+    "name": "Lemon Wedges"
+  },
+  "lemongrass syrup": {
+    "auto_matched": true,
+    "id": 340,
+    "mapped_at": "2025-10-26T16:10:06.356911",
+    "name": "Lemongrass Syrup"
+  },
+  "light rum": {
+    "id": 130,
+    "mapped_at": "2025-10-04T14:35:27.776844",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "light rum, preferably havana club 3 year or flor de ca\u00f1a 4 year": {
+    "id": 359,
+    "mapped_at": "2025-10-04T16:46:33.131922",
+    "name": "Flor de Cana 4 year old"
+  },
+  "light rum, preferably real mccoy 3 year": {
+    "id": 360,
+    "mapped_at": "2025-10-04T16:37:24.627757",
+    "name": "Real McCoy 3 year old"
+  },
+  "lillet blanc": {
+    "auto_matched": true,
+    "id": 84,
+    "mapped_at": "2025-10-26T16:10:06.356914",
+    "name": "Lillet Blanc"
+  },
+  "lillet rose": {
+    "auto_matched": true,
+    "id": 139,
+    "mapped_at": "2025-09-01T21:30:58.054975",
+    "name": "Lillet Rose"
+  },
+  "lillet ros\u00e9": {
+    "id": 139,
+    "mapped_at": "2025-10-04T14:36:31.473840",
+    "name": "Lillet Rose"
+  },
+  "lillet rouge": {
+    "auto_matched": true,
+    "id": 132,
+    "mapped_at": "2025-10-24T20:19:35.443687",
+    "name": "Lillet Rouge"
+  },
+  "lime": {
+    "auto_matched": true,
+    "id": 183,
+    "mapped_at": "2025-10-26T16:10:06.356918",
+    "name": "Lime"
+  },
+  "lime cordial or lime juice": {
+    "id": 15,
+    "mapped_at": "2025-10-04T14:36:34.335350",
+    "name": "Lime Juice"
+  },
+  "lime hull": {
+    "auto_matched": true,
+    "id": 413,
+    "mapped_at": "2025-10-12T11:55:22.510041",
+    "name": "Lime Hull"
+  },
+  "lime juice": {
+    "auto_matched": true,
+    "id": 15,
+    "mapped_at": "2025-10-24T16:37:41.195183",
+    "name": "Lime Juice"
+  },
+  "lime juice, hand squeezed with a press, to get a bit the oil from the skin into the juice": {
+    "id": 15,
+    "mapped_at": "2025-10-04T14:36:46.659756",
+    "name": "Lime Juice"
+  },
+  "lime juice, plus the spent hull": {
+    "id": 15,
+    "mapped_at": "2025-10-06T20:56:45.616268",
+    "name": "Lime Juice"
+  },
+  "lime quartered": {
+    "id": 288,
+    "mapped_at": "2025-10-12T12:07:17.073039",
+    "name": "Lime Wedges"
+  },
+  "lime wedge": {
+    "id": 288,
+    "mapped_at": "2025-10-12T12:07:20.536623",
+    "name": "Lime Wedges"
+  },
+  "lime wheels": {
+    "auto_matched": true,
+    "id": 310,
+    "mapped_at": "2025-09-15T20:27:24.736179",
+    "name": "Lime Wheels"
+  },
+  "lime, quartered": {
+    "id": 288,
+    "mapped_at": "2025-10-26T16:20:52.606702",
+    "name": "Lime Wedges"
+  },
+  "lo-fi gentian amaro": {
+    "auto_matched": true,
+    "id": 398,
+    "mapped_at": "2025-10-12T11:55:22.510071",
+    "name": "Lo-Fi Gentian Amaro"
+  },
+  "london dry gin": {
+    "auto_matched": true,
+    "id": 52,
+    "mapped_at": "2025-10-24T20:19:35.443709",
+    "name": "London Dry Gin"
+  },
+  "london dry gin, preferably beefeater": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:36:57.522405",
+    "name": "London Dry Gin"
+  },
+  "london dry gin, preferably fords": {
+    "id": 52,
+    "mapped_at": "2025-10-06T20:56:52.955891",
+    "name": "London Dry Gin"
+  },
+  "london dry gin, preferably hayman\u2019s": {
+    "id": 52,
+    "mapped_at": "2025-10-26T16:20:56.105718",
+    "name": "London Dry Gin"
+  },
+  "london dry gin, preferably oxley": {
+    "id": 52,
+    "mapped_at": "2025-10-04T14:37:00.517222",
+    "name": "London Dry Gin"
+  },
+  "london dry gin, preferably tanqueray": {
+    "id": 52,
+    "mapped_at": "2025-09-29T19:18:46.564654",
+    "name": "London Dry Gin"
+  },
+  "lustau vermut blanco": {
+    "id": 171,
+    "mapped_at": "2025-09-06T14:16:29.769364",
+    "name": "Blanc Vermouth"
+  },
+  "luxardo amaretto di saschira": {
+    "id": 204,
+    "mapped_at": "2025-10-04T14:37:04.559675",
+    "name": "Amaretto"
+  },
+  "luxardo amaro abano": {
+    "id": 89,
+    "mapped_at": "2025-10-24T20:26:09.657223",
+    "name": "Amaro Abano"
+  },
+  "luxardo bitter bianco": {
+    "auto_matched": true,
+    "id": 213,
+    "mapped_at": "2025-10-26T16:10:06.356923",
+    "name": "Luxardo Bitter Bianco"
+  },
+  "luxardo maraschino liqueur": {
+    "id": 16,
+    "mapped_at": "2025-10-26T16:21:00.370026",
+    "name": "Maraschino Liqueur"
+  },
+  "maleza hierbas bitters": {
+    "auto_matched": true,
+    "id": 299,
+    "mapped_at": "2025-09-01T21:30:58.054981",
+    "name": "maleza hierbas bitters"
+  },
+  "mango puree": {
+    "auto_matched": true,
+    "id": 450,
+    "mapped_at": "2025-10-24T16:37:41.195189",
+    "name": "Mango Puree"
+  },
+  "manzanilla sherry": {
+    "auto_matched": true,
+    "id": 206,
+    "mapped_at": "2025-10-26T16:10:06.356928",
+    "name": "Manzanilla Sherry"
+  },
+  "manzanilla sherry, preferably hidalgo la gitana": {
+    "id": 206,
+    "mapped_at": "2025-10-06T20:56:55.738797",
+    "name": "Manzanilla Sherry"
+  },
+  "manzanilla sherry, preferably la guita manzanilla": {
+    "id": 206,
+    "mapped_at": "2025-09-29T19:18:52.562874",
+    "name": "Manzanilla Sherry"
+  },
+  "maple syrup": {
+    "auto_matched": true,
+    "id": 191,
+    "mapped_at": "2025-10-24T20:19:35.443716",
+    "name": "Maple Syrup"
+  },
+  "maraschino liqueur": {
+    "auto_matched": true,
+    "id": 16,
+    "mapped_at": "2025-10-26T16:10:06.356931",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino liqueur, preferably bordiga": {
+    "id": 16,
+    "mapped_at": "2025-09-29T19:18:55.278516",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino liqueur, preferably leopold bros.": {
+    "id": 16,
+    "mapped_at": "2025-09-21T12:18:33.061780",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino liqueur, preferably luxardo": {
+    "id": 16,
+    "mapped_at": "2025-09-21T12:18:35.692488",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino liqueur, preferably maraska": {
+    "id": 16,
+    "mapped_at": "2025-10-24T20:26:17.763737",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino liqueur, such as bordiga": {
+    "id": 16,
+    "mapped_at": "2025-10-06T20:56:58.675122",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino, preferably leopold bros.": {
+    "id": 16,
+    "mapped_at": "2025-10-06T20:57:07.181425",
+    "name": "Maraschino Liqueur"
+  },
+  "maraschino, preferably luxardo": {
+    "id": 16,
+    "mapped_at": "2025-10-04T14:37:15.671168",
+    "name": "Maraschino Liqueur"
+  },
+  "martini & rossi ambrato vermouth": {
+    "id": 460,
+    "mapped_at": "2025-10-26T16:21:10.365108",
+    "name": "Martini & Rossi Riserva Speciale Ambrato Vermouth"
+  },
+  "martini & rossi asti italian sparkling wine": {
+    "id": 127,
+    "mapped_at": "2025-10-12T12:08:13.430953",
+    "name": "Sparkling Wine"
+  },
+  "martini & rossi prosecco or rose\u0301 italian sparkling wine": {
+    "id": 127,
+    "mapped_at": "2025-10-12T12:08:25.446072",
+    "name": "Sparkling Wine"
+  },
+  "maurin quina": {
+    "auto_matched": true,
+    "id": 374,
+    "mapped_at": "2025-10-04T16:45:58.503785",
+    "name": "Maurin Quina"
+  },
+  "medium egg white": {
+    "id": 157,
+    "mapped_at": "2025-10-24T20:26:20.030552",
+    "name": "Egg White"
+  },
+  "medium sized lemon peels": {
+    "id": 293,
+    "mapped_at": "2025-10-04T14:38:18.321548",
+    "name": "Lemon Peel"
+  },
+  "mezcal": {
+    "auto_matched": true,
+    "id": 78,
+    "mapped_at": "2025-10-24T20:19:35.443725",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably agave de cort\u00e9s": {
+    "id": 78,
+    "mapped_at": "2025-10-24T20:26:31.628104",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably bruxo": {
+    "id": 78,
+    "mapped_at": "2025-10-04T14:38:20.667658",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably del maguey chichicapa": {
+    "id": 78,
+    "mapped_at": "2025-10-04T14:38:23.224755",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably del maguey vida": {
+    "id": 78,
+    "mapped_at": "2025-09-21T12:18:41.045886",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably el buho espad\u00edn": {
+    "id": 78,
+    "mapped_at": "2025-10-12T12:08:44.717131",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably fidencio clasico": {
+    "id": 78,
+    "mapped_at": "2025-10-04T14:38:25.393986",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably ilegal": {
+    "id": 78,
+    "mapped_at": "2025-10-26T16:21:54.027107",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably nuestra soledad espadin joven": {
+    "id": 78,
+    "mapped_at": "2025-10-06T20:57:10.439842",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably san andr\u00e9s alipus": {
+    "id": 78,
+    "mapped_at": "2025-10-12T12:08:48.026006",
+    "name": "Mezcal"
+  },
+  "mezcal, preferably vida": {
+    "id": 78,
+    "mapped_at": "2025-10-04T14:38:27.577007",
+    "name": "Mezcal"
+  },
+  "mezcal, to float": {
+    "id": 78,
+    "mapped_at": "2025-10-26T16:21:59.225872",
+    "name": "Mezcal"
+  },
+  "midori": {
+    "auto_matched": true,
+    "id": 211,
+    "mapped_at": "2025-09-21T12:13:46.869116",
+    "name": "Midori"
+  },
+  "mint leaves": {
+    "auto_matched": true,
+    "id": 21,
+    "mapped_at": "2025-10-24T16:37:41.195194",
+    "name": "Mint Leaves"
+  },
+  "mint sprig": {
+    "id": 282,
+    "mapped_at": "2025-10-04T14:38:30.533930",
+    "name": "Mint Sprigs"
+  },
+  "mint sprigs": {
+    "auto_matched": true,
+    "id": 282,
+    "mapped_at": "2025-09-01T21:30:58.054992",
+    "name": "Mint Sprigs"
+  },
+  "mint syrup": {
+    "auto_matched": true,
+    "id": 361,
+    "mapped_at": "2025-10-04T16:24:18.398612",
+    "name": "Mint Syrup"
+  },
+  "mole bitters": {
+    "auto_matched": true,
+    "id": 190,
+    "mapped_at": "2025-09-01T21:30:58.054994",
+    "name": "Mole Bitters"
+  },
+  "mole bitters, preferably bittermens": {
+    "id": 190,
+    "mapped_at": "2025-10-04T14:38:38.707115",
+    "name": "Mole Bitters"
+  },
+  "naranja orange liqueur": {
+    "auto_matched": true,
+    "id": 362,
+    "mapped_at": "2025-10-04T16:45:58.503791",
+    "name": "Naranja Orange Liqueur"
+  },
+  "navy strength gin": {
+    "auto_matched": true,
+    "id": 281,
+    "mapped_at": "2025-10-06T20:49:34.464292",
+    "name": "Navy Strength Gin"
+  },
+  "navy strength gin, preferably plymouth": {
+    "id": 281,
+    "mapped_at": "2025-10-04T14:39:05.655616",
+    "name": "Navy Strength Gin"
+  },
+  "navy-strength dry gin, such as plymouth": {
+    "id": 281,
+    "mapped_at": "2025-10-12T12:09:10.331773",
+    "name": "Navy Strength Gin"
+  },
+  "navy-strength gin, preferably plymouth": {
+    "id": 281,
+    "mapped_at": "2025-10-04T14:39:11.313644",
+    "name": "Navy Strength Gin"
+  },
+  "navy-strength gin, such as cadenhead\u2019s old raj dry gin 110 proof": {
+    "id": 281,
+    "mapped_at": "2025-10-04T14:39:19.619229",
+    "name": "Navy Strength Gin"
+  },
+  "nixta licor de elote": {
+    "auto_matched": true,
+    "id": 369,
+    "mapped_at": "2025-10-04T16:45:58.503929",
+    "name": "Nixta Licor de Elote"
+  },
+  "noble oak double oak bourbon": {
+    "id": 10,
+    "mapped_at": "2025-10-04T14:39:26.745984",
+    "name": "Bourbon"
+  },
+  "noilly prat extra-dry vermouth": {
+    "id": 61,
+    "mapped_at": "2025-09-29T19:18:58.944054",
+    "name": "Dry Vermouth"
+  },
+  "novo fogo silver cacha\u00e7a": {
+    "id": 176,
+    "mapped_at": "2025-09-14T16:49:01.619286",
+    "name": "Cacha\u00e7a"
+  },
+  "nutmeg": {
+    "auto_matched": true,
+    "id": 367,
+    "mapped_at": "2025-10-04T16:45:58.503954",
+    "name": "Nutmeg"
+  },
+  "old raj 110-proof gin": {
+    "auto_matched": true,
+    "id": 397,
+    "mapped_at": "2025-10-12T11:55:22.510118",
+    "name": "Old Raj 110-proof gin"
+  },
+  "old tom gin": {
+    "auto_matched": true,
+    "id": 125,
+    "mapped_at": "2025-09-01T21:30:58.054996",
+    "name": "Old Tom Gin"
+  },
+  "old tom gin, preferably hayman\u2019s": {
+    "id": 125,
+    "mapped_at": "2025-10-04T14:39:30.226695",
+    "name": "Old Tom Gin"
+  },
+  "old tom gin, preferably porter\u2019s tropical": {
+    "id": 125,
+    "mapped_at": "2025-09-29T19:19:02.123313",
+    "name": "Old Tom Gin"
+  },
+  "oloroso sherry": {
+    "auto_matched": true,
+    "id": 150,
+    "mapped_at": "2025-10-12T11:55:22.510133",
+    "name": "Oloroso Sherry"
+  },
+  "oloroso sherry, preferably callejuela \u201cel cerro\u201d oloroso": {
+    "id": 150,
+    "mapped_at": "2025-09-29T19:19:05.414675",
+    "name": "Oloroso Sherry"
+  },
+  "oloroso sherry, preferably lustau": {
+    "id": 150,
+    "mapped_at": "2025-10-04T14:39:33.096279",
+    "name": "Oloroso Sherry"
+  },
+  "oloroso sherry, preferably lustau don nu\u00f1o": {
+    "id": 150,
+    "mapped_at": "2025-10-26T16:23:10.697762",
+    "name": "Oloroso Sherry"
+  },
+  "onunce pineapple rum, preferably plantation stiggins\u2019 fancy pineapple": {
+    "id": 268,
+    "mapped_at": "2025-10-12T12:09:18.314463",
+    "name": "Plantation Stiggins' Fancy Pineapple Rum"
+  },
+  "orange bitters": {
+    "auto_matched": true,
+    "id": 17,
+    "mapped_at": "2025-10-24T16:37:41.195199",
+    "name": "Orange Bitters"
+  },
+  "orange bitters blend": {
+    "id": 17,
+    "mapped_at": "2025-10-04T14:39:36.150856",
+    "name": "Orange Bitters"
+  },
+  "orange bitters, preferably bitter truth": {
+    "id": 17,
+    "mapped_at": "2025-10-04T14:39:39.076407",
+    "name": "Orange Bitters"
+  },
+  "orange bitters, preferably regans'": {
+    "id": 17,
+    "mapped_at": "2025-10-04T14:39:41.362380",
+    "name": "Orange Bitters"
+  },
+  "orange bitters, preferably regans\u2019": {
+    "id": 17,
+    "mapped_at": "2025-10-06T20:57:25.190713",
+    "name": "Orange Bitters"
+  },
+  "orange bitters, preferably regans\u2019 or fee brothers": {
+    "id": 17,
+    "mapped_at": "2025-09-06T14:16:33.677340",
+    "name": "Orange Bitters"
+  },
+  "orange bitters, such as a 1:1 blend regans' and angostura orange": {
+    "id": 17,
+    "mapped_at": "2025-10-04T14:39:45.612511",
+    "name": "Orange Bitters"
+  },
+  "orange blossom water": {
+    "id": 175,
+    "mapped_at": "2025-10-12T12:09:23.883033",
+    "name": "Orange Flower Water"
+  },
+  "orange cura\u00e7ao": {
+    "id": 39,
+    "mapped_at": "2025-10-04T16:46:40.935790",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "orange flower water": {
+    "auto_matched": true,
+    "id": 175,
+    "mapped_at": "2025-10-12T11:55:22.510153",
+    "name": "Orange Flower Water"
+  },
+  "orange flower water rinse": {
+    "id": 175,
+    "mapped_at": "2025-10-26T16:23:14.114244",
+    "name": "Orange Flower Water"
+  },
+  "orange half wheel": {
+    "id": 339,
+    "mapped_at": "2025-09-29T19:30:42.218498",
+    "name": "Orange Wheel"
+  },
+  "orange half-wheel": {
+    "id": 339,
+    "mapped_at": "2025-10-04T16:38:03.354517",
+    "name": "Orange Wheel"
+  },
+  "orange juice": {
+    "auto_matched": true,
+    "id": 96,
+    "mapped_at": "2025-10-24T20:19:35.443731",
+    "name": "Orange Juice"
+  },
+  "orange liqueur": {
+    "auto_matched": true,
+    "id": 119,
+    "mapped_at": "2025-09-01T21:30:58.055001",
+    "name": "Orange Liqueur"
+  },
+  "orange liqueur, preferably grand marnier": {
+    "id": 266,
+    "mapped_at": "2025-10-26T16:23:18.964792",
+    "name": "Grand Marnier"
+  },
+  "orange peel": {
+    "auto_matched": true,
+    "id": 302,
+    "mapped_at": "2025-10-26T16:10:06.356940",
+    "name": "Orange Peel"
+  },
+  "orange slice": {
+    "id": 339,
+    "mapped_at": "2025-10-26T16:23:26.467118",
+    "name": "Orange Wheel"
+  },
+  "orange twist": {
+    "id": 302,
+    "mapped_at": "2025-09-01T21:31:19.819249",
+    "name": "orange peel"
+  },
+  "orange wheel": {
+    "auto_matched": true,
+    "id": 339,
+    "mapped_at": "2025-10-26T16:10:06.356943",
+    "name": "Orange Wheel"
+  },
+  "organic pineapple juice": {
+    "id": 48,
+    "mapped_at": "2025-10-12T12:09:29.190396",
+    "name": "Pineapple Juice"
+  },
+  "orgeat": {
+    "auto_matched": true,
+    "id": 140,
+    "mapped_at": "2025-10-26T16:10:06.356948",
+    "name": "Orgeat"
+  },
+  "orgeat, preferably small hand foods": {
+    "id": 140,
+    "mapped_at": "2025-09-15T20:30:52.533283",
+    "name": "Orgeat"
+  },
+  "ounuces sweet vermouth, preferably cinzano 1757 rosso di torino": {
+    "id": 55,
+    "mapped_at": "2025-10-24T20:26:35.889498",
+    "name": "Sweet Vermouth"
+  },
+  "overproof jamaican rum, preferably smith & cross": {
+    "id": 19,
+    "mapped_at": "2025-10-12T12:09:58.751268",
+    "name": "Smith and Cross"
+  },
+  "overproof jamaican rum, preferably smith and cross": {
+    "id": 19,
+    "mapped_at": "2025-10-06T20:57:50.480069",
+    "name": "Smith and Cross"
+  },
+  "overproof jamaican rum, preferably wray & nephew": {
+    "id": 131,
+    "mapped_at": "2025-10-06T20:57:55.899041",
+    "name": "Wray And Nephew"
+  },
+  "overproof rum": {
+    "auto_matched": true,
+    "id": 378,
+    "mapped_at": "2025-10-26T16:10:06.356951",
+    "name": "Overproof Rum"
+  },
+  "overproof rum, preferably bacardi 151": {
+    "id": 378,
+    "mapped_at": "2025-10-26T16:23:39.735275",
+    "name": "Overproof Rum"
+  },
+  "overproof rum, such as rum fire": {
+    "id": 146,
+    "mapped_at": "2025-10-06T20:57:58.816743",
+    "name": "Rum Fire"
+  },
+  "overproof unaged jamaican rum, preferably wray & nephew": {
+    "id": 131,
+    "mapped_at": "2025-10-26T16:23:45.781953",
+    "name": "Wray And Nephew"
+  },
+  "palo cortado sherry": {
+    "auto_matched": true,
+    "id": 324,
+    "mapped_at": "2025-10-06T20:49:34.464296",
+    "name": "Palo Cortado Sherry"
+  },
+  "palo cortado sherry, preferably barbadillo obispo gasc\u00f3n": {
+    "id": 324,
+    "mapped_at": "2025-10-06T20:58:02.162146",
+    "name": "Palo Cortado Sherry"
+  },
+  "palo cortado sherry, preferably lustau": {
+    "id": 324,
+    "mapped_at": "2025-09-21T12:47:06.619505",
+    "name": "Palo Cortado Sherry"
+  },
+  "pama": {
+    "id": 472,
+    "mapped_at": "2025-10-24T16:42:09.610700",
+    "name": "Pama Pomegranate Liqueuer"
+  },
+  "passion fruit puree": {
+    "id": 263,
+    "mapped_at": "2025-10-06T20:58:05.912383",
+    "name": "Passionfruit Puree"
+  },
+  "passion fruit pur\u00e9e": {
+    "id": 263,
+    "mapped_at": "2025-10-12T12:10:02.606861",
+    "name": "Passionfruit Puree"
+  },
+  "passion fruit syrup": {
+    "id": 227,
+    "mapped_at": "2025-10-04T16:25:02.508433",
+    "name": "Passionfruit Syrup"
+  },
+  "passion fruit syrup, see editor's note.": {
+    "id": 227,
+    "mapped_at": "2025-10-12T12:10:09.550783",
+    "name": "Passionfruit Syrup"
+  },
+  "passionfruit juice": {
+    "auto_matched": true,
+    "id": 311,
+    "mapped_at": "2025-09-15T20:27:24.736182",
+    "name": "Passionfruit Juice"
+  },
+  "passionfruit juice, preferably ceres": {
+    "id": 311,
+    "mapped_at": "2025-10-26T16:23:48.797788",
+    "name": "Passionfruit Juice"
+  },
+  "passionfruit puree": {
+    "auto_matched": true,
+    "id": 263,
+    "mapped_at": "2025-09-29T19:12:34.104408",
+    "name": "Passionfruit Puree"
+  },
+  "passionfruit syrup": {
+    "auto_matched": true,
+    "id": 227,
+    "mapped_at": "2025-10-06T20:49:34.464300",
+    "name": "Passionfruit Syrup"
+  },
+  "pastis": {
+    "auto_matched": true,
+    "id": 79,
+    "mapped_at": "2025-09-01T21:30:58.055005",
+    "name": "Pastis"
+  },
+  "pastis, ricard": {
+    "id": 79,
+    "mapped_at": "2025-10-12T12:10:13.749210",
+    "name": "Pastis"
+  },
+  "peach bitters": {
+    "auto_matched": true,
+    "id": 294,
+    "mapped_at": "2025-09-01T21:30:58.055007",
+    "name": "Peach Bitters"
+  },
+  "peach liqueur, preferably combier or giffard cre\u0300me de p\u00eache de vigne": {
+    "id": 83,
+    "mapped_at": "2025-10-06T20:58:13.837998",
+    "name": "Peach Liqueur"
+  },
+  "pear brandy": {
+    "auto_matched": true,
+    "id": 188,
+    "mapped_at": "2025-10-12T11:55:22.510190",
+    "name": "Pear Brandy"
+  },
+  "pear brandy, preferably clear creek": {
+    "id": 323,
+    "mapped_at": "2025-09-21T12:47:18.940149",
+    "name": "Clear Creek Pear Brandy"
+  },
+  "pear brandy, preferably clear creek williams": {
+    "id": 188,
+    "mapped_at": "2025-10-04T16:46:58.652067",
+    "name": "Pear Brandy"
+  },
+  "pear brandy, preferably purkhart pear williams brand": {
+    "id": 188,
+    "mapped_at": "2025-10-04T16:38:10.834488",
+    "name": "Pear Brandy"
+  },
+  "pear eau de vie, preferably clear creek": {
+    "id": 323,
+    "mapped_at": "2025-09-21T12:47:24.468814",
+    "name": "Clear Creek Pear Brandy"
+  },
+  "peated scotch, preferably benriach 10 year old peated curiositas": {
+    "id": 29,
+    "mapped_at": "2025-09-29T19:19:14.832222",
+    "name": "Peated Scotch"
+  },
+  "pedro ximenez sherry, preferably el maestro sierra px": {
+    "id": 166,
+    "mapped_at": "2025-09-29T19:19:17.568113",
+    "name": "Pedro Ximenez Sherry"
+  },
+  "peels lemon": {
+    "id": 293,
+    "mapped_at": "2025-10-06T20:58:22.745655",
+    "name": "Lemon Peel"
+  },
+  "petite canne sugar cane syrup": {
+    "id": 14,
+    "mapped_at": "2025-10-06T20:58:30.211860",
+    "name": "Simple Syrup"
+  },
+  "peychaud's": {
+    "id": 129,
+    "mapped_at": "2025-09-29T19:19:20.306578",
+    "name": "Peychaud's Bitters"
+  },
+  "peychaud's bitters": {
+    "auto_matched": true,
+    "id": 129,
+    "mapped_at": "2025-10-24T16:37:41.195205",
+    "name": "Peychaud's Bitters"
+  },
+  "peychaud\u2019s bitters": {
+    "id": 129,
+    "mapped_at": "2025-10-24T20:26:41.061254",
+    "name": "Peychaud's Bitters"
+  },
+  "pierre ferrand dry cura\u00e7ao": {
+    "id": 39,
+    "mapped_at": "2025-10-04T16:25:05.254034",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "pierre ferrand dry orange cura\u00e7ao": {
+    "id": 39,
+    "mapped_at": "2025-10-12T12:10:28.454025",
+    "name": "Dry Cura\u00e7ao"
+  },
+  "pimento dram": {
+    "id": 8,
+    "mapped_at": "2025-10-26T16:23:56.830847",
+    "name": "Allspice Dram"
+  },
+  "pimm's no. 1": {
+    "auto_matched": true,
+    "id": 344,
+    "mapped_at": "2025-10-24T20:19:35.443740",
+    "name": "Pimm's No. 1"
+  },
+  "pineapple": {
+    "id": 372,
+    "mapped_at": "2025-10-06T20:58:43.691487",
+    "name": "Pineapple Cube"
+  },
+  "pineapple gomme syrup or simple pineapple syrup": {
+    "id": 99,
+    "mapped_at": "2025-10-24T20:26:44.435687",
+    "name": "Pineapple Syrup"
+  },
+  "pineapple gum syrup": {
+    "id": 99,
+    "mapped_at": "2025-09-29T19:19:33.916645",
+    "name": "Pineapple Syrup"
+  },
+  "pineapple gum syrup, preferably small hand foods": {
+    "id": 99,
+    "mapped_at": "2025-09-06T14:16:49.179001",
+    "name": "Pineapple Syrup"
+  },
+  "pineapple juice": {
+    "auto_matched": true,
+    "id": 48,
+    "mapped_at": "2025-10-24T16:37:41.195210",
+    "name": "Pineapple Juice"
+  },
+  "pineapple juice, preferably fresh": {
+    "id": 48,
+    "mapped_at": "2025-10-04T16:38:14.358044",
+    "name": "Pineapple Juice"
+  },
+  "pineapple rum, preferably stiggins' fancy plantation pineapple": {
+    "id": 268,
+    "mapped_at": "2025-10-04T16:25:12.726831",
+    "name": "Plantation Stiggins' Fancy Pineapple Rum"
+  },
+  "pineau des charentes": {
+    "auto_matched": true,
+    "id": 197,
+    "mapped_at": "2025-10-04T14:09:46.505900",
+    "name": "Pineau des Charentes"
+  },
+  "pineau des charentes, preferably pierre ferrand": {
+    "id": 197,
+    "mapped_at": "2025-10-12T12:10:32.559254",
+    "name": "Pineau des Charentes"
+  },
+  "plantation 3 star rum": {
+    "auto_matched": true,
+    "id": 252,
+    "mapped_at": "2025-09-01T21:30:58.055013",
+    "name": "Plantation 3 Star Rum"
+  },
+  "plantation overproof rum": {
+    "id": 385,
+    "mapped_at": "2025-10-06T20:58:59.239281",
+    "name": "Plantation OFTD"
+  },
+  "plantation pineapple rum": {
+    "id": 268,
+    "mapped_at": "2025-09-21T12:47:45.983984",
+    "name": "Plantation Stiggins' Fancy Pineapple Rum"
+  },
+  "plantation stiggins\u2019 fancy pineapple rum": {
+    "id": 268,
+    "mapped_at": "2025-10-26T16:24:08.497935",
+    "name": "Plantation Stiggins' Fancy Pineapple Rum"
+  },
+  "plymouth gin": {
+    "auto_matched": true,
+    "id": 249,
+    "mapped_at": "2025-10-12T11:55:22.510281",
+    "name": "Plymouth Gin"
+  },
+  "plymouth navy-strength gin": {
+    "id": 281,
+    "mapped_at": "2025-10-04T16:47:01.778883",
+    "name": "Navy Strength Gin"
+  },
+  "pomegranate grenadine": {
+    "id": 110,
+    "mapped_at": "2025-10-04T16:25:16.072081",
+    "name": "Grenadine"
+  },
+  "pomegranate molasses": {
+    "auto_matched": true,
+    "id": 169,
+    "mapped_at": "2025-10-06T20:49:34.464306",
+    "name": "Pomegranate Molasses"
+  },
+  "preferably la muse verte": {
+    "id": 37,
+    "mapped_at": "2025-10-26T16:24:16.661823",
+    "name": "Absinthe"
+  },
+  "prosecco": {
+    "id": 127,
+    "mapped_at": "2025-10-24T20:26:50.960082",
+    "name": "Sparkling Wine"
+  },
+  "puerto rican rum": {
+    "id": 130,
+    "mapped_at": "2025-10-26T16:24:22.770777",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "punt e mes": {
+    "auto_matched": true,
+    "id": 35,
+    "mapped_at": "2025-10-24T16:37:41.195216",
+    "name": "Punt E Mes"
+  },
+  "ramazzotti": {
+    "id": 408,
+    "mapped_at": "2025-10-24T16:42:59.127931",
+    "name": "Ramazzotti Aperitivo Rosato"
+  },
+  "ramazzotti aperitivo rosato": {
+    "auto_matched": true,
+    "id": 408,
+    "mapped_at": "2025-10-12T11:55:22.510311",
+    "name": "Ramazzotti Aperitivo Rosato"
+  },
+  "raspberries": {
+    "auto_matched": true,
+    "id": 187,
+    "mapped_at": "2025-09-01T21:30:58.055015",
+    "name": "Raspberries"
+  },
+  "raspberry liqueur": {
+    "auto_matched": true,
+    "id": 152,
+    "mapped_at": "2025-09-01T21:30:58.055017",
+    "name": "Raspberry Liqueur"
+  },
+  "raspberry syrup": {
+    "auto_matched": true,
+    "id": 247,
+    "mapped_at": "2025-09-01T21:30:58.055019",
+    "name": "Raspberry Syrup"
+  },
+  "red wine": {
+    "auto_matched": true,
+    "id": 31,
+    "mapped_at": "2025-10-26T16:10:06.356960",
+    "name": "Red Wine"
+  },
+  "red wine, preferably barbera d'asti": {
+    "id": 31,
+    "mapped_at": "2025-09-21T12:47:49.082289",
+    "name": "Red Wine"
+  },
+  "regans orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-09-21T12:47:52.540199",
+    "name": "Orange Bitters"
+  },
+  "regans' orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-24T20:27:01.424184",
+    "name": "Orange Bitters"
+  },
+  "regans\u2019 orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-24T20:27:03.742030",
+    "name": "Orange Bitters"
+  },
+  "reposado tequila": {
+    "auto_matched": true,
+    "id": 66,
+    "mapped_at": "2025-10-24T16:37:41.195222",
+    "name": "Reposado Tequila"
+  },
+  "reposado tequila, preferably equal parts siete leguas and calle 23": {
+    "id": 66,
+    "mapped_at": "2025-10-06T20:59:16.132517",
+    "name": "Reposado Tequila"
+  },
+  "reposado tequila, preferably tequila ocho": {
+    "id": 66,
+    "mapped_at": "2025-10-04T16:47:08.234019",
+    "name": "Reposado Tequila"
+  },
+  "rhubarb bitters": {
+    "auto_matched": true,
+    "id": 219,
+    "mapped_at": "2025-10-04T14:09:46.505911",
+    "name": "Rhubarb Bitters"
+  },
+  "rhubarb bitters, preferably fee brothers": {
+    "id": 219,
+    "mapped_at": "2025-09-29T19:19:40.108682",
+    "name": "Rhubarb Bitters"
+  },
+  "rhubarb syrup": {
+    "auto_matched": true,
+    "id": 103,
+    "mapped_at": "2025-10-04T14:09:46.505917",
+    "name": "Rhubarb Syrup"
+  },
+  "rhum agricole blanc": {
+    "id": 121,
+    "mapped_at": "2025-10-26T16:24:31.904420",
+    "name": "Rhum Agricole"
+  },
+  "rhum agricole blanc, such as rhum j.m agricole blanc 80\u00b0": {
+    "id": 121,
+    "mapped_at": "2025-09-14T16:49:15.049313",
+    "name": "Rhum Agricole"
+  },
+  "rhum agricole, preferably neisson blanc": {
+    "id": 121,
+    "mapped_at": "2025-10-24T20:27:14.119274",
+    "name": "Rhum Agricole"
+  },
+  "rhum agricole, preferably neisson eleve sous bois rhum agricole": {
+    "id": 298,
+    "mapped_at": "2025-10-06T20:59:36.163668",
+    "name": "Neisson Elev\u00e9 Sous Bois"
+  },
+  "rhum agricole, preferably rhum cl\u00e9ment select barrel": {
+    "id": 121,
+    "mapped_at": "2025-10-24T20:27:17.499694",
+    "name": "Rhum Agricole"
+  },
+  "ricard pastis": {
+    "id": 79,
+    "mapped_at": "2025-09-01T21:33:29.712130",
+    "name": "Pastis"
+  },
+  "rich cane sugar syrup": {
+    "id": 217,
+    "mapped_at": "2025-10-24T20:27:22.360304",
+    "name": "Rich Simple Syrup"
+  },
+  "rich cane syrup": {
+    "id": 217,
+    "mapped_at": "2025-10-04T16:47:32.544098",
+    "name": "Rich Simple Syrup"
+  },
+  "rich demerara syrup": {
+    "auto_matched": true,
+    "id": 20,
+    "mapped_at": "2025-09-01T21:30:58.055021",
+    "name": "Rich Demerara Syrup"
+  },
+  "rich simple syrup": {
+    "auto_matched": true,
+    "id": 217,
+    "mapped_at": "2025-09-01T21:30:58.055023",
+    "name": "Rich Simple Syrup"
+  },
+  "rich vanilla bean simple syrup": {
+    "id": 120,
+    "mapped_at": "2025-10-12T12:11:13.894123",
+    "name": "Vanilla Syrup"
+  },
+  "ripe strawberry, halved": {
+    "id": 155,
+    "mapped_at": "2025-10-06T20:59:41.970879",
+    "name": "Strawberries"
+  },
+  "rittenhouse rye": {
+    "auto_matched": true,
+    "id": 389,
+    "mapped_at": "2025-10-24T16:37:41.195228",
+    "name": "Rittenhouse Rye"
+  },
+  "rum fire overproof white rum": {
+    "id": 146,
+    "mapped_at": "2025-10-04T16:47:36.265581",
+    "name": "Rum Fire"
+  },
+  "rum, jamaican or blackstrap": {
+    "id": 46,
+    "mapped_at": "2025-10-04T16:38:29.527443",
+    "name": "Black Rum"
+  },
+  "rum, light and dry": {
+    "id": 130,
+    "mapped_at": "2025-10-06T20:59:53.727575",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "rum, preferably appleton reserve": {
+    "id": 234,
+    "mapped_at": "2025-09-06T14:17:25.336835",
+    "name": "Appleton Estate 8 Year Old"
+  },
+  "rum, preferably bacardi 8 year": {
+    "id": 260,
+    "mapped_at": "2025-09-29T19:19:46.498578",
+    "name": "Bacardi Ocho Rum"
+  },
+  "rum, white": {
+    "id": 130,
+    "mapped_at": "2025-10-06T21:00:00.926345",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "rye": {
+    "auto_matched": true,
+    "id": 22,
+    "mapped_at": "2025-10-24T20:19:35.443758",
+    "name": "Rye"
+  },
+  "rye or bourbon": {
+    "id": 10,
+    "mapped_at": "2025-10-26T16:24:40.512719",
+    "name": "Bourbon"
+  },
+  "rye whiskey": {
+    "id": 22,
+    "mapped_at": "2025-10-26T16:24:45.265878",
+    "name": "Rye"
+  },
+  "rye whiskey, preferably whistlepig": {
+    "id": 22,
+    "mapped_at": "2025-09-21T12:48:06.143522",
+    "name": "Rye"
+  },
+  "rye, chilled": {
+    "id": 22,
+    "mapped_at": "2025-10-12T12:11:31.922871",
+    "name": "Rye"
+  },
+  "rye, preferably rittenhouse": {
+    "id": 389,
+    "mapped_at": "2025-10-26T16:24:53.712667",
+    "name": "Rittenhouse Rye"
+  },
+  "rye, preferably wild turkey 101": {
+    "id": 22,
+    "mapped_at": "2025-09-21T12:48:09.834165",
+    "name": "Rye"
+  },
+  "salers gentian liqueur": {
+    "id": 212,
+    "mapped_at": "2025-10-04T16:48:02.113076",
+    "name": "Salers"
+  },
+  "saline": {
+    "id": 158,
+    "mapped_at": "2025-09-15T20:30:57.778322",
+    "name": "Saline Solution"
+  },
+  "saline solution": {
+    "auto_matched": true,
+    "id": 158,
+    "mapped_at": "2025-10-26T16:10:06.356966",
+    "name": "Saline Solution"
+  },
+  "saline solution or a tiny pinch salt": {
+    "id": 158,
+    "mapped_at": "2025-10-12T12:11:51.267559",
+    "name": "Saline Solution"
+  },
+  "salt": {
+    "id": 158,
+    "mapped_at": "2025-10-26T16:24:58.993655",
+    "name": "Saline Solution"
+  },
+  "sancerre": {
+    "id": 168,
+    "mapped_at": "2025-10-26T16:25:43.339745",
+    "name": "Dry White Wine"
+  },
+  "scant barspoon j.m. sirop de canne": {
+    "id": 14,
+    "mapped_at": "2025-10-06T21:00:19.146867",
+    "name": "Simple Syrup"
+  },
+  "scotch": {
+    "auto_matched": true,
+    "id": 112,
+    "mapped_at": "2025-09-01T21:30:58.055026",
+    "name": "Scotch"
+  },
+  "scotch, blended": {
+    "id": 28,
+    "mapped_at": "2025-09-21T12:48:16.558148",
+    "name": "Blended Scotch"
+  },
+  "scotch, preferably highland single malt": {
+    "id": 272,
+    "mapped_at": "2025-10-26T16:25:49.878664",
+    "name": "Single Malt Scotch"
+  },
+  "scrappy's firewater tincture": {
+    "auto_matched": true,
+    "id": 342,
+    "mapped_at": "2025-09-29T19:30:25.069752",
+    "name": "Scrappy's Firewater Tincture"
+  },
+  "scrappy\u2019s seville orange bitters": {
+    "id": 17,
+    "mapped_at": "2025-10-26T16:25:53.562124",
+    "name": "Orange Bitters"
+  },
+  "silver rum, preferably chairman's reserve": {
+    "id": 130,
+    "mapped_at": "2025-10-04T16:25:32.256460",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "simple syrup": {
+    "auto_matched": true,
+    "id": 14,
+    "mapped_at": "2025-10-24T16:37:41.195232",
+    "name": "Simple Syrup"
+  },
+  "sirop j.m": {
+    "id": 14,
+    "mapped_at": "2025-10-04T16:48:34.009339",
+    "name": "Simple Syrup"
+  },
+  "small egg white": {
+    "id": 157,
+    "mapped_at": "2025-10-24T20:27:24.977663",
+    "name": "Egg White"
+  },
+  "small lime coin": {
+    "id": 310,
+    "mapped_at": "2025-10-04T16:48:40.419049",
+    "name": "Lime Wheels"
+  },
+  "small slices cucumber": {
+    "id": 205,
+    "mapped_at": "2025-10-12T12:12:35.075351",
+    "name": "Cucumber Slices"
+  },
+  "smith & cross": {
+    "id": 19,
+    "mapped_at": "2025-10-12T12:12:37.869880",
+    "name": "Smith and Cross"
+  },
+  "smith & cross jamaican rum": {
+    "id": 19,
+    "mapped_at": "2025-10-04T16:38:40.337374",
+    "name": "Smith and Cross"
+  },
+  "smith and cross": {
+    "auto_matched": true,
+    "id": 19,
+    "mapped_at": "2025-09-01T21:30:58.055030",
+    "name": "Smith and Cross"
+  },
+  "smuggler's cove orgeat": {
+    "id": 140,
+    "mapped_at": "2025-10-12T12:12:42.039419",
+    "name": "Orgeat"
+  },
+  "soda": {
+    "id": 62,
+    "mapped_at": "2025-10-24T20:27:29.462743",
+    "name": "Soda Water"
+  },
+  "soda water": {
+    "auto_matched": true,
+    "id": 62,
+    "mapped_at": "2025-10-24T20:19:35.443770",
+    "name": "Soda Water"
+  },
+  "sparkling mineral water": {
+    "id": 62,
+    "mapped_at": "2025-10-26T16:25:59.630693",
+    "name": "Soda Water"
+  },
+  "sparkling ros\u00e9, preferably d'Alsace ros\u00e9 brut": {
+    "id": 127,
+    "mapped_at": "2025-10-24T20:27:33.379207",
+    "name": "Sparkling Wine"
+  },
+  "sparkling water": {
+    "id": 62,
+    "mapped_at": "2025-10-04T16:48:44.101751",
+    "name": "Soda Water"
+  },
+  "sparkling wine": {
+    "auto_matched": true,
+    "id": 127,
+    "mapped_at": "2025-10-24T20:19:35.443784",
+    "name": "Sparkling Wine"
+  },
+  "spiced rum": {
+    "auto_matched": true,
+    "id": 185,
+    "mapped_at": "2025-09-06T14:09:07.599358",
+    "name": "Spiced Rum"
+  },
+  "spices #4": {
+    "id": 160,
+    "mapped_at": "2025-10-24T16:43:34.227041",
+    "name": "Cinnamon Syrup"
+  },
+  "spray angostura bitters": {
+    "id": 12,
+    "mapped_at": "2025-10-24T20:27:37.121739",
+    "name": "Angostura Bitters"
+  },
+  "sprig rosemary": {
+    "auto_matched": true,
+    "id": 476,
+    "mapped_at": "2025-10-24T16:37:41.195239",
+    "name": "Sprig Rosemary"
+  },
+  "sprigs mint": {
+    "id": 282,
+    "mapped_at": "2025-09-14T16:49:25.572659",
+    "name": "Mint Sprigs"
+  },
+  "sprigs mint, some leaves reserved for garnish": {
+    "id": 282,
+    "mapped_at": "2025-09-06T14:17:42.070379",
+    "name": "Mint Sprigs"
+  },
+  "spritzes absinthe, preferably pernod absinthe sup\u00e9rieure": {
+    "id": 37,
+    "mapped_at": "2025-10-24T20:27:41.366599",
+    "name": "Absinthe"
+  },
+  "squeeze lemon": {
+    "id": 292,
+    "mapped_at": "2025-10-04T16:25:35.083392",
+    "name": "Lemon"
+  },
+  "st-germain": {
+    "id": 57,
+    "mapped_at": "2025-10-26T16:26:02.801971",
+    "name": "St. Germain"
+  },
+  "st. elizabeth allspice dram": {
+    "auto_matched": true,
+    "id": 9,
+    "mapped_at": "2025-09-01T21:30:58.055036",
+    "name": "St. Elizabeth Allspice Dram"
+  },
+  "st. germain": {
+    "auto_matched": true,
+    "id": 57,
+    "mapped_at": "2025-09-01T21:30:58.055039",
+    "name": "St. Germain"
+  },
+  "st. germain elderflower liqueur": {
+    "id": 57,
+    "mapped_at": "2025-10-06T21:00:40.295985",
+    "name": "St. Germain"
+  },
+  "strawberries, sliced": {
+    "id": 155,
+    "mapped_at": "2025-09-15T20:31:02.324838",
+    "name": "Strawberries"
+  },
+  "strawberry": {
+    "id": 155,
+    "mapped_at": "2025-10-06T21:00:43.356606",
+    "name": "Strawberries"
+  },
+  "strawberry syrup": {
+    "auto_matched": true,
+    "id": 330,
+    "mapped_at": "2025-09-29T19:12:34.104423",
+    "name": "Strawberry Syrup"
+  },
+  "strega": {
+    "auto_matched": true,
+    "id": 101,
+    "mapped_at": "2025-10-26T16:10:06.356972",
+    "name": "Strega"
+  },
+  "sugar": {
+    "auto_matched": true,
+    "id": 194,
+    "mapped_at": "2025-09-21T12:13:46.869147",
+    "name": "Sugar"
+  },
+  "sugar cube": {
+    "auto_matched": true,
+    "id": 375,
+    "mapped_at": "2025-10-26T16:10:06.356975",
+    "name": "Sugar Cube"
+  },
+  "sugar, raw": {
+    "id": 194,
+    "mapped_at": "2025-10-26T16:26:05.683150",
+    "name": "Sugar"
+  },
+  "suze": {
+    "auto_matched": true,
+    "id": 195,
+    "mapped_at": "2025-10-24T20:19:35.443798",
+    "name": "Suze"
+  },
+  "swedish punsch": {
+    "auto_matched": true,
+    "id": 328,
+    "mapped_at": "2025-10-04T14:09:46.505960",
+    "name": "Swedish Punsch"
+  },
+  "swedish punsch, preferably kronan": {
+    "id": 328,
+    "mapped_at": "2025-10-12T12:12:49.612726",
+    "name": "Swedish Punsch"
+  },
+  "sweet vermouth": {
+    "auto_matched": true,
+    "id": 55,
+    "mapped_at": "2025-10-24T20:19:35.443804",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth blend": {
+    "id": 55,
+    "mapped_at": "2025-10-26T16:26:09.303738",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, chilled": {
+    "id": 55,
+    "mapped_at": "2025-10-12T12:12:53.134582",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably antica torino rosso": {
+    "id": 55,
+    "mapped_at": "2025-10-04T16:49:53.343903",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably atam\u00e1n vermouth rosso": {
+    "id": 55,
+    "mapped_at": "2025-10-24T20:27:50.610478",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably carpano antica": {
+    "id": 167,
+    "mapped_at": "2025-09-29T19:20:41.086748",
+    "name": "Carpano Antica"
+  },
+  "sweet vermouth, preferably carpano antica formula": {
+    "id": 167,
+    "mapped_at": "2025-10-04T16:38:43.585559",
+    "name": "Carpano Antica"
+  },
+  "sweet vermouth, preferably carpano antica formula vermouth": {
+    "id": 167,
+    "mapped_at": "2025-09-21T12:48:37.452148",
+    "name": "Carpano Antica"
+  },
+  "sweet vermouth, preferably cocchi di torino": {
+    "id": 277,
+    "mapped_at": "2025-10-06T21:00:56.386442",
+    "name": "Cocchi Vermouth di Torino"
+  },
+  "sweet vermouth, preferably dolin": {
+    "id": 55,
+    "mapped_at": "2025-09-06T14:17:46.371783",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably martini & rossi": {
+    "id": 55,
+    "mapped_at": "2025-10-26T16:26:20.685435",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably martini & rossi rosso": {
+    "id": 55,
+    "mapped_at": "2025-10-06T21:01:05.716971",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably perucchi": {
+    "id": 55,
+    "mapped_at": "2025-10-26T16:26:23.559996",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, preferably vya": {
+    "id": 55,
+    "mapped_at": "2025-10-26T16:26:26.018601",
+    "name": "Sweet Vermouth"
+  },
+  "sweet vermouth, such as carpano antica": {
+    "id": 167,
+    "mapped_at": "2025-09-14T16:49:32.070776",
+    "name": "Carpano Antica"
+  },
+  "sweet vermouth, such as martini & rossi gran lusso": {
+    "id": 55,
+    "mapped_at": "2025-10-24T20:27:53.575555",
+    "name": "Sweet Vermouth"
+  },
+  "sweetened ginger juice": {
+    "auto_matched": true,
+    "id": 451,
+    "mapped_at": "2025-10-24T20:19:35.443814",
+    "name": "Sweetened Ginger Juice"
+  },
+  "tanqueray gin": {
+    "id": 4,
+    "mapped_at": "2025-09-06T14:17:49.355377",
+    "name": "Gin"
+  },
+  "tanqueray london dry gin": {
+    "id": 52,
+    "mapped_at": "2025-09-29T19:20:44.398440",
+    "name": "London Dry Gin"
+  },
+  "tempus fugit cr\u00e8me de menthe": {
+    "id": 300,
+    "mapped_at": "2025-10-04T16:39:13.787876",
+    "name": "White Creme de Menthe"
+  },
+  "tempus fugit kina l'avion": {
+    "id": 275,
+    "mapped_at": "2025-10-04T16:25:48.315998",
+    "name": "Kina L'aero D'Or"
+  },
+  "tempus fugit kina l\u2019avion d\u2019or quinquina": {
+    "id": 275,
+    "mapped_at": "2025-10-06T21:01:16.833378",
+    "name": "Kina L'aero D'Or"
+  },
+  "tempus fugit kina l\u2019a\u00e9ro d\u2019or": {
+    "id": 275,
+    "mapped_at": "2025-10-24T20:28:01.337026",
+    "name": "Kina L'aero D'Or"
+  },
+  "tequila": {
+    "auto_matched": true,
+    "id": 6,
+    "mapped_at": "2025-10-26T16:10:06.356983",
+    "name": "Tequila"
+  },
+  "tequila or gin": {
+    "id": 6,
+    "mapped_at": "2025-10-26T16:26:46.504263",
+    "name": "Tequila"
+  },
+  "tequila reposado": {
+    "id": 66,
+    "mapped_at": "2025-10-26T16:26:52.602187",
+    "name": "Reposado Tequila"
+  },
+  "tequila, preferably celestial reposado": {
+    "id": 66,
+    "mapped_at": "2025-09-29T19:20:57.776140",
+    "name": "Reposado Tequila"
+  },
+  "tequila, preferably el tesoro blanco": {
+    "id": 71,
+    "mapped_at": "2025-10-04T16:50:14.469668",
+    "name": "Blanco Tequila"
+  },
+  "tequila, preferably tapat\u00edo blanco": {
+    "id": 71,
+    "mapped_at": "2025-09-15T20:31:12.457090",
+    "name": "Blanco Tequila"
+  },
+  "tiny pinch salt": {
+    "id": 158,
+    "mapped_at": "2025-10-26T16:26:57.772198",
+    "name": "Saline Solution"
+  },
+  "tonic": {
+    "id": 163,
+    "mapped_at": "2025-10-04T16:50:16.844261",
+    "name": "Tonic Water"
+  },
+  "tonic water": {
+    "auto_matched": true,
+    "id": 163,
+    "mapped_at": "2025-09-06T14:09:07.599366",
+    "name": "Tonic Water"
+  },
+  "triple sec, preferably cointreau": {
+    "id": 95,
+    "mapped_at": "2025-10-06T21:01:23.651174",
+    "name": "Cointreau"
+  },
+  "unaged apple brandy": {
+    "auto_matched": true,
+    "id": 290,
+    "mapped_at": "2025-09-01T21:30:58.055045",
+    "name": "Unaged Apple Brandy"
+  },
+  "unaged jamaican overproof rum, preferably wray & nephew": {
+    "id": 131,
+    "mapped_at": "2025-10-24T20:28:11.114384",
+    "name": "Wray And Nephew"
+  },
+  "unaged or lightly aged rum, such as privateer new england white rum": {
+    "id": 130,
+    "mapped_at": "2025-09-06T14:17:59.964504",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "unaged rum, preferably san zanj haitian rum": {
+    "id": 312,
+    "mapped_at": "2025-09-15T20:31:15.493920",
+    "name": "San Zanj Haitian Rum"
+  },
+  "unsweetened pineapple juice": {
+    "id": 48,
+    "mapped_at": "2025-10-04T16:50:19.957617",
+    "name": "Pineapple Juice"
+  },
+  "vanilla syrup": {
+    "auto_matched": true,
+    "id": 120,
+    "mapped_at": "2025-10-24T16:37:41.195243",
+    "name": "Vanilla Syrup"
+  },
+  "vanilla syrup, preferably bg reynolds": {
+    "id": 120,
+    "mapped_at": "2025-10-26T16:27:00.886895",
+    "name": "Vanilla Syrup"
+  },
+  "velvet falernum": {
+    "auto_matched": true,
+    "id": 33,
+    "mapped_at": "2025-10-26T16:10:06.356988",
+    "name": "Velvet Falernum"
+  },
+  "verjus": {
+    "auto_matched": true,
+    "id": 248,
+    "mapped_at": "2025-09-01T21:30:58.055047",
+    "name": "Verjus"
+  },
+  "verjus blanc, preferably fusion napa valley verjus blanc": {
+    "id": 329,
+    "mapped_at": "2025-09-29T19:21:01.992568",
+    "name": "Verjus Blanc"
+  },
+  "verjus, preferably fusion napa valley verjus blanc": {
+    "id": 329,
+    "mapped_at": "2025-10-24T20:28:15.961975",
+    "name": "Verjus Blanc"
+  },
+  "vermouth di torino": {
+    "id": 277,
+    "mapped_at": "2025-10-12T12:13:44.044694",
+    "name": "Cocchi Vermouth di Torino"
+  },
+  "vodka": {
+    "auto_matched": true,
+    "id": 3,
+    "mapped_at": "2025-09-01T21:30:58.055049",
+    "name": "Vodka"
+  },
+  "vodka, preferably absolut": {
+    "id": 3,
+    "mapped_at": "2025-10-04T16:50:23.302150",
+    "name": "Vodka"
+  },
+  "vodka, preferably absolut elyx": {
+    "id": 3,
+    "mapped_at": "2025-10-24T20:28:24.789081",
+    "name": "Vodka"
+  },
+  "vodka, preferably ch vodka": {
+    "id": 3,
+    "mapped_at": "2025-10-06T21:01:26.858857",
+    "name": "Vodka"
+  },
+  "vodka, preferably grey goose": {
+    "id": 3,
+    "mapped_at": "2025-10-26T16:27:03.507973",
+    "name": "Vodka"
+  },
+  "vodka, preferably mell": {
+    "id": 3,
+    "mapped_at": "2025-10-04T16:25:51.422384",
+    "name": "Vodka"
+  },
+  "vodka, preferably st. george california citrus": {
+    "id": 243,
+    "mapped_at": "2025-10-12T12:13:48.838135",
+    "name": "St. George California Citrus Vodka"
+  },
+  "vodka, preferably tay\u0113r": {
+    "id": 3,
+    "mapped_at": "2025-10-26T16:27:05.349633",
+    "name": "Vodka"
+  },
+  "vodka, such as truman": {
+    "id": 3,
+    "mapped_at": "2025-10-06T21:01:29.575771",
+    "name": "Vodka"
+  },
+  "warm water": {
+    "id": 124,
+    "mapped_at": "2025-10-26T16:27:09.277168",
+    "name": "Water"
+  },
+  "water": {
+    "auto_matched": true,
+    "id": 124,
+    "mapped_at": "2025-10-04T14:09:46.505981",
+    "name": "Water"
+  },
+  "watermelon syrup": {
+    "auto_matched": true,
+    "id": 409,
+    "mapped_at": "2025-10-12T11:55:22.510449",
+    "name": "Watermelon Syrup"
+  },
+  "whiskey": {
+    "auto_matched": true,
+    "id": 1,
+    "mapped_at": "2025-09-01T21:30:58.055051",
+    "name": "Whiskey"
+  },
+  "whiskey, preferably rieger's kansas city": {
+    "id": 377,
+    "mapped_at": "2025-10-06T21:01:41.000113",
+    "name": "Rieger's Kansas City Whiskey"
+  },
+  "white cr\u00e8me de menthe": {
+    "id": 300,
+    "mapped_at": "2025-09-01T21:31:22.492157",
+    "name": "White Creme de Menthe"
+  },
+  "white granulated sugar": {
+    "id": 194,
+    "mapped_at": "2025-09-21T12:49:01.821418",
+    "name": "Sugar"
+  },
+  "white port, preferably fonseca": {
+    "id": 222,
+    "mapped_at": "2025-10-06T21:01:43.987025",
+    "name": "White Port"
+  },
+  "white rum": {
+    "id": 130,
+    "mapped_at": "2025-09-21T12:49:23.537308",
+    "name": "Column Still Lightly Aged Rum"
+  },
+  "white rum, agricole": {
+    "id": 121,
+    "mapped_at": "2025-10-12T12:13:57.601215",
+    "name": "Rhum Agricole"
+  },
+  "white rum, preferably banks 5": {
+    "id": 253,
+    "mapped_at": "2025-10-04T16:28:18.659425",
+    "name": "Banks 5 Island Rum"
+  },
+  "wray & nephew white overproof rum": {
+    "id": 131,
+    "mapped_at": "2025-10-04T16:52:21.534638",
+    "name": "Wray And Nephew"
+  },
+  "y-peeled swath orange peel": {
+    "id": 302,
+    "mapped_at": "2025-10-04T16:52:25.127388",
+    "name": "Orange Peel"
+  },
+  "yellow chartreuse": {
+    "auto_matched": true,
+    "id": 40,
+    "mapped_at": "2025-10-26T16:10:06.356994",
+    "name": "Yellow Chartreuse"
+  },
+  "yuzu or lemon juice": {
+    "id": 32,
+    "mapped_at": "2025-09-29T19:21:05.169827",
+    "name": "Lemon Juice"
+  },
+  "apricot liqueur": {
+    "id": 69,
+    "name": "Apricot Liqueur",
+    "mapped_at": "2025-11-02T16:11:46.529163",
+    "auto_matched": true
+  },
+  "aquavit": {
+    "id": 67,
+    "name": "Aquavit",
+    "mapped_at": "2025-11-02T16:11:46.529481",
+    "auto_matched": true
+  },
+  "becherovka": {
+    "id": 489,
+    "name": "Becherovka",
+    "mapped_at": "2025-11-02T16:11:46.529515",
+    "auto_matched": true
+  },
+  "kalani coconut liqueur": {
+    "id": 225,
+    "name": "Kalani Coconut Liqueur",
+    "mapped_at": "2025-11-02T16:11:46.529611",
+    "auto_matched": true
+  },
+  "lemon wedges": {
+    "id": 159,
+    "name": "Lemon Wedges",
+    "mapped_at": "2025-11-02T16:11:46.529624",
+    "auto_matched": true
+  },
+  "olive brine": {
+    "id": 462,
+    "name": "Olive Brine",
+    "mapped_at": "2025-11-02T16:11:46.529925",
+    "auto_matched": true
+  },
+  "pedro ximenez sherry": {
+    "id": 166,
+    "name": "Pedro Ximenez Sherry",
+    "mapped_at": "2025-11-02T16:11:46.529971",
+    "auto_matched": true
+  },
+  "pisco": {
+    "id": 75,
+    "name": "Pisco",
+    "mapped_at": "2025-11-02T16:11:46.529990",
+    "auto_matched": true
+  },
+  "rum": {
+    "id": 2,
+    "name": "Rum",
+    "mapped_at": "2025-11-02T16:11:46.530010",
+    "auto_matched": true
+  },
+  "sloe gin": {
+    "id": 407,
+    "name": "Sloe Gin",
+    "mapped_at": "2025-11-02T16:11:46.530033",
+    "auto_matched": true
+  },
+  "1 1/2 ounces Champagne": {
+    "id": 127,
+    "name": "Sparkling Wine",
+    "mapped_at": "2025-11-02T16:12:06.418213"
+  },
+  "100-proof rye whiskey": {
+    "id": 22,
+    "name": "Rye",
+    "mapped_at": "2025-11-02T16:12:10.452979"
+  },
+  "a large or 1 small egg white": {
+    "id": 157,
+    "name": "Egg White",
+    "mapped_at": "2025-11-02T16:12:21.317528"
+  },
+  "absinthe, preferably germaine robin": {
+    "id": 37,
+    "name": "Absinthe",
+    "mapped_at": "2025-11-02T16:12:24.643666"
+  },
+  "absinthe, to rinse": {
+    "id": 37,
+    "name": "Absinthe",
+    "mapped_at": "2025-11-02T16:12:28.303601"
+  },
+  "aged rum, preferably santa teresa 1796": {
+    "id": 271,
+    "name": "Santa Teresa 1796 Rum",
+    "mapped_at": "2025-11-02T16:12:43.805484"
+  },
+  "amaro, preferably amaro nonino": {
+    "id": 34,
+    "name": "Amaro Nonino Quintessentia",
+    "mapped_at": "2025-11-02T16:12:55.914560"
+  },
+  "banana liqueur, preferably giffard banana du br\u00e9sil": {
+    "id": 145,
+    "name": "Giffard Banane Du Bresil",
+    "mapped_at": "2025-11-02T16:13:10.847238"
+  },
+  "be\u0301ne\u0301dictine": {
+    "id": 41,
+    "name": "Benedictine",
+    "mapped_at": "2025-11-02T16:13:20.623061"
+  },
+  "bitter end curry bitters": {
+    "id": 410,
+    "name": "Curry Bitters",
+    "mapped_at": "2025-11-02T16:13:28.002113"
+  },
+  "bitter truth orange bitters": {
+    "id": 17,
+    "name": "Orange Bitters",
+    "mapped_at": "2025-11-02T16:13:32.284298"
+  },
+  "blanc vermouth, preferably comoz vermouth blanc": {
+    "id": 171,
+    "name": "Blanc Vermouth",
+    "mapped_at": "2025-11-02T16:13:36.276108"
+  },
+  "blanco tequila, such as cascahu\u00edn plata 48": {
+    "id": 71,
+    "name": "Blanco Tequila",
+    "mapped_at": "2025-11-02T16:13:39.918181"
+  },
+  "blended scotch, preferably cutty sark prohibition": {
+    "id": 28,
+    "name": "Blended Scotch",
+    "mapped_at": "2025-11-02T16:13:43.585402"
+  },
+  "blended scotch, such as famous grouse": {
+    "id": 28,
+    "name": "Blended Scotch",
+    "mapped_at": "2025-11-02T16:13:46.782632"
+  },
+  "bourbon, preferably old granddad": {
+    "id": 10,
+    "name": "Bourbon",
+    "mapped_at": "2025-11-02T16:13:59.126933"
+  },
+  "celery bitters, preferably fee brothers": {
+    "id": 209,
+    "name": "Celery Bitters",
+    "mapped_at": "2025-11-02T16:14:12.417352"
+  },
+  "cherry liqueur, preferably cherry heering": {
+    "id": 36,
+    "name": "Cherry Heering",
+    "mapped_at": "2025-11-02T16:14:16.090863"
+  },
+  "cream coconut": {
+    "id": 228,
+    "name": "Sweetened Coconut Cream",
+    "mapped_at": "2025-11-02T16:15:03.759421"
+  },
+  "cr\u00e8me de peche": {
+    "id": 83,
+    "name": "Peach Liqueur",
+    "mapped_at": "2025-11-02T16:15:16.458851"
+  },
+  "dolin de chamb\u00e9ry dry vermouth": {
+    "id": 490,
+    "name": "Dolin Dry Vermouth",
+    "mapped_at": "2025-11-02T16:15:27.550983"
+  },
+  "dry gin, preferably fords": {
+    "id": 52,
+    "name": "London Dry Gin",
+    "mapped_at": "2025-11-02T16:15:42.184256"
+  },
+  "dry vermouth, preferably dolin de chambe\u0301ry dry vermouth": {
+    "id": 490,
+    "name": "Dolin Dry Vermouth",
+    "mapped_at": "2025-11-02T16:15:52.982594"
+  },
+  "dry vermouth, such as atxa": {
+    "id": 61,
+    "name": "Dry Vermouth",
+    "mapped_at": "2025-11-02T16:16:05.376327"
+  },
+  "fresh-squeezed lemon juice, chilled": {
+    "id": 32,
+    "name": "Lemon Juice",
+    "mapped_at": "2025-11-02T16:16:48.488278"
+  },
+  "fresh-squeezed orange juice, chilled": {
+    "id": 96,
+    "name": "Orange Juice",
+    "mapped_at": "2025-11-02T16:16:51.542075"
+  },
+  "giffard cr\u00e8me de p\u00eache de vigne": {
+    "id": 497,
+    "name": "Giffard Peche de Vigne",
+    "mapped_at": "2025-11-02T16:16:57.203204"
+  },
+  "giffard pamplemousse rose liqueur": {
+    "id": 355,
+    "name": "Giffard Cr\u00e8me de Pamplemousse Rose",
+    "mapped_at": "2025-11-02T16:17:01.190735"
+  },
+  "gin, london dry": {
+    "id": 52,
+    "name": "London Dry Gin",
+    "mapped_at": "2025-11-02T16:17:04.520833"
+  },
+  "gin, preferably bombay sapphire": {
+    "id": 437,
+    "name": "Bombay Sapphire Gin",
+    "mapped_at": "2025-11-02T16:17:07.822085"
+  },
+  "gin, preferably cana\u00efma": {
+    "id": 4,
+    "name": "Gin",
+    "mapped_at": "2025-11-02T16:17:11.649511"
+  },
+  "gin, preferably plymouth gin": {
+    "id": 249,
+    "name": "Plymouth Gin",
+    "mapped_at": "2025-11-02T16:17:15.500098"
+  },
+  "gin, such as xoriguer gin de mah\u00f3n": {
+    "id": 4,
+    "name": "Gin",
+    "mapped_at": "2025-11-02T16:17:18.777987"
+  },
+  "grapefruit bitters, such as the bitter truth": {
+    "id": 239,
+    "name": "Grapefruit Bitters",
+    "mapped_at": "2025-11-02T16:17:26.515819"
+  },
+  "grapefruit juice, fresh": {
+    "id": 45,
+    "name": "Grapefruit Juice",
+    "mapped_at": "2025-11-02T16:17:30.177651"
+  },
+  "grenadine, preferably small hand foods": {
+    "id": 110,
+    "name": "Grenadine",
+    "mapped_at": "2025-11-02T16:17:33.116836"
+  },
+  "heavy dashes angostura bitters": {
+    "id": 12,
+    "name": "Angostura Bitters",
+    "mapped_at": "2025-11-02T16:17:36.102441"
+  },
+  "islay single-malt scotch, preferably laphroaig 10yo": {
+    "id": 422,
+    "name": "Laphroaig 10 year old",
+    "mapped_at": "2025-11-02T16:17:48.080278"
+  },
+  "jin jiji india dry gin": {
+    "id": 4,
+    "name": "Gin",
+    "mapped_at": "2025-11-02T16:18:01.093229"
+  },
+  "lightly aged rum, preferably flor de ca\u00f1a 4-year extra dry": {
+    "id": 359,
+    "name": "Flor de Cana 4 year old",
+    "mapped_at": "2025-11-02T16:18:07.051830"
+  },
+  "lime disk": {
+    "id": 310,
+    "name": "Lime Wheels",
+    "mapped_at": "2025-11-02T16:18:12.409639"
+  },
+  "lime juice, double strained": {
+    "id": 15,
+    "name": "Lime Juice",
+    "mapped_at": "2025-11-02T16:18:15.367555"
+  },
+  "london dry gin, preferably london no.3": {
+    "id": 52,
+    "name": "London Dry Gin",
+    "mapped_at": "2025-11-02T16:18:18.301825"
+  },
+  "lustau amontillado sherry": {
+    "id": 149,
+    "name": "Amontillado Sherry",
+    "mapped_at": "2025-11-02T16:18:22.155929"
+  },
+  "maker\u2019s mark bourbon": {
+    "id": 431,
+    "name": "Maker's Mark Bourbon",
+    "mapped_at": "2025-11-02T16:18:31.000607"
+  },
+  "manzanilla sherry, preferably bodegas yuste aurora": {
+    "id": 206,
+    "name": "Manzanilla Sherry",
+    "mapped_at": "2025-11-02T16:18:33.902978"
+  },
+  "martini & rossi bitter aperitivo": {
+    "id": 429,
+    "name": "Martini Bitter",
+    "mapped_at": "2025-11-02T16:20:00.094877"
+  },
+  "medium dry madeira, preferably broadbent rainwater 3-year": {
+    "id": 481,
+    "name": "Madeira",
+    "mapped_at": "2025-11-02T16:20:04.255692"
+  },
+  "neisson \u00e9lev\u00e9 sous bois rhum agricole": {
+    "id": 298,
+    "name": "Neisson Elev\u00e9 Sous Bois",
+    "mapped_at": "2025-11-02T16:20:08.669015"
+  },
+  "orange bitters, preferably bitter truth orange bitters": {
+    "id": 17,
+    "name": "Orange Bitters",
+    "mapped_at": "2025-11-02T16:20:11.136256"
+  },
+  "orange juice, fresh": {
+    "id": 96,
+    "name": "Orange Juice",
+    "mapped_at": "2025-11-02T16:20:14.460839"
+  },
+  "orange liqueur, preferably solerno": {
+    "id": 107,
+    "name": "Solerno",
+    "mapped_at": "2025-11-02T16:20:18.351712"
+  },
+  "passion fruit liqueur": {
+    "id": 250,
+    "name": "Passionfruit Liqueur",
+    "mapped_at": "2025-11-02T16:20:37.406401"
+  },
+  "pedro ximen\u00e9z sherry, preferably gonzalez-byass nectar px sherry": {
+    "id": 166,
+    "name": "Pedro Ximenez Sherry",
+    "mapped_at": "2025-11-02T16:21:46.501508"
+  },
+  "pedro ximen\u00e9z sherry, preferably lustau san emilio": {
+    "id": 166,
+    "name": "Pedro Ximenez Sherry",
+    "mapped_at": "2025-11-02T16:21:51.643582"
+  },
+  "pierre ferrand 1840 cognac": {
+    "id": 488,
+    "name": "Pierre Ferrand 1840",
+    "mapped_at": "2025-11-02T16:21:54.756737"
+  },
+  "pimm\u2019s no. 1": {
+    "id": 344,
+    "name": "Pimm's No. 1",
+    "mapped_at": "2025-11-02T16:23:48.480249"
+  },
+  "pimm\u2019s no.1": {
+    "id": 344,
+    "name": "Pimm's No. 1",
+    "mapped_at": "2025-11-02T16:23:53.214208"
+  },
+  "pineapple juice, fresh": {
+    "id": 48,
+    "name": "Pineapple Juice",
+    "mapped_at": "2025-11-02T16:23:58.067738"
+  },
+  "pisco, preferably caravedo quebranta": {
+    "id": 416,
+    "name": "Quebranta Pisco",
+    "mapped_at": "2025-11-02T16:24:08.163222"
+  },
+  "raspberry gomme syrup": {
+    "id": 247,
+    "name": "Raspberry Syrup",
+    "mapped_at": "2025-11-02T16:24:12.420399"
+  },
+  "reposado tequila, preferably el jimador": {
+    "id": 66,
+    "name": "Reposado Tequila",
+    "mapped_at": "2025-11-02T16:24:35.747042"
+  },
+  "rhum agricole, preferably neisson elev\u00e9 sous bois": {
+    "id": 298,
+    "name": "Neisson Elev\u00e9 Sous Bois",
+    "mapped_at": "2025-11-02T16:25:23.803705"
+  },
+  "ros\u00e9": {
+    "id": 308,
+    "name": "Dry Ros\u00e9 Wine",
+    "mapped_at": "2025-11-02T16:25:28.592324"
+  },
+  "rum, preferably cruzan black strap": {
+    "id": 174,
+    "name": "Cruzan Blackstrap Rum",
+    "mapped_at": "2025-11-02T16:26:04.998682"
+  },
+  "rye whiskey, preferably rittenhouse": {
+    "id": 389,
+    "name": "Rittenhouse Rye",
+    "mapped_at": "2025-11-02T16:26:12.205359"
+  },
+  "rye, preferably new york distilling ragtime rye": {
+    "id": 22,
+    "name": "Rye",
+    "mapped_at": "2025-11-02T16:26:17.763148"
+  },
+  "salers gentiane aperitif": {
+    "id": 212,
+    "name": "Salers",
+    "mapped_at": "2025-11-02T16:26:21.731133"
+  },
+  "scant barspoon petite canne sugar cane syrup": {
+    "id": 14,
+    "name": "Simple Syrup",
+    "mapped_at": "2025-11-02T16:26:32.913832"
+  },
+  "scotch whisky": {
+    "id": 112,
+    "name": "Scotch",
+    "mapped_at": "2025-11-02T16:26:36.777047"
+  },
+  "scotch, islay": {
+    "id": 29,
+    "name": "Peated Scotch",
+    "mapped_at": "2025-11-02T16:27:03.488490"
+  },
+  "scrappy\u2019s grapefruit bitters": {
+    "id": 239,
+    "name": "Grapefruit Bitters",
+    "mapped_at": "2025-11-02T16:27:06.820189"
+  },
+  "sherry, preferably lustau palo cortado": {
+    "id": 324,
+    "name": "Palo Cortado Sherry",
+    "mapped_at": "2025-11-02T16:27:13.901509"
+  },
+  "stiggins' fancy plantation pineapple rum": {
+    "id": 268,
+    "name": "Plantation Stiggins' Fancy Pineapple Rum",
+    "mapped_at": "2025-11-02T16:28:09.851180"
+  },
+  "sugar cane syrup, preferably petite canne martinique": {
+    "id": 14,
+    "name": "Simple Syrup",
+    "mapped_at": "2025-11-02T16:28:17.046080"
+  },
+  "swaths lemon peel": {
+    "id": 293,
+    "name": "Lemon Peel",
+    "mapped_at": "2025-11-02T16:28:19.634162"
+  },
+  "tequila, preferably partida reposado": {
+    "id": 66,
+    "name": "Reposado Tequila",
+    "mapped_at": "2025-11-02T16:28:41.014375"
+  },
+  "virgin islands rum": {
+    "id": 2,
+    "name": "Rum",
+    "mapped_at": "2025-11-02T16:30:51.623504"
+  },
+  "vodka, preferably absolut elyx vodka": {
+    "id": 3,
+    "name": "Vodka",
+    "mapped_at": "2025-11-02T16:30:57.420197"
+  },
+  "vodka, preferably aylesbury duck": {
+    "id": 3,
+    "name": "Vodka",
+    "mapped_at": "2025-11-02T16:31:00.365259"
+  },
+  "vodka, preferably ketel one": {
+    "id": 3,
+    "name": "Vodka",
+    "mapped_at": "2025-11-02T16:31:02.947754"
+  },
+  "warwick rustic gin": {
+    "id": 4,
+    "name": "Gin",
+    "mapped_at": "2025-11-02T16:31:07.883056"
+  },
+  "watermelon syrup, preferably giffard": {
+    "id": 409,
+    "name": "Watermelon Syrup",
+    "mapped_at": "2025-11-02T16:31:11.460530"
+  },
+  "white cr\u00e8me de menthe, preferably tempus fugit": {
+    "id": 502,
+    "name": "Tempus Fugit Creme de Menthe",
+    "mapped_at": "2025-11-02T16:31:18.460552"
+  },
+  "white rhum agricole, chilled": {
+    "id": 121,
+    "name": "Rhum Agricole",
+    "mapped_at": "2025-11-02T16:31:22.692229"
+  },
+  "white rhum agricole, preferably la favorite \"coeur de canne\"": {
+    "id": 121,
+    "name": "Rhum Agricole",
+    "mapped_at": "2025-11-02T16:31:27.579127"
+  },
+  "white sugar": {
+    "id": 194,
+    "name": "Sugar",
+    "mapped_at": "2025-11-02T16:31:38.353034"
+  }
+}

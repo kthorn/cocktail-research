@@ -1,0 +1,52 @@
+{
+  "ingredients": [
+    {
+      "name": "coconut simple syrup",
+      "parent_name": ""
+    },
+    {
+      "name": "coffee liqueur, preferably mr. black cold brew coffee liqueur",
+      "parent_name": ""
+    },
+    {
+      "name": "honey-ginger syrup",
+      "parent_name": ""
+    },
+    {
+      "name": "passion fruit liqueur, preferably passo\u00e3 or de kuyper",
+      "parent_name": ""
+    },
+    {
+      "name": "rhum agricole, preferably damoiseau blanc",
+      "parent_name": ""
+    },
+    {
+      "name": "rum, preferably chairman\u2019s reserve gold rum",
+      "parent_name": ""
+    },
+    {
+      "name": "ten to one caribbean white rum",
+      "parent_name": ""
+    },
+    {
+      "name": "tequila, preferably siete leguas blanco",
+      "parent_name": ""
+    },
+    {
+      "name": "vanilla liqueur, preferably giffard vanille de madagascar",
+      "parent_name": ""
+    },
+    {
+      "name": "vanilla sugar",
+      "parent_name": ""
+    },
+    {
+      "name": "vanilla vodka, preferably grey goose la vanille or absolut vanilla",
+      "parent_name": ""
+    },
+    {
+      "name": "white rum, preferably barbancourt",
+      "parent_name": ""
+    }
+  ]
+}
