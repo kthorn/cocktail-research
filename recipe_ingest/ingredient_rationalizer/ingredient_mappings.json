@@ -5025,5 +5025,11 @@
     "id": 194,
     "name": "Sugar",
     "mapped_at": "2025-11-02T16:31:38.353034"
+  },
+  "Pineapple Cube": {
+    "id": 372,
+    "name": "Pineapple Cube",
+    "mapped_at": "2025-11-08T10:16:34.241687",
+    "auto_matched": true
   }
 }

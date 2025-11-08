@@ -1,0 +1,93 @@
+{
+  "recipes": [
+    {
+      "description": "",
+      "ingredients": [
+        {
+          "amount": 1,
+          "ingredient_name": "Pineapple Cube",
+          "unit_name": "whole"
+        },
+        {
+          "amount": 3,
+          "ingredient_name": "light gold rum",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.75,
+          "ingredient_name": "Lime Juice",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.5,
+          "ingredient_name": "superfine/caster/baker's special sugar",
+          "unit_name": "ounce"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
+      "name": "Abacaxi Rica\u00e7o",
+      "source_url": "https://www.diffordsguide.com/cocktails/recipe/abacaxi-rica\u00e7o"
+    },
+    {
+      "description": "",
+      "ingredients": [
+        {
+          "amount": 5.5,
+          "ingredient_name": "hayman's london dry gin",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.75,
+          "ingredient_name": "americano bianco",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.75,
+          "ingredient_name": "Orange Juice",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 1,
+          "ingredient_name": "angostura aromatic bitters",
+          "unit_name": "dash"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
+      "name": "Abbey",
+      "source_url": "https://www.diffordsguide.com/cocktails/recipe/abbey"
+    },
+    {
+      "description": "",
+      "ingredients": [
+        {
+          "amount": 7,
+          "ingredient_name": "Mint Leaves",
+          "unit_name": ""
+        },
+        {
+          "amount": 1,
+          "ingredient_name": "cockburn's tawny eyes port",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 1,
+          "ingredient_name": "r\u00e9my martin v.s.o.p. cognac",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.25,
+          "ingredient_name": "Maraschino Liqueur",
+          "unit_name": "ounce"
+        },
+        {
+          "amount": 0.16666666666666666,
+          "ingredient_name": "monin pure cane syrup",
+          "unit_name": "ounce"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
+      "name": "A.B.C. Cocktail",
+      "source_url": "https://www.diffordsguide.com/cocktails/recipe/abc-cocktail"
+    }
+  ]
+}

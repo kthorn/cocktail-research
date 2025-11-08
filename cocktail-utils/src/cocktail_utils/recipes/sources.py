@@ -377,8 +377,10 @@ class DiffordsRecipeSource(RecipeSource):
                         ingredient_name = cells[1].get_text(strip=True)
 
                         if ingredient_name:
-                            # Normalize unicode fractions (⁄ -> /) and add space before unit
+                            # Normalize unicode fractions (⁄ -> /) and add spaces
                             amount_unit = amount_unit.replace('\u2044', '/')  # fraction slash
+                            # Add space between whole number and fraction (e.g., 21/2 -> 2 1/2)
+                            amount_unit = re.sub(r'(\d)(\d/\d)', r'\1 \2', amount_unit)
                             # Add space between number and unit if missing
                             amount_unit = re.sub(r'(\d)(oz|ml|cl|dash|drop|tsp|tbsp|cup)', r'\1 \2', amount_unit)
 

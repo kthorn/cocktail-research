@@ -1,5 +1,5 @@
 {
-  "current_ingredient": null,
+  "current_ingredient": "americano bianco",
   "processed": [
     "cocchi americano",
     "demerara syrup",
@@ -373,10 +373,11 @@
     "white rhum agricole, chilled",
     "white rhum agricole, preferably la favorite \"coeur de canne\"",
     "white rum, preferably barbancourt",
-    "white sugar"
+    "white sugar",
+    "Pineapple Cube"
   ],
   "skipped": [
     "chilled champagne, to be served on the side"
   ],
-  "last_updated": "2025-11-02T16:31:38.363718"
+  "last_updated": "2025-11-08T10:16:34.247397"
 }
