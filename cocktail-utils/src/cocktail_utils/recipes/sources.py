@@ -396,25 +396,9 @@ class DiffordsRecipeSource(RecipeSource):
                                 "unit_name": unit if unit is not None else ""
                             })
 
-            # Find instructions/method
-            instructions = ""
-            # Look for h2 with "How to make"
-            h2_method = soup.find("h2", string=lambda x: x and "how to make" in x.lower())
-            if h2_method:
-                # Get all paragraph text after the h2 until next h2
-                instruction_parts = []
-                for sibling in h2_method.find_next_siblings():
-                    if sibling.name == "h2":
-                        break
-                    if sibling.name == "p":
-                        instruction_parts.append(sibling.get_text(strip=True))
-                instructions = " ".join(instruction_parts)
-
-            # Find description
+            # Use generic instructions (same as Punch)
+            instructions = "Shake all ingredients with ice and strain into a cocktail or coupe glass"
             description = ""
-            desc_elem = soup.find("meta", attrs={"name": "description"})
-            if desc_elem:
-                description = desc_elem.get("content", "")
 
             if not ingredients:
                 print(f"Warning: No ingredients found in {html_file}")
@@ -465,47 +449,25 @@ class DiffordsRecipeSource(RecipeSource):
         try:
             soup = BeautifulSoup(html_content, "html.parser")
 
-            # Find the main recipe content area
-            recipe_content = None
-            selectors_to_try = [
-                ".recipe-container",
-                ".recipe-detail",
-                "article",
-                ".main-content",
-                '[itemtype*="Recipe"]',
-                "main",
-            ]
+            # Find the ingredients table - this is the core recipe content
+            ingredient_table = soup.find("table", class_="legacy-ingredients-table")
 
-            for selector in selectors_to_try:
-                recipe_content = soup.select_one(selector)
-                if recipe_content:
-                    break
+            if not ingredient_table:
+                # Fallback if no table found
+                return html_content
 
-            if not recipe_content:
-                recipe_content = soup.find("body") or soup
+            # Get the recipe name (h1 before the table)
+            recipe_name_tag = ingredient_table.find_previous("h1")
 
-            # Remove unwanted sections
-            unwanted_selectors = [
-                "nav",
-                "header",
-                "footer",
-                ".navigation",
-                ".sidebar",
-                ".ads",
-                ".advertisement",
-                "script",
-                "style",
-                ".social-share",
-                "iframe",
-                ".comments",
-                "img",
-                "picture",
-                "figure",
-            ]
+            # Create a minimal clean HTML with just the recipe name and ingredients table
+            recipe_content_parts = []
 
-            for selector in unwanted_selectors:
-                for element in recipe_content.select(selector):
-                    element.decompose()
+            if recipe_name_tag:
+                recipe_content_parts.append(str(recipe_name_tag))
+
+            recipe_content_parts.append(str(ingredient_table))
+
+            recipe_content = "".join(recipe_content_parts)
 
             # Create clean HTML structure
             clean_html = f"""
@@ -516,9 +478,10 @@ class DiffordsRecipeSource(RecipeSource):
                 <title>Recipe</title>
                 <style>
                     body {{ font-family: Arial, sans-serif; margin: 20px; }}
-                    h1, h2, h3 {{ color: #333; }}
-                    .ingredients-list {{ list-style-type: disc; margin-left: 20px; }}
-                    .ingredients-list li {{ margin: 5px 0; }}
+                    h1, h2, h3 {{ color: #333; margin-bottom: 15px; }}
+                    table {{ border-collapse: collapse; margin-top: 10px; }}
+                    td, th {{ padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }}
+                    tr:hover {{ background-color: #f5f5f5; }}
                 </style>
             </head>
             <body>
