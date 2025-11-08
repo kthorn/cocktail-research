@@ -143,20 +143,26 @@ class PunchRecipeSource(RecipeSource):
         """Parse Punch recipe from HTML."""
         try:
             from cocktail_utils.recipes.parsing import parse_recipe_html
+            from cocktail_utils.ingredients import parse_quantity
 
             recipe = parse_recipe_html(html_content)
             if not recipe:
                 return None
 
-            # Convert to our format
+            # Parse ingredients to extract amount, unit, and name
             ingredients = []
             for ing_str in recipe.ingredients:
                 # Parse ingredient string (e.g., "2 oz gin")
-                # For now, keep as raw strings - rationalization happens later
+                amount, unit, ingredient_name = parse_quantity(ing_str)
+
+                # If parsing failed, keep the original string as ingredient name
+                if ingredient_name is None:
+                    ingredient_name = ing_str
+
                 ingredients.append({
-                    "ingredient_name": ing_str,
-                    "amount": "",
-                    "unit_name": ""
+                    "ingredient_name": ingredient_name,
+                    "amount": amount if amount is not None else "",
+                    "unit_name": unit if unit is not None else ""
                 })
 
             return {
@@ -337,6 +343,8 @@ class DiffordsRecipeSource(RecipeSource):
     def parse_recipe_from_html(self, html_content: str, html_file: str) -> Optional[Dict]:
         """Parse Difford's recipe from HTML."""
         try:
+            from cocktail_utils.ingredients import parse_quantity
+
             soup = BeautifulSoup(html_content, "html.parser")
 
             # Find recipe name
@@ -360,12 +368,23 @@ class DiffordsRecipeSource(RecipeSource):
                         ingredient_name = cells[1].get_text(strip=True)
 
                         if ingredient_name:
-                            # For now, keep amount+unit together as a string
-                            # The rationalization step will handle parsing
+                            # Normalize unicode fractions (⁄ -> /) and add space before unit
+                            amount_unit = amount_unit.replace('\u2044', '/')  # fraction slash
+                            # Add space between number and unit if missing
+                            amount_unit = re.sub(r'(\d)(oz|ml|cl|dash|drop|tsp|tbsp|cup)', r'\1 \2', amount_unit)
+
+                            # Combine and parse to extract amount, unit, and name
+                            full_ingredient = f"{amount_unit} {ingredient_name}"
+                            amount, unit, parsed_name = parse_quantity(full_ingredient)
+
+                            # If parsing failed, use the ingredient name from the second cell
+                            if parsed_name is None:
+                                parsed_name = ingredient_name
+
                             ingredients.append({
-                                "ingredient_name": f"{amount_unit} {ingredient_name}",
-                                "amount": "",
-                                "unit_name": ""
+                                "ingredient_name": parsed_name,
+                                "amount": amount if amount is not None else "",
+                                "unit_name": unit if unit is not None else ""
                             })
 
             # Find instructions/method
