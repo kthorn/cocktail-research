@@ -347,8 +347,17 @@ class DiffordsRecipeSource(RecipeSource):
 
             soup = BeautifulSoup(html_content, "html.parser")
 
-            # Find recipe name
-            name_tag = soup.find("h1")
+            # Find recipe name - use the h1 closest to the ingredients table
+            # (Diffords pages have multiple h1s, first is often a banner/promo)
+            ingredient_table = soup.find("table", class_="legacy-ingredients-table")
+            if ingredient_table:
+                # Find the nearest h1 before the table
+                name_tag = ingredient_table.find_previous("h1")
+            else:
+                # Fallback: try the last h1 on the page
+                all_h1s = soup.find_all("h1")
+                name_tag = all_h1s[-1] if all_h1s else None
+
             if not name_tag:
                 return None
 
