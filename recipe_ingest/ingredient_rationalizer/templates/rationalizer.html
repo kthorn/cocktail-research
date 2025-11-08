@@ -308,6 +308,16 @@
             
             <div class="ingredient-info">
                 <div class="ingredient-name">{{ current.ingredient_name }}</div>
+                {% if current.all_variations %}
+                <div class="recipes-using">
+                    <strong>⚠️ This will map {{ current.all_variations|length }} variation(s):</strong>
+                    <ul class="recipes-list">
+                        {% for variation in current.all_variations %}
+                        <li>{{ variation }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
                 {% if current.recipes_using %}
                 <div class="recipes-using">
                     Used in recipes:

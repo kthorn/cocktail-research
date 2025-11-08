@@ -15,11 +15,45 @@ from typing import Dict, List
 
 app = Flask(__name__)
 
+
+def normalize_string(text: str) -> str:
+    """Normalize string by replacing various quote/apostrophe characters with standard ASCII
+    and removing the word 'fresh'"""
+    # Replace various apostrophe/single quote characters with standard apostrophe
+    text = text.replace("'", "'")  # Right single quotation mark
+    text = text.replace("'", "'")  # Left single quotation mark
+    text = text.replace("ʼ", "'")  # Modifier letter apostrophe
+    text = text.replace("`", "'")  # Grave accent (sometimes used as apostrophe)
+
+    # Replace various double quote characters with standard double quote
+    text = text.replace(
+        """, '"')  # Left double quotation mark
+    text = text.replace(""",
+        '"',
+    )  # Right double quotation mark
+    text = text.replace("„", '"')  # Double low-9 quotation mark
+
+    # Remove the word "fresh" in common patterns
+    # Handle ", fresh" or "(fresh)" at the end
+    text = text.replace(", fresh", "")
+    text = text.replace(" (fresh)", "")
+    text = text.replace("(fresh)", "")
+
+    # Handle "fresh " at the beginning
+    if text.startswith("fresh "):
+        text = text[6:]  # Remove "fresh " (6 characters)
+
+    # Clean up any extra spaces
+    text = " ".join(text.split())
+
+    return text
+
+
 # Configuration
 VALIDATED_RECIPES_FILE = (
     "/home/kurtt/cocktail-research/input_data/validated-recipes.json"
 )
-INGREDIENT_MAPPINGS_FILE = "ingredient_mappings.json"
+INGREDIENT_MAPPINGS_FILE = "/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json"
 PROGRESS_FILE = "rationalization_progress.json"
 INGREDIENTS_API_URL = (
     "https://a5crx5o72d.execute-api.us-east-1.amazonaws.com/api/ingredients"
@@ -67,8 +101,10 @@ class IngredientRationalizer:
             self.api_ingredients_by_id = {
                 ing["id"]: ing for ing in self.api_ingredients
             }
+            # Normalize ingredient names for matching (handle quotes/apostrophes)
             self.api_ingredients_by_name = {
-                ing["name"].lower(): ing for ing in self.api_ingredients
+                normalize_string(ing["name"].lower()): ing
+                for ing in self.api_ingredients
             }
 
             print(f"Loaded {len(self.api_ingredients)} ingredients from API")
@@ -141,26 +177,56 @@ class IngredientRationalizer:
     def extract_unique_ingredients(self):
         """Extract all unique ingredient names from recipes"""
         unique_ingredients = set()
+        # Track mapping from normalized name to all original variations
+        self.normalized_to_originals = {}
+
         for recipe in self.recipes:
             for ingredient in recipe.get("ingredients", []):
                 ingredient_name = ingredient.get("ingredient_name", "").strip()
                 if ingredient_name:
                     unique_ingredients.add(ingredient_name)
 
+                    # Track normalized version and its variations
+                    normalized = normalize_string(ingredient_name.lower())
+                    if normalized not in self.normalized_to_originals:
+                        self.normalized_to_originals[normalized] = []
+                    if ingredient_name not in self.normalized_to_originals[normalized]:
+                        self.normalized_to_originals[normalized].append(ingredient_name)
+
         # Sort alphabetically for easier processing
         self.unique_ingredients = sorted(list(unique_ingredients))
 
-        # Filter to only unmapped ingredients
-        # Exclude ingredients that have mappings OR are marked as new ingredients
-        self.unmapped_ingredients = [
-            ing
-            for ing in self.unique_ingredients
-            if ing not in self.mappings
-            and ing not in getattr(self, "new_ingredients", [])
-        ]
+        # Filter to only unmapped ingredients using normalized names
+        # An ingredient is considered mapped if ANY of its variations are mapped
+        self.unmapped_ingredients = []
+        for ing in self.unique_ingredients:
+            normalized = normalize_string(ing.lower())
+
+            # Check if any variation of this normalized ingredient is already mapped
+            already_mapped = any(
+                variation in self.mappings
+                for variation in self.normalized_to_originals.get(normalized, [])
+            )
+
+            # Check if normalized form is in new_ingredients
+            in_new_ingredients = any(
+                variation in getattr(self, "new_ingredients", [])
+                for variation in self.normalized_to_originals.get(normalized, [])
+            )
+
+            if not already_mapped and not in_new_ingredients:
+                self.unmapped_ingredients.append(ing)
 
         print(f"Found {len(self.unique_ingredients)} unique ingredients")
         print(f"{len(self.unmapped_ingredients)} need mapping")
+
+        # Show how many unique normalized ingredients we have
+        normalized_count = len(
+            set(normalize_string(ing.lower()) for ing in self.unique_ingredients)
+        )
+        print(
+            f"{normalized_count} unique after normalization (removing duplicates like 'fresh lemon juice' vs 'lemon juice')"
+        )
 
     def auto_match_exact_ingredients(self):
         """Automatically map ingredients that have exact matches in the API"""
@@ -178,11 +244,14 @@ class IngredientRationalizer:
             if ingredient_name in self.mappings:
                 continue
 
-            ingredient_lower = ingredient_name.lower()
+            # Normalize ingredient name for matching (handle quotes/apostrophes)
+            ingredient_lower = normalize_string(ingredient_name.lower())
             matched_ingredient = None
 
             # Debug logging for specific ingredients
-            if ingredient_lower in [ing.lower() for ing in debug_ingredients]:
+            if ingredient_lower in [
+                normalize_string(ing.lower()) for ing in debug_ingredients
+            ]:
                 print(f"\nDEBUG: Checking '{ingredient_name}'")
                 # Check if any API ingredient contains this string
                 partial_matches = [
@@ -195,7 +264,7 @@ class IngredientRationalizer:
                 else:
                     print(f"  No partial matches found")
 
-            # Check for exact match in API ingredients
+            # Check for exact match in API ingredients (after normalization)
             if ingredient_lower in self.api_ingredients_by_name:
                 matched_ingredient = self.api_ingredients_by_name[ingredient_lower]
 
@@ -268,10 +337,17 @@ class IngredientRationalizer:
         # Find suggested matches based on string similarity
         suggestions = self.find_suggestions(current_ingredient)
 
+        # Get all variations of this ingredient
+        normalized = normalize_string(current_ingredient.lower())
+        all_variations = self.normalized_to_originals.get(
+            normalized, [current_ingredient]
+        )
+
         return {
             "index": current_index,
             "total": len(self.unmapped_ingredients),
             "ingredient_name": current_ingredient,
+            "all_variations": all_variations if len(all_variations) > 1 else None,
             "suggestions": suggestions,
             "recipes_using": self.get_recipes_using_ingredient(current_ingredient),
         }
@@ -281,7 +357,8 @@ class IngredientRationalizer:
     ) -> List[Dict]:
         """Find similar ingredients from API based on string similarity"""
         suggestions = []
-        ingredient_lower = ingredient_name.lower()
+        # Normalize ingredient name for matching (handle quotes/apostrophes)
+        ingredient_lower = normalize_string(ingredient_name.lower())
 
         # Direct match check first
         if ingredient_lower in self.api_ingredients_by_name:
@@ -298,7 +375,8 @@ class IngredientRationalizer:
 
         # Find similar matches
         for api_ing in self.api_ingredients:
-            api_name_lower = api_ing["name"].lower()
+            # Normalize API ingredient name for matching
+            api_name_lower = normalize_string(api_ing["name"].lower())
 
             # Skip if already added as exact match
             if api_name_lower == ingredient_lower:
@@ -343,8 +421,13 @@ class IngredientRationalizer:
         return recipes_using[:5]  # Limit to first 5 for display
 
     def map_ingredient(self, original_name: str, mapping_data: Dict):
-        """Map an ingredient to API ingredient or mark as new"""
+        """Map an ingredient to API ingredient or mark as new
+        This will automatically map all variations of the ingredient"""
         mapping_type = mapping_data.get("type")
+
+        # Get all variations of this ingredient (e.g., "lemon juice" and "fresh lemon juice")
+        normalized = normalize_string(original_name.lower())
+        all_variations = self.normalized_to_originals.get(normalized, [original_name])
 
         if mapping_type == "existing":
             # Map to existing API ingredient
@@ -358,24 +441,38 @@ class IngredientRationalizer:
 
                 if ingredient_id in self.api_ingredients_by_id:
                     api_ingredient = self.api_ingredients_by_id[ingredient_id]
-                    self.mappings[original_name] = {
+
+                    # Map ALL variations of this ingredient
+                    mapping_entry = {
                         "id": ingredient_id,
                         "name": api_ingredient["name"],
                         "mapped_at": datetime.now().isoformat(),
                     }
+                    for variation in all_variations:
+                        self.mappings[variation] = mapping_entry.copy()
+
+                    print(
+                        f"Mapped {len(all_variations)} variation(s): {all_variations}"
+                    )
 
         elif mapping_type == "new":
             # Track new ingredients in memory only (not in progress file)
             if not hasattr(self, "new_ingredients"):
                 self.new_ingredients = []
-            if original_name not in self.new_ingredients:
-                self.new_ingredients.append(original_name)
+
+            # Add all variations to new ingredients
+            for variation in all_variations:
+                if variation not in self.new_ingredients:
+                    self.new_ingredients.append(variation)
+
             # Export new ingredients to JSON file
             self.export_new_ingredients()
+            print(f"Marked {len(all_variations)} variation(s) as new: {all_variations}")
 
         elif mapping_type == "skip":
             # Skip this ingredient for now
-            self.progress["skipped"].append(original_name)
+            if original_name not in self.progress["skipped"]:
+                self.progress["skipped"].append(original_name)
 
         # Update progress - add to processed list
         if original_name not in self.progress["processed"]:
@@ -538,13 +635,14 @@ def reset():
 @app.route("/search_ingredients")
 def search_ingredients():
     """Search API ingredients"""
-    query = request.args.get("q", "").lower()
+    query = normalize_string(request.args.get("q", "").lower())
     if not query:
         return jsonify([])
 
     results = []
     for ing in rationalizer.api_ingredients:
-        if query in ing["name"].lower():
+        # Normalize API ingredient name for search
+        if query in normalize_string(ing["name"].lower()):
             results.append(
                 {"id": ing["id"], "name": ing["name"], "path": ing.get("path", "")}
             )

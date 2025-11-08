@@ -21,7 +21,9 @@ import pandas as pd
 import requests
 
 
-def find_most_recent_raw_ingredients_file(data_dir="../data"):
+def find_most_recent_raw_ingredients_file(
+    data_dir="/home/kurtt/cocktail-research/data",
+):
     """Find the most recent raw ingredients parquet file based on timestamp."""
     pattern = os.path.join(data_dir, "raw_recipe_ingredients_*.parquet")
     files = glob.glob(pattern)
@@ -58,10 +60,10 @@ def find_most_recent_raw_ingredients_file(data_dir="../data"):
 class BatchRecipeRationalizer:
     def __init__(
         self,
-        db_path="../data/recipes.db",
-        mappings_file="ingredient_rationalizer/ingredient_mappings.json",
-        validation_log_file="../data/validation_log.json",
-        output_dir="../output",
+        db_path="/home/kurtt/cocktail-research/data/recipes.db",
+        mappings_file="/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
+        validation_log_file="/home/kurtt/cocktail-research/data/validation_log.json",
+        output_dir="/home/kurtt/cocktail-research/output",
         batch_size=100,
     ):
         self.db_path = db_path
@@ -183,9 +185,7 @@ class BatchRecipeRationalizer:
 
         return ingredients
 
-    def can_rationalize_recipe(
-        self, ingredients: List[Dict]
-    ) -> Tuple[bool, List[str]]:
+    def can_rationalize_recipe(self, ingredients: List[Dict]) -> Tuple[bool, List[str]]:
         """
         Check if all ingredients in a recipe can be rationalized.
 
@@ -379,25 +379,25 @@ def main():
     parser.add_argument(
         "--db-path",
         type=str,
-        default="../data/recipes.db",
+        default="/home/kurtt/cocktail-research/data/recipes.db",
         help="Path to the database file (default: ../data/recipes.db)",
     )
     parser.add_argument(
         "--mappings-file",
         type=str,
-        default="ingredient_rationalizer/ingredient_mappings.json",
+        default="/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
         help="Path to ingredient mappings file (default: ingredient_rationalizer/ingredient_mappings.json)",
     )
     parser.add_argument(
         "--validation-log",
         type=str,
-        default="../data/validation_log.json",
+        default="/home/kurtt/cocktail-research/data/validation_log.json",
         help="Path to validation log file (default: ../data/validation_log.json)",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="../output",
+        default="/home/kurtt/cocktail-research/output",
         help="Directory to write batch files (default: ../output)",
     )
     parser.add_argument(
