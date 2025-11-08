@@ -2,71 +2,42 @@
 """
 Batch recipe rationalization script.
 
-Processes recipes from the database and automatically identifies those that can be
+Processes recipes from HTML files and automatically identifies those that can be
 fully rationalized (all ingredients mapped) without human intervention. Creates
 batch files for upload and tracks progress in validation_log.json.
+
+Usage:
+    python batch_rationalize_recipes.py --source punch
+    python batch_rationalize_recipes.py --source diffords --batch-size 50
 """
 
 import argparse
-import glob
 import json
 import os
-import re
-import sqlite3
-from datetime import datetime
-from pathlib import Path
+import sys
 from typing import Dict, List, Tuple
 
-import pandas as pd
-import requests
+# Add cocktail-utils to path
+sys.path.insert(0, "/home/kurtt/cocktail-research/cocktail-utils/src")
 
-
-def find_most_recent_raw_ingredients_file(
-    data_dir="/home/kurtt/cocktail-research/data",
-):
-    """Find the most recent raw ingredients parquet file based on timestamp."""
-    pattern = os.path.join(data_dir, "raw_recipe_ingredients_*.parquet")
-    files = glob.glob(pattern)
-
-    if not files:
-        raise FileNotFoundError(
-            f"No raw ingredients files found matching pattern: {pattern}"
-        )
-
-    # Extract timestamps and find the most recent
-    file_timestamps = []
-    for file_path in files:
-        filename = os.path.basename(file_path)
-        match = re.search(r"raw_recipe_ingredients_(\d{8}_\d{6})\.parquet", filename)
-        if match:
-            timestamp_str = match.group(1)
-            try:
-                timestamp = datetime.strptime(timestamp_str, "%Y%m%d_%H%M%S")
-                file_timestamps.append((timestamp, file_path))
-            except ValueError:
-                print(f"Warning: Could not parse timestamp from {filename}")
-                continue
-
-    if not file_timestamps:
-        raise ValueError("No valid timestamp files found")
-
-    file_timestamps.sort(key=lambda x: x[0], reverse=True)
-    most_recent_file = file_timestamps[0][1]
-
-    print(f"Using most recent raw ingredients file: {most_recent_file}")
-    return most_recent_file
+from cocktail_utils.recipes import get_recipe_source
 
 
 class BatchRecipeRationalizer:
     def __init__(
         self,
-        db_path="/home/kurtt/cocktail-research/data/recipes.db",
-        mappings_file="/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
-        validation_log_file="/home/kurtt/cocktail-research/data/validation_log.json",
-        output_dir="/home/kurtt/cocktail-research/output",
-        batch_size=100,
+        source_name: str,
+        mappings_file: str = "/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
+        validation_log_file: str = "/home/kurtt/cocktail-research/data/validation_log.json",
+        output_dir: str = "/home/kurtt/cocktail-research/output",
+        batch_size: int = 100,
     ):
-        self.db_path = db_path
+        self.source_name = source_name
+        self.recipe_source = get_recipe_source(source_name)
+
+        if not self.recipe_source:
+            raise ValueError(f"Unknown recipe source: {source_name}")
+
         self.mappings_file = mappings_file
         self.validation_log_file = validation_log_file
         self.output_dir = output_dir
@@ -78,8 +49,7 @@ class BatchRecipeRationalizer:
         # Load data
         self.load_ingredient_mappings()
         self.load_validation_log()
-        self.load_raw_ingredients_data()
-        self.load_database_recipes()
+        self.load_html_files()
 
     def load_ingredient_mappings(self):
         """Load ingredient mappings from file."""
@@ -99,62 +69,47 @@ class BatchRecipeRationalizer:
         """Load validation progress log."""
         if os.path.exists(self.validation_log_file):
             with open(self.validation_log_file, "r") as f:
-                self.validation_log = json.load(f)
+                all_progress = json.load(f)
+
+            # Get progress for this source
+            if self.source_name in all_progress:
+                self.validation_log = all_progress[self.source_name]
+            else:
+                # Initialize empty progress for new source
+                self.validation_log = {
+                    "current_index": 0,
+                    "accepted": [],
+                    "rejected": [],
+                    "auto_ingested": [],
+                    "needs_review": [],
+                }
+                all_progress[self.source_name] = self.validation_log
+                with open(self.validation_log_file, "w") as f:
+                    json.dump(all_progress, f, indent=2)
         else:
             self.validation_log = {
                 "current_index": 0,
-                "reviewed": [],
                 "accepted": [],
                 "rejected": [],
+                "auto_ingested": [],
+                "needs_review": [],
             }
-
-        # Ensure auto_ingested field exists
-        if "auto_ingested" not in self.validation_log:
-            self.validation_log["auto_ingested"] = []
-
-        # Ensure needs_review field exists
-        if "needs_review" not in self.validation_log:
-            self.validation_log["needs_review"] = []
 
     def save_validation_log(self):
         """Save validation progress log."""
+        # Load entire file, update our source, save back
+        with open(self.validation_log_file, "r") as f:
+            all_progress = json.load(f)
+
+        all_progress[self.source_name] = self.validation_log
+
         with open(self.validation_log_file, "w") as f:
-            json.dump(self.validation_log, f, indent=2)
+            json.dump(all_progress, f, indent=2)
 
-    def load_raw_ingredients_data(self):
-        """Load raw ingredients data from parquet file."""
-        try:
-            raw_ingredients_file = find_most_recent_raw_ingredients_file()
-            self.raw_ingredients_df = pd.read_parquet(raw_ingredients_file)
-            print(
-                f"Loaded raw ingredients data: {self.raw_ingredients_df.shape[0]} rows"
-            )
-        except Exception as e:
-            print(f"Error loading raw ingredients data: {e}")
-            self.raw_ingredients_df = None
-            raise
-
-    def load_database_recipes(self):
-        """Load recipe metadata from database."""
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            cursor.execute("SELECT id, name, source_file FROM recipe")
-
-            self.recipes = {}
-            for row in cursor.fetchall():
-                recipe_id, name, source_file = row
-                self.recipes[recipe_id] = {
-                    "id": recipe_id,
-                    "name": name,
-                    "source_file": source_file,
-                }
-            conn.close()
-            print(f"Loaded {len(self.recipes)} recipes from database")
-        except Exception as e:
-            print(f"Error loading recipes from database: {e}")
-            self.recipes = {}
-            raise
+    def load_html_files(self):
+        """Load HTML files from recipe source."""
+        self.html_files = self.recipe_source.find_html_files()
+        print(f"Loaded {len(self.html_files)} HTML files for {self.source_name}")
 
     def is_recipe_already_processed(self, recipe_name: str) -> bool:
         """Check if recipe has already been processed."""
@@ -164,37 +119,39 @@ class BatchRecipeRationalizer:
             or recipe_name in self.validation_log.get("auto_ingested", [])
         )
 
-    def get_recipe_ingredients(self, recipe_id: int) -> List[Dict]:
-        """Get ingredients for a recipe from parquet data."""
-        if self.raw_ingredients_df is None:
-            return []
+    def parse_recipe_from_html(self, html_file: str) -> Dict:
+        """Parse recipe from HTML file.
 
-        recipe_ingredients = self.raw_ingredients_df[
-            self.raw_ingredients_df["recipe_id"] == recipe_id
-        ]
+        Args:
+            html_file: Path to HTML file
 
-        ingredients = []
-        for _, row in recipe_ingredients.iterrows():
-            ingredients.append(
-                {
-                    "ingredient_name": row["ingredient_name"],
-                    "amount": row.get("original_amount", 0),
-                    "unit_name": row.get("original_unit", ""),
-                }
-            )
+        Returns:
+            Parsed recipe dict or None if parsing fails
+        """
+        try:
+            with open(html_file, "r", encoding="utf-8") as f:
+                html_content = f.read()
 
-        return ingredients
+            return self.recipe_source.parse_recipe_from_html(html_content, html_file)
+        except Exception as e:
+            print(f"Error reading/parsing {html_file}: {e}")
+            return None
 
-    def can_rationalize_recipe(self, ingredients: List[Dict]) -> Tuple[bool, List[str]]:
+    def can_rationalize_recipe(
+        self, parsed_recipe: Dict
+    ) -> Tuple[bool, List[str]]:
         """
         Check if all ingredients in a recipe can be rationalized.
+
+        Args:
+            parsed_recipe: Parsed recipe dict with ingredients
 
         Returns:
             (can_rationalize, unmapped_ingredients)
         """
         unmapped = []
 
-        for ingredient in ingredients:
+        for ingredient in parsed_recipe["ingredients"]:
             ingredient_name = ingredient["ingredient_name"].strip()
             if not ingredient_name:
                 continue
@@ -205,56 +162,40 @@ class BatchRecipeRationalizer:
 
         return len(unmapped) == 0, unmapped
 
-    def rationalize_ingredients(self, ingredients: List[Dict]) -> List[Dict]:
-        """Replace ingredient names with mapped API names."""
-        rationalized = []
+    def rationalize_recipe(self, parsed_recipe: Dict) -> Dict:
+        """Rationalize ingredients in a parsed recipe.
 
-        for ingredient in ingredients:
-            rationalized_ing = ingredient.copy()
+        Args:
+            parsed_recipe: Parsed recipe dict
+
+        Returns:
+            Rationalized recipe dict ready for output
+        """
+        rationalized_ingredients = []
+
+        for ingredient in parsed_recipe["ingredients"]:
             ingredient_name = ingredient["ingredient_name"].strip()
 
             # Replace with mapped name if available
             if ingredient_name in self.mappings:
                 mapping = self.mappings[ingredient_name]
-                rationalized_ing["ingredient_name"] = mapping.get("name")
+                rationalized_ingredients.append({
+                    "ingredient_name": mapping.get("name", ingredient_name),
+                    "amount": ingredient.get("amount", ""),
+                    "unit_name": ingredient.get("unit_name", ""),
+                })
+            else:
+                rationalized_ingredients.append(ingredient)
 
-            rationalized.append(rationalized_ing)
-
-        return rationalized
-
-    def derive_source_url(self, recipe_name: str) -> str:
-        """Derive Punch source URL from recipe name."""
-        clean_name = recipe_name.lower()
-
-        # Replace unicode characters
-        unicode_replacements = {
-            "\u2019": "'",
-            "\u2018": "'",
-            "\u201c": '"',
-            "\u201d": '"',
-            "\u00a0": " ",
-        }
-        for unicode_char, replacement in unicode_replacements.items():
-            clean_name = clean_name.replace(unicode_char, replacement)
-
-        # Remove special characters
-        clean_name = "".join(c for c in clean_name if c.isalnum() or c in " -&")
-        clean_name = clean_name.replace(" ", "-").replace("&", "and")
-        clean_name = "-".join(filter(None, clean_name.split("-")))
-
-        return f"https://punchdrink.com/recipes/{clean_name}/"
-
-    def format_recipe_for_output(self, recipe_id: int, recipe_name: str) -> Dict:
-        """Format recipe in the output format."""
-        ingredients = self.get_recipe_ingredients(recipe_id)
-        rationalized_ingredients = self.rationalize_ingredients(ingredients)
+        # Derive source URL
+        source_url = self.recipe_source.derive_source_url(parsed_recipe["name"])
 
         return {
-            "name": recipe_name,
-            "description": "",
-            "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
+            "name": parsed_recipe["name"],
+            "description": parsed_recipe.get("description", ""),
+            "instructions": parsed_recipe.get("instructions", ""),
             "ingredients": rationalized_ingredients,
-            "source_url": self.derive_source_url(recipe_name),
+            "source_url": source_url,
         }
 
     def process_recipes(self):
@@ -262,29 +203,36 @@ class BatchRecipeRationalizer:
         auto_ingested = []
         needs_review = []
 
-        print("\nProcessing recipes...")
+        print("\\nProcessing recipes...")
 
-        for recipe_id, recipe_data in self.recipes.items():
-            recipe_name = recipe_data["name"]
+        for html_file in self.html_files:
+            # Parse recipe from HTML
+            parsed_recipe = self.parse_recipe_from_html(html_file)
+
+            if not parsed_recipe:
+                print(f"  Skipping {html_file} - parsing failed")
+                continue
+
+            recipe_name = parsed_recipe["name"]
 
             # Skip if already processed
             if self.is_recipe_already_processed(recipe_name):
                 continue
 
             # Get ingredients
-            ingredients = self.get_recipe_ingredients(recipe_id)
+            ingredients = parsed_recipe["ingredients"]
 
             if not ingredients:
                 print(f"  Skipping '{recipe_name}' - no ingredients found")
                 continue
 
             # Check if all ingredients can be rationalized
-            can_rationalize, unmapped = self.can_rationalize_recipe(ingredients)
+            can_rationalize, unmapped = self.can_rationalize_recipe(parsed_recipe)
 
             if can_rationalize:
                 # Add to auto-ingest batch
-                formatted_recipe = self.format_recipe_for_output(recipe_id, recipe_name)
-                auto_ingested.append(formatted_recipe)
+                rationalized_recipe = self.rationalize_recipe(parsed_recipe)
+                auto_ingested.append(rationalized_recipe)
                 self.validation_log["auto_ingested"].append(recipe_name)
                 print(f"  ✓ Auto-ingestible: {recipe_name}")
             else:
@@ -301,13 +249,13 @@ class BatchRecipeRationalizer:
     def create_batch_files(self, recipes: List[Dict]):
         """Create batch files with up to batch_size recipes each."""
         if not recipes:
-            print("\nNo recipes to batch.")
+            print("\\nNo recipes to batch.")
             return []
 
         batch_files = []
         total_batches = (len(recipes) + self.batch_size - 1) // self.batch_size
 
-        print(f"\nCreating {total_batches} batch file(s)...")
+        print(f"\\nCreating {total_batches} batch file(s)...")
 
         for i in range(0, len(recipes), self.batch_size):
             batch_num = (i // self.batch_size) + 1
@@ -315,8 +263,8 @@ class BatchRecipeRationalizer:
 
             batch_data = {"recipes": batch}
 
-            # Create filename with zero-padded batch number
-            filename = f"rationalized-recipes-batch-{batch_num:03d}.json"
+            # Create filename with source and zero-padded batch number
+            filename = f"rationalized-recipes-{self.source_name}-batch-{batch_num:03d}.json"
             filepath = os.path.join(self.output_dir, filename)
 
             with open(filepath, "w") as f:
@@ -330,7 +278,7 @@ class BatchRecipeRationalizer:
     def run(self):
         """Run the batch rationalization process."""
         print("=" * 70)
-        print("Batch Recipe Rationalization")
+        print(f"Batch Recipe Rationalization - {self.source_name.upper()}")
         print("=" * 70)
 
         # Process recipes
@@ -346,7 +294,7 @@ class BatchRecipeRationalizer:
         batch_files = self.create_batch_files(auto_ingested)
 
         # Print summary
-        print("\n" + "=" * 70)
+        print("\\n" + "=" * 70)
         print("Summary")
         print("=" * 70)
         print(f"Auto-ingested recipes: {len(auto_ingested)}")
@@ -354,7 +302,7 @@ class BatchRecipeRationalizer:
         print(f"Batch files created: {len(batch_files)}")
 
         if needs_review:
-            print("\nTop unmapped ingredients:")
+            print("\\nTop unmapped ingredients:")
             # Count frequency of unmapped ingredients
             unmapped_counts = {}
             for item in needs_review:
@@ -377,28 +325,29 @@ def main():
         description="Batch rationalize recipes for auto-ingestion"
     )
     parser.add_argument(
-        "--db-path",
+        "--source",
         type=str,
-        default="/home/kurtt/cocktail-research/data/recipes.db",
-        help="Path to the database file (default: ../data/recipes.db)",
+        required=True,
+        choices=["punch", "diffords"],
+        help="Recipe source to process (punch or diffords)",
     )
     parser.add_argument(
         "--mappings-file",
         type=str,
         default="/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
-        help="Path to ingredient mappings file (default: ingredient_rationalizer/ingredient_mappings.json)",
+        help="Path to ingredient mappings file",
     )
     parser.add_argument(
         "--validation-log",
         type=str,
         default="/home/kurtt/cocktail-research/data/validation_log.json",
-        help="Path to validation log file (default: ../data/validation_log.json)",
+        help="Path to validation log file",
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         default="/home/kurtt/cocktail-research/output",
-        help="Directory to write batch files (default: ../output)",
+        help="Directory to write batch files",
     )
     parser.add_argument(
         "--batch-size",
@@ -411,7 +360,7 @@ def main():
 
     try:
         rationalizer = BatchRecipeRationalizer(
-            db_path=args.db_path,
+            source_name=args.source,
             mappings_file=args.mappings_file,
             validation_log_file=args.validation_log,
             output_dir=args.output_dir,
@@ -421,7 +370,7 @@ def main():
         rationalizer.run()
 
     except Exception as e:
-        print(f"\nError: {e}")
+        print(f"\\nError: {e}")
         raise
 
 
