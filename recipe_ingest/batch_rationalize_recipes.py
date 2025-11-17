@@ -187,16 +187,25 @@ class BatchRecipeRationalizer:
             else:
                 rationalized_ingredients.append(ingredient)
 
-        # Derive source URL
-        source_url = self.recipe_source.derive_source_url(parsed_recipe["name"])
+        # Use extracted source_url if available, otherwise derive it
+        if "source_url" in parsed_recipe and parsed_recipe["source_url"]:
+            source_url = parsed_recipe["source_url"]
+        else:
+            source_url = self.recipe_source.derive_source_url(parsed_recipe["name"])
 
-        return {
+        result = {
             "name": parsed_recipe["name"],
             "description": parsed_recipe.get("description", ""),
-            "instructions": parsed_recipe.get("instructions", ""),
+            "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
             "ingredients": rationalized_ingredients,
             "source_url": source_url,
         }
+
+        # Include source field if present
+        if "source" in parsed_recipe:
+            result["source"] = parsed_recipe["source"]
+
+        return result
 
     def process_recipes(self):
         """Process all recipes and create batches."""

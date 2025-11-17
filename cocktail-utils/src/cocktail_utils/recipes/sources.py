@@ -347,6 +347,10 @@ class DiffordsRecipeSource(RecipeSource):
 
             soup = BeautifulSoup(html_content, "html.parser")
 
+            # Extract canonical URL from <link rel="canonical"> in <head>
+            canonical_link = soup.find("link", rel="canonical")
+            source_url = canonical_link.get("href") if canonical_link else None
+
             # Find recipe name - use the h1 closest to the ingredients table
             # (Diffords pages have multiple h1s, first is often a banner/promo)
             ingredient_table = soup.find("table", class_="legacy-ingredients-table")
@@ -385,8 +389,9 @@ class DiffordsRecipeSource(RecipeSource):
                             amount_unit = re.sub(r'(\d)(oz|ml|cl|dash|drop|tsp|tbsp|cup)', r'\1 \2', amount_unit)
 
                             # Combine and parse to extract amount, unit, and name
+                            # Preserve parentheses for Diffords to retain context like "(or substitute X)"
                             full_ingredient = f"{amount_unit} {ingredient_name}"
-                            amount, unit, parsed_name = parse_quantity(full_ingredient)
+                            amount, unit, parsed_name = parse_quantity(full_ingredient, preserve_parentheses=True)
 
                             # If parsing failed, use the ingredient name from the second cell
                             if parsed_name is None:
@@ -398,20 +403,56 @@ class DiffordsRecipeSource(RecipeSource):
                                 "unit_name": unit if unit is not None else ""
                             })
 
-            # Use generic instructions (same as Punch)
-            instructions = "Shake all ingredients with ice and strain into a cocktail or coupe glass"
-            description = ""
+            # Extract instructions from "How to make:" section
+            instructions = ""
+            how_to_make_header = soup.find('h2', string='How to make:')
+            if how_to_make_header:
+                content = how_to_make_header.find_next_sibling()
+                if content:
+                    instructions = content.get_text(strip=True)
+
+            # If no instructions found, use generic fallback
+            if not instructions:
+                instructions = "Shake all ingredients with ice and strain into a cocktail or coupe glass"
+
+            # Extract description from "Review:" and "History:" sections
+            description_parts = []
+
+            review_header = soup.find('h2', string='Review:')
+            if review_header:
+                content = review_header.find_next_sibling()
+                if content:
+                    review_text = content.get_text(strip=True)
+                    if review_text:
+                        description_parts.append(review_text)
+
+            history_header = soup.find('h2', string='History:')
+            if history_header:
+                content = history_header.find_next_sibling()
+                if content:
+                    history_text = content.get_text(strip=True)
+                    if history_text:
+                        description_parts.append(history_text)
+
+            description = " ".join(description_parts)
 
             if not ingredients:
                 print(f"Warning: No ingredients found in {html_file}")
                 return None
 
-            return {
+            result = {
                 "name": name,
                 "ingredients": ingredients,
                 "instructions": instructions,
                 "description": description,
+                "source": "Difford's Guide",
             }
+
+            # Include source_url if we found it
+            if source_url:
+                result["source_url"] = source_url
+
+            return result
 
         except Exception as e:
             print(f"Error parsing Difford's recipe from {html_file}: {e}")
@@ -461,13 +502,37 @@ class DiffordsRecipeSource(RecipeSource):
             # Get the recipe name (h1 before the table)
             recipe_name_tag = ingredient_table.find_previous("h1")
 
-            # Create a minimal clean HTML with just the recipe name and ingredients table
+            # Create a minimal clean HTML with recipe name, ingredients, and directions/description
             recipe_content_parts = []
 
             if recipe_name_tag:
                 recipe_content_parts.append(str(recipe_name_tag))
 
             recipe_content_parts.append(str(ingredient_table))
+
+            # Add "How to make:" section
+            how_to_make_header = soup.find('h2', string='How to make:')
+            if how_to_make_header:
+                recipe_content_parts.append(str(how_to_make_header))
+                content = how_to_make_header.find_next_sibling()
+                if content:
+                    recipe_content_parts.append(str(content))
+
+            # Add "Review:" section
+            review_header = soup.find('h2', string='Review:')
+            if review_header:
+                recipe_content_parts.append(str(review_header))
+                content = review_header.find_next_sibling()
+                if content:
+                    recipe_content_parts.append(str(content))
+
+            # Add "History:" section
+            history_header = soup.find('h2', string='History:')
+            if history_header:
+                recipe_content_parts.append(str(history_header))
+                content = history_header.find_next_sibling()
+                if content:
+                    recipe_content_parts.append(str(content))
 
             recipe_content = "".join(recipe_content_parts)
 
@@ -480,10 +545,11 @@ class DiffordsRecipeSource(RecipeSource):
                 <title>Recipe</title>
                 <style>
                     body {{ font-family: Arial, sans-serif; margin: 20px; }}
-                    h1, h2, h3 {{ color: #333; margin-bottom: 15px; }}
-                    table {{ border-collapse: collapse; margin-top: 10px; }}
+                    h1, h2, h3 {{ color: #333; margin-bottom: 10px; margin-top: 20px; }}
+                    table {{ border-collapse: collapse; margin-top: 10px; margin-bottom: 20px; }}
                     td, th {{ padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }}
                     tr:hover {{ background-color: #f5f5f5; }}
+                    p {{ margin: 10px 0; line-height: 1.5; }}
                 </style>
             </head>
             <body>

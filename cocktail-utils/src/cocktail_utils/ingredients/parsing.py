@@ -19,7 +19,7 @@ UNICODE_FRAC = {"¼": ".25", "½": ".5", "¾": ".75", "⅓": ".333", "⅔": ".66
 # --- Functions ---
 
 
-def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
+def parse_quantity(text: str, preserve_parentheses: bool = False) -> Tuple[Optional[float], Optional[str], str]:
     """Parse ingredient quantities, handling special cases.
 
     Extracts amount, unit, and ingredient name from ingredient text.
@@ -28,6 +28,8 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
 
     Args:
         text: Raw ingredient text to parse (e.g., "2 oz gin" or "Ginger beer, to top").
+        preserve_parentheses: If True, preserve parenthetical content in ingredient names.
+                             Default is False for backward compatibility.
 
     Returns:
         A tuple containing:
@@ -52,11 +54,11 @@ def parse_quantity(text: str) -> Tuple[Optional[float], Optional[str], str]:
         unit = "to top" if "to top" in t else "as needed"
         # Extract the ingredient name before the special phrase
         ingredient_part = re.split(f",? {unit}", original_text, flags=re.IGNORECASE)[0]
-        return None, unit, clean_ingredient_name(ingredient_part)
+        return None, unit, clean_ingredient_name(ingredient_part, preserve_parentheses)
 
     amount, rest = _parse_amount(t)
     unit, rest = _parse_unit(rest)
-    ingredient_name = clean_ingredient_name(rest)
+    ingredient_name = clean_ingredient_name(rest, preserve_parentheses)
 
     # If cleaning results in an empty string, fall back to the original text
     if not ingredient_name:
@@ -186,7 +188,7 @@ def _parse_unit(text: str) -> tuple[Optional[str], str]:
     return None, text
 
 
-def clean_ingredient_name(name: str) -> str:
+def clean_ingredient_name(name: str, preserve_parentheses: bool = False) -> str:
     """Clean up ingredient names by removing formatting and notes.
 
     Removes parenthetical notes, extra whitespace, and other formatting
@@ -196,6 +198,9 @@ def clean_ingredient_name(name: str) -> str:
     Args:
         name: Raw ingredient name that may contain parenthetical notes
               and extra formatting.
+        preserve_parentheses: If True, keep parenthetical content in the name.
+                             Useful for sources like Diffords that use parentheses
+                             for important context (e.g., "Gin (or Vodka)").
 
     Returns:
         Cleaned ingredient name with formatting removed.
@@ -207,12 +212,15 @@ def clean_ingredient_name(name: str) -> str:
         'vodka, premium'
         >>> clean_ingredient_name("(optional) fresh mint")
         'fresh mint'
+        >>> clean_ingredient_name("Gin (or Vodka)", preserve_parentheses=True)
+        'Gin (or Vodka)'
     """
-    # Remove parenthetical quantities at the start (including "about", "heavy", etc)
-    name = re.sub(r"^\([^)]*\)\s*", "", name)
+    if not preserve_parentheses:
+        # Remove parenthetical quantities at the start (including "about", "heavy", etc)
+        name = re.sub(r"^\([^)]*\)\s*", "", name)
 
-    # Remove parenthetical notes in the middle/end
-    name = re.sub(r"\s*\([^)]*\)", "", name)
+        # Remove parenthetical notes in the middle/end
+        name = re.sub(r"\s*\([^)]*\)", "", name)
 
     # Remove extra whitespace and commas
     name = re.sub(r"\s+", " ", name)
