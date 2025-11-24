@@ -156,6 +156,11 @@ class BatchRecipeRationalizer:
             if not ingredient_name:
                 continue
 
+            # Skip ingredients marked as optional
+            ingredient_name_lower = ingredient_name.lower()
+            if "optional" in ingredient_name_lower or "omit if" in ingredient_name_lower:
+                continue
+
             # Check if ingredient exists in mappings
             if ingredient_name not in self.mappings:
                 unmapped.append(ingredient_name)
@@ -176,6 +181,12 @@ class BatchRecipeRationalizer:
         for ingredient in parsed_recipe["ingredients"]:
             ingredient_name = ingredient["ingredient_name"].strip()
 
+            # Skip ingredients marked as optional
+            ingredient_name_lower = ingredient_name.lower()
+            if "optional" in ingredient_name_lower or "omit if" in ingredient_name_lower:
+                print(f"    Filtering out optional ingredient: '{ingredient_name}'")
+                continue
+
             # Replace with mapped name if available
             if ingredient_name in self.mappings:
                 mapping = self.mappings[ingredient_name]
@@ -195,7 +206,7 @@ class BatchRecipeRationalizer:
 
         result = {
             "name": parsed_recipe["name"],
-            "description": parsed_recipe.get("description", ""),
+            "description": "",
             "instructions": "Shake all ingredients with ice and strain into a cocktail or coupe glass",
             "ingredients": rationalized_ingredients,
             "source_url": source_url,
@@ -228,11 +239,21 @@ class BatchRecipeRationalizer:
             if self.is_recipe_already_processed(recipe_name):
                 continue
 
-            # Get ingredients
-            ingredients = parsed_recipe["ingredients"]
+            # Skip recipes we don't want to process
+            # 1. Skip shot recipes (SHOT GLASS in instructions or "Shot" in name)
+            instructions = parsed_recipe.get("instructions", "")
+            if "SHOT GLASS" in instructions.upper():
+                print(f"  Skipping '{recipe_name}' - contains SHOT GLASS")
+                continue
 
-            if not ingredients:
-                print(f"  Skipping '{recipe_name}' - no ingredients found")
+            if "Shot" in recipe_name:
+                print(f"  Skipping '{recipe_name}' - has 'Shot' in name")
+                continue
+
+            # 2. Skip recipes with 2 or fewer ingredients
+            ingredients = parsed_recipe.get("ingredients", [])
+            if len(ingredients) <= 2:
+                print(f"  Skipping '{recipe_name}' - has {len(ingredients)} ingredient(s)")
                 continue
 
             # Check if all ingredients can be rationalized

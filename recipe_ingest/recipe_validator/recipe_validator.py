@@ -18,6 +18,7 @@ from flask import Flask, jsonify, render_template, request
 
 # Add cocktail-utils to path
 import sys
+
 sys.path.insert(0, "/home/kurtt/cocktail-research/cocktail-utils/src")
 
 from cocktail_utils.recipes import get_recipe_source, validate_url
@@ -188,6 +189,26 @@ class RecipeValidator:
 
         recipe_name = parsed_recipe["name"]
 
+        # Skip recipes we don't want to validate
+        # 1. Skip shot recipes (SHOT GLASS in instructions or "Shot" in name)
+        instructions = parsed_recipe.get("instructions", "")
+        if "SHOT GLASS" in instructions.upper():
+            print(f"Skipping {recipe_name} - contains SHOT GLASS")
+            self.progress["current_index"] += 1
+            return self.get_current_recipe()
+
+        if "Shot" in recipe_name:
+            print(f"Skipping {recipe_name} - has 'Shot' in name")
+            self.progress["current_index"] += 1
+            return self.get_current_recipe()
+
+        # 2. Skip recipes with 2 or fewer ingredients
+        ingredients = parsed_recipe.get("ingredients", [])
+        if len(ingredients) <= 2:
+            print(f"Skipping {recipe_name} - has {len(ingredients)} ingredients")
+            self.progress["current_index"] += 1
+            return self.get_current_recipe()
+
         # Clean HTML for display
         html_content = self.recipe_source.clean_html_content(raw_html)
 
@@ -217,14 +238,24 @@ class RecipeValidator:
         for ing in parsed_recipe["ingredients"]:
             ingredient_name = ing["ingredient_name"].strip()
 
+            # Skip ingredients marked as optional
+            ingredient_name_lower = ingredient_name.lower()
+            if (
+                "optional" in ingredient_name_lower
+                or "omit if" in ingredient_name_lower
+            ):
+                continue
+
             # Try to rationalize using mappings
             if ingredient_name in self.mappings:
                 mapping = self.mappings[ingredient_name]
-                rationalized_ingredients.append({
-                    "ingredient_name": mapping.get("name", ingredient_name),
-                    "amount": ing.get("amount", ""),
-                    "unit_name": ing.get("unit_name", ""),
-                })
+                rationalized_ingredients.append(
+                    {
+                        "ingredient_name": mapping.get("name", ingredient_name),
+                        "amount": ing.get("amount", ""),
+                        "unit_name": ing.get("unit_name", ""),
+                    }
+                )
             else:
                 # Keep original if not mapped
                 rationalized_ingredients.append(ing)
@@ -236,7 +267,7 @@ class RecipeValidator:
             source_url = self.recipe_source.derive_source_url(parsed_recipe["name"])
 
         # Validate URL
-        validate_url(source_url, parsed_recipe["name"])
+        # validate_url(source_url, parsed_recipe["name"])
 
         result = {
             "name": parsed_recipe["name"],
@@ -316,7 +347,9 @@ def index():
             rejected_count=len(validator.progress["rejected"]),
             source=validator.source_name,
         )
-    return render_template("validator.html", recipe=recipe, source=validator.source_name)
+    return render_template(
+        "validator.html", recipe=recipe, source=validator.source_name
+    )
 
 
 @app.route("/accept", methods=["POST"])
@@ -397,9 +430,7 @@ def reset():
 
 def main():
     """Run validator."""
-    parser = argparse.ArgumentParser(
-        description="Recipe validation web app"
-    )
+    parser = argparse.ArgumentParser(description="Recipe validation web app")
     parser.add_argument(
         "--source",
         type=str,
