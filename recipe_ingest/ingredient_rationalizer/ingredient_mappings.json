@@ -5758,5 +5758,129 @@
     "id": 40,
     "name": "Yellow Chartreuse",
     "mapped_at": "2025-11-22T15:36:25.891454"
+  },
+  "Cr\u00e8me De Cassis": {
+    "id": 30,
+    "name": "Cr\u00e8me De Cassis",
+    "mapped_at": "2025-11-26T20:46:39.872824",
+    "auto_matched": true
+  },
+  "Strucchi Red Vermouth": {
+    "id": 562,
+    "name": "Strucchi Red Vermouth",
+    "mapped_at": "2025-11-26T20:46:39.872878",
+    "auto_matched": true
+  },
+  "disaronno amaretto": {
+    "id": 606,
+    "name": "Disaronno Amaretto",
+    "mapped_at": "2025-11-26T20:46:39.872918",
+    "auto_matched": true
+  },
+  "elderflower liqueur": {
+    "id": 56,
+    "name": "Elderflower Liqueur",
+    "mapped_at": "2025-11-26T20:46:39.872937",
+    "auto_matched": true
+  },
+  "fresh basil leaves": {
+    "id": 164,
+    "name": "Basil Leaves",
+    "mapped_at": "2025-11-26T20:46:39.872951",
+    "auto_matched": true
+  },
+  "fresh passion fruit (fresh)": {
+    "id": 610,
+    "name": "Passion Fruit",
+    "mapped_at": "2025-11-26T20:46:39.872967",
+    "auto_matched": true
+  },
+  "irish whiskey": {
+    "id": 58,
+    "name": "Irish Whiskey",
+    "mapped_at": "2025-11-26T20:46:39.873010",
+    "auto_matched": true
+  },
+  "luxardo apricot albicocca liqueur": {
+    "id": 608,
+    "name": "Luxardo Apricot Albicocca Liqueur",
+    "mapped_at": "2025-11-26T20:46:39.873113",
+    "auto_matched": true
+  },
+  "strucchi dry vermouth": {
+    "id": 611,
+    "name": "Strucchi Dry Vermouth",
+    "mapped_at": "2025-11-26T20:46:39.873146",
+    "auto_matched": true
+  },
+  "bob's grapefruit bitters": {
+    "id": 239,
+    "name": "Grapefruit Bitters",
+    "mapped_at": "2025-11-26T20:47:01.761653"
+  },
+  "dark/black/blackstrap rum": {
+    "id": 46,
+    "name": "Black Rum",
+    "mapped_at": "2025-11-26T20:47:18.454287"
+  },
+  "dubonnet/french rouge aromatised wine": {
+    "id": 231,
+    "name": "Dubonnet Rouge",
+    "mapped_at": "2025-11-26T20:47:27.209890"
+  },
+  "giffard banane du br\u00e9sil liqueur": {
+    "id": 145,
+    "name": "Giffard Banane Du Bresil",
+    "mapped_at": "2025-11-26T20:47:30.654481"
+  },
+  "giffard cr\u00e8me de m\u00fbre liqueur": {
+    "id": 179,
+    "name": "Blackberry Liqueur",
+    "mapped_at": "2025-11-26T20:48:05.255285"
+  },
+  "grand marnier or other cognac orange liqueur": {
+    "id": 266,
+    "name": "Grand Marnier",
+    "mapped_at": "2025-11-26T20:48:10.812155"
+  },
+  "green chartreuse (or alternative herbal liqueur)": {
+    "id": 65,
+    "name": "Green Chartreuse",
+    "mapped_at": "2025-11-26T20:48:13.857694"
+  },
+  "hayman's sloe gin": {
+    "id": 407,
+    "name": "Sloe Gin",
+    "mapped_at": "2025-11-26T20:48:17.662286"
+  },
+  "ketel one vodka": {
+    "id": 3,
+    "name": "Vodka",
+    "mapped_at": "2025-11-26T20:48:22.569049"
+  },
+  "lustau jarana fino sherry": {
+    "id": 148,
+    "name": "Fino Sherry",
+    "mapped_at": "2025-11-26T20:48:27.304543"
+  },
+  "lustau oloroso don nu\u00f1o sherry": {
+    "id": 150,
+    "name": "Oloroso Sherry",
+    "mapped_at": "2025-11-26T20:48:31.184751"
+  },
+  "monin vanilla syrup": {
+    "id": 120,
+    "name": "Vanilla Syrup",
+    "mapped_at": "2025-11-26T20:48:35.794637"
+  },
+  "passo\u00e3 passion fruit liqueur": {
+    "id": 557,
+    "name": "Passoa Passionfruit Liqueur",
+    "mapped_at": "2025-11-26T20:48:39.934059"
+  },
+  "thomas henry ginger ale": {
+    "id": 295,
+    "name": "Ginger Soda",
+    "mapped_at": "2025-11-26T20:48:47.303148"
   }
 }

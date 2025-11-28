@@ -529,10 +529,35 @@
     "vodka, preferably grey goose original",
     "vodka, preferably reyka",
     "whiskey, preferably wild turkey 101 rye",
-    "white overproof jamaican rum, preferably wray & nephew"
+    "white overproof jamaican rum, preferably wray & nephew",
+    "Cr\u00e8me De Cassis",
+    "Strucchi Red Vermouth",
+    "disaronno amaretto",
+    "elderflower liqueur",
+    "fresh basil leaves",
+    "fresh passion fruit (fresh)",
+    "irish whiskey",
+    "luxardo apricot albicocca liqueur",
+    "strucchi dry vermouth",
+    "bob's abbotts bitters",
+    "bob's grapefruit bitters",
+    "boker's bitters",
+    "dark/black/blackstrap rum",
+    "dubonnet/french rouge aromatised wine",
+    "giffard banane du br\u00e9sil liqueur",
+    "giffard cr\u00e8me de m\u00fbre liqueur",
+    "grand marnier or other cognac orange liqueur",
+    "green chartreuse (or alternative herbal liqueur)",
+    "hayman's sloe gin",
+    "ketel one vodka",
+    "lustau jarana fino sherry",
+    "lustau oloroso don nu\u00f1o sherry",
+    "monin vanilla syrup",
+    "passo\u00e3 passion fruit liqueur",
+    "thomas henry ginger ale"
   ],
   "skipped": [
     "chilled champagne, to be served on the side"
   ],
-  "last_updated": "2025-11-09T14:13:00.760575"
+  "last_updated": "2025-11-26T20:48:47.312246"
 }
