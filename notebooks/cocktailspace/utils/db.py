@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # Configuration
-DB_PATH = "backup-2025-10-21_08-00-45.db"
+DB_PATH = "backup-2025-11-23_08-00-45.db"
 
 
 def load_recipes_from_db(db_path: str = DB_PATH) -> pd.DataFrame:
@@ -32,11 +32,13 @@ def load_recipes_from_db(db_path: str = DB_PATH) -> pd.DataFrame:
         i.id as ingredient_id,
         i.name as ingredient_name,
         i.path as ingredient_path,
-        i.substitution_level as substitution_level,
+        i.allow_substitution as substitution_level,
         ri.amount,
-        u.conversion_to_ml * ri.amount as volume_ml,
-        (u.conversion_to_ml * ri.amount) / 
-            SUM(u.conversion_to_ml * ri.amount) OVER (PARTITION BY r.id) as volume_fraction
+        u.name as unit_name,
+        CASE
+            WHEN u.name = 'to top' THEN 90.0
+            ELSE u.conversion_to_ml * ri.amount
+        END as volume_ml
     FROM recipes r
     JOIN recipe_ingredients ri ON r.id = ri.recipe_id
     JOIN ingredients i ON ri.ingredient_id = i.id
@@ -49,6 +51,11 @@ def load_recipes_from_db(db_path: str = DB_PATH) -> pd.DataFrame:
 
     if df.empty:
         raise ValueError("No recipes found matching the specified names")
+
+    # Calculate volume fraction in Python
+    df["volume_fraction"] = df.groupby("recipe_id")["volume_ml"].transform(
+        lambda x: x / x.sum()
+    )
 
     return df
 
@@ -64,7 +71,7 @@ def load_ingredients_from_db(db_path: str = DB_PATH) -> pd.DataFrame:
         substitution_level is 0 for NULL/NaN values
     """
     conn = sqlite3.connect(db_path)
-    query = "SELECT id, name, path, COALESCE(substitution_level, 0) as substitution_level FROM ingredients"
+    query = "SELECT id, name, path, allow_substitution as substitution_level FROM ingredients"
     df = pd.read_sql_query(query, conn)
     conn.close()
     return df
