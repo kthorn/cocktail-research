@@ -1,0 +1,506 @@
+[
+  {
+    "ingredient_id": 388,
+    "percent_abv": 45,
+    "source_url": "https://www.russellsreserve.com/our-products/10-year-old-bourbon/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 513,
+    "percent_abv": 40,
+    "source_url": "https://www.theglenlivet.com/en/whisky/founders-reserve-single-malt-scotch/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 627,
+    "percent_abv": 40,
+    "source_url": "https://www.dewars.com/dewars-whiskies/dewars-12-year-old-whisky/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 584,
+    "percent_abv": 52,
+    "source_url": "https://www.russellsreserve.com/our-products/single-barrel-rye/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 377,
+    "percent_abv": 46,
+    "source_url": "https://www.jriegerco.com/our-spirits",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 561,
+    "percent_abv": 40,
+    "source_url": "https://rhum-damoiseau.com/rhums-classiques/rhum-blanc-40/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 518,
+    "percent_abv": 40,
+    "source_url": "https://novofogo.com/all-cachaca-products/silver-cachaca/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 602,
+    "percent_abv": 40,
+    "source_url": "https://novofogo.com/organic-cachacas/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 243,
+    "percent_abv": 40,
+    "source_url": "https://stgeorgespirits.com/spirits/california-citrus-vodka",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 353,
+    "percent_abv": 45,
+    "source_url": "https://stgeorgespirits.com/spirits/terroir-gin",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 397,
+    "percent_abv": 55,
+    "source_url": "https://www.cadenhead.scot/our-spirits/cadenheads-gin/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 400,
+    "percent_abv": 50,
+    "source_url": "https://www.lairdandcompany.com/products/laird's-straight-apple-brandy-bottled-in-bond",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 631,
+    "percent_abv": 40,
+    "source_url": "https://www.eltesorotequila.com/tequilas/el-tesoro-blanco",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 614,
+    "percent_abv": 20,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/rothman--winter-creme-de-violette-liqueur?productSize=0",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 448,
+    "percent_abv": 24,
+    "source_url": "https://www.giffard.com/en/menthe-pastille/250-menthe-pastille-2.html",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 502,
+    "percent_abv": 28,
+    "source_url": "https://www.tempusfugitspirits.com/products/creme-de-menthe-glaciale/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 238,
+    "percent_abv": 35,
+    "source_url": "https://www.wine.com/product/dimmi-liquore-di-milano-liqueur/535444",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 370,
+    "percent_abv": 42,
+    "source_url": "https://www.diffordsguide.com/beer-wine-spirits/7905/legendre-ojen",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 262,
+    "percent_abv": 25,
+    "source_url": "https://chareau.us/products/chareau",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 342,
+    "percent_abv": 44.3,
+    "source_url": "https://www.scrappysbitters.com/bitters/firewater-bitters",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 536,
+    "percent_abv": 40,
+    "source_url": "https://www.agavelux.com.au/wp-content/uploads/AgaveLux_2025_Portfolio.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 621,
+    "percent_abv": 40,
+    "source_url": "https://www.giffard.com/fr/premium/6529-piment-despelette.html",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 76,
+    "percent_abv": 40,
+    "source_url": "https://www.anchoreyes.com/en-us/products/ancho-reyes-original/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 40,
+    "percent_abv": 43,
+    "source_url": "https://www.chartreuse.fr/en/produit/yellow-chartreuse/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 401,
+    "percent_abv": 28,
+    "source_url": "https://www.astorwines.com/item/50436",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 41,
+    "percent_abv": 40,
+    "source_url": "https://www.benedictinedom.com/collection/benedictine-dom/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 65,
+    "percent_abv": 55,
+    "source_url": "https://www.chartreuse.fr/en/produit/green-chartreuse/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 82,
+    "percent_abv": 35,
+    "source_url": "https://de.jagermeister.com/shop/jaegermeister/jaegermeister",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 94,
+    "percent_abv": 35,
+    "source_url": "https://barenjagerhoney.com/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 256,
+    "percent_abv": 16,
+    "source_url": "https://www.bittersandbottles.com/products/bittermens-citron-sauvage-liqueur",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 278,
+    "percent_abv": 16,
+    "source_url": "https://www.combier.fr/produit/liqueur-de-pamplemousse-rose/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 355,
+    "percent_abv": 16,
+    "source_url": "https://www.giffard.com/fr/cremes-de-fruits/424-creme-de-pamplemousse-rose.html",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 597,
+    "percent_abv": 17,
+    "source_url": "https://mommenpop.com/products/grapefruit",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 107,
+    "percent_abv": 40,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/solerno-blood-orange-liqueur",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 297,
+    "percent_abv": 35,
+    "source_url": "https://www.caribbean-spirits.com/labeldetails.php?id=116",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 349,
+    "percent_abv": 40,
+    "source_url": "https://www.cointreau.com/int/en/faq",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 362,
+    "percent_abv": 40,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/naranja-orange-liqueur",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 405,
+    "percent_abv": 40,
+    "source_url": "https://www.combierusa.com/products",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 153,
+    "percent_abv": 16.5,
+    "source_url": "https://www.chambordliqueur.com/home/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 225,
+    "percent_abv": 30,
+    "source_url": "https://www.oldtowntequila.com/kalani-liqueur/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 503,
+    "percent_abv": 16,
+    "source_url": "https://www.giffardcanada.com/passion-fruit",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 571,
+    "percent_abv": 33,
+    "source_url": "https://alpenz-download-product-talker.s3.amazonaws.com/averell_damson.one-sheet.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 472,
+    "percent_abv": 17,
+    "source_url": "https://www.pamaliqueur.com/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 550,
+    "percent_abv": 20,
+    "source_url": "https://stgeorgespirits.com/spirits/spiced-pear-liqueur",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 98,
+    "percent_abv": 18,
+    "source_url": "https://bevmo.com/products/32737",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 608,
+    "percent_abv": 30,
+    "source_url": "https://www.luxardo.it/wp-content/uploads/2019/06/Scheda-Apricot-Liqueur.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 629,
+    "percent_abv": 24,
+    "source_url": "https://abc2.nc.gov/Pricing/ViewItemDetails/150082",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 492,
+    "percent_abv": 25,
+    "source_url": "https://www.giffard.jp/catalog/liqueurs-classic-creme-de-cacao/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 457,
+    "percent_abv": 24,
+    "source_url": "https://www.tempusfugitspirits.com/products/creme-de-cacao/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 411,
+    "percent_abv": 30,
+    "source_url": "https://www.mswalker.com/wp-content/uploads/Allens-Coffee-Brandy_2020_ss-1.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 483,
+    "percent_abv": 30,
+    "source_url": "https://www.caribbean-spirits.com/prodsheet/Hamilton_Pimento_Dram_sell_sheet.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 606,
+    "percent_abv": 28,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/disaronno-amaretto?productSize=1",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 539,
+    "percent_abv": 25,
+    "source_url": "https://maggiesfarmrum.com/products/falernum-liqueur",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 89,
+    "percent_abv": 30,
+    "source_url": "https://www.luxardo.it/liqueurs-and-distillates/amaro-abano/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 589,
+    "percent_abv": 29,
+    "source_url": "https://amarodelletna.it/products/1",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 500,
+    "percent_abv": 30,
+    "source_url": "https://www.ramazzotti1815.com/en-us/products/amaro/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 196,
+    "percent_abv": 20,
+    "source_url": "https://shop.cappellettinovasalus.it/amaro-sfumato-rabarbaro.html",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 255,
+    "percent_abv": 40,
+    "source_url": "https://www.anchoreyes.com/en-us/products/ancho-reyes-original/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 234,
+    "percent_abv": 43,
+    "source_url": "https://www.appletonestate.com/rums/8-year-old/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 260,
+    "percent_abv": 40,
+    "source_url": "https://www.bacardilimited.com/nutrition/bacardi/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 97,
+    "percent_abv": 40,
+    "source_url": "https://www.bigallet.fr/produit/china-china/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 325,
+    "percent_abv": 44,
+    "source_url": "https://www.webstaurantstore.com/documents/specsheets/bittermens_specsheet.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 371,
+    "percent_abv": 44,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/bittermens-burlesque-bitters?productSize=0",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 38,
+    "percent_abv": 6.4,
+    "source_url": "https://www.feebrothers.com/recycling/black-walnut-bitters/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 313,
+    "percent_abv": 16,
+    "source_url": "https://alpenz.com/product-bonal.html",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 18,
+    "percent_abv": 46,
+    "source_url": "https://www.wine.com/product/brucato-chaparral-amaro/1510083",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 615,
+    "percent_abv": 16,
+    "source_url": "https://www.cocchi.it/vini/dopo-teatro-vermouth-amaro/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 512,
+    "percent_abv": 40,
+    "source_url": "https://www.eltesorotequila.com/tequilas/el-tesoro-reposado",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 351,
+    "percent_abv": 24,
+    "source_url": "https://forthavespirits.com/red-aperitivo",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 91,
+    "percent_abv": 28,
+    "source_url": "https://www.tempusfugitspirits.com/products/gran-classico-bitter/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 275,
+    "percent_abv": 18,
+    "source_url": "https://www.tempusfugitspirits.com/products/kina-laero-dor/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 506,
+    "percent_abv": 20,
+    "source_url": "https://www.highendliquor.com/products/leopold-bros-michigan-tart-cherry-liqueur-750ml",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 572,
+    "percent_abv": 35,
+    "source_url": "https://www.letherbee.com/products/p/letherbee-fernet",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 458,
+    "percent_abv": 20,
+    "source_url": "https://lustau.es/en/shop/sherry-wines/solera-familiar-en/lustau-cream-capataz-andres/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 374,
+    "percent_abv": 16,
+    "source_url": "https://www.astorwines.com/item/25202",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 504,
+    "percent_abv": 25,
+    "source_url": "https://www.opiciwinesandspirits.com/wp-content/uploads/meletti_1870_fs.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 491,
+    "percent_abv": 18,
+    "source_url": "https://www.noillyprat.com/extra-dry-vermouth/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 88,
+    "percent_abv": 30,
+    "source_url": "https://www.abc.virginia.gov/products/cordials/zucca-rabarbaro",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 408,
+    "percent_abv": 15,
+    "source_url": "https://www.ramazzotti1815.com/en-us/products/aperitivo-rosato/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 432,
+    "percent_abv": 27,
+    "source_url": "https://static1.squarespace.com/static/51b7f731e4b0d95bdfe6da39/t/64cae05f5063cc421fc93f16/1691017313093/Sirene%2BCanto%2BAmaro%2BTech%2BSheet.pdf",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 612,
+    "percent_abv": 16,
+    "source_url": "https://strucchi.land/products/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 563,
+    "percent_abv": 27,
+    "source_url": "https://strucchi.land/products/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 611,
+    "percent_abv": 18,
+    "source_url": "https://strucchi.land/products/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  },
+  {
+    "ingredient_id": 562,
+    "percent_abv": 16,
+    "source_url": "https://strucchi.land/products/",
+    "verification": "Coordinating agent opened source and checked product and numeric ABV or US-proof conversion."
+  }
+]

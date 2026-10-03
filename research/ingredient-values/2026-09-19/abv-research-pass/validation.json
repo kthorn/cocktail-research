@@ -1,0 +1,37 @@
+{
+  "researched": 158,
+  "statuses": {
+    "ready": 98,
+    "needs_review": 60
+  },
+  "import_rows": 98,
+  "review_rows": 60,
+  "all_leaf_names_and_missing_abv_validated": true,
+  "import_parser": "passed",
+  "database_mutations": false,
+  "live_rechecked_at_utc": "2026-09-20T00:19:26.268038+00:00",
+  "live_recheck": "All 158 researched rows remain missing ABV with matching names and leaf status.",
+  "coordinator_source_spotchecks": [
+    41,
+    297,
+    91,
+    584,
+    254,
+    256,
+    592,
+    572,
+    40,
+    453,
+    621,
+    237,
+    539,
+    432,
+    299,
+    597,
+    629,
+    617,
+    265,
+    586,
+    595
+  ]
+}

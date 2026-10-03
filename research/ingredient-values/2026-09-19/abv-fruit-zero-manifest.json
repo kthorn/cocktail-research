@@ -1,0 +1,244 @@
+{
+  "source": "https://mixology.tools/api/ingredients",
+  "retrieved_at_utc": "2026-09-20T00:05:05.799197+00:00",
+  "branch_id": 154,
+  "branch_name": "Fruit / Vegetable",
+  "rows": 36,
+  "rule": "Nominal zero for missing ABV in leaf descendants of Fruit / Vegetable, excluding Brandied Cherry; no parent nodes.",
+  "excluded_ingredient_ids": [
+    516
+  ],
+  "parser_validation": "passed",
+  "database_mutations": false,
+  "excluded_parent_ids": [
+    154,
+    315,
+    292,
+    183,
+    320,
+    338,
+    473,
+    527
+  ],
+  "leaf_only_validation": "passed against production snapshot",
+  "submitted_rows": [
+    {
+      "ingredient_id": "162",
+      "ingredient_name": "Banana",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "164",
+      "ingredient_name": "Basil Leaves",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "173",
+      "ingredient_name": "Blackberries",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "230",
+      "ingredient_name": "Blood Orange Peel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "336",
+      "ingredient_name": "Blueberries",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "60",
+      "ingredient_name": "Cherries",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "642",
+      "ingredient_name": "Cilantro Leaves",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "205",
+      "ingredient_name": "Cucumber Slices",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "321",
+      "ingredient_name": "Grapefruit Peel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "279",
+      "ingredient_name": "Grapes",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "449",
+      "ingredient_name": "Guava Puree",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "484",
+      "ingredient_name": "Jalapeno",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "319",
+      "ingredient_name": "Juniper Berries",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "322",
+      "ingredient_name": "Kumquats",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "293",
+      "ingredient_name": "Lemon Peel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "159",
+      "ingredient_name": "Lemon Wedges",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "632",
+      "ingredient_name": "Lemon Wheel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "413",
+      "ingredient_name": "Lime Hull",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "229",
+      "ingredient_name": "Lime Peel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "288",
+      "ingredient_name": "Lime Wedges",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "310",
+      "ingredient_name": "Lime Wheels",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "414",
+      "ingredient_name": "Lime Zest",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "450",
+      "ingredient_name": "Mango Puree",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "21",
+      "ingredient_name": "Mint Leaves",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "282",
+      "ingredient_name": "Mint Sprigs",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "302",
+      "ingredient_name": "Orange Peel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "339",
+      "ingredient_name": "Orange Wheel",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "610",
+      "ingredient_name": "Passion Fruit",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "263",
+      "ingredient_name": "Passionfruit Puree",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "474",
+      "ingredient_name": "Peach Puree",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "372",
+      "ingredient_name": "Pineapple Cube",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "528",
+      "ingredient_name": "Pineapple Slice",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "187",
+      "ingredient_name": "Raspberries",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "332",
+      "ingredient_name": "Slices Ginger Root",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "376",
+      "ingredient_name": "Slices Peach",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "155",
+      "ingredient_name": "Strawberries",
+      "field": "percent_abv",
+      "value": "0"
+    }
+  ],
+  "import_status": "User reported uploaded; completed import CSV removed during cleanup on 2026-09-20.",
+  "notes": "Historical rule and exclusions retained; submitted rows preserved below. No database changes performed during cleanup."
+}

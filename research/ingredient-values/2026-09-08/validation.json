@@ -1,0 +1,27 @@
+{
+  "ingredient_count": 672,
+  "abv_gaps": 416,
+  "research_rows": 416,
+  "dispositions": {
+    "ready": 84,
+    "unresolved": 75,
+    "needs_review": 111,
+    "modeling_default": 97,
+    "derived_parent": 49
+  },
+  "import_rows": 84,
+  "import_format_validation": "passed using api/bulk_ingredient_values.py parse_bulk_ingredient_values",
+  "identity_and_null_validation": "passed against saved live snapshot",
+  "independently_checked_ready_sources": 84,
+  "database_mutations": false,
+  "artifact_sha256": {
+    "abv-spirits.csv": "9715f5de58f370b503f5c5d9a6c1cabd79c7584bddcbccacc46038a48dc4aad3",
+    "abv-liqueurs.csv": "4b49faf9d08c55cb0901627e22d70cee1cf7572fd2670d7bbb38f110758f2eac",
+    "abv-aperitifs.csv": "a7ae25d1b2c15b61a7c5d341e851805a4907ec8df5c9798abab2b89bd473153a",
+    "abv-generic-food.csv": "7879944a02b99c246b182b82730d9f0981929a63e48a48357793f4accbdc6f7f",
+    "abv-research.csv": "78c55eff236629aef0728acfe1f21a539869ab900989c5a223f95ffa95580757",
+    "abv-import-ready.csv": "a1d5a46cb8e848bd5e71aaf6bd0c3cbc6ffd9b39023863bc9b64f51e40cf7738"
+  },
+  "live_recheck": "All 84 candidate IDs/names still match and percent_abv is still null.",
+  "live_recheck_at_utc": "2026-09-09T02:51:14.442806+00:00"
+}

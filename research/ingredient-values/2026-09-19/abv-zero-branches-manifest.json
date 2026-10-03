@@ -1,0 +1,484 @@
+{
+  "retrieved_at_utc": "2026-09-19T23:04:42.021023+00:00",
+  "source": "https://mixology.tools/api/ingredients",
+  "rule": "User-directed nominal zero for missing ABV in Syrup, Juice, Non-alcoholic spirits, Mixer, Other, and Spices branches, including descendants. Not a sourced analytical measurement. Excludes Vanilla Extract and Brandied Cherry Syrup at user request.",
+  "branch_ids": {
+    "113": "Syrup",
+    "7": "Juice",
+    "638": "Non-alcoholic spirits",
+    "116": "Mixer",
+    "156": "Other",
+    "366": "Spices"
+  },
+  "rows": 74,
+  "counts": {
+    "Syrup": 40,
+    "Mixer": 1,
+    "Other": 20,
+    "Spices": 7,
+    "Juice": 6
+  },
+  "existing_values_excluded": true,
+  "parser_validation": "passed",
+  "database_mutations": false,
+  "notes": "Historical rule and exclusions retained; submitted rows preserved below. No database changes performed during cleanup.",
+  "excluded_ingredients": [
+    {
+      "ingredient_id": 201,
+      "ingredient_name": "Brandied Cherry Syrup",
+      "reason": "User requested exclusion because this ingredient can contain alcohol."
+    },
+    {
+      "ingredient_id": 454,
+      "ingredient_name": "Vanilla Extract",
+      "reason": "User requested exclusion because this ingredient can contain alcohol."
+    }
+  ],
+  "submitted_rows": [
+    {
+      "ingredient_id": "270",
+      "ingredient_name": "Agave Nectar",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "607",
+      "ingredient_name": "Apricot Jam",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "373",
+      "ingredient_name": "Brown Sugar Cube",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "619",
+      "ingredient_name": "Chai Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "487",
+      "ingredient_name": "Cherry Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "160",
+      "ingredient_name": "Cinnamon Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "578",
+      "ingredient_name": "Citric Acid Solution",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "459",
+      "ingredient_name": "Coco Lopez",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "193",
+      "ingredient_name": "Coconut MIlk",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "555",
+      "ingredient_name": "Coconut Simple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "643",
+      "ingredient_name": "Coriander Seeds",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "368",
+      "ingredient_name": "Cracked Black Pepper",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "172",
+      "ingredient_name": "Cream",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "138",
+      "ingredient_name": "Demerara Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "157",
+      "ingredient_name": "Egg White",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "136",
+      "ingredient_name": "Ginger Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "354",
+      "ingredient_name": "Grapefruit Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "232",
+      "ingredient_name": "Grated Cinnamon",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "110",
+      "ingredient_name": "Grenadine",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "144",
+      "ingredient_name": "Gum Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "356",
+      "ingredient_name": "Hibiscus Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "182",
+      "ingredient_name": "Honey",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "93",
+      "ingredient_name": "Honey Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "569",
+      "ingredient_name": "Kiwi Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "469",
+      "ingredient_name": "Lemon Curd",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "309",
+      "ingredient_name": "Lemon Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "340",
+      "ingredient_name": "Lemongrass Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "463",
+      "ingredient_name": "Macadamia Nut Orgeat",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "191",
+      "ingredient_name": "Maple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "361",
+      "ingredient_name": "Mint Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "367",
+      "ingredient_name": "Nutmeg",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "462",
+      "ingredient_name": "Olive Brine",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "175",
+      "ingredient_name": "Orange Flower Water",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "547",
+      "ingredient_name": "Orange Marmalade",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "140",
+      "ingredient_name": "Orgeat",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "464",
+      "ingredient_name": "Orgeat Works Macadamia Nut Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "156",
+      "ingredient_name": "Other",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "43",
+      "ingredient_name": "Passion Fruit Honey",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "227",
+      "ingredient_name": "Passionfruit Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "496",
+      "ingredient_name": "Peach Juice",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "465",
+      "ingredient_name": "Peach Preserves",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "99",
+      "ingredient_name": "Pineapple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "169",
+      "ingredient_name": "Pomegranate Molasses",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "233",
+      "ingredient_name": "Raspberry Jam",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "247",
+      "ingredient_name": "Raspberry Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "604",
+      "ingredient_name": "Red Currant Preserves",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "103",
+      "ingredient_name": "Rhubarb Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "20",
+      "ingredient_name": "Rich Demerara Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "217",
+      "ingredient_name": "Rich Simple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "682",
+      "ingredient_name": "Rose Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "380",
+      "ingredient_name": "Rose Water",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "620",
+      "ingredient_name": "Saffron Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "158",
+      "ingredient_name": "Saline Solution",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "14",
+      "ingredient_name": "Simple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "165",
+      "ingredient_name": "Sorghum Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "27",
+      "ingredient_name": "Spiced Simple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "366",
+      "ingredient_name": "Spices",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "476",
+      "ingredient_name": "Sprig Rosemary",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "470",
+      "ingredient_name": "Sprig Thyme",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "498",
+      "ingredient_name": "Strawberry Juice",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "330",
+      "ingredient_name": "Strawberry Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "194",
+      "ingredient_name": "Sugar",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "375",
+      "ingredient_name": "Sugar Cube",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "228",
+      "ingredient_name": "Sweetened Coconut Cream",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "451",
+      "ingredient_name": "Sweetened Ginger Juice",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "426",
+      "ingredient_name": "Triple Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "383",
+      "ingredient_name": "Turbinado Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "467",
+      "ingredient_name": "Unsweetened Coconut Cream",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "558",
+      "ingredient_name": "Vanilla Sugar",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "120",
+      "ingredient_name": "Vanilla Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "248",
+      "ingredient_name": "Verjus",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "329",
+      "ingredient_name": "Verjus Blanc",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "208",
+      "ingredient_name": "Watermelon Juice",
+      "field": "percent_abv",
+      "value": "0"
+    },
+    {
+      "ingredient_id": "409",
+      "ingredient_name": "Watermelon Syrup",
+      "field": "percent_abv",
+      "value": "0"
+    }
+  ],
+  "import_status": "User reported uploaded; completed import CSV removed during cleanup on 2026-09-20."
+}

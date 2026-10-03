@@ -1,0 +1,372 @@
+[
+  {
+    "ingredient_id": "392",
+    "value": "43",
+    "source_url": "https://abasolowhisky.com/en/home/"
+  },
+  {
+    "ingredient_id": "235",
+    "value": "15",
+    "source_url": "https://www.weinhildebrandt.de/produkt/alvear-sherry-pale-cream/"
+  },
+  {
+    "ingredient_id": "269",
+    "value": "21",
+    "source_url": "https://www.amarobraulio.com/production/"
+  },
+  {
+    "ingredient_id": "180",
+    "value": "30",
+    "source_url": "https://distiller.com/spirits/amaro-ciociaro"
+  },
+  {
+    "ingredient_id": "443",
+    "value": "32",
+    "source_url": "https://www.meletti.it/prodotto_dettaglio.php?cat=liquori&prodotto=amaro"
+  },
+  {
+    "ingredient_id": "202",
+    "value": "28",
+    "source_url": "https://www.distilleriasibona.it/prodotti/amaro-sibona/"
+  },
+  {
+    "ingredient_id": "108",
+    "value": "29",
+    "source_url": "https://www.abc.virginia.gov/products/cordials/amaro-averna"
+  },
+  {
+    "ingredient_id": "253",
+    "value": "43",
+    "source_url": "https://www.htfw.com/banks-5-island-rum"
+  },
+  {
+    "ingredient_id": "478",
+    "value": "45",
+    "source_url": "https://heavenhilldistillery.com/bernheim-straight-wheat-whiskey.php/bernheim-straight-wheat-whiskey.php"
+  },
+  {
+    "ingredient_id": "480",
+    "value": "45",
+    "source_url": "https://www.webstaurantstore.com/documents/specsheets/bittermens_new_specsheet.pdf"
+  },
+  {
+    "ingredient_id": "616",
+    "value": "40",
+    "source_url": "https://www.diffordsguide.com/beer-wine-spirits/5743/bobs-abbotts-bitters"
+  },
+  {
+    "ingredient_id": "264",
+    "value": "22",
+    "source_url": "https://www.wine.com/product/bonanto-the-ultimate-aperitivo-liqueur/625903"
+  },
+  {
+    "ingredient_id": "511",
+    "value": "18",
+    "source_url": "https://bordiga1888.it/en/prodotto/vermouth-di-torino-extra-dry-75cl/"
+  },
+  {
+    "ingredient_id": "526",
+    "value": "18",
+    "source_url": "https://bordiga1888.it/en/prodotto/vermouth-di-torino-extra-dry-75cl/"
+  },
+  {
+    "ingredient_id": "251",
+    "value": "43",
+    "source_url": "https://www.diffordsguide.com/beer-wine-spirits/3532/cana-brava"
+  },
+  {
+    "ingredient_id": "178",
+    "value": "17",
+    "source_url": "https://www.cardamaro.it/wp-content/uploads/2023/06/Cardamaro-sheet-EN.pdf"
+  },
+  {
+    "ingredient_id": "601",
+    "value": "45",
+    "source_url": "https://www.diffordsguide.com/beer-wine-spirits/5468/cana-brava-reserva-aneja"
+  },
+  {
+    "ingredient_id": "665",
+    "value": "40",
+    "source_url": "https://whiskeycaviar.com/products/clear-creek-cherry-brandy"
+  },
+  {
+    "ingredient_id": "466",
+    "value": "40",
+    "source_url": "https://www.wine.com/product/clear-creek-8-year-apple-brandy-375ml-half-bottle/905427?Cognac_Brandy=&promo=CANDY20&s=GoogleBase_CSE_905427_CANDY20_type_Spirits_Brandy&state=CA"
+  },
+  {
+    "ingredient_id": "323",
+    "value": "40",
+    "source_url": "https://bevmo.com/products/32485"
+  },
+  {
+    "ingredient_id": "531",
+    "value": "17.5",
+    "source_url": "https://www.garibaldi.de/weine/vermouth-bianco"
+  },
+  {
+    "ingredient_id": "403",
+    "value": "35",
+    "source_url": "https://www.camparigroup.info/usa/cynar/cynar-70-proof-2/"
+  },
+  {
+    "ingredient_id": "379",
+    "value": "80",
+    "source_url": "https://www.diffordsguide.com/beer-wine-spirits/1876/denros-strong-rum"
+  },
+  {
+    "ingredient_id": "285",
+    "value": "50",
+    "source_url": "https://distiller.com/spirits/two-james-doctor-bird-jamaican-rum"
+  },
+  {
+    "ingredient_id": "493",
+    "value": "16",
+    "source_url": "https://www.dolin.fr/produits/vermouth-blanc/"
+  },
+  {
+    "ingredient_id": "442",
+    "value": "40",
+    "source_url": "https://www.abc.virginia.gov/products/rum/el-dorado-special-reserve-15-year-rum"
+  },
+  {
+    "ingredient_id": "441",
+    "value": "40",
+    "source_url": "https://www.abc.virginia.gov/products/rum/el-dorado-5-year-rum"
+  },
+  {
+    "ingredient_id": "525",
+    "value": "22",
+    "source_url": "https://www.importacionescantabria.com/products/licor-amaro-gorini-faccia-brutto-750-ml"
+  },
+  {
+    "ingredient_id": "427",
+    "value": "47",
+    "source_url": "https://altamarbrands.com/brands/probitas-rum/"
+  },
+  {
+    "ingredient_id": "570",
+    "value": "30",
+    "source_url": "https://www.wineenthusiast.com/buying-guide/galliano-ristretto/"
+  },
+  {
+    "ingredient_id": "479",
+    "value": "45",
+    "source_url": "https://www.abc.virginia.gov/products/whiskey/george-dickel-no-12-tennessee-whiskey?productSize=0"
+  },
+  {
+    "ingredient_id": "386",
+    "value": "75.5",
+    "source_url": "https://caribbean-spirits.com/page.php?typ=91"
+  },
+  {
+    "ingredient_id": "412",
+    "value": "43",
+    "source_url": "https://caribbean-spirits.com/page.php?typ=91"
+  },
+  {
+    "ingredient_id": "650",
+    "value": "16",
+    "source_url": "https://www.lapivonvermouth.com/wp-content/uploads/sites/7/2022/07/La-Pivon_Tasting-Notes_Blanco-072318.pdf"
+  },
+  {
+    "ingredient_id": "455",
+    "value": "75.5",
+    "source_url": "https://www.thewhiskyexchange.com/p/16254/lemon-hart-151"
+  },
+  {
+    "ingredient_id": "286",
+    "value": "43",
+    "source_url": "https://www.abc.virginia.gov/products/rum/lemon-hart--son-blackpool-spiced-rum"
+  },
+  {
+    "ingredient_id": "398",
+    "value": "17.5",
+    "source_url": "https://www.lofiaperitifs.com/000000000210060874.html"
+  },
+  {
+    "ingredient_id": "548",
+    "value": "15",
+    "source_url": "https://lustau.es/tienda/vermut-de-jerez/vermut-lustau-rojo/"
+  },
+  {
+    "ingredient_id": "420",
+    "value": "15",
+    "source_url": "https://lustau.es/wp-content/uploads/fichas/EN/FT_Vermut_Blanco--ENG-.pdf"
+  },
+  {
+    "ingredient_id": "304",
+    "value": "25",
+    "source_url": "https://www.luxardo.it/liqueurs-and-distillates/bitter/"
+  },
+  {
+    "ingredient_id": "460",
+    "value": "18",
+    "source_url": "https://www.aecoctrade.es/es/producto/hzsDZEz5st9F7xuAspJOoA"
+  },
+  {
+    "ingredient_id": "461",
+    "value": "18",
+    "source_url": "https://www.thewhiskyexchange.com/p/29852/martini-riserva-speciale-rubino"
+  },
+  {
+    "ingredient_id": "428",
+    "value": "28.5",
+    "source_url": "https://bevmo.com/products/32659"
+  },
+  {
+    "ingredient_id": "276",
+    "value": "15",
+    "source_url": "https://www.maisonlemaitre.fr/produit/cap-corse-rouge/"
+  },
+  {
+    "ingredient_id": "456",
+    "value": "40",
+    "source_url": "https://www.sazerac.com/nutrition.html"
+  },
+  {
+    "ingredient_id": "298",
+    "value": "50",
+    "source_url": "https://www.cora.fr/article/3355641/neisson-eleve-sous-bois-70cl-50.html"
+  },
+  {
+    "ingredient_id": "519",
+    "value": "45",
+    "source_url": "https://www.abc.virginia.gov/products/bourbon/noble-oak-double-oak-bourbon"
+  },
+  {
+    "ingredient_id": "436",
+    "value": "50",
+    "source_url": "https://www.abc.virginia.gov/products/whiskey/old-grand-dad-100?productSize=0"
+  },
+  {
+    "ingredient_id": "393",
+    "value": "40",
+    "source_url": "https://inuakena.com/spirit-reviews/rum-review-owneys-original/"
+  },
+  {
+    "ingredient_id": "515",
+    "value": "40",
+    "source_url": "https://pmspirits.squarespace.com/s/Rhum_Pere_Labat_40_Litre_sans_verre_1-n96r.pdf"
+  },
+  {
+    "ingredient_id": "129",
+    "value": "35",
+    "source_url": "https://sazerac.co.uk/portfolio/peychauds-bitters/"
+  },
+  {
+    "ingredient_id": "596",
+    "value": "55",
+    "source_url": "https://heavenhilldistillery.com/pikesville-straight-rye.php"
+  },
+  {
+    "ingredient_id": "252",
+    "value": "41.2",
+    "source_url": "https://www.saq.com/en/13736463"
+  },
+  {
+    "ingredient_id": "537",
+    "value": "40",
+    "source_url": "https://planterayrum.com/wp-content/uploads/2024/02/planteray-rum-barbados-5-years-product-sheet-700ml-euapac.pdf"
+  },
+  {
+    "ingredient_id": "385",
+    "value": "69",
+    "source_url": "https://www.saq.com/en/13574661"
+  },
+  {
+    "ingredient_id": "283",
+    "value": "40",
+    "source_url": "https://www.pacificedgesales.com/wp-content/uploads/formidable/6/Planteray_Rum_OriginalDark_product_sheet_750ml_US.pdf"
+  },
+  {
+    "ingredient_id": "268",
+    "value": "40",
+    "source_url": "https://www.pacificedgesales.com/wp-content/uploads/formidable/6/Planteray_Rum_Stiggins_product_sheet_750ml_US.pdf"
+  },
+  {
+    "ingredient_id": "358",
+    "value": "43",
+    "source_url": "https://planterayrum.com/wp-content/uploads/2024/02/planteray-rum-xaymaca-product-sheet-700ml-euapac-tbc-1-1.pdf"
+  },
+  {
+    "ingredient_id": "382",
+    "value": "42",
+    "source_url": "https://www.thewhiskyexchange.com/p/27326/whippersnapper"
+  },
+  {
+    "ingredient_id": "360",
+    "value": "40",
+    "source_url": "https://therealmccoyrum.com/products/3-year-aged-premium-rum"
+  },
+  {
+    "ingredient_id": "542",
+    "value": "40",
+    "source_url": "https://therealmccoyrum.com/products/5-year-aged-premium-rum"
+  },
+  {
+    "ingredient_id": "59",
+    "value": "40",
+    "source_url": "https://www.redbreastwhiskey.com/en-us/whiskey-collections/redbreast-12-year-old/"
+  },
+  {
+    "ingredient_id": "623",
+    "value": "40",
+    "source_url": "https://abc2.nc.gov/Pricing/ViewItemDetails/170070"
+  },
+  {
+    "ingredient_id": "564",
+    "value": "40",
+    "source_url": "https://abc2.nc.gov/Pricing/ViewItemDetails/170070"
+  },
+  {
+    "ingredient_id": "312",
+    "value": "43",
+    "source_url": "https://www.highroadspirits.com/ak-zanj"
+  },
+  {
+    "ingredient_id": "271",
+    "value": "40",
+    "source_url": "https://www.bacardijapan.jp/products/items/santa-teresa-1796/"
+  },
+  {
+    "ingredient_id": "553",
+    "value": "40",
+    "source_url": "https://www.abc.virginia.gov/products/tequila/siete-leguas-blanco"
+  },
+  {
+    "ingredient_id": "552",
+    "value": "40",
+    "source_url": "https://www.abc.virginia.gov/products/vodka/square-one-cucumber"
+  },
+  {
+    "ingredient_id": "576",
+    "value": "45.8",
+    "source_url": "https://www.abc.virginia.gov/products/scotch/talisker-single-malt"
+  },
+  {
+    "ingredient_id": "556",
+    "value": "45",
+    "source_url": "https://www.tentoonerum.com/white-rum/"
+  },
+  {
+    "ingredient_id": "499",
+    "value": "40",
+    "source_url": "https://www.tentoonerum.com/dark-rum/"
+  },
+  {
+    "ingredient_id": "402",
+    "value": "43",
+    "source_url": "https://www.suntoryglobalspirits.com/news/house-suntory-whisky-announces-introduction-suntory-whisky-toki"
+  },
+  {
+    "ingredient_id": "406",
+    "value": "45",
+    "source_url": "https://woodycreekdistillers.com/rye-whiskey/"
+  },
+  {
+    "ingredient_id": "87",
+    "value": "40",
+    "source_url": "https://zwackunicum.hu/portfolio/unicum/"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-08",
+  "researched": 109,
+  "eligible_missing_leaf_rows": 108,
+  "numeric_candidates": 104,
+  "ready": 74,
+  "numeric_needs_review": 30,
+  "without_numeric_value": 4,
+  "skipped_already_filled": [
+    {
+      "ingredient_id": 81,
+      "ingredient_name": "Dolin G\u00e9n\u00e9py",
+      "current_abv": 35.0
+    }
+  ],
+  "all_leaf_names_and_null_abv_validated": true,
+  "disjoint_from_first_84_ready": true,
+  "import_parser_passed": true,
+  "all_ready_sources_independently_opened_and_numeric_evidence_checked": true
+}
