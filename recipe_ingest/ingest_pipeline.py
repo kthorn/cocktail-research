@@ -22,6 +22,7 @@ import json
 import os
 import sqlite3
 import sys
+import threading
 from datetime import datetime
 from difflib import SequenceMatcher
 from typing import Dict, List, Optional
@@ -168,20 +169,36 @@ class RecipePipeline:
         # DB names, for noting when a recipe already lives in the database
         self.db_names = self._load_database_names()
         self.staged: Optional[dict] = None
-        print("Parsing pending recipes to find which still need review...")
-        self._candidates = self._load_candidates()
-        self._variation_index = self._build_variation_index()
-        print(f"{len(self._candidates)} recipe(s) still need review")
+        # Lazy scan: recipes are parsed on demand from the log's current_index.
+        self.current: Optional[tuple] = None  # (html_file, parsed_recipe)
+        self._variation_index = None
+        # ponytail: corpus-wide name-variant index builds in the background;
+        # mapping decisions before it finishes fall back to exact-name variants.
+        # ponytail: global lock index, per-account locks if throughput matters
+        self._index_thread = threading.Thread(target=self._build_variation_index, daemon=True)
+        self._index_thread.start()
 
     # -- state ------------------------------------------------------------
 
-    def _load_candidates(self):
-        candidates = {}
-        for html_file in self.engine.html_files:
-            parsed = self.engine.parse_recipe_from_html(html_file)
-            if parsed and not self._is_processed(parsed["name"]) and not self.engine.should_skip_recipe(parsed):
-                candidates[html_file] = parsed
-        return candidates
+    def _scan_next(self):
+        """Parse forward from current_index until a deliverable recipe is found."""
+        log = self.engine.validation_log
+        files = self.engine.html_files
+        index = log.get("current_index", 0)
+        while index < len(files):
+            parsed = self.engine.parse_recipe_from_html(files[index])
+            if (
+                parsed
+                and not self._is_processed(parsed["name"])
+                and not self.engine.should_skip_recipe(parsed)
+            ):
+                self.current = (files[index], parsed)
+                return
+            index += 1
+        log["current_index"] = index
+        self.engine.save_validation_log()
+
+    # -- state ------------------------------------------------------------
 
     def _load_database_names(self):
         try:
@@ -229,11 +246,12 @@ class RecipePipeline:
                 "stats": self._stats(),
             }
 
-        html_file = next(iter(self._candidates), None)
-        if html_file is None:
+        if self.current is None:
+            self._scan_next()
+        if self.current is None:
             return {"phase": "done", "stats": self._stats(), "source": self.engine.source_name}
 
-        parsed = self._candidates[html_file]
+        html_file, parsed = self.current
         rationalized = self._rationalize(parsed)
         return {
             "phase": "recipe",
@@ -260,7 +278,7 @@ class RecipePipeline:
         log = self.engine.validation_log
         return {
             "source": self.engine.source_name,
-            "remaining": len(self._candidates),
+            "remaining": max(0, len(self.engine.html_files) - log.get("current_index", 0)),
             "accepted": len(log.get("accepted", [])),
             "rejected": len(log.get("rejected", [])),
             "needs_review": len(log.get("needs_review", [])),
@@ -271,19 +289,26 @@ class RecipePipeline:
     # -- actions -----------------------------------------------------------
 
     def reject(self) -> dict:
-        html_file = next(iter(self._candidates), None)
-        if html_file is None:
+        if self.current is None:
+            self._scan_next()
+        if self.current is None:
             return {"success": False, "error": "No recipe pending"}
-        name = self._candidates.pop(html_file)["name"]
-        self.engine.validation_log["rejected"].append(name)
+        _, parsed = self.current
+        self.current = None
+        log = self.engine.validation_log
+        log["rejected"].append(parsed["name"])
+        log["current_index"] += 1
         self.engine.save_validation_log()
         return {"success": True}
 
     def accept(self, recipe_data: Optional[dict] = None, edited: bool = False) -> dict:
-        html_file = next(iter(self._candidates), None)
-        if html_file is None:
+        if self.current is None:
+            self._scan_next()
+        if self.current is None:
             return {"success": False, "error": "No recipe pending"}
-        parsed = self._candidates.pop(html_file)
+        _, parsed = self.current
+        self.current = None
+        self.engine.validation_log["current_index"] += 1
 
         data = recipe_data if recipe_data else self._rationalize(parsed)
         if not isinstance(data, dict) or "name" not in data or not isinstance(data.get("ingredients"), list):
@@ -352,9 +377,18 @@ class RecipePipeline:
             json.dump(self.engine.mappings, f, indent=2)
 
     def _build_variation_index(self) -> Dict[str, List[str]]:
-        """Map normalized ingredient keys to every raw variant seen in pending recipes."""
+        """Map normalized ingredient keys to every raw variant seen in the corpus.
+
+        Built in a background thread; runs against engine.parse_recipe_from_html
+        starting at current_index so already-processed recipes aren't re-parsed.
+        """
+        files = self.engine.html_files
         index: Dict[str, List[str]] = {}
-        for parsed in self._candidates.values():
+        start = self.engine.validation_log.get("current_index", 0)
+        for html_file in files[start:]:
+            parsed = self.engine.parse_recipe_from_html(html_file)
+            if not parsed:
+                continue
             for ing in parsed.get("ingredients", []):
                 raw = ing.get("ingredient_name", "").strip()
                 if not raw:
@@ -363,22 +397,29 @@ class RecipePipeline:
                 variants = index.setdefault(key, [])
                 if raw not in variants:
                     variants.append(raw)
+        self._variation_index = index
         return index
 
     def _variations_for(self, name: str) -> List[str]:
-        """All raw names in the pending corpus that normalize to the same key."""
-        return self._variation_index.get(normalize_string(name.lower()), [name])
+        """Raw corpus variants sharing the normalized key, if the index is ready."""
+        index = self._variation_index
+        if index is None:
+            return [name]
+        return index.get(normalize_string(name.lower()), [name])
 
     def run_batch(self) -> dict:
         """Run the batch auto-ingest pass over every fully-mapped unprocessed recipe."""
-        factory = self.batch_factory or BatchRecipeRationalizer
-        batcher = factory(
-            source_name=self.engine.source_name,
-            mappings_file=self.mappings_file,
-            validation_log_file=VALIDATION_LOG_FILE,
-            output_dir=OUTPUT_DIR,
-        )
-        summary = batcher.run()
+        try:
+            factory = self.batch_factory or BatchRecipeRationalizer
+            batcher = factory(
+                source_name=self.engine.source_name,
+                mappings_file=self.mappings_file,
+                validation_log_file=VALIDATION_LOG_FILE,
+                output_dir=OUTPUT_DIR,
+            )
+            summary = batcher.run()
+        except Exception as exc:  # noqa: BLE001 - surface the failure in the UI
+            return {"success": False, "error": str(exc)}
         return {"success": True, "summary": summary}
 
 
@@ -444,7 +485,10 @@ def main():
     stats = pipeline._stats()
     print(f"Remaining to review: {stats['remaining']} (accepted {stats['accepted']}, rejected {stats['rejected']})")
 
-    create_app(pipeline).run(debug=True, port=args.port)
+    # Reloader disabled: it reloads the module (re-parsing everything) and the
+    # corpus-wide background index thread makes worker/child re-exec fragile.
+    # Restart manually to pick up code changes; state is loaded per launch.
+    create_app(pipeline).run(debug=True, use_reloader=False, port=args.port)
 
 
 if __name__ == "__main__":

@@ -95,6 +95,7 @@ class FakeEngine:
         return f"<html>{Path(html_file).stem}</html>"
 
     def parse_recipe_from_html(self, html_file, *args):
+        self.parse_count = getattr(self, "parse_count", 0) + 1
         name = Path(html_file).stem
         return self._recipes.get(name)
 
@@ -324,6 +325,42 @@ def test_suggestions_endpoint(tmp_path):
     module, pipeline, engine, client = make_pipeline(tmp_path)
     resp = client.get("/api/search?q=sweet").get_json()
     assert any("Sweet" in r["name"] for r in resp)
+
+
+def test_startup_and_scan_are_lazy(tmp_path):
+    module, pipeline, engine, client = make_pipeline(tmp_path)
+    # the corpus-wide variation index builds in a daemon thread, not blocking startup
+    assert pipeline._index_thread is not None and pipeline._index_thread.daemon
+
+    client.get("/api/state")
+    # the recipe scan itself parses only until the first deliverable recipe
+    assert engine.parse_count >= 1
+
+
+def test_processed_recipes_are_not_reparsed(tmp_path):
+    module, pipeline, engine, client = make_pipeline(tmp_path)
+    client.get("/api/state")
+    client.post("/api/reject", json={})
+    engine2 = engine
+    first_count = engine.parse_count
+    client.get("/api/state")  # nothing left -> done without reparsing
+    assert engine.parse_count <= first_count + 1
+
+    log = engine.validation_log
+    assert log["current_index"] == 2  # advanced past the rejected recipe
+
+
+def test_mapping_works_while_variation_index_still_building(tmp_path):
+    module, pipeline, engine, client = make_pipeline(tmp_path)
+    slow_index = True
+    pipeline._variation_index = None
+    pipeline._index_thread = None  # pretend background build hasn't finished
+    client.get("/api/state")
+    client.post("/api/accept", json={})
+    resp = client.post("/api/map", json={"type": "existing", "ingredient_id": 7}).get_json()
+    assert resp["success"]
+    saved = json.loads(Path(pipeline.mappings_file).read_text())
+    assert "Sweet Vermouth" in saved
 
 
 def test_page_renders(tmp_path):

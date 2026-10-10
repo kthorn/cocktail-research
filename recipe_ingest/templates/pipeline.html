@@ -48,7 +48,7 @@ async function api(path, body) {
   return await resp.json();
 }
 
-function note(text) { $("msg").textContent = text || ""; }
+function note(text) { const el = $("msg"); if (el) el.textContent = text || ""; }
 
 function statsHtml(s) {
   return `remaining <b>${s.remaining}</b> · accepted <b>${s.accepted}</b> · rejected <b>${s.rejected}</b> · mappings <b>${s.mappings}</b> · review <b>${s.needs_review}</b>`;
@@ -171,10 +171,10 @@ async function createNew(ev) {
 }
 
 async function runBatch() {
-  note("running batch pass…");
+  note("running batch pass (parses the whole corpus, can take a few minutes)…");
   const resp = await api("/api/batch", {});
-  $("msg").textContent = "";
-  $("batchout").textContent = JSON.stringify(resp, null, 2);
+  $("msg").textContent = resp.success ? "done" : "error: " + (resp.error || "?");
+  $("batchout").textContent = JSON.stringify(resp.summary, null, 2);
 }
 
 refresh();
