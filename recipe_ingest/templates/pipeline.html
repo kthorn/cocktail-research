@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ingest Pipeline — {{ source }}</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #1b1b1b; color: #eee; }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: #111; position: sticky; top: 0; }
+  header h1 { font-size: 16px; margin: 0; }
+  .stats { font-size: 13px; color: #9a9a9a; }
+  .stats b { color: #eee; }
+  main { display: flex; gap: 12px; padding: 12px 16px; height: calc(100vh - 48px); box-sizing: border-box; }
+  #htmlpane { width: 48%; overflow: auto; background: #fff; color: #222; padding: 12px; border-radius: 6px; }
+  #htmlpane img { max-width: 100%; }
+  #editorpane { width: 52%; display: flex; flex-direction: column; gap: 8px; }
+  textarea { flex: 1; font-family: ui-monospace, monospace; font-size: 12px; background: #101010; color: #ddd; border: 1px solid #333; border-radius: 4px; padding: 8px; white-space: pre; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  button { padding: 8px 16px; border: 0; border-radius: 4px; cursor: pointer; font-size: 14px; }
+  .accept { background: #2e7d32; color: #fff; }
+  .reject { background: #b71c1c; color: #fff; }
+  .secondary { background: #444; color: #eee; }
+  button:disabled { opacity: .4; cursor: default; }
+  .unmapped-tag { background: #ff9800; color: #000; padding: 2px 6px; border-radius: 3px; margin-left: 8px; font-size 12px; }
+  #msg { color: #ffb74d; min-height: 18px; font-size: 13px; }
+  /* mapping phase */
+  #mappingpane { width: 100%; max-width: 720px; margin: 0 auto; overflow: auto; }
+  .sugg { display: flex; justify-content: space-between; padding: 6px 10px; border: 1px solid #333; border-radius: 4px; margin-bottom: 6px; }
+  .sugg .meta { color: #9a9a9a; font-size: 12px; }
+  .sugg button { padding: 4px 10px; }
+  form.newing { display: grid; grid-template-columns: 140px 1fr; gap: 6px; align-items: center; margin-top: 12px; border: 1px solid #333; padding: 10px; border-radius: 4px; }
+  input, select { background: #101010; color: #ddd; border: 1px solid #333; border-radius: 4px; padding: 6px; width: 100%; box-sizing: border-box; }
+  .dim { color: #9a9a9a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ingest pipeline — {{ source }}</h1>
+  <div class="stats" id="stats"></div>
+</header>
+<main id="main"></main>
+<div id="done"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+let state = null;
+
+async function api(path, body) {
+  const resp = await fetch(path, body ? {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)} : undefined);
+  return await resp.json();
+}
+
+function note(text) { $("msg").textContent = text || ""; }
+
+function statsHtml(s) {
+  return `remaining <b>${s.remaining}</b> · accepted <b>${s.accepted}</b> · rejected <b>${s.rejected}</b> · mappings <b>${s.mappings}</b> · review <b>${s.needs_review}</b>`;
+}
+
+async function refresh() {
+  state = await api("/api/state");
+  note("");
+  render();
+}
+
+function render() {
+  $("stats").innerHTML = statsHtml(state.stats);
+  const main = $("main");
+  if (state.phase === "done") {
+    main.innerHTML = `<div id="done"><h2>All recipes processed</h2>
+      <p class="dim">Run the batch pass to auto-ingest every recipe whose ingredients are now mapped.</p>
+      <div class="row"><button class="accept" id="runbatch">Run batch auto-ingest</button><span id="msg"></span></div>
+      <pre id="batchout" class="dim"></pre></div>`;
+    $("runbatch").onclick = runBatch;
+    return;
+  }
+  if (state.phase === "mapping") return renderMapping();
+  renderRecipe();
+}
+
+function renderRecipe() {
+  const r = state.recipe;
+  const tags = r.unmapped.length
+    ? `<span class="unmapped-tag">${r.unmapped.length} unmapped</span>` : "";
+  if (r.already_in_db) tags += `<span class="unmapped-tag" title="a recipe with this name already lives in the database">already in DB</span>`;
+  $("main").innerHTML = `
+    <div id="htmlpane">${r.html_content}</div>
+    <div id="editorpane">
+      <div class="row"><b>${r.name}</b>${tags}<span class="dim">(${r.html_file.split("/").pop()})</span></div>
+      <textarea id="recipejson"></textarea>
+      <div class="row">
+        <button class="accept" id="accept">Accept</button>
+        <button class="reject" id="reject">Reject</button>
+        <button class="secondary" id="revert">Revert edits</button>
+        <span id="msg"></span>
+      </div>
+    </div>`;
+  const ta = $("recipejson");
+  ta.value = JSON.stringify(r.rationalized_data, null, 2);
+  ta.dataset.original = ta.value;
+  $("reject").onclick = async () => { await api("/api/reject", {}); await refresh(); };
+  $("revert").onclick = () => { ta.value = ta.dataset.original; };
+  $("accept").onclick = async () => {
+    let edited = ta.value !== ta.dataset.original, recipe_data;
+    if (edited) {
+      try { recipe_data = JSON.parse(ta.value); } catch (e) { note("Invalid JSON: " + e.message); return; }
+    }
+    const resp = await api("/api/accept", recipe_data ? {recipe_data, edited: true} : {});
+    if (!resp.success) { note(resp.error); return; }
+    await refresh();
+  };
+}
+
+function renderMapping() {
+  const ing = state.ingredient;
+  const rows = ing.suggestions.map(s => `
+    <div class="sugg"><span>${s.name} <span class="meta">${s.path || ""} (${s.similarity})</span></span>
+    <button class="secondary pick" data-id="${s.id}">Map to this</button></div>`).join("");
+  const createDisabled = !ing.can_create;
+  $("main").innerHTML = `
+    <div id="mappingpane">
+      <h2 style="margin-top:0">Map ingredient for <span class="dim">${state.staged_recipe}</span></h2>
+      <p><b>${ing.name}</b> <span class="dim">${ing.variations.length > 1 ? "(also: " + ing.variations.filter(v => v !== ing.name).join(", ") + ")" : ""}</span></p>
+      <div class="row"><input id="q" placeholder="Search ingredients…"><button class="secondary" id="dosearch">Search</button><span id="msg"></span></div>
+      <div id="results">${rows}</div>
+      <div class="row" style="margin-top:12px"><button class="secondary" id="skip">Skip / defer recipe</button></div>
+      ${createDisabled
+        ? `<p class="dim">Creating new ingredients is disabled: set MIXOLOGY_USERNAME and MIXOLOGY_PASSWORD and restart.</p>`
+        : `<form class="newing" id="newform">
+             <b>Create in database</b><input id="n-name" value="${ing.name}" required>
+             <label class="dim">description</label><input id="n-desc">
+             <label class="dim">parent id (optional)</label><input id="n-parent" type="number" placeholder="e.g. 11 (Bitters)">
+             <label class="dim">ABV % (optional)</label><input id="n-abv" type="number" step="0.1">
+             <label class="dim">sugar g/L (optional)</label><input id="n-sugar" type="number" step="0.1">
+             <label class="dim">titratable acidity g/L (optional)</label><input id="n-ta" type="number" step="0.1">
+             <label class="dim">allow substitution</label><input id="n-sub" type="checkbox">
+             <button class="accept" type="submit">Create &amp; map</button>
+           </form>`}
+    </div>`;
+  document.querySelectorAll(".pick").forEach(b => b.onclick = pick);
+  $("skip").onclick = async () => { note("deferring recipe…"); const r = await api("/api/map", {type: "skip"}); if (r.success) await refresh(); };
+  $("dosearch").onclick = doSearch;
+  $("q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
+  if ($("newform")) $("newform").onsubmit = createNew;
+}
+
+async function doSearch() {
+  const results = await api("/api/search?q=" + encodeURIComponent($("q").value));
+  $("results").innerHTML = results.map(s => `
+    <div class="sugg"><span>${s.name} <span class="meta">${s.path || ""}</span></span>
+    <button class="secondary pick" data-id="${s.id}">Map to this</button></div>`).join("") || `<p class="dim">no matches</p>`;
+  document.querySelectorAll(".pick").forEach(b => b.onclick = pick);
+}
+
+async function pick(ev) {
+  note("saving mapping…");
+  const resp = await api("/api/map", {type: "existing", ingredient_id: parseInt(ev.target.dataset.id, 10)});
+  if (!resp.success) { note(resp.error); return; }
+  await refresh();
+}
+
+async function createNew(ev) {
+  ev.preventDefault();
+  note("creating ingredient…");
+  const payload = {type: "new", name: $("n-name").value.trim()};
+  if ($("n-desc").value) payload.description = $("n-desc").value;
+  if ($("n-parent").value) payload.parent_id = parseInt($("n-parent").value, 10);
+  for (const [field, id] of [["percent_abv", "n-abv"], ["sugar_g_per_l", "n-sugar"], ["titratable_acidity_g_per_l", "n-ta"]])
+    if ($(id).value !== "") payload[field] = parseFloat($(id).value);
+  if ($("n-sub").checked) payload.allow_substitution = true;
+  const resp = await api("/api/map", payload);
+  if (!resp.success) { note(resp.error); return; }
+  await refresh();
+}
+
+async function runBatch() {
+  note("running batch pass…");
+  const resp = await api("/api/batch", {});
+  $("msg").textContent = "";
+  $("batchout").textContent = JSON.stringify(resp, null, 2);
+}
+
+refresh();
+</script>
+</body>
+</html>

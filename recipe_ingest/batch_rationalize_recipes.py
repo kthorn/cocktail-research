@@ -27,7 +27,7 @@ class BatchRecipeRationalizer:
     def __init__(
         self,
         source_name: str,
-        mappings_file: str = "/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
+        mappings_file: str = "/home/kurtt/cocktail-research/data/ingredient_mappings.json",
         validation_log_file: str = "/home/kurtt/cocktail-research/data/validation_log.json",
         output_dir: str = "/home/kurtt/cocktail-research/output",
         batch_size: int = 100,
@@ -119,6 +119,11 @@ class BatchRecipeRationalizer:
             or recipe_name in self.validation_log.get("auto_ingested", [])
         )
 
+    def load_html(self, html_file: str) -> str:
+        """Read raw HTML content for display."""
+        with open(html_file, "r", encoding="utf-8") as f:
+            return f.read()
+
     def parse_recipe_from_html(self, html_file: str) -> Dict:
         """Parse recipe from HTML file.
 
@@ -136,6 +141,23 @@ class BatchRecipeRationalizer:
         except Exception as e:
             print(f"Error reading/parsing {html_file}: {e}")
             return None
+
+    def should_skip_recipe(self, parsed_recipe: Dict) -> str | None:
+        """Return a skip reason if this recipe should not be processed, else None.
+
+        Shared skip rules: shot recipes (SHOT GLASS in instructions or "Shot" in
+        name) and recipes with 2 or fewer ingredients. Parse failures are
+        handled by the caller.
+        """
+        recipe_name = parsed_recipe["name"]
+        instructions = parsed_recipe.get("instructions", "")
+        if "SHOT GLASS" in instructions.upper():
+            return "contains SHOT GLASS"
+        if "Shot" in recipe_name:
+            return "has 'Shot' in name"
+        if len(parsed_recipe.get("ingredients", [])) <= 2:
+            return "has 2 or fewer ingredients"
+        return None
 
     def can_rationalize_recipe(
         self, parsed_recipe: Dict
@@ -239,21 +261,9 @@ class BatchRecipeRationalizer:
             if self.is_recipe_already_processed(recipe_name):
                 continue
 
-            # Skip recipes we don't want to process
-            # 1. Skip shot recipes (SHOT GLASS in instructions or "Shot" in name)
-            instructions = parsed_recipe.get("instructions", "")
-            if "SHOT GLASS" in instructions.upper():
-                print(f"  Skipping '{recipe_name}' - contains SHOT GLASS")
-                continue
-
-            if "Shot" in recipe_name:
-                print(f"  Skipping '{recipe_name}' - has 'Shot' in name")
-                continue
-
-            # 2. Skip recipes with 2 or fewer ingredients
-            ingredients = parsed_recipe.get("ingredients", [])
-            if len(ingredients) <= 2:
-                print(f"  Skipping '{recipe_name}' - has {len(ingredients)} ingredient(s)")
+            skip_reason = self.should_skip_recipe(parsed_recipe)
+            if skip_reason:
+                print(f"  Skipping '{recipe_name}' - {skip_reason}")
                 continue
 
             # Check if all ingredients can be rationalized
@@ -348,6 +358,12 @@ class BatchRecipeRationalizer:
 
         print("=" * 70)
 
+        return {
+            "auto_ingested": len(auto_ingested),
+            "needs_review": len(needs_review),
+            "batch_files": batch_files,
+        }
+
 
 def main():
     """Main function."""
@@ -364,7 +380,7 @@ def main():
     parser.add_argument(
         "--mappings-file",
         type=str,
-        default="/home/kurtt/cocktail-research/recipe_ingest/ingredient_rationalizer/ingredient_mappings.json",
+        default="/home/kurtt/cocktail-research/data/ingredient_mappings.json",
         help="Path to ingredient mappings file",
     )
     parser.add_argument(
