@@ -434,6 +434,15 @@ def create_app(pipeline: RecipePipeline) -> Flask:
     def index():
         return render_template("pipeline.html", source=pipeline.engine.source_name)
 
+    # Difford's scraped HTML references its icon sprite by relative path, which
+    # the browser resolves against our origin; serve an empty sprite so icons
+    # simply disappear instead of spamming 404s in the console.
+    @app.route("/svg/icons.svg")
+    def icon_sprite():
+        return "<svg xmlns='http://www.w3.org/2000/svg' style='display:none'></svg>", {
+            "Content-Type": "image/svg+xml"
+        }
+
     @app.route("/api/state")
     def state():
         return jsonify(pipeline.state())

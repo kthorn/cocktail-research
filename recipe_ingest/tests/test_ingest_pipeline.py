@@ -367,3 +367,11 @@ def test_page_renders(tmp_path):
     module, pipeline, engine, client = make_pipeline(tmp_path)
     resp = client.get("/")
     assert resp.status_code == 200
+
+
+def test_icon_sprite_stub(tmp_path):
+    # scraped Difford's HTML references /svg/icons.svg; it must not 404
+    module, pipeline, engine, client = make_pipeline(tmp_path)
+    resp = client.get("/svg/icons.svg")
+    assert resp.status_code == 200
+    assert resp.mimetype == "image/svg+xml"
