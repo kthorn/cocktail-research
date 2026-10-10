@@ -126,7 +126,9 @@ function renderMapping() {
         : `<form class="newing" id="newform">
              <b>Create in database</b><input id="n-name" value="${ing.name}" required>
              <label class="dim">description</label><input id="n-desc">
-             <label class="dim">parent id (optional)</label><input id="n-parent" type="number" placeholder="e.g. 11 (Bitters)">
+             <label class="dim">parent (optional — type to search)</label>
+             <input id="n-parent" list="parent-list" autocomplete="off" placeholder="e.g. Bitters">
+             <datalist id="parent-list"></datalist>
              <label class="dim">ABV % (optional)</label><input id="n-abv" type="number" step="0.1">
              <label class="dim">sugar g/L (optional)</label><input id="n-sugar" type="number" step="0.1">
              <label class="dim">titratable acidity g/L (optional)</label><input id="n-ta" type="number" step="0.1">
@@ -138,7 +140,21 @@ function renderMapping() {
   $("skip").onclick = async () => { note("deferring recipe…"); const r = await api("/api/map", {type: "skip"}); if (r.success) await refresh(); };
   $("dosearch").onclick = doSearch;
   $("q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
-  if ($("newform")) $("newform").onsubmit = createNew;
+  if ($("newform")) {
+    $("newform").onsubmit = createNew;
+    const parentInput = $("n-parent");
+    let parentTimer = null;
+    parentInput.addEventListener("input", () => {
+      clearTimeout(parentTimer);
+      parentTimer = setTimeout(async () => {
+        const q = parentInput.value.trim();
+        if (!q) { $("parent-list").innerHTML = ""; window.__parentCache = []; return; }
+        const results = await api("/api/search?q=" + encodeURIComponent(q));
+        window.__parentCache = results;
+        $("parent-list").innerHTML = results.map(r => `<option value="${r.name}">${r.path || ""}</option>`).join("");
+      }, 200);
+    });
+  }
 }
 
 async function doSearch() {
@@ -161,7 +177,12 @@ async function createNew(ev) {
   note("creating ingredient…");
   const payload = {type: "new", name: $("n-name").value.trim()};
   if ($("n-desc").value) payload.description = $("n-desc").value;
-  if ($("n-parent").value) payload.parent_id = parseInt($("n-parent").value, 10);
+  const parentName = $("n-parent").value.trim();
+  if (parentName) {
+    const match = (window.__parentCache || []).find(i => i.name === parentName);
+    if (!match) { note(`Unknown parent "${parentName}" — pick one from the search list`); return; }
+    payload.parent_id = match.id;
+  }
   for (const [field, id] of [["percent_abv", "n-abv"], ["sugar_g_per_l", "n-sugar"], ["titratable_acidity_g_per_l", "n-ta"]])
     if ($(id).value !== "") payload[field] = parseFloat($(id).value);
   if ($("n-sub").checked) payload.allow_substitution = true;
