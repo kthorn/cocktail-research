@@ -363,6 +363,31 @@ def test_mapping_works_while_variation_index_still_building(tmp_path):
     assert "Sweet Vermouth" in saved
 
 
+def test_mapping_always_writes_the_recipes_exact_name(tmp_path):
+    """A corpus variant was mapped but the recipe's own spelling must not stay stuck."""
+    module, pipeline, engine, client = make_pipeline(tmp_path)
+    # background index ready, but it missed the staged recipe's exact spelling
+    pipeline._variation_index = {"elderflower liqueur": ["elderflower liqueur"]}
+    pipeline._index_thread = None
+
+    client.get("/api/state")
+    client.post("/api/accept", json={})
+    # ensure the staged ingredient spelling is what the recipe uses
+    staged_name = pipeline.staged["remaining"][0]
+    pipeline.engine.mappings.pop(staged_name, None)
+    pipeline._variation_index = {
+        module.normalize_string(staged_name.lower()): [staged_name.lower()]
+    }  # variant only, missing the recipe's exact spelling
+
+    resp = client.post("/api/map", json={"type": "existing", "ingredient_id": 7}).get_json()
+    assert resp["success"]
+
+    saved = json.loads(Path(pipeline.mappings_file).read_text())
+    assert staged_name in saved, f"exact name {staged_name!r} missing: {sorted(saved)}"
+    state = client.get("/api/state").get_json()
+    assert state["phase"] != "mapping"  # recipe no longer stuck
+
+
 def test_page_renders(tmp_path):
     module, pipeline, engine, client = make_pipeline(tmp_path)
     resp = client.get("/")
@@ -375,3 +400,4 @@ def test_icon_sprite_stub(tmp_path):
     resp = client.get("/svg/icons.svg")
     assert resp.status_code == 200
     assert resp.mimetype == "image/svg+xml"
+

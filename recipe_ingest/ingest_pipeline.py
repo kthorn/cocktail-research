@@ -371,7 +371,11 @@ class RecipePipeline:
 
     def _write_mapping(self, raw_name: str, entry: dict):
         entry = dict(entry, mapped_at=datetime.now().isoformat())
-        for variant in self._variations_for(raw_name):
+        # The exact name the recipe uses must always be written: the unmapped
+        # check is exact-match, so skipping it would leave the recipe stuck.
+        # Corpus variants get the same mapping on top.
+        raw_stripped = raw_name.strip()
+        for variant in {raw_stripped, *self._variations_for(raw_stripped)}:
             self.engine.mappings[variant] = dict(entry)
         with open(self.mappings_file, "w", encoding="utf-8") as f:
             json.dump(self.engine.mappings, f, indent=2)
