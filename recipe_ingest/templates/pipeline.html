@@ -77,7 +77,7 @@ function render() {
 
 function renderRecipe() {
   const r = state.recipe;
-  const tags = r.unmapped.length
+  let tags = r.unmapped.length
     ? `<span class="unmapped-tag">${r.unmapped.length} unmapped</span>` : "";
   if (r.already_in_db) tags += `<span class="unmapped-tag" title="a recipe with this name already lives in the database">already in DB</span>`;
   $("main").innerHTML = `
